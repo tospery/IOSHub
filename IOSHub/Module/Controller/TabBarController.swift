@@ -50,7 +50,11 @@ class TabBarController: HiIOS.TabBarController, ReactorKit.View {
         var viewController: UIViewController!
         switch key {
         case .dashboard:
-            viewController = DashboardViewController(self.navigator, DashboardViewReactor(self.reactor!.provider, nil))
+            viewController = self.navigator.viewController(
+                for: Router.shared.urlString(host: .dashboard, parameters: [
+                    Parameter.hidesNavigationBar: true.string
+                ])
+            )
             viewController.tabBarItem.image = R.image.tabbar_dashboard_normal()?.original
             viewController.tabBarItem.selectedImage = R.image.tabbar_dashboard_selected()?.original
         case .personal:

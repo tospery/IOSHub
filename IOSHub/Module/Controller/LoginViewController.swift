@@ -170,7 +170,7 @@ class LoginViewController: ScrollViewController, ReactorKit.View {
     }
     
     func handleUser(user: User) {
-        log("login success")
+        log("登录成功了，进行保存")
         Subjection.update(AccessToken.self, self.reactor?.currentState.accessToken)
         MainScheduler.asyncInstance.schedule(()) { _ -> Disposable in
             User.update(user, reactive: true)

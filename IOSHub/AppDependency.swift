@@ -42,7 +42,8 @@ final class AppDependency: HiIOS.AppDependency {
     
     // MARK: - Test
     override func test(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-        log("看看: \(envParameters)")
+        log("环境参数: \(envParameters)", module: .common)
+        log("用户参数: \(userParameters)", module: .common)
     }
 
     // MARK: - Setup

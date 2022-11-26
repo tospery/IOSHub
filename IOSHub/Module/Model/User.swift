@@ -14,6 +14,7 @@ import Rswift
 import HiIOS
 import ReusableKit_Hi
 import ObjectMapper_Hi
+import BonMot
 
 struct User: Subjective, Eventable {
     
@@ -66,6 +67,18 @@ struct User: Subjective, Eventable {
         return R.string.localizable.joinedOn(value)
     }
     
+    var repositoresText: NSAttributedString {
+        self.stat(R.string.localizable.repositores(), self.publicRepos ?? 0)
+    }
+    
+    var followersText: NSAttributedString {
+        self.stat(R.string.localizable.followers(), self.followers ?? 0)
+    }
+    
+    var followingText: NSAttributedString {
+        self.stat(R.string.localizable.following(), self.following ?? 0)
+    }
+    
     init() {
     }
 
@@ -105,6 +118,14 @@ struct User: Subjective, Eventable {
         location                <- map["location"]
         eventsUrl               <- map["events_url"]
         publicRepos             <- map["public_repos"]
+    }
+    
+    func stat(_ text: String, _ count: Int) -> NSAttributedString {
+        .composed(of: [
+            count.string.styled(with: .color(.foreground), .font(.bold(22))),
+            Special.nextLine,
+            text.styled(with: .color(.body), .font(.normal(13)))
+        ]).styled(with: .lineSpacing(4), .alignment(.center))
     }
     
     static func update(_ user: User?, reactive: Bool) {
