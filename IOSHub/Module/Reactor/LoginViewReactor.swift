@@ -122,12 +122,12 @@ class LoginViewReactor: ScrollViewReactor, ReactorKit.Reactor {
     func login() -> Observable<User> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
-            guard let username = self.currentState.username, !username.isEmpty,
-                  let password = self.currentState.password, !password.isEmpty else {
-                observer.onError(APPError.login(nil))
-                return Disposables.create { }
-            }
-            return self.provider.login(username: username, password: password)
+//            guard let username = self.currentState.username, !username.isEmpty,
+//                  let password = self.currentState.password, !password.isEmpty else {
+//                observer.onError(APPError.login(nil))
+//                return Disposables.create { }
+//            }
+            return self.provider.login(token: "")
                 .asObservable()
                 .subscribe(observer)
         }
