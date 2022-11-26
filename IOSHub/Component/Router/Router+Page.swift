@@ -17,6 +17,9 @@ extension Router {
 //            return NormalViewController(navigator, NormalViewReactor.init(provider, parameters))
 //        }
 //        navigator.register(self.urlPattern(host: .about), normalFactory)
+        navigator.register(self.urlPattern(host: .dashboard)) { url, values, context in
+            DashboardViewController(navigator, DashboardViewReactor(provider, self.parameters(url, values, context)))
+        }
         navigator.register(self.urlPattern(host: .personal)) { url, values, context in
             PersonalViewController(navigator, PersonalViewReactor(provider, self.parameters(url, values, context)))
         }

@@ -84,6 +84,12 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        if (self.model as? Simple)?.isButton ?? false {
+            self.titleLabel.sizeToFit()
+            self.titleLabel.left = self.titleLabel.leftWhenCenter
+            self.titleLabel.top = self.titleLabel.topWhenCenter
+            return
+        }
         if self.iconImageView.isHidden {
             self.iconImageView.frame = .zero
             self.iconImageView.left = 20
@@ -121,32 +127,49 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
             self.detailLabel.right = self.indicatorImageView.left - 8
         }
     }
-    
+     
+    // swiftlint:disable function_body_length
     func bind(reactor: SimpleItem) {
         super.bind(item: reactor)
-        if (reactor.model as? Simple)?.isSpace ?? false {
+        guard let simple = reactor.model as? Simple else { return }
+        if simple.isSpace {
             self.contentView.backgroundColor = reactor.color ?? .clear
             self.borderLayer?.borderWidths = [:]
             self.indicatorImageView.isHidden = true
+            return
+        }
+        if simple.isButton {
+            self.contentView.backgroundColor = reactor.color ?? .clear
+            self.borderLayer?.borderWidths = [:]
+            self.indicatorImageView.isHidden = true
+            self.titleLabel.font = .normal(17)
+            self.titleLabel.textColor = reactor.tintColor ?? .primary
+            reactor.state.map { $0.title }
+                .distinctUntilChanged()
+                .bind(to: self.titleLabel.rx.text)
+                .disposed(by: self.disposeBag)
+            reactor.state.map { _ in }
+                .bind(to: self.rx.setNeedsLayout)
+                .disposed(by: self.disposeBag)
             return
         }
 //        if let parent = reactor.parent as? NormalViewReactor {
 //            if let cellType = Simple.Identifier.init(rawValue: (reactor.model as? Simple)?.id ?? 0) {
 //                switch cellType {
 //                case .userType:
-//                    parent.state.map { $0.user?.username }
+//                    parent.state.map { $0.user?.vipType }
 //                        .distinctUntilChanged()
 //                        .map { Reactor.Action.detail($0) }
 //                        .bind(to: reactor.action)
 //                        .disposed(by: self.disposeBag)
 //                case .userName:
-//                    parent.state.map { $0.user?.username }
+//                    parent.state.map { $0.user?.nickname }
 //                        .distinctUntilChanged()
 //                        .map { Reactor.Action.detail($0) }
 //                        .bind(to: reactor.action)
 //                        .disposed(by: self.disposeBag)
 //                case .userEmail:
-//                    parent.state.map { $0.user?.username }
+//                    parent.state.map { $0.user?.email }
 //                        .distinctUntilChanged()
 //                        .map { Reactor.Action.detail($0) }
 //                        .bind(to: reactor.action)
@@ -181,10 +204,14 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
             .bind(to: self.rx.setNeedsLayout)
             .disposed(by: self.disposeBag)
     }
+    // swiftlint:enable function_body_length
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
         guard let simple = item.model as? Simple else { return .zero }
-        return .init(width: width, height: simple.height ?? (simple.isSpace ? 20 : 50))
+        return .init(
+            width: width,
+            height: simple.height ?? (simple.isSpace ? 20 : simple.isButton ? 44 : 50)
+        )
     }
     
 }

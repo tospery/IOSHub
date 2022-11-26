@@ -25,3 +25,11 @@ var userParameters: [String: Any] {
         Parameter.username: User.current?.username ?? ""
     ]
 }
+
+struct Metric {
+
+    struct Personal {
+        static let parallaxHeight   = ((navigationContentTopConstant + 160.0) / 390.0 * deviceWidth).flat
+    }
+    
+}

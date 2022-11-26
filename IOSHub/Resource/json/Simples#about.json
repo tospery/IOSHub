@@ -1,0 +1,27 @@
+[
+    {
+        "id":300,
+        "title":"作者"
+    },
+    {
+        "id":301,
+        "title":"微博",
+        "divided":false
+    },
+    {
+        "id":0
+    },
+    {
+        "id":302,
+        "title":"URL Schemes"
+    },
+    {
+        "id":303,
+        "title":"评分鼓励"
+    },
+    {
+        "id":304,
+        "title":"分享给好友",
+        "divided":false
+    }
+]

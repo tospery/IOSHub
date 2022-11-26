@@ -36,6 +36,7 @@ class SimpleItem: BaseCollectionItem, ReactorKit.Reactor {
     var isSpace = false
     var height: CGFloat?
     var color: UIColor?
+    var tintColor: UIColor?
     var initialState = State()
     
     required init(_ model: ModelType) {
@@ -44,6 +45,7 @@ class SimpleItem: BaseCollectionItem, ReactorKit.Reactor {
         isSpace = simple.isSpace
         height = simple.height
         color = simple.color?.color
+        tintColor = simple.tintColor?.color
         self.initialState = State(
             icon: simple.icon?.imageSource,
             title: simple.title,

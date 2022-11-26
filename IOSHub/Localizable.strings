@@ -3,12 +3,36 @@
 "No" = "否";
 "OK" = "确定";
 "Sure" = "确定";
+"Cancel" = "取消";
 "Home" = "首页";
 "Mine" = "我的";
 "Login" = "登录";
 "About" = "关于";
+"Setting" = "设置";
+"Feedback" = "反馈";
+"Nickname" = "昵称";
+"Bio" = "简介";
+"Company" = "团队";
+"Location" = "地点";
+"Blog" = "个人主页";
+"Repositores" = "Repositores";
+"Followers" = "Followers";
+"Following" = "Following";
 /* 词语 */
-"Phone Login" = "手机登录";
+"Exit Login" = "退出登录";
+"No Description" = "No Description";
+"Access Token" = "Access Token";
+"Click To Login" = "Click here to login";
+"App Slogan" = "Let's build from here";
+"Joined on" = "Joined on %@";
+/* 句子 - Login */
+"Login.Slogan" = "Develop By Swift";
+"Login.Button.Title" = "使用GitHub登录";
+"Login.Personal.Token" = "Personal Access Token";
+"Login.Privacy.Title" = "仓库访问权限选项";
+"Login.Privacy.Message" = "隐私声明：SwiftGithub不会从您的GitHub账户收集任何信息，我甚至连服务器都没有，请您放心使用。";
+"Login.Privilege.OnlyPublic" = "仅公开库";
+"Login.Privilege.WithPrivate" = "公开库+私有库";
 /* 句子 - Error */
 "Error.Login" = "登录失败，请稍后重试";
 "Error.Retry" = "重试";

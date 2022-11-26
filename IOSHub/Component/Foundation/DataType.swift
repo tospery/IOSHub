@@ -46,3 +46,57 @@ enum Platform {
     }
 
 }
+
+enum PieceId: Int {
+    case nickname = 1
+    case bio, company, location, blog
+}
+
+enum SimpleId: Int {
+    case space      = 0, button
+    case setting    = 100, about, feedback
+    case company    = 200, location, email, blog
+    case author     = 300, weibo, shcemes, rating, share
+}
+
+enum SGAlertAction: AlertActionType, Equatable {
+    case destructive
+    case `default`
+    case cancel
+    case input
+    case onlyPublic
+    case withPrivate
+
+    var title: String? {
+        switch self {
+        case .destructive:  return R.string.localizable.sure()
+        case .default:  return R.string.localizable.oK()
+        case .cancel: return R.string.localizable.cancel()
+        case .onlyPublic: return R.string.localizable.loginPrivilegeOnlyPublic()
+        case .withPrivate: return R.string.localizable.loginPrivilegeWithPrivate()
+        default: return nil
+        }
+    }
+
+    var style: UIAlertAction.Style {
+        switch self {
+        case .cancel:  return .cancel
+        case .destructive:  return .destructive
+        default: return .default
+        }
+    }
+
+    static func == (lhs: SGAlertAction, rhs: SGAlertAction) -> Bool {
+        switch (lhs, rhs) {
+        case (.destructive, .destructive),
+            (.default, .default),
+            (.cancel, .cancel),
+            (.input, .input),
+            (.onlyPublic, .onlyPublic),
+            (.withPrivate, .withPrivate):
+            return true
+        default:
+            return false
+        }
+    }
+}

@@ -60,6 +60,8 @@
 		8C9A45E52887F6F40041937A /* DashboardViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A45AC2887F6F30041937A /* DashboardViewReactor.swift */; };
 		8C9A45E62887F6F40041937A /* TabBarReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A45AD2887F6F30041937A /* TabBarReactor.swift */; };
 		8C9A45E92887F7120041937A /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A45E82887F7120041937A /* AppDependency.swift */; };
+		9110A09A29326A3200B09DB1 /* Simples#personal.json in Resources */ = {isa = PBXBuildFile; fileRef = 9110A09929326A3200B09DB1 /* Simples#personal.json */; };
+		9110A09C29326A4900B09DB1 /* Simples#about.json in Resources */ = {isa = PBXBuildFile; fileRef = 9110A09B29326A4900B09DB1 /* Simples#about.json */; };
 		91C267E428EB302500DD5677 /* NormalViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E328EB302500DD5677 /* NormalViewReactor.swift */; };
 		91C267E628EB302E00DD5677 /* NormalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E528EB302E00DD5677 /* NormalViewController.swift */; };
 		91C267E828EB30FA00DD5677 /* SectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E728EB30FA00DD5677 /* SectionItem.swift */; };
@@ -132,6 +134,8 @@
 		8C9A45E82887F7120041937A /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		8C9A45EA2887F74D0041937A /* readme.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		8C9A45EC2887F76D0041937A /* OC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OC-Bridging-Header.h"; sourceTree = "<group>"; };
+		9110A09929326A3200B09DB1 /* Simples#personal.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Simples#personal.json"; sourceTree = "<group>"; };
+		9110A09B29326A4900B09DB1 /* Simples#about.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Simples#about.json"; sourceTree = "<group>"; };
 		91C267E328EB302500DD5677 /* NormalViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalViewReactor.swift; sourceTree = "<group>"; };
 		91C267E528EB302E00DD5677 /* NormalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalViewController.swift; sourceTree = "<group>"; };
 		91C267E728EB30FA00DD5677 /* SectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionItem.swift; sourceTree = "<group>"; };
@@ -406,6 +410,8 @@
 			isa = PBXGroup;
 			children = (
 				91C267ED28EB33A800DD5677 /* Configuration.json */,
+				9110A09929326A3200B09DB1 /* Simples#personal.json */,
+				9110A09B29326A4900B09DB1 /* Simples#about.json */,
 			);
 			path = json;
 			sourceTree = "<group>";
@@ -490,6 +496,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C5A3FD82887A0E30009A00F /* LaunchScreen.storyboard in Resources */,
+				9110A09C29326A4900B09DB1 /* Simples#about.json in Resources */,
+				9110A09A29326A3200B09DB1 /* Simples#personal.json in Resources */,
 				8C9A455D2887E3870041937A /* Localizable.strings in Resources */,
 				8C5A3FD52887A0E30009A00F /* Assets.xcassets in Resources */,
 				91C267EE28EB33A800DD5677 /* Configuration.json in Resources */,

@@ -9,12 +9,12 @@ import UIKit
 import HiIOS
 
 struct LightTheme: Theme {
-    let backgroundColor = UIColor.Material.white
-    let foregroundColor = UIColor.Material.black
+    let backgroundColor = UIColor.white
+    let foregroundColor = UIColor.black
     let lightColor = UIColor(hex: 0xF6F6F6)!
     let darkColor = UIColor.Material.grey900
-    var primaryColor = UIColor(hex: 0x0AD198)!
-    let secondaryColor = UIColor.Material.blue
+    var primaryColor = UIColor.blue
+    let secondaryColor = UIColor.green
     let titleColor = UIColor(hex: 0x333333)!
     let bodyColor = UIColor(hex: 0x666666)!
     let headerColor = UIColor(hex: 0xD2D2D2)!
@@ -24,7 +24,7 @@ struct LightTheme: Theme {
     let separatorColor = UIColor(hex: 0xE0E0E0)!
     let indicatorColor = UIColor.Material.grey600
     let specialColors = [
-        Parameter.code: UIColor(hex: 0xE82220)!
+        Parameter.login: UIColor(hex: 0x424954)!
     ]
     let barStyle = UIBarStyle.default
     let statusBarStyle = UIStatusBarStyle.default
