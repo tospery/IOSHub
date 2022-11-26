@@ -46,15 +46,19 @@ class TabBarController: HiIOS.TabBarController, ReactorKit.View {
             .disposed(by: self.disposeBag)
     }
 
-    func viewController(with key: TabBarKey) -> BaseViewController {
-        var viewController: BaseViewController!
+    func viewController(with key: TabBarKey) -> UIViewController {
+        var viewController: UIViewController!
         switch key {
         case .dashboard:
             viewController = DashboardViewController(self.navigator, DashboardViewReactor(self.reactor!.provider, nil))
             viewController.tabBarItem.image = R.image.tabbar_dashboard_normal()?.original
             viewController.tabBarItem.selectedImage = R.image.tabbar_dashboard_selected()?.original
         case .personal:
-            viewController = PersonalViewController(self.navigator, PersonalViewReactor(self.reactor!.provider, nil))
+            viewController = self.navigator.viewController(
+                for: Router.shared.urlString(host: .personal, parameters: [
+                    Parameter.hidesNavigationBar: true.string
+                ])
+            )
             viewController.tabBarItem.image = R.image.tabbar_personal_normal()?.original
             viewController.tabBarItem.selectedImage = R.image.tabbar_personal_selected()?.original
         }
