@@ -15,6 +15,50 @@ import HiIOS
 
 class LoginViewController: ScrollViewController, ReactorKit.View {
     
+    lazy var titleLabel: UILabel = {
+        let label = UILabel.init(frame: .zero)
+        label.font = .bold(17)
+        label.theme.textColor = themeService.attribute { $0.foregroundColor }
+        label.text = R.string.localizable.loginSlogan()
+        label.sizeToFit()
+        return label
+    }()
+    
+    lazy var loginButton: UIButton = {
+        let button = UIButton.init(type: .custom)
+        button.titleLabel?.font = .normal(15)
+        button.setTitle(R.string.localizable.loginButtonTitle(), for: .normal)
+        button.theme.titleColor(
+            from: themeService.attribute { $0.backgroundColor },
+            for: .normal
+        )
+        button.theme.backgroundImage(
+            from: themeService.attribute {
+                UIImage.init(
+                    color: $0.specialColors.color(for: Parameter.login)!,
+                    size: .init(width: deviceWidth, height: 50)
+                )
+            },
+            for: .normal
+        )
+        button.rx.tap
+            .subscribeNext(weak: self, type(of: self).tapLogin)
+            .disposed(by: self.disposeBag)
+        button.sizeToFit()
+        button.width = deviceWidth * 0.8
+        button.height = 46
+        button.layerCornerRadius = 8
+        return button
+    }()
+    
+    lazy var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = R.image.appLogo()
+        imageView.sizeToFit()
+        imageView.size = .init(deviceWidth * 0.3)
+        return imageView
+    }()
+    
     required init(_ navigator: NavigatorProtocol, _ reactor: BaseViewReactor) {
         defer {
             self.reactor = reactor as? LoginViewReactor
@@ -28,6 +72,24 @@ class LoginViewController: ScrollViewController, ReactorKit.View {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationBar.addButtonToRight(title: R.string.localizable.accessToken())
+            .rx.tap
+            .subscribeNext(weak: self, type(of: self).tapAccessToken)
+            .disposed(by: self.disposeBag)
+        self.scrollView.addSubview(self.iconImageView)
+        self.scrollView.addSubview(self.titleLabel)
+        self.scrollView.addSubview(self.loginButton)
+        self.navigationBar.theme.rightItemColor = themeService.attribute { $0.primaryColor }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.iconImageView.left = self.iconImageView.leftWhenCenter
+        self.iconImageView.top = self.iconImageView.topWhenCenter * 0.7
+        self.titleLabel.left = self.titleLabel.leftWhenCenter
+        self.titleLabel.top = self.iconImageView.bottom + 10
+        self.loginButton.left = self.loginButton.leftWhenCenter
+        self.loginButton.bottom = self.scrollView.height - 50 - safeArea.bottom
     }
     
     func bind(reactor: LoginViewReactor) {
@@ -36,16 +98,6 @@ class LoginViewController: ScrollViewController, ReactorKit.View {
         self.rx.load.map { Reactor.Action.load }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
-//        self.usernameView.usernameTextField.rx.text
-//            .map { $0?.trimmed }
-//            .map { Reactor.Action.username($0) }
-//            .bind(to: reactor.action)
-//            .disposed(by: self.disposeBag)
-//        self.passwordView.passwordTextField.rx.text
-//            .map { $0?.trimmed }
-//            .map { Reactor.Action.password($0) }
-//            .bind(to: reactor.action)
-//            .disposed(by: self.disposeBag)
         // state
         reactor.state.map { $0.title }
             .distinctUntilChanged()
@@ -69,26 +121,57 @@ class LoginViewController: ScrollViewController, ReactorKit.View {
             .filterNil()
             .subscribeNext(weak: self, type(of: self).handleUser)
             .disposed(by: self.disposeBag)
-//        Observable.combineLatest([
-//            reactor.state.map { $0.phone }.replaceNilWith("").distinctUntilChanged(),
-//            reactor.state.map { $0.captcha }.replaceNilWith("").distinctUntilChanged()
-//        ])
-//            .map { $0[0].isNotEmpty && $0[1].count == 5 }
-//            .distinctUntilChanged()
-//            .bind(to: self.loginButton.rx.isEnabled)
-//            .disposed(by: self.disposeBag)
-//        Observable.combineLatest([
-//            reactor.state.map { $0.username }.replaceNilWith("").distinctUntilChanged(),
-//            reactor.state.map { $0.password }.replaceNilWith("").distinctUntilChanged()
-//        ])
-//            .map { $0[0].count > 2 && $0[1].isNotEmpty }
-//            .distinctUntilChanged()
-//            .bind(to: self.loginButton.rx.isEnabled)
-//            .disposed(by: self.disposeBag)
     }
 
+    func tapLogin(_: Void? = nil) {
+        self.navigator.rxSheet(
+            R.string.localizable.loginPrivacyTitle(),
+            R.string.localizable.loginPrivacyMessage(),
+            [
+                IHAlertAction.onlyPublic,
+                IHAlertAction.withPrivate,
+                IHAlertAction.cancel
+            ]
+        )
+        .subscribeNext(weak: self, type(of: self).handleSheet)
+        .disposed(by: self.disposeBag)
+    }
+    
+    func tapAccessToken(_: Void? = nil) {
+        self.navigator.rxAlert(
+            R.string.localizable.loginPersonalToken(),
+            R.string.localizable.loginPrivacyMessage(),
+            [
+                IHAlertAction.input,
+                IHAlertAction.cancel,
+                IHAlertAction.default
+            ]
+        )
+        .subscribeNext(weak: self, type(of: self).handleAlert)
+        .disposed(by: self.disposeBag)
+    }
+    
+    func handleAlert(token: Any) {
+        guard let token = token as? String, !token.isEmpty else { return }
+        self.login()
+    }
+    
+    func handleSheet(action: Any) {
+        guard let action = action as? IHAlertAction, action != .cancel else { return }
+        self.login()
+    }
+    
+    func login() {
+        MainScheduler.asyncInstance.schedule(()) { [weak self] _ -> Disposable in
+            guard let `self` = self else { fatalError() }
+            self.reactor?.action.onNext(.login)
+            return Disposables.create {}
+        }.disposed(by: self.disposeBag)
+    }
+    
     func handleUser(user: User) {
         log("login success")
+        Subjection.update(AccessToken.self, self.reactor?.currentState.accessToken)
         MainScheduler.asyncInstance.schedule(()) { _ -> Disposable in
             User.update(user, reactive: true)
             return Disposables.create {}

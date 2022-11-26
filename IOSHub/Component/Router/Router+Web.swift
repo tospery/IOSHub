@@ -13,6 +13,7 @@ extension Router {
     
     enum Web: String {
         case agreement      = "html/userduty.htm"
+        case oauth
 
         var urlString: String {
             switch self {
@@ -20,6 +21,12 @@ extension Router {
                 return "\(UIApplication.shared.baseWebUrl)/\(self.rawValue)".url!
                     .appendingQueryParameters(envParameters.toStringString)
                     .absoluteString
+            case .oauth:
+                return """
+                    http://github.com/login/oauth/authorize?\
+                    client_id=\(Platform.github.appId)&\
+                    scope=user+repo+notifications+read:org
+                    """
             }
         }
     }

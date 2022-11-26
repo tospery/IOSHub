@@ -40,9 +40,7 @@
 		8C9A45CA2887F6F40041937A /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A45882887F6F30041937A /* QMUIConfigurationTemplate.m */; };
 		8C9A45CB2887F6F40041937A /* Router+Web.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A458A2887F6F30041937A /* Router+Web.swift */; };
 		8C9A45CC2887F6F40041937A /* Router+Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A458B2887F6F30041937A /* Router+Page.swift */; };
-		8C9A45CD2887F6F40041937A /* RouterPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A458C2887F6F30041937A /* RouterPath.swift */; };
-		8C9A45CE2887F6F40041937A /* Router+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A458D2887F6F30041937A /* Router+Model.swift */; };
-		8C9A45D02887F6F40041937A /* RouterHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A458F2887F6F30041937A /* RouterHost.swift */; };
+		8C9A45CE2887F6F40041937A /* Router+Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A458D2887F6F30041937A /* Router+Dialog.swift */; };
 		8C9A45D22887F6F40041937A /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A45942887F6F30041937A /* Section.swift */; };
 		8C9A45D32887F6F40041937A /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A45962887F6F30041937A /* DashboardViewController.swift */; };
 		8C9A45D52887F6F40041937A /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A45982887F6F30041937A /* PersonalViewController.swift */; };
@@ -69,6 +67,11 @@
 		9110A0AD29329C5700B09DB1 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110A0AC29329C5700B09DB1 /* AccessToken.swift */; };
 		9110A0AF29329CAB00B09DB1 /* GithubBaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110A0AE29329CAB00B09DB1 /* GithubBaseAPI.swift */; };
 		9110A0B129329CC800B09DB1 /* ProviderType+GithubBaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110A0B029329CC800B09DB1 /* ProviderType+GithubBaseAPI.swift */; };
+		9110A0B32932C03700B09DB1 /* Date+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110A0B22932C03700B09DB1 /* Date+Ex.swift */; };
+		9110A0B82932C3CA00B09DB1 /* Router+Dialog+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110A0B72932C3CA00B09DB1 /* Router+Dialog+Toast.swift */; };
+		9110A0BA2932C3FF00B09DB1 /* Router+Dialog+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110A0B92932C3FF00B09DB1 /* Router+Dialog+Alert.swift */; };
+		9110A0BC2932C44D00B09DB1 /* Router+Dialog+Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110A0BB2932C44D00B09DB1 /* Router+Dialog+Sheet.swift */; };
+		9110A0BE2932C4C500B09DB1 /* Router+Dialog+Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110A0BD2932C4C500B09DB1 /* Router+Dialog+Popup.swift */; };
 		91C267E428EB302500DD5677 /* NormalViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E328EB302500DD5677 /* NormalViewReactor.swift */; };
 		91C267E628EB302E00DD5677 /* NormalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E528EB302E00DD5677 /* NormalViewController.swift */; };
 		91C267E828EB30FA00DD5677 /* SectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E728EB30FA00DD5677 /* SectionItem.swift */; };
@@ -119,9 +122,7 @@
 		8C9A45882887F6F30041937A /* QMUIConfigurationTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplate.m; sourceTree = "<group>"; };
 		8C9A458A2887F6F30041937A /* Router+Web.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Router+Web.swift"; sourceTree = "<group>"; };
 		8C9A458B2887F6F30041937A /* Router+Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Router+Page.swift"; sourceTree = "<group>"; };
-		8C9A458C2887F6F30041937A /* RouterPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterPath.swift; sourceTree = "<group>"; };
-		8C9A458D2887F6F30041937A /* Router+Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Router+Model.swift"; sourceTree = "<group>"; };
-		8C9A458F2887F6F30041937A /* RouterHost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterHost.swift; sourceTree = "<group>"; };
+		8C9A458D2887F6F30041937A /* Router+Dialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Router+Dialog.swift"; sourceTree = "<group>"; };
 		8C9A45942887F6F30041937A /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		8C9A45962887F6F30041937A /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		8C9A45982887F6F30041937A /* PersonalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +151,12 @@
 		9110A0AC29329C5700B09DB1 /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		9110A0AE29329CAB00B09DB1 /* GithubBaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubBaseAPI.swift; sourceTree = "<group>"; };
 		9110A0B029329CC800B09DB1 /* ProviderType+GithubBaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProviderType+GithubBaseAPI.swift"; sourceTree = "<group>"; };
+		9110A0B22932C03700B09DB1 /* Date+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ex.swift"; sourceTree = "<group>"; };
+		9110A0B42932C04E00B09DB1 /* user_info.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = user_info.json; sourceTree = "<group>"; };
+		9110A0B72932C3CA00B09DB1 /* Router+Dialog+Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Router+Dialog+Toast.swift"; sourceTree = "<group>"; };
+		9110A0B92932C3FF00B09DB1 /* Router+Dialog+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Router+Dialog+Alert.swift"; sourceTree = "<group>"; };
+		9110A0BB2932C44D00B09DB1 /* Router+Dialog+Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Router+Dialog+Sheet.swift"; sourceTree = "<group>"; };
+		9110A0BD2932C4C500B09DB1 /* Router+Dialog+Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Router+Dialog+Popup.swift"; sourceTree = "<group>"; };
 		91C267E328EB302500DD5677 /* NormalViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalViewReactor.swift; sourceTree = "<group>"; };
 		91C267E528EB302E00DD5677 /* NormalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalViewController.swift; sourceTree = "<group>"; };
 		91C267E728EB30FA00DD5677 /* SectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionItem.swift; sourceTree = "<group>"; };
@@ -266,6 +273,7 @@
 				8C9A45722887F6F30041937A /* Runtime+Ex.swift */,
 				8C9A45732887F6F30041937A /* ScrollViewController+Ex.swift */,
 				91C267EB28EB326C00DD5677 /* Simple+Ex.swift */,
+				9110A0B22932C03700B09DB1 /* Date+Ex.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -336,9 +344,11 @@
 				8C9A456D2887F6F30041937A /* Router+Ex.swift */,
 				8C9A458A2887F6F30041937A /* Router+Web.swift */,
 				8C9A458B2887F6F30041937A /* Router+Page.swift */,
-				8C9A458C2887F6F30041937A /* RouterPath.swift */,
-				8C9A458D2887F6F30041937A /* Router+Model.swift */,
-				8C9A458F2887F6F30041937A /* RouterHost.swift */,
+				8C9A458D2887F6F30041937A /* Router+Dialog.swift */,
+				9110A0B72932C3CA00B09DB1 /* Router+Dialog+Toast.swift */,
+				9110A0B92932C3FF00B09DB1 /* Router+Dialog+Alert.swift */,
+				9110A0BB2932C44D00B09DB1 /* Router+Dialog+Sheet.swift */,
+				9110A0BD2932C4C500B09DB1 /* Router+Dialog+Popup.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -433,6 +443,7 @@
 				91C267ED28EB33A800DD5677 /* Configuration.json */,
 				9110A09929326A3200B09DB1 /* Simples#personal.json */,
 				9110A09B29326A4900B09DB1 /* Simples#about.json */,
+				9110A0B42932C04E00B09DB1 /* user_info.json */,
 			);
 			path = json;
 			sourceTree = "<group>";
@@ -621,11 +632,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C9A45E02887F6F40041937A /* Configuration.swift in Sources */,
+				9110A0BC2932C44D00B09DB1 /* Router+Dialog+Sheet.swift in Sources */,
 				91C267EC28EB326C00DD5677 /* Simple+Ex.swift in Sources */,
 				8C9A45B32887F6F30041937A /* Appearance+Ex.swift in Sources */,
 				8C9A45D62887F6F40041937A /* LoginViewController.swift in Sources */,
 				8C9A45B42887F6F30041937A /* String+Ex.swift in Sources */,
 				8C9A45D22887F6F40041937A /* Section.swift in Sources */,
+				9110A0B82932C3CA00B09DB1 /* Router+Dialog+Toast.swift in Sources */,
 				9110A0AB29329C4100B09DB1 /* ProviderType+GithubMainAPI.swift in Sources */,
 				8C9A45B62887F6F30041937A /* Logger+Ex.swift in Sources */,
 				9110A0A1293290FF00B09DB1 /* AboutViewReactor.swift in Sources */,
@@ -634,10 +647,10 @@
 				9110A0A32932910A00B09DB1 /* AboutViewController.swift in Sources */,
 				8C9A45B92887F6F30041937A /* List+Ex.swift in Sources */,
 				8C9A45B22887F6F30041937A /* UIDevice+Ex.swift in Sources */,
+				9110A0BA2932C3FF00B09DB1 /* Router+Dialog+Alert.swift in Sources */,
 				8C9A45C42887F6F40041937A /* Constant.swift in Sources */,
 				91C267E628EB302E00DD5677 /* NormalViewController.swift in Sources */,
 				9110A0AF29329CAB00B09DB1 /* GithubBaseAPI.swift in Sources */,
-				8C9A45D02887F6F40041937A /* RouterHost.swift in Sources */,
 				8C9A45BB2887F6F30041937A /* Library+Ex.swift in Sources */,
 				8C9210CF2888EF4D002ABCA9 /* DataType.swift in Sources */,
 				8C9A45BA2887F6F30041937A /* UIApplication+Ex.swift in Sources */,
@@ -670,16 +683,17 @@
 				8C9A45C52887F6F40041937A /* Error.swift in Sources */,
 				8C9A45DB2887F6F40041937A /* SimpleItem.swift in Sources */,
 				8C9A45B72887F6F30041937A /* Router+Ex.swift in Sources */,
-				8C9A45CE2887F6F40041937A /* Router+Model.swift in Sources */,
+				8C9A45CE2887F6F40041937A /* Router+Dialog.swift in Sources */,
 				8C9A45B52887F6F30041937A /* Parameter+Ex.swift in Sources */,
 				8C9A45E42887F6F40041937A /* PersonalViewReactor.swift in Sources */,
 				8C9A45CA2887F6F40041937A /* QMUIConfigurationTemplate.m in Sources */,
-				8C9A45CD2887F6F40041937A /* RouterPath.swift in Sources */,
 				8C9A45CC2887F6F40041937A /* Router+Page.swift in Sources */,
 				8C9A45BE2887F6F40041937A /* WebViewController.swift in Sources */,
 				8C9A45BC2887F6F30041937A /* Runtime+Ex.swift in Sources */,
 				8C9A45622887E6070041937A /* R.generated.swift in Sources */,
 				8C9A45BD2887F6F30041937A /* ScrollViewController+Ex.swift in Sources */,
+				9110A0BE2932C4C500B09DB1 /* Router+Dialog+Popup.swift in Sources */,
+				9110A0B32932C03700B09DB1 /* Date+Ex.swift in Sources */,
 				8C9A45B82887F6F30041937A /* Storable+Ex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -17,13 +17,15 @@ import RxViewController
 import RxTheme
 
 enum APPError: Error {
+    case oauth
     case login(String?)
 }
 
 extension APPError: CustomNSError {
     var errorCode: Int {
         switch self {
-        case .login: return 1
+        case .oauth: return 1
+        case .login: return 2
         }
     }
 }
@@ -31,6 +33,7 @@ extension APPError: CustomNSError {
 extension APPError: LocalizedError {
     var errorDescription: String? {
         switch self {
+        case .oauth: return "授权失败"
         case let .login(message): return message ?? R.string.localizable.errorLogin()
         }
     }

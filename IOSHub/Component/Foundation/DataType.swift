@@ -20,7 +20,7 @@ enum Platform {
     
     var appId: String {
         switch self {
-        case .github: return "826519ff4600bcfd06fe"
+        case .github: return "a9c077fbcecd8ecf53ae"
         case .umeng: return "6093ae3653b6726499ec3983"
         case .weixin: return UIApplication.shared.urlScheme(name: "weixin") ?? ""
         }
@@ -28,7 +28,7 @@ enum Platform {
     
     var appKey: String {
         switch self {
-        case .github: return "c071b276632d4d2c219d3db8d3dee516e01b1c74"
+        case .github: return "ba4678daaa04dd61cfbcf17c106d103f40c6fad9"
         case .umeng: return "6093ae3653b6726499ec3983"
         case .weixin: return "f7f6a7c1cbe503c497151e076c0a4b4d"
         }
@@ -59,7 +59,7 @@ enum SimpleId: Int {
     case author     = 300, weibo, shcemes, rating, share
 }
 
-enum SGAlertAction: AlertActionType, Equatable {
+enum IHAlertAction: AlertActionType, Equatable {
     case destructive
     case `default`
     case cancel
@@ -86,7 +86,7 @@ enum SGAlertAction: AlertActionType, Equatable {
         }
     }
 
-    static func == (lhs: SGAlertAction, rhs: SGAlertAction) -> Bool {
+    static func == (lhs: IHAlertAction, rhs: IHAlertAction) -> Bool {
         switch (lhs, rhs) {
         case (.destructive, .destructive),
             (.default, .default),

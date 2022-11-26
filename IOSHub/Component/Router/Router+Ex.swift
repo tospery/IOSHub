@@ -14,6 +14,14 @@ import URLNavigator
 import Rswift
 import HiIOS
 
+extension Router.Host {
+    static var about: Router.Host { "about" }
+}
+
+extension Router.Path {
+    static var inviteNew: Router.Path { "inviteNew" }
+}
+
 extension Router: RouterCompatible {
     
     public func isLogined() -> Bool {

@@ -12,14 +12,14 @@ import ReactorKit
 import URLNavigator
 import Rswift
 import HiIOS
+import SafariServices
+import AuthenticationServices
 
 class LoginViewReactor: ScrollViewReactor, ReactorKit.Reactor {
 
     enum Action {
         case load
         case login
-        case username(String?)
-        case password(String?)
     }
 
     enum Mutation {
@@ -29,8 +29,8 @@ class LoginViewReactor: ScrollViewReactor, ReactorKit.Reactor {
         case setTitle(String?)
         case setUser(User?)
         case setConfiguration(Configuration)
-        case setUsername(String?)
-        case setPassword(String?)
+        case setCode(String?)
+        case setAccessToken(AccessToken?)
     }
 
     struct State {
@@ -40,11 +40,12 @@ class LoginViewReactor: ScrollViewReactor, ReactorKit.Reactor {
         var title: String?
         var user: User?
         var configuration = Configuration.current!
-        var username: String?
-        var password: String?
+        var code: String?
+        var accessToken: AccessToken?
         var sections = [Section].init()
     }
 
+    var authSession: Any?
     var initialState = State()
 
     required init(_ provider: HiIOS.ProviderType, _ parameters: [String: Any]?) {
@@ -58,14 +59,12 @@ class LoginViewReactor: ScrollViewReactor, ReactorKit.Reactor {
         switch action {
         case .load:
             return .empty()
-        case let .username(username):
-            return .just(.setUsername(username))
-        case let .password(password):
-            return .just(.setPassword(password))
         case .login:
             return .concat([
                 .just(.setError(nil)),
+                self.oauthCode().map(Mutation.setCode),
                 .just(.setActivating(true)),
+                self.oauthToken().map(Mutation.setAccessToken),
                 self.login().map(Mutation.setUser),
                 .just(.setActivating(false))
             ]).catch {
@@ -92,10 +91,10 @@ class LoginViewReactor: ScrollViewReactor, ReactorKit.Reactor {
             newState.user = user
         case let .setConfiguration(configuration):
             newState.configuration = configuration
-        case let .setUsername(username):
-            newState.username = username
-        case let .setPassword(password):
-            newState.password = password
+        case let .setCode(code):
+            newState.code = code
+        case let .setAccessToken(accessToken):
+            newState.accessToken = accessToken
         }
         return newState
     }
@@ -118,19 +117,86 @@ class LoginViewReactor: ScrollViewReactor, ReactorKit.Reactor {
     func transform(state: Observable<State>) -> Observable<State> {
         state
     }
+    
+    func oauthCode() -> Observable<String> {
+        .create { [weak self] observer -> Disposable in
+            guard let `self` = self else { fatalError() }
+            let url = Router.Web.oauth.urlString.url!
+            let scheme = UIApplication.shared.urlScheme
+            let handler: (URL?, Error?) -> Void = { callback, error in
+                if let error = error {
+                    observer.onError(error)
+                    return
+                }
+                guard let code = callback?.queryValue(for: Parameter.code) else {
+                    observer.onError(APPError.oauth)
+                    return
+                }
+                observer.onNext(code)
+                observer.onCompleted()
+            }
+            if #available(iOS 12, *) {
+                let session = ASWebAuthenticationSession(
+                    url: url,
+                    callbackURLScheme: scheme,
+                    completionHandler: handler
+                )
+                if #available(iOS 13.0, *) {
+                    session.presentationContextProvider = self
+                }
+                self.authSession = session
+                session.start()
+            } else {
+                let session = SFAuthenticationSession(
+                    url: url,
+                    callbackURLScheme: scheme,
+                    completionHandler: handler
+                )
+                self.authSession = session
+                session.start()
+            }
+            return Disposables.create { [weak self] in
+                guard let `self` = self else { return }
+                if #available(iOS 12, *) {
+                    (self.authSession as? ASWebAuthenticationSession)?.cancel()
+                } else {
+                    (self.authSession as? SFAuthenticationSession)?.cancel()
+                }
+            }
+        }
+    }
+    
+    func oauthToken() -> Observable<AccessToken> {
+        .create { [weak self] observer -> Disposable in
+            guard let `self` = self else { fatalError() }
+            guard let code = self.currentState.code, code.isNotEmpty else {
+                observer.onError(APPError.login(nil))
+                return Disposables.create { }
+            }
+            return self.provider.token(code: code)
+                .asObservable()
+                .subscribe(observer)
+        }
+    }
 
     func login() -> Observable<User> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
-//            guard let username = self.currentState.username, !username.isEmpty,
-//                  let password = self.currentState.password, !password.isEmpty else {
-//                observer.onError(APPError.login(nil))
-//                return Disposables.create { }
-//            }
-            return self.provider.login(token: "")
+            guard let token = self.currentState.accessToken?.accessToken, !token.isEmpty else {
+                observer.onError(APPError.login(nil))
+                return Disposables.create { }
+            }
+            return self.provider.login(token: token)
                 .asObservable()
                 .subscribe(observer)
         }
     }
     
+}
+
+extension LoginViewReactor: ASWebAuthenticationPresentationContextProviding {
+    @available(iOS 13.0, *)
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        return UIApplication.shared.keyWindow!
+    }
 }
