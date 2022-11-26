@@ -47,7 +47,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         var noMoreData = false
         var error: Error?
         var title: String?
-        var user: User?
+        var user = User.current
         var configuration = Configuration.current!
         var target: String?
         var originals = [SectionData].init()

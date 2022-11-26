@@ -55,7 +55,7 @@ enum PieceId: Int {
 enum SimpleId: Int {
     case space      = 0, button
     case setting    = 100, about, feedback
-    case company    = 200, location, email, blog
+    case company    = 200, location, email, blog, nickname, bio
     case author     = 300, weibo, shcemes, rating, share
 }
 

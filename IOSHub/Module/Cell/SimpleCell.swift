@@ -153,30 +153,19 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
                 .disposed(by: self.disposeBag)
             return
         }
-//        if let parent = reactor.parent as? NormalViewReactor {
-//            if let cellType = Simple.Identifier.init(rawValue: (reactor.model as? Simple)?.id ?? 0) {
-//                switch cellType {
-//                case .userType:
-//                    parent.state.map { $0.user?.vipType }
-//                        .distinctUntilChanged()
-//                        .map { Reactor.Action.detail($0) }
-//                        .bind(to: reactor.action)
-//                        .disposed(by: self.disposeBag)
-//                case .userName:
-//                    parent.state.map { $0.user?.nickname }
-//                        .distinctUntilChanged()
-//                        .map { Reactor.Action.detail($0) }
-//                        .bind(to: reactor.action)
-//                        .disposed(by: self.disposeBag)
-//                case .userEmail:
-//                    parent.state.map { $0.user?.email }
-//                        .distinctUntilChanged()
-//                        .map { Reactor.Action.detail($0) }
-//                        .bind(to: reactor.action)
-//                        .disposed(by: self.disposeBag)
-//                }
-//            }
-//        }
+        if let parent = reactor.parent as? NormalViewReactor {
+            if parent.host == .personal {
+                
+            } else {
+                if let simpleId = SimpleId.init(rawValue: (reactor.model as? Simple)?.id ?? 0) {
+                    parent.state.map { $0.user?.simpleDetail(simpleId) }
+                        .distinctUntilChanged()
+                        .map { Reactor.Action.detail($0) }
+                        .bind(to: reactor.action)
+                        .disposed(by: self.disposeBag)
+                }
+            }
+        }
         reactor.state.map { $0.icon }
             .distinctUntilChanged { HiIOS.compareImage($0, $1) }
             .bind(to: self.iconImageView.rx.imageSource)

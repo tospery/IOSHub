@@ -26,6 +26,9 @@ extension Router {
         navigator.register(self.urlPattern(host: .about)) { url, values, context in
             AboutViewController(navigator, AboutViewReactor(provider, self.parameters(url, values, context)))
         }
+        navigator.register(self.urlPattern(host: .profile)) { url, values, context in
+            ProfileViewController(navigator, ProfileViewReactor(provider, self.parameters(url, values, context)))
+        }
     }
     
 }

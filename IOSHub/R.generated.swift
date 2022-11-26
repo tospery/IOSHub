@@ -154,7 +154,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 3 files.
+  /// This `R.file` struct is generated, and contains static references to 4 files.
   struct file {
     /// Resource file `Configuration.json`.
     static let configurationJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Configuration", pathExtension: "json")
@@ -162,6 +162,8 @@ struct R: Rswift.Validatable {
     static let simplesAboutJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Simples#about", pathExtension: "json")
     /// Resource file `Simples#personal.json`.
     static let simplesPersonalJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Simples#personal", pathExtension: "json")
+    /// Resource file `Simples#profile.json`.
+    static let simplesProfileJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Simples#profile", pathExtension: "json")
 
     /// `bundle.url(forResource: "Configuration", withExtension: "json")`
     static func configurationJson(_: Void = ()) -> Foundation.URL? {
@@ -178,6 +180,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "Simples#personal", withExtension: "json")`
     static func simplesPersonalJson(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.simplesPersonalJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "Simples#profile", withExtension: "json")`
+    static func simplesProfileJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.simplesProfileJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 

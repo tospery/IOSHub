@@ -1,0 +1,37 @@
+[
+    {
+        "id":204,
+        "title":"昵称"
+    },
+    {
+        "id":205,
+        "title":"简介",
+        "divided":false
+    },
+    {
+        "id":0
+    },
+    {
+        "id":200,
+        "title":"团队"
+    },
+    {
+        "id":201,
+        "title":"地点"
+    },
+    {
+        "id":203,
+        "title":"个人主页",
+        "divided":false
+    },
+    {
+        "id":0
+    },
+    {
+        "id":1,
+        "title":"退出登录",
+        "color":"FFFFFF",
+        "tintColor":"F34700"
+    }
+]
+

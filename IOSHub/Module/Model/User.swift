@@ -120,6 +120,17 @@ struct User: Subjective, Eventable {
         publicRepos             <- map["public_repos"]
     }
     
+    func simpleDetail(_ simpleId: SimpleId) -> String? {
+        switch simpleId {
+        case .nickname: return self.name
+        case .bio: return self.bio
+        case .company: return self.company
+        case .location: return self.location
+        case .blog: return self.blog
+        default: return nil
+        }
+    }
+    
     func stat(_ text: String, _ count: Int) -> NSAttributedString {
         .composed(of: [
             count.string.styled(with: .color(.foreground), .font(.bold(22))),
