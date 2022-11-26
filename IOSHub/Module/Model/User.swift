@@ -62,14 +62,14 @@ struct User: ModelType, Identifiable, Subjective, Eventable {
             log("用户更新: \(String(describing: new))")
         }
         Subjection.update(self, new, reactive)
-        let userid = new?.id
-        if userid != Preference.current?.id {
-            Subjection.update(
-                Preference.self,
-                Preference.cachedObject(id: userid) ?? .init(id: userid ?? ""),
-                true
-            )
-        }
+//        let userid = new?.id.string
+//        if userid != Preference.current?.id {
+//            Subjection.update(
+//                Preference.self,
+//                Preference.cachedObject(id: userid) ?? .init(id: userid ?? ""),
+//                true
+//            )
+//        }
     }
     
 }

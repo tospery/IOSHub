@@ -160,10 +160,10 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
             .skip(1)
             .subscribeNext(weak: self, type(of: self).handleUser)
             .disposed(by: self.disposeBag)
-        reactor.state.map { $0.preference }
+        reactor.state.map { $0.configuration }
             .distinctUntilChanged()
             .skip(1)
-            .subscribeNext(weak: self, type(of: self).handlePreference)
+            .subscribeNext(weak: self, type(of: self).handleConfiguration)
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.target }
             .distinctUntilChanged()
@@ -197,10 +197,10 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         }.disposed(by: self.disposeBag)
     }
     
-    func handlePreference(preference: Preference) {
-        log("handlePreference -> 更新偏好(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? ""))")
+    func handleConfiguration(configuration: Configuration) {
+        log("handleConfiguration -> 更新配置(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? ""))")
         MainScheduler.asyncInstance.schedule(()) { _ -> Disposable in
-            Subjection.update(Preference.self, preference, true)
+            Subjection.update(Configuration.self, configuration, true)
             return Disposables.create {}
         }.disposed(by: self.disposeBag)
     }

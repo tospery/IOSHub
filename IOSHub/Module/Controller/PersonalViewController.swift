@@ -84,8 +84,8 @@ class PersonalViewController: CollectionViewController, ReactorKit.View {
             .disposed(by: self.disposeBag)
     }
     
-    func tapTest(event: ControlEvent<Void>.Element) {
-        self.navigator.present(Router.shared.urlString(host: .login), wrap: NavigationController.self)
+    func tapTest(_: Void? = nil) {
+        self.navigator.login()
     }
 
     static func dataSourceFactory(_ navigator: NavigatorProtocol, _ reactor: BaseViewReactor)

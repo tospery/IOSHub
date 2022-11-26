@@ -32,7 +32,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         case setTitle(String?)
         case setError(Error?)
         case setUser(User?)
-        case setPreference(Preference)
+        case setConfiguration(Configuration)
         case setTarget(String?)
         case initial([SectionData])
         case append([SectionData])
@@ -47,7 +47,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         var error: Error?
         var title: String?
         var user: User?
-        var preference = Preference.current!
+        var configuration = Configuration.current!
         var target: String?
         var originals = [SectionData].init()
         var additions = [SectionData].init()
@@ -105,8 +105,8 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
             newState.error = error
         case let .setUser(user):
             newState.user = user
-        case let .setPreference(preference):
-            newState.preference = preference
+        case let .setConfiguration(configuration):
+            newState.configuration = configuration
         case let .setTarget(target):
             newState.target = target
         case let .initial(data):
@@ -131,11 +131,11 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
                 .distinctUntilChanged()
                 .asObservable()
                 .map(Mutation.setUser),
-            Subjection.for(Preference.self)
+            Subjection.for(Configuration.self)
                 .distinctUntilChanged()
                 .filterNil()
                 .asObservable()
-                .map(Mutation.setPreference)
+                .map(Mutation.setConfiguration)
         )
     }
     

@@ -19,11 +19,11 @@ extension UIApplication {
     }
     
     @objc var myBaseApiUrl: String {
-        return "https://api.swiftpt.com"
+        return "https://api.ioshub.com"
     }
 
     @objc var myBaseWebUrl: String {
-        return "https://m.swiftpt.com"
+        return "https://m.ioshub.com"
     }
 
 }

@@ -13,6 +13,7 @@ import HiIOS
 extension Library: LibraryCompatible {
     
     public func mySetup() {
+        self.basic()
         self.setupUmbrella()
         self.setupKeyboardManager()
         self.setupToast()

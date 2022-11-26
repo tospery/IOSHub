@@ -61,7 +61,18 @@ extension Router: RouterCompatible {
         _ values: [String: Any],
         _ context: Any?
     ) -> Bool {
-        true
+        guard let top = UIViewController.topMost else { return false }
+        if top.className.contains("LoginViewController") ||
+            top.className.contains("TXSSOLoginViewController") {
+            return false
+        }
+        var parameters = self.parameters(url, values, context) ?? [:]
+        parameters[Parameter.transparetNavBar] = true
+        let reactor = LoginViewReactor(provider, parameters)
+        let controller = LoginViewController(navigator, reactor)
+        let navigation = NavigationController(rootViewController: controller)
+        top.present(navigation, animated: true)
+        return false
     }
     
     public func shouldRefresh(host: Host, path: Router.Path? = nil) -> Bool {

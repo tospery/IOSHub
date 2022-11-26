@@ -9,6 +9,18 @@ import Foundation
 import Moya
 import HiIOS
 
+let networking = Networking(
+    provider: MoyaProvider<MultiTarget>(
+        endpointClosure: Networking.endpointClosure,
+        requestClosure: Networking.requestClosure,
+        stubClosure: Networking.stubClosure,
+        callbackQueue: Networking.callbackQueue,
+        session: Networking.session,
+        plugins: Networking.plugins,
+        trackInflights: Networking.trackInflights
+    )
+)
+
 struct Networking: NetworkingType {
 
     typealias Target = MultiTarget

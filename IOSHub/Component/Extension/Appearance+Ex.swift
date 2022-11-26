@@ -11,6 +11,7 @@ import HiIOS
 extension Appearance: AppearanceCompatible {
     
     public func myConfig() {
+        self.basic()
         // 导航栏
 //        let navBar = NavigationBar.appearance()
 //        themeService.rx

@@ -17,13 +17,13 @@ import RxViewController
 import RxTheme
 
 enum APPError: Error {
-    case loginFailure(String?)
+    case login(String?)
 }
 
 extension APPError: CustomNSError {
     var errorCode: Int {
         switch self {
-        case .loginFailure: return 1
+        case .login: return 1
         }
     }
 }
@@ -31,7 +31,7 @@ extension APPError: CustomNSError {
 extension APPError: LocalizedError {
     var errorDescription: String? {
         switch self {
-        case let .loginFailure(message): return message ?? R.string.localizable.errorLogin()
+        case let .login(message): return message ?? R.string.localizable.errorLogin()
         }
     }
 }

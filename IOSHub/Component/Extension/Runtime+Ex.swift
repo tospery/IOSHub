@@ -12,6 +12,7 @@ import HiIOS
 extension Runtime: RuntimeCompatible {
     
     public func myWork() {
+        self.basic()
         ExchangeImplementations(UIApplication.self,
                                 #selector(getter: UIApplication.baseApiUrl),
                                 #selector(getter: UIApplication.myBaseApiUrl))
