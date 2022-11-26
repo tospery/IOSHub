@@ -90,4 +90,3 @@ extension GithubBaseAPI: TargetType {
     }
 
 }
-

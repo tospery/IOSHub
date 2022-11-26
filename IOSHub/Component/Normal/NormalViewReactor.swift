@@ -13,6 +13,7 @@ import URLNavigator
 import Rswift
 import HiIOS
 
+// swiftlint:disable type_body_length
 class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
 
     enum Action {
@@ -262,7 +263,6 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
                 if let value = ($0 as? BaseModel)?.data as? SectionItemValue {
                     switch value {
                     case .appInfo: return .appInfo(.init($0))
-                    //case .milestone: return .milestone(.init($0))
                     default: break
                     }
 //                    if let value = data as? SectionItemValue {
@@ -314,3 +314,4 @@ extension NormalViewReactor.Action {
     }
     
 }
+// swiftlint:enable type_body_length

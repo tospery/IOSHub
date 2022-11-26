@@ -30,15 +30,15 @@ class PersonalViewController: NormalViewController {
 //        parallaxView.rx.tapTheme
 //            .subscribeNext(weak: self, type(of: self).tapTheme)
 //            .disposed(by: self.rx.disposeBag)
-//        parallaxView.rx.tapRepository
-//            .subscribeNext(weak: self, type(of: self).tapRepository)
-//            .disposed(by: self.rx.disposeBag)
-//        parallaxView.rx.tapFollower
-//            .subscribeNext(weak: self, type(of: self).tapFollower)
-//            .disposed(by: self.rx.disposeBag)
-//        parallaxView.rx.tapFollowing
-//            .subscribeNext(weak: self, type(of: self).tapFollowing)
-//            .disposed(by: self.rx.disposeBag)
+        parallaxView.rx.tapRepositories
+            .subscribeNext(weak: self, type(of: self).tapRepositories)
+            .disposed(by: self.rx.disposeBag)
+        parallaxView.rx.tapFollower
+            .subscribeNext(weak: self, type(of: self).tapFollower)
+            .disposed(by: self.rx.disposeBag)
+        parallaxView.rx.tapFollowing
+            .subscribeNext(weak: self, type(of: self).tapFollowing)
+            .disposed(by: self.rx.disposeBag)
         return parallaxView
     }()
     
@@ -58,6 +58,9 @@ class PersonalViewController: NormalViewController {
         self.collectionView.parallaxHeader.mode = .topFill
         self.parallaxView.widthAnchor.constraint(equalTo: self.collectionView.widthAnchor).isActive = true
         self.navigationBar.theme.titleColor = themeService.attribute { $0.backgroundColor }
+        self.collectionView.rx.didEndDragging
+            .subscribeNext(weak: self, type(of: self).didEndDragging)
+            .disposed(by: self.disposeBag)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -91,8 +94,8 @@ class PersonalViewController: NormalViewController {
         // themeService.type.toggle(.primary)
     }
     
-    func tapRepository(_: Void? = nil) {
-        log("tapRepository")
+    func tapRepositories(_: Void? = nil) {
+        log("tapRepositories")
         // self.navigator.forward(Router.shared.urlString(host: .favorited))
     }
     
@@ -104,13 +107,14 @@ class PersonalViewController: NormalViewController {
         log("tapBrowse")
     }
     
-//    func didEndDragging(isEnd: Bool) {
-//        guard self.scrollView.contentOffset.y < (PersonalParallaxView.Metric.height + 50) * -1 else { return }
-//        MainScheduler.asyncInstance.schedule(()) { [weak self] _ -> Disposable in
-//            guard let `self` = self else { fatalError() }
-//            self.reactor?.action.onNext(.reload)
-//            return Disposables.create {}
-//        }.disposed(by: self.disposeBag)
-//    }
+    func didEndDragging(isEnd: Bool) {
+        let triggerOffset = Metric.Personal.parallaxAllHeight / standardWidth * deviceWidth + 50
+        guard self.scrollView.contentOffset.y < triggerOffset * -1 else { return }
+        MainScheduler.asyncInstance.schedule(()) { [weak self] _ -> Disposable in
+            guard let `self` = self else { fatalError() }
+            self.reactor?.action.onNext(.reload)
+            return Disposables.create {}
+        }.disposed(by: self.disposeBag)
+    }
 
 }
