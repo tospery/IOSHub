@@ -62,6 +62,7 @@
 		8C9A45E92887F7120041937A /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A45E82887F7120041937A /* AppDependency.swift */; };
 		9110A09A29326A3200B09DB1 /* Simples#personal.json in Resources */ = {isa = PBXBuildFile; fileRef = 9110A09929326A3200B09DB1 /* Simples#personal.json */; };
 		9110A09C29326A4900B09DB1 /* Simples#about.json in Resources */ = {isa = PBXBuildFile; fileRef = 9110A09B29326A4900B09DB1 /* Simples#about.json */; };
+		9110A09F29326C3B00B09DB1 /* PersonalParallaxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110A09E29326C3B00B09DB1 /* PersonalParallaxView.swift */; };
 		91C267E428EB302500DD5677 /* NormalViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E328EB302500DD5677 /* NormalViewReactor.swift */; };
 		91C267E628EB302E00DD5677 /* NormalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E528EB302E00DD5677 /* NormalViewController.swift */; };
 		91C267E828EB30FA00DD5677 /* SectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E728EB30FA00DD5677 /* SectionItem.swift */; };
@@ -136,6 +137,7 @@
 		8C9A45EC2887F76D0041937A /* OC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OC-Bridging-Header.h"; sourceTree = "<group>"; };
 		9110A09929326A3200B09DB1 /* Simples#personal.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Simples#personal.json"; sourceTree = "<group>"; };
 		9110A09B29326A4900B09DB1 /* Simples#about.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Simples#about.json"; sourceTree = "<group>"; };
+		9110A09E29326C3B00B09DB1 /* PersonalParallaxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalParallaxView.swift; sourceTree = "<group>"; };
 		91C267E328EB302500DD5677 /* NormalViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalViewReactor.swift; sourceTree = "<group>"; };
 		91C267E528EB302E00DD5677 /* NormalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalViewController.swift; sourceTree = "<group>"; };
 		91C267E728EB30FA00DD5677 /* SectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionItem.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 		8C9A45902887F6F30041937A /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				9110A09D29326C1C00B09DB1 /* View */,
 				8C9A45932887F6F30041937A /* Section */,
 				8C9A45952887F6F30041937A /* Controller */,
 				8C9A459C2887F6F30041937A /* Cell */,
@@ -414,6 +417,14 @@
 				9110A09B29326A4900B09DB1 /* Simples#about.json */,
 			);
 			path = json;
+			sourceTree = "<group>";
+		};
+		9110A09D29326C1C00B09DB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9110A09E29326C3B00B09DB1 /* PersonalParallaxView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		91C267E228EB301000DD5677 /* Normal */ = {
@@ -611,6 +622,7 @@
 				8C9A45C02887F6F40041937A /* ScrollViewController+Rx.swift in Sources */,
 				8C9A45BF2887F6F40041937A /* WebViewReactor.swift in Sources */,
 				8C9A45E52887F6F40041937A /* DashboardViewReactor.swift in Sources */,
+				9110A09F29326C3B00B09DB1 /* PersonalParallaxView.swift in Sources */,
 				91C267E428EB302500DD5677 /* NormalViewReactor.swift in Sources */,
 				8C9A45C92887F6F40041937A /* OCHelper.m in Sources */,
 				8C9A45E32887F6F40041937A /* LoginViewReactor.swift in Sources */,

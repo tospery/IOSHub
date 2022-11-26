@@ -29,7 +29,8 @@ var userParameters: [String: Any] {
 struct Metric {
 
     struct Personal {
-        static let parallaxHeight   = ((navigationContentTopConstant + 160.0) / 390.0 * deviceWidth).flat
+        static let parallaxTopHeight    = 244.0
+        static let parallaxAllHeight    = 290.0
     }
     
 }

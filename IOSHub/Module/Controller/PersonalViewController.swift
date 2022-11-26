@@ -11,38 +11,39 @@ import RxCocoa
 import ReactorKit
 import URLNavigator
 import Rswift
-import HiIOS
 import ReusableKit_Hi
 import ObjectMapper_Hi
 import RxDataSources
+import RxGesture
+import MXParallaxHeader
+import HiIOS
 
-class PersonalViewController: CollectionViewController, ReactorKit.View {
+class PersonalViewController: NormalViewController {
     
-    struct Reusable {
-        static let simpleCell = ReusableCell<SimpleCell>()
-    }
-
-    let dataSource: RxCollectionViewSectionedReloadDataSource<Section>
-    
-    lazy var testButton: UIButton = {
-        let button = UIButton.init(type: .custom)
-        button.titleLabel?.font = .bold(24)
-        button.setTitle("未登录", for: .normal)
-        button.setTitle("已登录", for: .selected)
-        button.setTitleColor(.red, for: .normal)
-        button.setTitleColor(.black, for: .selected)
-        button.sizeToFit()
-        button.size = .init(80)
-        return button
+    lazy var parallaxView: PersonalParallaxView = {
+        let parallaxView = PersonalParallaxView.init(frame: .zero)
+        parallaxView.translatesAutoresizingMaskIntoConstraints = false
+        parallaxView.sizeToFit()
+//        parallaxView.rx.tapUser
+//            .subscribeNext(weak: self, type(of: self).tapUser)
+//            .disposed(by: self.rx.disposeBag)
+//        parallaxView.rx.tapTheme
+//            .subscribeNext(weak: self, type(of: self).tapTheme)
+//            .disposed(by: self.rx.disposeBag)
+//        parallaxView.rx.tapRepository
+//            .subscribeNext(weak: self, type(of: self).tapRepository)
+//            .disposed(by: self.rx.disposeBag)
+//        parallaxView.rx.tapFollower
+//            .subscribeNext(weak: self, type(of: self).tapFollower)
+//            .disposed(by: self.rx.disposeBag)
+//        parallaxView.rx.tapFollowing
+//            .subscribeNext(weak: self, type(of: self).tapFollowing)
+//            .disposed(by: self.rx.disposeBag)
+        return parallaxView
     }()
     
     required init(_ navigator: NavigatorProtocol, _ reactor: BaseViewReactor) {
-        defer {
-            self.reactor = reactor as? PersonalViewReactor
-        }
-        self.dataSource = type(of: self).dataSourceFactory(navigator, reactor)
         super.init(navigator, reactor)
-        self.tabBarItem.title = reactor.title ?? (reactor as? PersonalViewReactor)?.currentState.title
     }
 
     required init?(coder: NSCoder) {
@@ -51,82 +52,73 @@ class PersonalViewController: CollectionViewController, ReactorKit.View {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.register(Reusable.simpleCell)
-        self.view.addSubview(self.testButton)
-        self.testButton.rx.tap
-            .subscribeNext(weak: self, type(of: self).tapTest)
-            .disposed(by: self.disposeBag)
+        self.collectionView.parallaxHeader.view = self.parallaxView
+        self.collectionView.parallaxHeader.height = self.parallaxView.height
+        self.collectionView.parallaxHeader.minimumHeight = self.parallaxView.height
+        self.collectionView.parallaxHeader.mode = .topFill
+        self.parallaxView.widthAnchor.constraint(equalTo: self.collectionView.widthAnchor).isActive = true
+        self.navigationBar.theme.titleColor = themeService.attribute { $0.backgroundColor }
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return statusBarService.value.reversed
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.testButton.left = self.testButton.leftWhenCenter
-        self.testButton.top = self.testButton.topWhenCenter
     }
     
-    func bind(reactor: PersonalViewReactor) {
+    override func bind(reactor: NormalViewReactor) {
         super.bind(reactor: reactor)
-        // action
-        self.rx.load.map { Reactor.Action.load }
-            .bind(to: reactor.action)
-            .disposed(by: self.disposeBag)
-        // state
-        reactor.state.map { $0.title }
-            .distinctUntilChanged()
-            .bind(to: self.navigationBar.titleLabel.rx.text)
-            .disposed(by: self.disposeBag)
-        reactor.state.map { $0.isLoading }
-            .distinctUntilChanged()
-            .bind(to: self.rx.loading)
-            .disposed(by: self.disposeBag)
-        reactor.state.map { $0.sections }
-            .bind(to: self.collectionView.rx.items(dataSource: self.dataSource))
-            .disposed(by: self.disposeBag)
+        // swiftlint:disable:next force_cast
+        self.parallaxView.bind(reactor: reactor as! PersonalViewReactor)
     }
     
-    func tapTest(_: Void? = nil) {
+    override func fromState(reactor: NormalViewReactor) {
+        super.fromState(reactor: reactor)
+    }
+    
+    override func tapUser(_: Void? = nil) {
+        log("tapUser")
+//        if self.reactor?.currentState.user?.isValid ?? false {
+//            self.navigator.forward(Router.shared.urlString(host: .profile, parameters: [
+//                Parameter.title: self.reactor?.currentState.user?.username ?? ""
+//            ]))
+//            return
+//        }
+//        self.navigator.login()
+        if self.reactor?.currentState.user?.isValid ?? false {
+            self.navigator.forward(Router.shared.urlString(host: .profile))
+            return
+        }
         self.navigator.login()
     }
-
-    static func dataSourceFactory(_ navigator: NavigatorProtocol, _ reactor: BaseViewReactor)
-        -> RxCollectionViewSectionedReloadDataSource<Section> {
-        return .init(
-            configureCell: { _, collectionView, indexPath, sectionItem in
-                switch sectionItem {
-                case .simple(let item):
-                    let cell = collectionView.dequeue(Reusable.simpleCell, for: indexPath)
-                    cell.bind(reactor: item)
-                    return cell
-                }
-            },
-            configureSupplementaryView: { _, collectionView, kind, indexPath in
-                return collectionView.emptyView(for: indexPath, kind: kind)
-            }
-        )
+    
+    func tapTheme(_: Void? = nil) {
+        log("tapTheme")
+        // themeService.type.toggle(.primary)
     }
     
-}
-
-extension PersonalViewController: UICollectionViewDelegateFlowLayout {
-
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        let width = collectionView.sectionWidth(at: indexPath.section)
-        switch self.dataSource[indexPath] {
-        case .simple(let item):
-            return Reusable.simpleCell.class.size(width: width, item: item)
-        }
+    func tapRepository(_: Void? = nil) {
+        log("tapRepository")
+        // self.navigator.forward(Router.shared.urlString(host: .favorited))
     }
-
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        referenceSizeForHeaderInSection section: Int
-    ) -> CGSize {
-        .zero
+    
+    func tapFollower(_: Void? = nil) {
+        log("tapShare")
     }
-
+    
+    func tapFollowing(_: Void? = nil) {
+        log("tapBrowse")
+    }
+    
+//    func didEndDragging(isEnd: Bool) {
+//        guard self.scrollView.contentOffset.y < (PersonalParallaxView.Metric.height + 50) * -1 else { return }
+//        MainScheduler.asyncInstance.schedule(()) { [weak self] _ -> Disposable in
+//            guard let `self` = self else { fatalError() }
+//            self.reactor?.action.onNext(.reload)
+//            return Disposables.create {}
+//        }.disposed(by: self.disposeBag)
+//    }
+//
 }

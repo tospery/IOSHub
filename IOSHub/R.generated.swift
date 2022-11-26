@@ -184,7 +184,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 17 images.
+  /// This `R.image` struct is generated, and contains static references to 18 images.
   struct image {
     /// Image `AppLogo`.
     static let appLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AppLogo")
@@ -210,6 +210,8 @@ struct R: Rswift.Validatable {
     static let navbar_theme_dark = Rswift.ImageResource(bundle: R.hostingBundle, name: "navbar_theme_dark")
     /// Image `navbar_theme_light`.
     static let navbar_theme_light = Rswift.ImageResource(bundle: R.hostingBundle, name: "navbar_theme_light")
+    /// Image `personal_parallax_bg`.
+    static let personal_parallax_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "personal_parallax_bg")
     /// Image `tabbar_dashboard_normal`.
     static let tabbar_dashboard_normal = Rswift.ImageResource(bundle: R.hostingBundle, name: "tabbar_dashboard_normal")
     /// Image `tabbar_dashboard_selected`.
@@ -302,6 +304,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "navbar_theme_light", bundle: ..., traitCollection: ...)`
     static func navbar_theme_light(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.navbar_theme_light, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "personal_parallax_bg", bundle: ..., traitCollection: ...)`
+    static func personal_parallax_bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.personal_parallax_bg, compatibleWith: traitCollection)
     }
     #endif
 

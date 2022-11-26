@@ -56,7 +56,7 @@ class TabBarController: HiIOS.TabBarController, ReactorKit.View {
         case .personal:
             viewController = self.navigator.viewController(
                 for: Router.shared.urlString(host: .personal, parameters: [
-                    Parameter.hidesNavigationBar: true.string
+                    Parameter.transparetNavBar: true.string
                 ])
             )
             viewController.tabBarItem.image = R.image.tabbar_personal_normal()?.original
