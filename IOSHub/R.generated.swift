@@ -358,8 +358,6 @@ struct R: Rswift.Validatable {
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Click here to login
-      static let clickToLogin = Rswift.StringResource(key: "Click To Login", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Develop By Swift
       static let loginSlogan = Rswift.StringResource(key: "Login.Slogan", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Followers
@@ -424,6 +422,8 @@ struct R: Rswift.Validatable {
       static let errorSystemUnknownMessage = Rswift.StringResource(key: "Error.System.Unknown.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 未知错误
       static let errorSystemUnknownTitle = Rswift.StringResource(key: "Error.System.Unknown.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 点击登录
+      static let clickToLogin = Rswift.StringResource(key: "Click To Login", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 用户未登录
       static let errorUserNotLoggedInMessage = Rswift.StringResource(key: "Error.User.NotLoggedIn.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 用户未登录
@@ -472,19 +472,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Access Token", bundle: bundle, comment: "")
-      }
-
-      /// Value: Click here to login
-      static func clickToLogin(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Click To Login", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "Click To Login"
-        }
-
-        return NSLocalizedString("Click To Login", bundle: bundle, comment: "")
       }
 
       /// Value: Develop By Swift
@@ -903,6 +890,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Error.System.Unknown.Title", bundle: bundle, comment: "")
+      }
+
+      /// Value: 点击登录
+      static func clickToLogin(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Click To Login", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Click To Login"
+        }
+
+        return NSLocalizedString("Click To Login", bundle: bundle, comment: "")
       }
 
       /// Value: 用户未登录

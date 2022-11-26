@@ -33,6 +33,50 @@ class PersonalParallaxView: UIImageView {
         view.layerCornerRadius = 6
         return view
     }()
+    
+    lazy var infoView: UIView = {
+        let view = UIView.init(frame: .zero)
+        view.isUserInteractionEnabled = true
+        view.theme.backgroundColor = themeService.attribute { $0.backgroundColor }
+        view.sizeToFit()
+        return view
+    }()
+    
+    lazy var statView: UIView = {
+        let view = UIView.init(frame: .zero)
+        view.theme.backgroundColor = themeService.attribute { $0.backgroundColor }
+        view.theme.qmui_borderColor = themeService.attribute { $0.borderColor }
+        view.sizeToFit()
+        view.qmui_borderPosition = .top
+        view.qmui_borderWidth = pixelOne
+        view.qmui_borderInsets = .init(horizontal: 30, vertical: 0)
+        return view
+    }()
+    
+    lazy var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = R.image.user_default()
+        imageView.sizeToFit()
+        return imageView
+    }()
+    
+    lazy var nameLabel: UILabel = {
+        let label = UILabel.init(frame: .zero)
+        label.font = .bold(18)
+        label.theme.textColor = themeService.attribute { $0.titleColor }
+        label.text = R.string.localizable.clickToLogin()
+        label.sizeToFit()
+        return label
+    }()
+
+    lazy var descLabel: UILabel = {
+        let label = UILabel.init(frame: .zero)
+        label.attributedText = R.string.localizable.appSlogan()
+            .styled(with: .font(.normal(13)), .color(.body))
+        label.sizeToFit()
+        return label
+    }()
+    
 //
 //    lazy var userView: UIView = {
 //        let view = UIView.init(frame: .zero)
@@ -44,20 +88,7 @@ class PersonalParallaxView: UIImageView {
 //        return view
 //    }()
 //
-//    lazy var infoView: UIView = {
-//        let view = UIView.init(frame: .zero)
-//        view.isUserInteractionEnabled = true
-//        view.theme.backgroundColor = themeService.attribute { $0.backgroundColor }
-//        view.sizeToFit()
-//        return view
-//    }()
 //
-//    lazy var statView: UIView = {
-//        let view = UIView.init(frame: .zero)
-//        view.theme.backgroundColor = themeService.attribute { $0.backgroundColor }
-//        view.sizeToFit()
-//        return view
-//    }()
 //
 //    lazy var repositoryButton: UIButton = {
 //        let button = UIButton.init(type: .custom)
@@ -104,31 +135,7 @@ class PersonalParallaxView: UIImageView {
 //        return button
 //    }()
 //
-//    lazy var iconImageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.image = R.image.default_avatar()
-//        imageView.sizeToFit()
-//        imageView.size = .init(metric(60))
-//        imageView.layerCornerRadius = imageView.width / 2.0
-//        return imageView
-//    }()
 //
-//    lazy var nameLabel: UILabel = {
-//        let label = UILabel.init(frame: .zero)
-//        label.font = .bold(18)
-//        label.theme.textColor = themeService.attribute { $0.titleColor }
-//        label.text = R.string.localizable.clickToLogin()
-//        label.sizeToFit()
-//        return label
-//    }()
-//
-//    lazy var descLabel: UILabel = {
-//        let label = UILabel.init(frame: .zero)
-//        label.attributedText = R.string.localizable.appSlogan()
-//            .styled(with: .font(.normal(13)), .color(.body))
-//        label.sizeToFit()
-//        return label
-//    }()
 //
 //    lazy var themeButton: UIButton = {
 //        let button = UIButton.init(type: .custom)
@@ -166,6 +173,11 @@ class PersonalParallaxView: UIImageView {
             // make.bottom.equalTo(-20)
             // make.bottom.equalTo(self.snp.height).multipliedBy(0.12)
         }
+        self.centerView.addSubview(self.infoView)
+        self.centerView.addSubview(self.statView)
+        self.infoView.addSubview(self.iconImageView)
+        self.infoView.addSubview(self.nameLabel)
+        self.infoView.addSubview(self.descLabel)
 //        self.addSubview(self.topView)
 //        self.addSubview(self.userView)
 //        self.addSubview(self.themeButton)
@@ -175,9 +187,6 @@ class PersonalParallaxView: UIImageView {
 //        self.statView.addSubview(self.repositoryButton)
 //        self.statView.addSubview(self.followerButton)
 //        self.statView.addSubview(self.followingButton)
-//        self.infoView.addSubview(self.iconImageView)
-//        self.infoView.addSubview(self.nameLabel)
-//        self.infoView.addSubview(self.descLabel)
     }
     
     required init?(coder: NSCoder) {
@@ -186,6 +195,25 @@ class PersonalParallaxView: UIImageView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        self.statView.height = self.centerView.width / 5.5
+        self.statView.width = self.centerView.width
+        self.statView.left = 0
+        self.statView.bottom = self.centerView.height
+        self.infoView.width = self.centerView.width
+        self.infoView.height = self.statView.top
+        self.infoView.left = 0
+        self.infoView.top = 0
+        self.iconImageView.height = self.infoView.height * 0.7
+        self.iconImageView.width = self.iconImageView.height
+        self.iconImageView.layerCornerRadius = self.iconImageView.height / 2.0
+        self.iconImageView.left = 20
+        self.iconImageView.top = self.iconImageView.topWhenCenter + 4
+        self.nameLabel.sizeToFit()
+        self.nameLabel.left = self.iconImageView.right + 10
+        self.nameLabel.bottom = self.iconImageView.centerY
+        self.descLabel.sizeToFit()
+        self.descLabel.left = self.nameLabel.left
+        self.descLabel.top = self.nameLabel.bottom + 5
 //        self.topImageView.left = 0
 //        self.topImageView.top = 0
 //        self.topView.left = 0
@@ -195,10 +223,6 @@ class PersonalParallaxView: UIImageView {
 //        self.userView.height = (self.height - statusBarHeight - navigationBarHeight - 10).flat
 //        self.userView.left = self.userView.leftWhenCenter
 //        self.userView.bottom = self.height
-//        self.statView.height = self.userView.width / 5.5
-//        self.statView.width = self.userView.width
-//        self.statView.left = 0
-//        self.statView.bottom = self.userView.height
 //        self.repositoryButton.width = self.statView.width / 3.0
 //        self.repositoryButton.height = self.statView.height
 //        self.repositoryButton.left = 0
@@ -209,18 +233,6 @@ class PersonalParallaxView: UIImageView {
 //        self.followingButton.size = self.repositoryButton.size
 //        self.followingButton.left = self.followerButton.right
 //        self.followingButton.top = 0
-//        self.infoView.width = self.userView.width
-//        self.infoView.height = self.statView.top
-//        self.infoView.left = 0
-//        self.infoView.top = 0
-//        self.iconImageView.left = 20
-//        self.iconImageView.top = self.iconImageView.topWhenCenter + 4
-//        self.nameLabel.sizeToFit()
-//        self.nameLabel.left = self.iconImageView.right + 10
-//        self.nameLabel.bottom = self.iconImageView.centerY
-//        self.descLabel.sizeToFit()
-//        self.descLabel.left = self.nameLabel.left
-//        self.descLabel.top = self.nameLabel.bottom + 5
 //        self.themeButton.right = self.userView.right
 //        self.themeButton.bottom = self.userView.top - 20
     }
@@ -310,11 +322,11 @@ extension Reactive where Base: PersonalParallaxView {
 //        }
 //    }
 //    
-//    var tapUser: ControlEvent<Void> {
-//        let source = base.infoView.rx.tapGesture().when(.recognized).map { _ in }
-//        return ControlEvent(events: source)
-//    }
-//    
+    var tapUser: ControlEvent<Void> {
+        let source = base.infoView.rx.tapGesture().when(.recognized).map { _ in }
+        return ControlEvent(events: source)
+    }
+    
 //    var tapTheme: ControlEvent<Void> {
 //        self.base.themeButton.rx.tap
 //    }

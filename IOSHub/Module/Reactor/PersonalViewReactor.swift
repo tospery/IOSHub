@@ -18,7 +18,7 @@ class PersonalViewReactor: NormalViewReactor {
     required init(_ provider: HiIOS.ProviderType, _ parameters: [String: Any]?) {
         super.init(provider, parameters)
         self.initialState = State(
-            title: self.title ?? R.string.localizable.mine()
+            title: self.title // ?? R.string.localizable.mine()
             // cards: Card.cachedArray() ?? []
         )
     }

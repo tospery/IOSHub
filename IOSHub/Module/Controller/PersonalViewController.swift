@@ -24,9 +24,9 @@ class PersonalViewController: NormalViewController {
         let parallaxView = PersonalParallaxView.init(frame: .zero)
         parallaxView.translatesAutoresizingMaskIntoConstraints = false
         parallaxView.sizeToFit()
-//        parallaxView.rx.tapUser
-//            .subscribeNext(weak: self, type(of: self).tapUser)
-//            .disposed(by: self.rx.disposeBag)
+        parallaxView.rx.tapUser
+            .subscribeNext(weak: self, type(of: self).tapUser)
+            .disposed(by: self.rx.disposeBag)
 //        parallaxView.rx.tapTheme
 //            .subscribeNext(weak: self, type(of: self).tapTheme)
 //            .disposed(by: self.rx.disposeBag)
@@ -79,14 +79,6 @@ class PersonalViewController: NormalViewController {
     }
     
     func tapUser(_: Void? = nil) {
-        log("tapUser")
-//        if self.reactor?.currentState.user?.isValid ?? false {
-//            self.navigator.forward(Router.shared.urlString(host: .profile, parameters: [
-//                Parameter.title: self.reactor?.currentState.user?.username ?? ""
-//            ]))
-//            return
-//        }
-//        self.navigator.login()
         if self.reactor?.currentState.user?.isValid ?? false {
             self.navigator.forward(Router.shared.urlString(host: .profile))
             return
