@@ -78,7 +78,7 @@ class PersonalViewController: NormalViewController {
         super.fromState(reactor: reactor)
     }
     
-    override func tapUser(_: Void? = nil) {
+    func tapUser(_: Void? = nil) {
         log("tapUser")
 //        if self.reactor?.currentState.user?.isValid ?? false {
 //            self.navigator.forward(Router.shared.urlString(host: .profile, parameters: [

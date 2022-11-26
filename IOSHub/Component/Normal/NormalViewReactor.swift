@@ -259,6 +259,31 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
     func genSections(originals: [SectionData]) -> [Section] {
         (originals.count == 0 ? [] : originals.map {
             .sectionItems(header: $0.header, items: $0.models.map {
+                if let value = ($0 as? BaseModel)?.data as? SectionItemValue {
+                    switch value {
+                    case .appInfo: return .appInfo(.init($0))
+                    //case .milestone: return .milestone(.init($0))
+                    default: break
+                    }
+//                    if let value = data as? SectionItemValue {
+//                        switch value {
+//                        case .appInfo: return .appInfo(.init($0))
+//                        //case .milestone: return .milestone(.init($0))
+//                        default: break
+//                        }
+//                    }
+                }
+//                if $0 is Piece {
+//                    return .piece(.init($0))
+//                }
+//                if let user = $0 as? User {
+//                    switch user.cellType {
+//                    case .userInfo:
+//                        return .userInfo(.init($0))
+//                    default:
+//                        break
+//                    }
+//                }
                 return .simple(.init($0))
             })
         })

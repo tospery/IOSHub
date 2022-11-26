@@ -71,6 +71,7 @@ class DashboardViewController: CollectionViewController, ReactorKit.View {
                     let cell = collectionView.dequeue(Reusable.simpleCell, for: indexPath)
                     cell.bind(reactor: item)
                     return cell
+                default: fatalError()
                 }
             },
             configureSupplementaryView: { _, collectionView, kind, indexPath in
@@ -92,6 +93,7 @@ extension DashboardViewController: UICollectionViewDelegateFlowLayout {
         switch self.dataSource[indexPath] {
         case .simple(let item):
             return Reusable.simpleCell.class.size(width: width, item: item)
+        default: fatalError()
         }
     }
 

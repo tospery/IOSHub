@@ -23,10 +23,10 @@ class PersonalViewReactor: NormalViewReactor {
         )
     }
     
-//    override func loadData(_ page: Int) -> Observable<[SectionData]> {
-//        .create { [weak self] observer -> Disposable in
-//            guard let `self` = self else { fatalError() }
-//            var models = [ModelType].init()
+    override func loadData(_ page: Int) -> Observable<[SectionData]> {
+        .create { [weak self] observer -> Disposable in
+            guard let `self` = self else { fatalError() }
+            var models = [ModelType].init()
 //            let cards = self.currentState.cards
 //            if cards.isNotEmpty {
 //                models.append(Simple.init(height: 10))
@@ -65,14 +65,15 @@ class PersonalViewReactor: NormalViewReactor {
 //                ])
 //                models.append(Simple.init(height: 15))
 //            }
-//            if let simples = Simple.cachedArray(page: self.host) {
-//                models.append(contentsOf: simples)
-//            }
-//            observer.onNext([(header: nil, models: models)])
-//            observer.onCompleted()
-//            return Disposables.create { }
-//        }
-//    }
+            models.append(Simple.init(height: 5))
+            if let simples = Simple.cachedArray(page: self.host) {
+                models.append(contentsOf: simples)
+            }
+            observer.onNext([(header: nil, models: models)])
+            observer.onCompleted()
+            return Disposables.create { }
+        }
+    }
     
 //    override func loadExtra() -> Observable<NormalViewReactor.Mutation> {
 //        self.reload()

@@ -21,6 +21,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
     
     struct Reusable {
         static let simpleCell = ReusableCell<SimpleCell>()
+        static let appInfoCell = ReusableCell<AppInfoCell>()
         static let headerView = ReusableView<CollectionHeaderView>()
         static let footerView = ReusableView<CollectionFooterView>()
     }
@@ -32,6 +33,11 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                 switch sectionItem {
                 case let .simple(item):
                     let cell = collectionView.dequeue(Reusable.simpleCell, for: indexPath)
+                    item.parent = self.reactor
+                    cell.reactor = item
+                    return cell
+                case let .appInfo(item):
+                    let cell = collectionView.dequeue(Reusable.appInfoCell, for: indexPath)
                     item.parent = self.reactor
                     cell.reactor = item
                     return cell
@@ -68,6 +74,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.register(Reusable.simpleCell)
+        self.collectionView.register(Reusable.appInfoCell)
         self.collectionView.register(Reusable.headerView, kind: .header)
         self.collectionView.register(Reusable.footerView, kind: .footer)
         self.collectionView.theme.backgroundColor = themeService.attribute { $0.lightColor }
@@ -101,9 +108,9 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if self.reactor?.host == .personal {
-            return statusBarService.value.reversed
-        }
+//        if self.reactor?.host == .personal {
+//            return statusBarService.value.reversed
+//        }
         return super.preferredStatusBarStyle
     }
 
@@ -211,21 +218,13 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
     
     // MARK: - tap
     func tapItem(sectionItem: SectionItem) {
-//        switch sectionItem {
-//        case let .simple(item):
-//            guard let target = (item.model as? Simple)?.target, target.isNotEmpty else { return }
-//            self.navigator.forward(target)
-//        }
-    }
-
-    func tapUser(_: Void? = nil) {
-//        if self.reactor?.currentState.user?.isValid ?? false {
-//            self.navigator.forward(Router.shared.urlString(host: .profile, parameters: [
-//                Parameter.title: self.reactor?.currentState.user?.username ?? ""
-//            ]))
-//            return
-//        }
-//        self.navigator.login()
+        switch sectionItem {
+        case let .simple(item):
+            guard let target = (item.model as? Simple)?.target, target.isNotEmpty else { return }
+            self.navigator.forward(target)
+        default:
+            log("不需要处理的Item: \(sectionItem)")
+        }
     }
     
 }
@@ -240,6 +239,7 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
         let width = collectionView.sectionWidth(at: indexPath.section)
         switch self.dataSource[indexPath] {
         case let .simple(item): return Reusable.simpleCell.class.size(width: width, item: item)
+        case let .appInfo(item): return Reusable.appInfoCell.class.size(width: width, item: item)
         }
     }
     

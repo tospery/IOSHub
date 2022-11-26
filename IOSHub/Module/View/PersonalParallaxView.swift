@@ -147,8 +147,7 @@ class PersonalParallaxView: UIImageView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.isUserInteractionEnabled = true
-        self.backgroundColor = .orange
-        // self.theme.backgroundColor = themeService.attribute { $0.lightColor }
+        self.theme.backgroundColor = themeService.attribute { $0.lightColor }
         self.addSubview(self.topImageView)
         self.topImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview()

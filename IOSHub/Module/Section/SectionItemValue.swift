@@ -8,19 +8,15 @@
 import Foundation
 
 enum SectionItemValue {
-    case settings, about
-    case banner([String])
-
-    static let aboutSections = [[settings], [about]]
-
+    case appInfo
+    case milestone
 }
 
 extension SectionItemValue: CustomStringConvertible {
     var description: String {
         switch self {
-        case .settings: return "settings"
-        case .about: return "about"
-        case .banner: return "banner"
+        case .appInfo: return "appInfo"
+        case .milestone: return "milestone"
         }
     }
 }
