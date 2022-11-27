@@ -217,7 +217,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
     }
     
     func reload() -> Observable<Mutation> {
-        .empty()
+        self.load()
     }
     
     func business(_ data: Any?) -> Observable<Mutation> {

@@ -31,7 +31,8 @@
         "id":1,
         "title":"退出登录",
         "color":"FFFFFF",
-        "tintColor":"F34700"
+        "tintColor":"F34700",
+        "target":"ioshub://sheet?message=确定退出登录？&actions=退出,取消"
     }
 ]
 

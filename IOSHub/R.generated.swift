@@ -362,7 +362,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 52 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 54 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -448,6 +448,8 @@ struct R: Rswift.Validatable {
       static let oK = Rswift.StringResource(key: "OK", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 确定
       static let sure = Rswift.StringResource(key: "Sure", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 确定退出登录？
+      static let alertLogoutMessage = Rswift.StringResource(key: "Alert.Logout.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 简介
       static let bio = Rswift.StringResource(key: "Bio", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 网络错误
@@ -456,6 +458,8 @@ struct R: Rswift.Validatable {
       static let errorNetworkTitle = Rswift.StringResource(key: "Error.Network.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 设置
       static let setting = Rswift.StringResource(key: "Setting", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 退出
+      static let exit = Rswift.StringResource(key: "Exit", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 退出登录
       static let exitLogin = Rswift.StringResource(key: "Exit Login", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 重试
@@ -1017,6 +1021,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Sure", bundle: bundle, comment: "")
       }
 
+      /// Value: 确定退出登录？
+      static func alertLogoutMessage(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Alert.Logout.Message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Alert.Logout.Message"
+        }
+
+        return NSLocalizedString("Alert.Logout.Message", bundle: bundle, comment: "")
+      }
+
       /// Value: 简介
       static func bio(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
@@ -1067,6 +1084,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Setting", bundle: bundle, comment: "")
+      }
+
+      /// Value: 退出
+      static func exit(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Exit", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Exit"
+        }
+
+        return NSLocalizedString("Exit", bundle: bundle, comment: "")
       }
 
       /// Value: 退出登录

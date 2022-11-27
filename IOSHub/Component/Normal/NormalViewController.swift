@@ -162,10 +162,25 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
             .distinctUntilChanged({ $0?.asHiError == $1?.asHiError })
             .bind(to: self.rx.error)
             .disposed(by: self.disposeBag)
+//        reactor.state.map { $0.user }
+//            .distinctUntilChanged()
+//            .skip(1)
+//            .subscribeNext(weak: self, type(of: self).handleUser)
+//            .disposed(by: self.disposeBag)
         reactor.state.map { $0.user }
             .distinctUntilChanged()
             .skip(1)
-            .subscribeNext(weak: self, type(of: self).handleUser)
+            .do(onNext: { [weak self] user in
+                guard let `self` = self else { return }
+                self.handleUser(user: user, changed: false)
+            })
+            .distinctUntilChanged { $0?.isValid }
+            // .skip(1)
+            .subscribe(onNext: { [weak self] user in
+                guard let `self` = self else { return }
+                self.handleUser(user: user, changed: true)
+            })
+            // .subscribeNext(weak: self, type(of: self).handleUser)
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.configuration }
             .distinctUntilChanged()
@@ -196,13 +211,52 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
     }
     
     // MARK: - handle
-    func handleUser(user: User?) {
-        log("handleUser -> 更新用户(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? ""))")
-        MainScheduler.asyncInstance.schedule(()) { _ -> Disposable in
-            User.update(user, reactive: true)
-            return Disposables.create {}
-        }.disposed(by: self.disposeBag)
+//    func handleUser(user: User?) {
+//        if user == User.current {
+//            return
+//        }
+//        log("handleUser -> (\(self.reactor?.host ?? ""), \(self.reactor?.path ?? ""))")
+//        MainScheduler.asyncInstance.schedule(()) { [weak self] _ -> Disposable in
+//            guard let `self` = self else { return Disposables.create {} }
+//            log("handleUser(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? "")) -> 更新用户，准备保存")
+//            User.update(user, reactive: true)
+//            if User.current?.id ?? 0 != user?.id ?? 0 {
+//                log("handleUser(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? "")) -> 切换用户，重新加载")
+//                self.reactor?.action.onNext(.reload)
+//            }
+//            return Disposables.create {}
+//        }.disposed(by: self.disposeBag)
+//    }
+    
+    func handleUser(user: User?, changed: Bool) {
+        log("handleUser -> 更新用户(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? "")) | changed = \(changed)")
+        if changed {
+            MainScheduler.asyncInstance.schedule(()) { [weak self] _ -> Disposable in
+                guard let `self` = self else { fatalError() }
+                log("handleUser(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? "")) -> 切换用户，重新加载")
+                if User.current != user {
+                    User.update(user, reactive: true)
+                }
+                self.reactor?.action.onNext(.reload)
+                return Disposables.create {}
+            }.disposed(by: self.disposeBag)
+            return
+        }
+        if User.current != user {
+            MainScheduler.asyncInstance.schedule(()) { _ -> Disposable in
+                log("handleUser(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? "")) -> 更新用户，准备保存")
+                User.update(user, reactive: true)
+                return Disposables.create {}
+            }.disposed(by: self.disposeBag)
+        }
     }
+//    func handleUser(user: User?) {
+//        log("handleUser -> 更新用户(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? ""))")
+//        MainScheduler.asyncInstance.schedule(()) { _ -> Disposable in
+//            User.update(user, reactive: true)
+//            return Disposables.create {}
+//        }.disposed(by: self.disposeBag)
+//    }
     
     func handleConfiguration(configuration: Configuration) {
         log("handleConfiguration -> 更新配置(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? ""))")
@@ -216,12 +270,21 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         self.navigator.forward(target)
     }
     
+    func handleSimple(simple: Simple) {
+    }
+    
     // MARK: - tap
     func tapItem(sectionItem: SectionItem) {
         switch sectionItem {
         case let .simple(item):
             guard let target = (item.model as? Simple)?.target, target.isNotEmpty else { return }
             self.navigator.forward(target)
+//            guard let simple = item.model as? Simple else { return }
+//            if let target = simple.target, target.isNotEmpty {
+//                self.navigator.forward(target)
+//                return
+//            }
+//            self.handleSimple(simple: simple)
         default:
             log("不需要处理的Item: \(sectionItem)")
         }

@@ -26,5 +26,23 @@ class ProfileViewController: NormalViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func tapItem(sectionItem: SectionItem) {
+        switch sectionItem {
+        case let .simple(item):
+            guard let target = (item.model as? Simple)?.target, target.isNotEmpty else { return }
+            self.navigator.rxForward(target)
+                .subscribe(onNext: { [weak self] result in
+                    guard let `self` = self else { return }
+                    guard let action = result as? IHAlertAction else { return }
+                    if action == IHAlertAction.exit {
+                        Subjection.update(AccessToken.self, nil)
+                        User.update(nil, reactive: true)
+                        self.close()
+                    }
+                }).disposed(by: self.disposeBag)
+        default: break
+        }
+    }
 
 }

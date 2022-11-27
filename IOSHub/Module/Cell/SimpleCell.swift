@@ -154,17 +154,40 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
             return
         }
         if let parent = reactor.parent as? NormalViewReactor {
-            if parent.host == .personal {
-                
-            } else {
-                if let simpleId = CellId.init(rawValue: (reactor.model as? Simple)?.id ?? 0) {
-                    parent.state.map { $0.user?.simpleDetail(simpleId) }
-                        .distinctUntilChanged()
-                        .map { Reactor.Action.detail($0) }
-                        .bind(to: reactor.action)
-                        .disposed(by: self.disposeBag)
-                }
+            let isPersonal = parent.host == .personal
+            if let simple = reactor.model as? Simple,
+               let cellId = CellId.init(rawValue: simple.id),
+               cellId.rawValue >= CellId.company.rawValue,
+               cellId.rawValue <= CellId.bio.rawValue {
+                parent.state.map { $0.user?.text(cellId: cellId) }
+                    .distinctUntilChanged()
+                    .map { isPersonal ? Reactor.Action.title($0) : Reactor.Action.detail($0) }
+                    .bind(to: reactor.action)
+                    .disposed(by: self.disposeBag)
             }
+//            if parent.host == .personal {
+//                if let simple = reactor.model as? Simple,
+//                   let cellId = CellId.init(rawValue: simple.id),
+//                   cellId.rawValue >= CellId.company.rawValue,
+//                   cellId.rawValue <= CellId.bio.rawValue {
+//                    parent.state.map { $0.user?.text(cellId: cellId) }
+//                        .distinctUntilChanged()
+//                        .map { Reactor.Action.title($0) }
+//                        .bind(to: reactor.action)
+//                        .disposed(by: self.disposeBag)
+//                }
+//            } else {
+//                if let simple = reactor.model as? Simple,
+//                   let cellId = CellId.init(rawValue: simple.id),
+//                   cellId.rawValue >= CellId.company.rawValue,
+//                   cellId.rawValue <= CellId.bio.rawValue {
+//                    parent.state.map { $0.user?.text(cellId: cellId) }
+//                        .distinctUntilChanged()
+//                        .map { Reactor.Action.detail($0) }
+//                        .bind(to: reactor.action)
+//                        .disposed(by: self.disposeBag)
+//                }
+//            }
         }
         reactor.state.map { $0.icon }
             .distinctUntilChanged { HiIOS.compareImage($0, $1) }

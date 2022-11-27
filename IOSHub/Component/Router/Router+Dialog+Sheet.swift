@@ -29,11 +29,21 @@ extension Router {
             
             let ctx = context as? [String: Any]
             let observer = ctx?[Parameter.observer] as? AnyObserver<Any>
-            var actions = context as? [AlertActionType]
-            if actions == nil {
+            var actions = context as? [AlertActionType] ?? []
+            if actions.isEmpty {
+                if let actionsString = url.queryParameters[Parameter.actions], actionsString.isNotEmpty {
+                    let actionsArray = actionsString.components(separatedBy: ",")
+                    for string in actionsArray {
+                        if let action = IHAlertAction.init(string: string) {
+                            actions.append(action)
+                        }
+                    }
+                }
+            }
+            if actions.isEmpty {
                 actions = ctx?[Parameter.actions] as? [AlertActionType] ?? []
             }
-            for action in actions! {
+            for action in actions {
                 alertController.addAction(.init(title: action.title, style: action.style, handler: { _ in
                     observer?.onNext(action)
                     observer?.onCompleted()

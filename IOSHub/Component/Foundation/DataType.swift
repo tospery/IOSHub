@@ -61,6 +61,15 @@ enum IHAlertAction: AlertActionType, Equatable {
     case input
     case onlyPublic
     case withPrivate
+    case exit
+    
+    init?(string: String) {
+        switch string {
+        case IHAlertAction.cancel.title: self = IHAlertAction.cancel
+        case IHAlertAction.exit.title: self = IHAlertAction.exit
+        default: return nil
+        }
+    }
 
     var title: String? {
         switch self {
@@ -69,6 +78,7 @@ enum IHAlertAction: AlertActionType, Equatable {
         case .cancel: return R.string.localizable.cancel()
         case .onlyPublic: return R.string.localizable.loginPrivilegeOnlyPublic()
         case .withPrivate: return R.string.localizable.loginPrivilegeWithPrivate()
+        case .exit: return R.string.localizable.exit()
         default: return nil
         }
     }
@@ -76,7 +86,7 @@ enum IHAlertAction: AlertActionType, Equatable {
     var style: UIAlertAction.Style {
         switch self {
         case .cancel:  return .cancel
-        case .destructive:  return .destructive
+        case .destructive, .exit:  return .destructive
         default: return .default
         }
     }
@@ -88,7 +98,8 @@ enum IHAlertAction: AlertActionType, Equatable {
             (.cancel, .cancel),
             (.input, .input),
             (.onlyPublic, .onlyPublic),
-            (.withPrivate, .withPrivate):
+            (.withPrivate, .withPrivate),
+            (.exit, .exit):
             return true
         default:
             return false

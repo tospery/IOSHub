@@ -18,6 +18,7 @@
 "Repositores" = "Repositores";
 "Followers" = "Followers";
 "Following" = "Following";
+"Exit" = "退出";
 /* 词语 */
 "Exit Login" = "退出登录";
 "No Description" = "No Description";
@@ -33,6 +34,8 @@
 "Login.Privacy.Message" = "隐私声明：SwiftGithub不会从您的GitHub账户收集任何信息，我甚至连服务器都没有，请您放心使用。";
 "Login.Privilege.OnlyPublic" = "仅公开库";
 "Login.Privilege.WithPrivate" = "公开库+私有库";
+/* 句子 - Alert */
+"Alert.Logout.Message" = "确定退出登录？";
 /* 句子 - Error */
 "Error.Login" = "登录失败，请稍后重试";
 "Error.Retry" = "重试";

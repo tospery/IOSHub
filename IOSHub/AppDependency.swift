@@ -42,6 +42,8 @@ final class AppDependency: HiIOS.AppDependency {
     
     // MARK: - Test
     override func test(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+//        let url = "http://localhost:5000/MovieComparer?film=1&film=2&film=3".url!
+//        let value = url.queryValue(for: "film")
         log("环境参数: \(envParameters)", module: .common)
         log("用户参数: \(userParameters)", module: .common)
     }

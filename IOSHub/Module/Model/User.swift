@@ -19,6 +19,8 @@ import BonMot
 struct User: Subjective, Eventable {
     
     enum Event {
+        case login
+        case logout
     }
     
     var id = 0
@@ -120,15 +122,17 @@ struct User: Subjective, Eventable {
         publicRepos             <- map["public_repos"]
     }
     
-    func simpleDetail(_ simpleId: CellId) -> String? {
-        switch simpleId {
-        case .nickname: return self.name
-        case .bio: return self.bio
-        case .company: return self.company
-        case .location: return self.location
-        case .blog: return self.blog
-        default: return nil
+    func text(cellId: CellId) -> String? {
+        var result: String?
+        switch cellId {
+        case .nickname: result = self.name
+        case .bio: result = self.bio
+        case .company: result = self.company
+        case .location: result = self.location
+        case .blog: result = self.blog
+        default: result = nil
         }
+        return result ?? R.string.localizable.noDescription()
     }
     
     func stat(_ text: String, _ count: Int) -> NSAttributedString {
@@ -150,8 +154,10 @@ struct User: Subjective, Eventable {
         let newLogined = new?.isValid ?? false
         if !oldLogined && newLogined {
             log("用户登录: \(String(describing: new))")
+            // User.event.onNext(.login)
         } else if oldLogined && !newLogined {
             log("用户退出")
+            // User.event.onNext(.logout)
         } else {
             log("用户更新: \(String(describing: new))")
         }
