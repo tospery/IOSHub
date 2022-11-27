@@ -120,7 +120,7 @@ struct User: Subjective, Eventable {
         publicRepos             <- map["public_repos"]
     }
     
-    func simpleDetail(_ simpleId: SimpleId) -> String? {
+    func simpleDetail(_ simpleId: CellId) -> String? {
         switch simpleId {
         case .nickname: return self.name
         case .bio: return self.bio

@@ -1,17 +1,17 @@
 [
     {
-        "id":100,
+        "id":10,
         "icon":"ic_setting",
         "title":"设置"
     },
     {
-        "id":101,
+        "id":11,
         "icon":"ic_about",
         "title":"关于",
         "target":"https://m.github.com/about"
     },
     {
-        "id":102,
+        "id":12,
         "icon":"ic_feedback",
         "title":"反馈",
         "divided":false

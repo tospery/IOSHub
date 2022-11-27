@@ -47,16 +47,11 @@ enum Platform {
 
 }
 
-enum PieceId: Int {
-    case nickname = 1
-    case bio, company, location, blog
-}
-
-enum SimpleId: Int {
-    case space      = 0, button
-    case setting    = 100, about, feedback
-    case company    = 200, location, email, blog, nickname, bio
-    case author     = 300, weibo, shcemes, rating, share
+enum CellId: Int {
+    case space          = 0, button
+    case setting        = 10, about, feedback
+    case company        = 20, location, email, blog, nickname, bio
+    case author         = 30, weibo, shcemes, score, share
 }
 
 enum IHAlertAction: AlertActionType, Equatable {

@@ -157,7 +157,7 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
             if parent.host == .personal {
                 
             } else {
-                if let simpleId = SimpleId.init(rawValue: (reactor.model as? Simple)?.id ?? 0) {
+                if let simpleId = CellId.init(rawValue: (reactor.model as? Simple)?.id ?? 0) {
                     parent.state.map { $0.user?.simpleDetail(simpleId) }
                         .distinctUntilChanged()
                         .map { Reactor.Action.detail($0) }

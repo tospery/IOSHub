@@ -33,25 +33,25 @@ class PersonalViewReactor: NormalViewReactor {
 //                models.append(Simple.init(height: 10))
                 models.append(contentsOf: [
                     Simple.init(
-                        id: SimpleId.company.rawValue,
+                        id: CellId.company.rawValue,
                         icon: "ic_company",
                         title: user.company ?? R.string.localizable.noDescription(),
                         indicated: false
                     ),
                     Simple.init(
-                        id: SimpleId.location.rawValue,
+                        id: CellId.location.rawValue,
                         icon: "ic_location",
                         title: user.location ?? R.string.localizable.noDescription(),
                         indicated: false
                     ),
                     Simple.init(
-                        id: SimpleId.email.rawValue,
+                        id: CellId.email.rawValue,
                         icon: "ic_email",
                         title: user.email ?? R.string.localizable.noDescription(),
                         indicated: false
                     ),
                     Simple.init(
-                        id: SimpleId.blog.rawValue,
+                        id: CellId.blog.rawValue,
                         icon: "ic_blog",
                         title: user.blog ?? R.string.localizable.noDescription(),
                         divided: false
