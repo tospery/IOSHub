@@ -46,6 +46,15 @@ final class AppDependency: HiIOS.AppDependency {
 //        let value = url.queryValue(for: "film")
         log("环境参数: \(envParameters)", module: .common)
         log("用户参数: \(userParameters)", module: .common)
+//        self.provider.starredRepos(username: "tospery", page: 1)
+//            .asObservable()
+//            .subscribe(onNext: { repos in
+//                let aaa = repos
+//                log("")
+//            }, onError: { error in
+//                let bbb = error
+//                log("")
+//            }).disposed(by: self.disposeBag)
     }
 
     // MARK: - Setup

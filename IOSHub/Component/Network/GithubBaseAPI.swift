@@ -7,11 +7,14 @@
 
 import Foundation
 import Moya
+import SwifterSwift_Hi
 import HiIOS
 
 enum GithubBaseAPI {
     case login(token: String)
     case user(username: String)
+    case userRepos(username: String, page: Int)
+    case starredRepos(username: String, page: Int)
 }
 
 extension GithubBaseAPI: TargetType {
@@ -24,6 +27,8 @@ extension GithubBaseAPI: TargetType {
         switch self {
         case .login: return "/user"
         case let .user(username): return "/users/\(username)"
+        case let .userRepos(username, _): return "/users/\(username)/repos"
+        case let .starredRepos(username, _): return "/users/\(username)/starred"
         }
     }
 
@@ -44,42 +49,18 @@ extension GithubBaseAPI: TargetType {
     }
 
     var task: Task {
-        let parameters = envParameters
+        var parameters = envParameters
         let encoding: ParameterEncoding = URLEncoding.default
-//        switch self {
-//        case let .feedback(title, body):
-//            parameters["title"] = title
-//            parameters["body"] = body
-//            encoding = JSONEncoding.default
-//        case let .modify(key, value):
-//            parameters[key] = value
-//            encoding = JSONEncoding.default
-//        case .issues(_, _, let state, let page),
-//             .pulls(_, _, let state, let page):
-//            parameters["state"] = state.rawValue
-//            parameters["page"] = page
-//            parameters["per_page"] = UIApplication.shared.pageSize
-//        case let .readme(_, _, ref):
-//            parameters["ref"] = ref
-//        case .searchRepos(let keyword, let sort, let order, let page),
-//             .searchUsers(let keyword, let sort, let order, let page):
-//            parameters["q"] = keyword
-//            parameters["sort"] = sort.rawValue
-//            parameters["order"] = order.rawValue
-//            parameters["page"] = page
-//            parameters["per_page"] = UIApplication.shared.pageSize
-//        case .branches(_, _, let page),
-//             .watchers(_, _, let page),
-//             .stargazers(_, _, let page),
-//             .forks(_, _, let page),
-//             .userRepos(_, let page),
-//             .starredRepos(_, let page),
-//             .userFollowers(_, let page):
-//            parameters["page"] = page
-//            parameters["per_page"] = UIApplication.shared.pageSize
-//        default:
-//            return .requestPlain
-//        }
+        switch self {
+        case .userRepos(_, let page),
+             .starredRepos(_, let page):
+            parameters += [
+                Parameter.pageIndex: page,
+                Parameter.pageSize: UIApplication.shared.pageSize
+            ]
+        default:
+            break
+        }
         return .requestParameters(parameters: parameters, encoding: encoding)
     }
 

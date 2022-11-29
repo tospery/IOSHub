@@ -19,4 +19,6 @@ extension Parameter {
     static var login: String { "login" }
     static var clientId: String { "client_id" }
     static var clientSecret: String { "client_secret" }
+    static var pageIndex: String { "page" }
+    static var pageSize: String { "per_page" }
 }

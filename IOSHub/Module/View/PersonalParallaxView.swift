@@ -221,7 +221,7 @@ class PersonalParallaxView: UIImageView {
             .distinctUntilChanged()
             .bind(to: self.rx.refreshing)
             .disposed(by: self.rx.disposeBag)
-        reactor.state.map { $0.user?.avatarUrl?.imageSource }
+        reactor.state.map { $0.user?.avatar?.imageSource }
             .distinctUntilChanged { HiIOS.compareImage($0, $1) }
             .bind(to: self.iconImageView.rx.imageResource(placeholder: R.image.user_default()))
             .disposed(by: self.rx.disposeBag)
