@@ -15,6 +15,7 @@ import Rswift
 import HiIOS
 
 extension Router.Host {
+    static var stars: Router.Host { "stars" }
     static var about: Router.Host { "about" }
 }
 
@@ -57,6 +58,7 @@ extension Router: RouterCompatible {
     
     public func needLogin(host: Router.Host, path: Router.Path?) -> Bool {
         switch host {
+        case .stars: return true
         case .user: return path == nil
         default: return false
         }

@@ -20,6 +20,9 @@ extension Router {
         navigator.register(self.urlPattern(host: .dashboard)) { url, values, context in
             DashboardViewController(navigator, DashboardViewReactor(provider, self.parameters(url, values, context)))
         }
+        navigator.register(self.urlPattern(host: .stars)) { url, values, context in
+            StarsViewController(navigator, StarsViewReactor(provider, self.parameters(url, values, context)))
+        }
         navigator.register(self.urlPattern(host: .personal)) { url, values, context in
             PersonalViewController(navigator, PersonalViewReactor(provider, self.parameters(url, values, context)))
         }

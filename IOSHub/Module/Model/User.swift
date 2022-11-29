@@ -63,7 +63,6 @@ struct User: Subjective, Eventable {
     var hireable: String?
     var twitterUsername: String?
     var plan: Plan?
-    var token: String?
     // 合并字段
     var ranking = 0
     var username: String?       // username|login
@@ -121,9 +120,8 @@ struct User: Subjective, Eventable {
         twoFactorAuthentication <- map["two_factor_authentication"]
         type                    <- map["type"]
         updatedAt               <- map["updated_at"]
-        token                   <- map["token"]
-        username                <- map["username|login"]
-        avatar                  <- map["avatar|avatar_url"]
+        username                <- map["login|username", nested: false, delimiter: "|"]
+        avatar                  <- map["avatar_url|avatar", nested: false, delimiter: "|"]
     }
     // swiftlint:enable function_body_length
     

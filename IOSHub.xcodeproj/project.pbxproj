@@ -83,6 +83,10 @@
 		91B9DCD02935F9FB00CD2E1B /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCCF2935F9FB00CD2E1B /* License.swift */; };
 		91B9DCD22935FA1F00CD2E1B /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCD12935FA1F00CD2E1B /* Organization.swift */; };
 		91B9DCD42935FAF100CD2E1B /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCD32935FAF100CD2E1B /* Plan.swift */; };
+		91B9DCD62935FFCF00CD2E1B /* StarsViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCD52935FFCF00CD2E1B /* StarsViewReactor.swift */; };
+		91B9DCD82935FFD900CD2E1B /* StarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCD72935FFD900CD2E1B /* StarsViewController.swift */; };
+		91B9DCDA2936003300CD2E1B /* RepoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCD92936003300CD2E1B /* RepoItem.swift */; };
+		91B9DCDC2936004300CD2E1B /* RepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCDB2936004300CD2E1B /* RepoCell.swift */; };
 		91C267E428EB302500DD5677 /* NormalViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E328EB302500DD5677 /* NormalViewReactor.swift */; };
 		91C267E628EB302E00DD5677 /* NormalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E528EB302E00DD5677 /* NormalViewController.swift */; };
 		91C267E828EB30FA00DD5677 /* SectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E728EB30FA00DD5677 /* SectionItem.swift */; };
@@ -180,6 +184,10 @@
 		91B9DCCF2935F9FB00CD2E1B /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
 		91B9DCD12935FA1F00CD2E1B /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		91B9DCD32935FAF100CD2E1B /* Plan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
+		91B9DCD52935FFCF00CD2E1B /* StarsViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsViewReactor.swift; sourceTree = "<group>"; };
+		91B9DCD72935FFD900CD2E1B /* StarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsViewController.swift; sourceTree = "<group>"; };
+		91B9DCD92936003300CD2E1B /* RepoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoItem.swift; sourceTree = "<group>"; };
+		91B9DCDB2936004300CD2E1B /* RepoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCell.swift; sourceTree = "<group>"; };
 		91C267E328EB302500DD5677 /* NormalViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalViewReactor.swift; sourceTree = "<group>"; };
 		91C267E528EB302E00DD5677 /* NormalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalViewController.swift; sourceTree = "<group>"; };
 		91C267E728EB30FA00DD5677 /* SectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionItem.swift; sourceTree = "<group>"; };
@@ -409,6 +417,7 @@
 				8C9A459B2887F6F30041937A /* TabBarController.swift */,
 				9110A0A22932910A00B09DB1 /* AboutViewController.swift */,
 				914091952932D2DA009CA633 /* ProfileViewController.swift */,
+				91B9DCD72935FFD900CD2E1B /* StarsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -418,6 +427,7 @@
 			children = (
 				8C9A459E2887F6F30041937A /* SimpleCell.swift */,
 				9110A0A6293291AB00B09DB1 /* AppInfoCell.swift */,
+				91B9DCDB2936004300CD2E1B /* RepoCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -427,6 +437,7 @@
 			children = (
 				8C9A45A02887F6F30041937A /* SimpleItem.swift */,
 				9110A0A42932919F00B09DB1 /* AppInfoItem.swift */,
+				91B9DCD92936003300CD2E1B /* RepoItem.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -458,6 +469,7 @@
 				8C9A45AD2887F6F30041937A /* TabBarReactor.swift */,
 				9110A0A0293290FF00B09DB1 /* AboutViewReactor.swift */,
 				914091932932D2CB009CA633 /* ProfileViewReactor.swift */,
+				91B9DCD52935FFCF00CD2E1B /* StarsViewReactor.swift */,
 			);
 			path = Reactor;
 			sourceTree = "<group>";
@@ -672,12 +684,14 @@
 				91B9DCCE2935F98900CD2E1B /* BaseRepo.swift in Sources */,
 				9110A0BC2932C44D00B09DB1 /* Router+Dialog+Sheet.swift in Sources */,
 				91C267EC28EB326C00DD5677 /* Simple+Ex.swift in Sources */,
+				91B9DCDC2936004300CD2E1B /* RepoCell.swift in Sources */,
 				8C9A45B32887F6F30041937A /* Appearance+Ex.swift in Sources */,
 				8C9A45D62887F6F40041937A /* LoginViewController.swift in Sources */,
 				8C9A45B42887F6F30041937A /* String+Ex.swift in Sources */,
 				91B9DCD22935FA1F00CD2E1B /* Organization.swift in Sources */,
 				914091962932D2DA009CA633 /* ProfileViewController.swift in Sources */,
 				8C9A45D22887F6F40041937A /* Section.swift in Sources */,
+				91B9DCD62935FFCF00CD2E1B /* StarsViewReactor.swift in Sources */,
 				9110A0B82932C3CA00B09DB1 /* Router+Dialog+Toast.swift in Sources */,
 				9110A0AB29329C4100B09DB1 /* ProviderType+GithubMainAPI.swift in Sources */,
 				8C9A45B62887F6F30041937A /* Logger+Ex.swift in Sources */,
@@ -706,6 +720,7 @@
 				91C267E428EB302500DD5677 /* NormalViewReactor.swift in Sources */,
 				91B9DCD02935F9FB00CD2E1B /* License.swift in Sources */,
 				8C9A45C92887F6F40041937A /* OCHelper.m in Sources */,
+				91B9DCD82935FFD900CD2E1B /* StarsViewController.swift in Sources */,
 				8C9A45E32887F6F40041937A /* LoginViewReactor.swift in Sources */,
 				8C9A45DD2887F6F40041937A /* User.swift in Sources */,
 				8C5A3FCC2887A0E20009A00F /* AppDelegate.swift in Sources */,
@@ -727,6 +742,7 @@
 				91C267EA28EB310300DD5677 /* SectionItemValue.swift in Sources */,
 				8C9A45C52887F6F40041937A /* Error.swift in Sources */,
 				8C9A45DB2887F6F40041937A /* SimpleItem.swift in Sources */,
+				91B9DCDA2936003300CD2E1B /* RepoItem.swift in Sources */,
 				8C9A45B72887F6F30041937A /* Router+Ex.swift in Sources */,
 				91B9DCCA2935F8D200CD2E1B /* User+Ex.swift in Sources */,
 				8C9A45CE2887F6F40041937A /* Router+Dialog.swift in Sources */,

@@ -58,11 +58,6 @@ final class AppDependency: HiIOS.AppDependency {
     }
 
     // MARK: - Setup
-//    override func setupPreference() {
-//        let userid = User.current?.id
-//        let pref = Preference.cachedObject(id: userid) ?? .init(id: userid ?? "")
-//        Subjection.update(Preference.self, pref, true)
-//    }
     override func setupConfiguration() {
         
     }

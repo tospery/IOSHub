@@ -95,8 +95,7 @@ class PersonalViewController: NormalViewController {
     }
     
     func tapRepositories(_: Void? = nil) {
-        log("tapRepositories")
-        // self.navigator.forward(Router.shared.urlString(host: .favorited))
+        self.navigator.forward(Router.shared.urlString(host: .stars))
     }
     
     func tapFollower(_: Void? = nil) {

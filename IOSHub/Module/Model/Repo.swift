@@ -205,8 +205,8 @@ struct Repo: Subjective, Eventable {
         if fullname?.isEmpty ?? true {
             fullname = "\(String(describing: owner.username))/\(String(describing: name))"
         }
-        forks               <- map["forks|forks_count"]
-        stars               <- map["stars|stargazers_count"]
+        forks                <- map["forks|forks_count", nested: false, delimiter: "|"]
+        stars                <- map["stars|stargazers_count", nested: false, delimiter: "|"]
     }
     // swiftlint:enable function_body_length
     
