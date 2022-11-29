@@ -42,7 +42,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                     item.parent = self.reactor
                     cell.reactor = item
                     return cell
-                case let .repoItem(item):
+                case let .repo(item):
                     let cell = collectionView.dequeue(Reusable.repoCell, for: indexPath)
                     item.parent = self.reactor
                     cell.reactor = item
@@ -310,7 +310,7 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
         switch self.dataSource[indexPath] {
         case let .simple(item): return Reusable.simpleCell.class.size(width: width, item: item)
         case let .appInfo(item): return Reusable.appInfoCell.class.size(width: width, item: item)
-        case let .repoItem(item): return Reusable.repoCell.class.size(width: width, item: item)
+        case let .repo(item): return Reusable.repoCell.class.size(width: width, item: item)
         }
     }
     
@@ -343,6 +343,10 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         referenceSizeForFooterInSection section: Int
     ) -> CGSize {
+//        if collectionView.bounds.size.height == deviceHeight - collectionView.frame.origin.y {
+//            return .init(width: collectionView.width, height: safeArea.bottom)
+//        }
+//        return .zero
         .zero
     }
 

@@ -21,4 +21,6 @@ extension Parameter {
     static var clientSecret: String { "client_secret" }
     static var pageIndex: String { "page" }
     static var pageSize: String { "per_page" }
+    static var language: String { "language" }
+    static var since: String { "since" }
 }

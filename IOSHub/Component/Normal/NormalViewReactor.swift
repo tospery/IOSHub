@@ -273,6 +273,9 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
 //                        }
 //                    }
                 }
+                if $0 is Repo {
+                    return .repo(.init($0))
+                }
 //                if $0 is Piece {
 //                    return .piece(.init($0))
 //                }

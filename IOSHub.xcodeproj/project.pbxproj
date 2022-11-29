@@ -87,6 +87,11 @@
 		91B9DCD82935FFD900CD2E1B /* StarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCD72935FFD900CD2E1B /* StarsViewController.swift */; };
 		91B9DCDA2936003300CD2E1B /* RepoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCD92936003300CD2E1B /* RepoItem.swift */; };
 		91B9DCDC2936004300CD2E1B /* RepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCDB2936004300CD2E1B /* RepoCell.swift */; };
+		91B9DCDF29368A6300CD2E1B /* RepoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCDE29368A6300CD2E1B /* RepoInfoView.swift */; };
+		91B9DCE129368CF300CD2E1B /* TrendingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCE029368CF300CD2E1B /* TrendingAPI.swift */; };
+		91B9DCE329368D0F00CD2E1B /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCE229368D0F00CD2E1B /* Language.swift */; };
+		91B9DCE729368E4800CD2E1B /* ProviderType+TrendingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCE629368E4800CD2E1B /* ProviderType+TrendingAPI.swift */; };
+		91B9DCE929368E9600CD2E1B /* Languages.json in Resources */ = {isa = PBXBuildFile; fileRef = 91B9DCE829368E9600CD2E1B /* Languages.json */; };
 		91C267E428EB302500DD5677 /* NormalViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E328EB302500DD5677 /* NormalViewReactor.swift */; };
 		91C267E628EB302E00DD5677 /* NormalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E528EB302E00DD5677 /* NormalViewController.swift */; };
 		91C267E828EB30FA00DD5677 /* SectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E728EB30FA00DD5677 /* SectionItem.swift */; };
@@ -188,6 +193,11 @@
 		91B9DCD72935FFD900CD2E1B /* StarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsViewController.swift; sourceTree = "<group>"; };
 		91B9DCD92936003300CD2E1B /* RepoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoItem.swift; sourceTree = "<group>"; };
 		91B9DCDB2936004300CD2E1B /* RepoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCell.swift; sourceTree = "<group>"; };
+		91B9DCDE29368A6300CD2E1B /* RepoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoInfoView.swift; sourceTree = "<group>"; };
+		91B9DCE029368CF300CD2E1B /* TrendingAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingAPI.swift; sourceTree = "<group>"; };
+		91B9DCE229368D0F00CD2E1B /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		91B9DCE629368E4800CD2E1B /* ProviderType+TrendingAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProviderType+TrendingAPI.swift"; sourceTree = "<group>"; };
+		91B9DCE829368E9600CD2E1B /* Languages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Languages.json; sourceTree = "<group>"; };
 		91C267E328EB302500DD5677 /* NormalViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalViewReactor.swift; sourceTree = "<group>"; };
 		91C267E528EB302E00DD5677 /* NormalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalViewController.swift; sourceTree = "<group>"; };
 		91C267E728EB30FA00DD5677 /* SectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionItem.swift; sourceTree = "<group>"; };
@@ -334,6 +344,8 @@
 				9110A0AA29329C4100B09DB1 /* ProviderType+GithubMainAPI.swift */,
 				9110A0AE29329CAB00B09DB1 /* GithubBaseAPI.swift */,
 				9110A0B029329CC800B09DB1 /* ProviderType+GithubBaseAPI.swift */,
+				91B9DCE029368CF300CD2E1B /* TrendingAPI.swift */,
+				91B9DCE629368E4800CD2E1B /* ProviderType+TrendingAPI.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -456,6 +468,7 @@
 				91B9DCCF2935F9FB00CD2E1B /* License.swift */,
 				91B9DCD12935FA1F00CD2E1B /* Organization.swift */,
 				91B9DCD32935FAF100CD2E1B /* Plan.swift */,
+				91B9DCE229368D0F00CD2E1B /* Language.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -491,6 +504,7 @@
 				9110A0B42932C04E00B09DB1 /* user_info.json */,
 				914091972932D378009CA633 /* Simples#profile.json */,
 				91B9DCC42935F81B00CD2E1B /* repo.json */,
+				91B9DCE829368E9600CD2E1B /* Languages.json */,
 			);
 			path = json;
 			sourceTree = "<group>";
@@ -499,6 +513,7 @@
 			isa = PBXGroup;
 			children = (
 				9110A09E29326C3B00B09DB1 /* PersonalParallaxView.swift */,
+				91B9DCDE29368A6300CD2E1B /* RepoInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -587,6 +602,7 @@
 				9110A09C29326A4900B09DB1 /* Simples#about.json in Resources */,
 				9110A09A29326A3200B09DB1 /* Simples#personal.json in Resources */,
 				8C9A455D2887E3870041937A /* Localizable.strings in Resources */,
+				91B9DCE929368E9600CD2E1B /* Languages.json in Resources */,
 				8C5A3FD52887A0E30009A00F /* Assets.xcassets in Resources */,
 				91C267EE28EB33A800DD5677 /* Configuration.json in Resources */,
 			);
@@ -685,6 +701,7 @@
 				9110A0BC2932C44D00B09DB1 /* Router+Dialog+Sheet.swift in Sources */,
 				91C267EC28EB326C00DD5677 /* Simple+Ex.swift in Sources */,
 				91B9DCDC2936004300CD2E1B /* RepoCell.swift in Sources */,
+				91B9DCE729368E4800CD2E1B /* ProviderType+TrendingAPI.swift in Sources */,
 				8C9A45B32887F6F30041937A /* Appearance+Ex.swift in Sources */,
 				8C9A45D62887F6F40041937A /* LoginViewController.swift in Sources */,
 				8C9A45B42887F6F30041937A /* String+Ex.swift in Sources */,
@@ -696,9 +713,11 @@
 				9110A0AB29329C4100B09DB1 /* ProviderType+GithubMainAPI.swift in Sources */,
 				8C9A45B62887F6F30041937A /* Logger+Ex.swift in Sources */,
 				9110A0A1293290FF00B09DB1 /* AboutViewReactor.swift in Sources */,
+				91B9DCE129368CF300CD2E1B /* TrendingAPI.swift in Sources */,
 				914091942932D2CB009CA633 /* ProfileViewReactor.swift in Sources */,
 				9110A0AD29329C5700B09DB1 /* AccessToken.swift in Sources */,
 				9110A0A7293291AB00B09DB1 /* AppInfoCell.swift in Sources */,
+				91B9DCE329368D0F00CD2E1B /* Language.swift in Sources */,
 				9110A0A32932910A00B09DB1 /* AboutViewController.swift in Sources */,
 				8C9A45B92887F6F30041937A /* List+Ex.swift in Sources */,
 				8C9A45B22887F6F30041937A /* UIDevice+Ex.swift in Sources */,
@@ -713,6 +732,7 @@
 				8C9A45C02887F6F40041937A /* ScrollViewController+Rx.swift in Sources */,
 				8C9A45BF2887F6F40041937A /* WebViewReactor.swift in Sources */,
 				8C9A45E52887F6F40041937A /* DashboardViewReactor.swift in Sources */,
+				91B9DCDF29368A6300CD2E1B /* RepoInfoView.swift in Sources */,
 				91B9DCC82935F8CA00CD2E1B /* Repo+Ex.swift in Sources */,
 				9110A0A52932919F00B09DB1 /* AppInfoItem.swift in Sources */,
 				91B9DCD42935FAF100CD2E1B /* Plan.swift in Sources */,

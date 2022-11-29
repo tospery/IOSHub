@@ -15,6 +15,12 @@ import HiIOS
 
 class RepoCell: BaseCollectionCell, ReactorKit.View {
     
+    lazy var infoView: RepoInfoView = {
+        let view = RepoInfoView.init()
+        view.sizeToFit()
+        return view
+    }()
+    
 //    lazy var titleLabel: UILabel = {
 //        let label = UILabel.init(frame: .zero)
 //        label.font = .normal(15)
@@ -34,6 +40,7 @@ class RepoCell: BaseCollectionCell, ReactorKit.View {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.contentView.addSubview(self.infoView)
 //        self.contentView.addSubview(self.titleLabel)
 //        self.contentView.addSubview(self.imageView)
 //        self.contentView.theme.backgroundColor = themeService.attribute { $0.lightColor }
@@ -50,6 +57,8 @@ class RepoCell: BaseCollectionCell, ReactorKit.View {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+        self.infoView.left = 0
+        self.infoView.top = 0
 //        self.imageView.left = self.imageView.leftWhenCenter
 //        self.imageView.top = (self.imageView.topWhenCenter * 0.9).flat
 //        self.titleLabel.left = self.titleLabel.leftWhenCenter
@@ -58,13 +67,17 @@ class RepoCell: BaseCollectionCell, ReactorKit.View {
 
     func bind(reactor: RepoItem) {
         super.bind(item: reactor)
-//        reactor.state.map { _ in }
-//            .bind(to: self.rx.setNeedsLayout)
-//            .disposed(by: self.disposeBag)
+        reactor.state.map { $0.language }
+            .distinctUntilChanged()
+            .bind(to: self.infoView.languageLabel.rx.attributedText)
+            .disposed(by: self.disposeBag)
+        reactor.state.map { _ in }
+            .bind(to: self.rx.setNeedsLayout)
+            .disposed(by: self.disposeBag)
     }
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
-        .init(width: width, height: 70)
+        .init(width: width, height: 120)
     }
 
 }

@@ -21,6 +21,8 @@ class StarsViewController: NormalViewController {
     
     required init(_ navigator: NavigatorProtocol, _ reactor: BaseViewReactor) {
         super.init(navigator, reactor)
+        self.shouldRefresh = reactor.parameters.bool(for: Parameter.shouldRefresh) ?? true
+        self.shouldLoadMore = reactor.parameters.bool(for: Parameter.shouldLoadMore) ?? true
     }
 
     required init?(coder: NSCoder) {

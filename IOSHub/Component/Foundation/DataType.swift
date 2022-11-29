@@ -47,6 +47,23 @@ enum Platform {
 
 }
 
+enum Since: String, Codable {
+    case daily
+    case weekly
+    case montly
+    
+    static let name = R.string.localizable.since()
+    static let allValues = [daily, weekly, montly]
+    
+//    var paramValue: String {
+//        switch self {
+//        case .daily: return R.string.localizable.daily()
+//        case .weekly: return R.string.localizable.weekly()
+//        case .montly: return R.string.localizable.montly()
+//        }
+//    }
+}
+
 enum CellId: Int {
     case space          = 0, button
     case setting        = 10, about, feedback

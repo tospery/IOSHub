@@ -19,12 +19,17 @@ class RepoItem: BaseCollectionItem, ReactorKit.Reactor {
     typealias Mutation = NoMutation
 
     struct State {
+        var language: NSAttributedString?
     }
 
     var initialState = State()
 
     required public init(_ model: ModelType) {
         super.init(model)
+        guard let repo = model as? Repo else { return }
+        self.initialState = State(
+            language: repo.languageText
+        )
     }
     
 }

@@ -14,14 +14,14 @@ import HiIOS
 enum SectionItem: IdentifiableType, Equatable {
     case simple(SimpleItem)
     case appInfo(AppInfoItem)
-    case repoItem(RepoItem)
+    case repo(RepoItem)
 
     var identity: String {
         var string = ""
         switch self {
         case let .simple(item): string = item.description
         case let .appInfo(item): string = item.description
-        case let .repoItem(item): string = item.description
+        case let .repo(item): string = item.description
         }
         return string // String.init(string.sorted())
     }

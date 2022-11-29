@@ -85,12 +85,12 @@ extension Router: RouterCompatible {
         return false
     }
     
-    public func shouldRefresh(host: Host, path: Router.Path? = nil) -> Bool {
-        false
-    }
-    
-    public func shouldLoadMore(host: Host, path: Router.Path? = nil) -> Bool {
-        false
-    }
+//    public func shouldRefresh(host: Host, path: Router.Path? = nil) -> Bool {
+//        false
+//    }
+//
+//    public func shouldLoadMore(host: Host, path: Router.Path? = nil) -> Bool {
+//        false
+//    }
 
 }

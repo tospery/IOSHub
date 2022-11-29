@@ -4,6 +4,7 @@
 "OK" = "确定";
 "Sure" = "确定";
 "Cancel" = "取消";
+"Unknown" = "未知";
 "Home" = "首页";
 "Mine" = "我的";
 "Login" = "登录";
@@ -19,6 +20,7 @@
 "Followers" = "Followers";
 "Following" = "Following";
 "Exit" = "退出";
+"Since" = "Since";
 /* 词语 */
 "Exit Login" = "退出登录";
 "No Description" = "No Description";
