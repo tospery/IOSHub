@@ -15,36 +15,34 @@ import HiIOS
 
 class RepoCell: BaseCollectionCell, ReactorKit.View {
     
+    struct Metric {
+        static let maxLines = 5
+        static let padding = 10.f
+        static let margin = 10.f
+    }
+    
     lazy var infoView: RepoInfoView = {
         let view = RepoInfoView.init()
         view.sizeToFit()
         return view
     }()
     
-//    lazy var titleLabel: UILabel = {
-//        let label = UILabel.init(frame: .zero)
-//        label.font = .normal(15)
-//        label.text = "v\(UIApplication.shared.version!)(\(UIApplication.shared.buildNumber!))"
-//        label.theme.textColor = themeService.attribute { $0.bodyColor }
-//        label.sizeToFit()
-//        return label
-//    }()
-//
-//    lazy var imageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.image = R.image.appLogo()
-//        imageView.sizeToFit()
-//        imageView.size = .init(deviceWidth * 0.24)
-//        return imageView
-//    }()
+    lazy var descLabel: UILabel = {
+        let label = UILabel.init()
+        label.numberOfLines = Metric.maxLines
+        label.sizeToFit()
+        return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.contentView.qmui_borderWidth = pixelOne
+        self.contentView.qmui_borderPosition = .bottom
+        self.contentView.qmui_borderInsets = .init(top: 0, left: 0, bottom: 0, right: 10)
+        self.contentView.theme.qmui_borderColor = themeService.attribute { $0.borderColor }
+        self.contentView.theme.backgroundColor = themeService.attribute { $0.backgroundColor }
         self.contentView.addSubview(self.infoView)
-//        self.contentView.addSubview(self.titleLabel)
-//        self.contentView.addSubview(self.imageView)
-//        self.contentView.theme.backgroundColor = themeService.attribute { $0.lightColor }
-        self.contentView.backgroundColor = .random
+        self.contentView.addSubview(self.descLabel)
     }
 
     required init?(coder: NSCoder) {
@@ -57,19 +55,25 @@ class RepoCell: BaseCollectionCell, ReactorKit.View {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+        self.infoView.setNeedsLayout()
+        self.infoView.layoutIfNeeded()
         self.infoView.left = 0
         self.infoView.top = 0
-//        self.imageView.left = self.imageView.leftWhenCenter
-//        self.imageView.top = (self.imageView.topWhenCenter * 0.9).flat
-//        self.titleLabel.left = self.titleLabel.leftWhenCenter
-//        self.titleLabel.top = self.imageView.bottom + 5
+        self.descLabel.width = self.contentView.width - Metric.margin * 2
+        self.descLabel.height = self.contentView.height - RepoInfoView.Metric.height - Metric.margin
+        self.descLabel.left = Metric.margin
+        self.descLabel.top = self.infoView.bottom
     }
 
     func bind(reactor: RepoItem) {
         super.bind(item: reactor)
-        reactor.state.map { $0.language }
+        reactor.state.map { $0.repo }
             .distinctUntilChanged()
-            .bind(to: self.infoView.languageLabel.rx.attributedText)
+            .bind(to: self.infoView.rx.repo)
+            .disposed(by: self.disposeBag)
+        reactor.state.map { $0.desc }
+            .distinctUntilChanged()
+            .bind(to: self.descLabel.rx.attributedText)
             .disposed(by: self.disposeBag)
         reactor.state.map { _ in }
             .bind(to: self.rx.setNeedsLayout)
@@ -77,7 +81,18 @@ class RepoCell: BaseCollectionCell, ReactorKit.View {
     }
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
-        .init(width: width, height: 120)
+        guard let item = item as? RepoItem else { return .zero }
+        var height = RepoInfoView.Metric.height
+        height += UILabel.size(
+            attributedString: item.currentState.desc,
+            withConstraints: .init(
+                width: width - Metric.margin * 2,
+                height: .greatestFiniteMagnitude
+            ),
+            limitedToNumberOfLines: UInt(Metric.maxLines)
+        ).height
+        height += Metric.margin
+        return .init(width: width, height: height)
     }
 
 }

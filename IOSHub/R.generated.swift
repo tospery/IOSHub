@@ -200,7 +200,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 19 images.
+  /// This `R.image` struct is generated, and contains static references to 20 images.
   struct image {
     /// Image `AppLogo`.
     static let appLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AppLogo")
@@ -224,6 +224,8 @@ struct R: Rswift.Validatable {
     static let ic_repo = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_repo")
     /// Image `ic_setting`.
     static let ic_setting = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_setting")
+    /// Image `ic_star`.
+    static let ic_star = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_star")
     /// Image `ic_user_default`.
     static let ic_user_default = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_user_default")
     /// Image `navbar_theme_dark`.
@@ -319,6 +321,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_star", bundle: ..., traitCollection: ...)`
+    static func ic_star(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_star, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "ic_user_default", bundle: ..., traitCollection: ...)`
     static func ic_user_default(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_user_default, compatibleWith: traitCollection)
@@ -379,7 +388,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 56 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 62 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -395,6 +404,18 @@ struct R: Rswift.Validatable {
       static let appSlogan = Rswift.StringResource(key: "App Slogan", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: No Description
       static let noDescription = Rswift.StringResource(key: "No Description", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: No blog provided
+      static let noneBlog = Rswift.StringResource(key: "None.Blog", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: No company provided
+      static let noneCompany = Rswift.StringResource(key: "None.Company", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: No description provided
+      static let noneDesc = Rswift.StringResource(key: "None.Desc", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: No email provided
+      static let noneEmail = Rswift.StringResource(key: "None.Email", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: No hot repository
+      static let noneRepo = Rswift.StringResource(key: "None.Repo", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: No location provided
+      static let noneLocation = Rswift.StringResource(key: "None.Location", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Personal Access Token
       static let loginPersonalToken = Rswift.StringResource(key: "Login.Personal.Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Repositores
@@ -585,6 +606,84 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("No Description", bundle: bundle, comment: "")
+      }
+
+      /// Value: No blog provided
+      static func noneBlog(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("None.Blog", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "None.Blog"
+        }
+
+        return NSLocalizedString("None.Blog", bundle: bundle, comment: "")
+      }
+
+      /// Value: No company provided
+      static func noneCompany(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("None.Company", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "None.Company"
+        }
+
+        return NSLocalizedString("None.Company", bundle: bundle, comment: "")
+      }
+
+      /// Value: No description provided
+      static func noneDesc(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("None.Desc", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "None.Desc"
+        }
+
+        return NSLocalizedString("None.Desc", bundle: bundle, comment: "")
+      }
+
+      /// Value: No email provided
+      static func noneEmail(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("None.Email", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "None.Email"
+        }
+
+        return NSLocalizedString("None.Email", bundle: bundle, comment: "")
+      }
+
+      /// Value: No hot repository
+      static func noneRepo(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("None.Repo", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "None.Repo"
+        }
+
+        return NSLocalizedString("None.Repo", bundle: bundle, comment: "")
+      }
+
+      /// Value: No location provided
+      static func noneLocation(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("None.Location", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "None.Location"
+        }
+
+        return NSLocalizedString("None.Location", bundle: bundle, comment: "")
       }
 
       /// Value: Personal Access Token

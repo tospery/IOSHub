@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import HiIOS
 
 class RepoInfoView: BaseView {
@@ -33,29 +35,12 @@ class RepoInfoView: BaseView {
         return label
     }()
     
-//    lazy var nameLabel: UILabel = {
-//        let label = UILabel.init()
-//        label.numberOfLines = 2
-//        label.font = .normal(17)
-//        label.sizeToFit()
-//        return label
-//    }()
-//
-//    lazy var timeLabel: UILabel = {
-//        let label = UILabel.init()
-//        label.textAlignment = .right
-//        label.font = .normal(13)
-//        label.sizeToFit()
-//        return label
-//    }()
-//
-//    lazy var descLabel: UILabel = {
-//        let label = UILabel.init()
-//        label.numberOfLines = SWHub.Metric.summaryMaxLines
-//        label.sizeToFit()
-//        return label
-//    }()
-//
+    lazy var starsLabel: UILabel = {
+        let label = UILabel.init()
+        label.sizeToFit()
+        return label
+    }()
+    
     lazy var imageView: UIImageView = {
         let imageView = UIImageView.init()
         imageView.image = R.image.ic_repo()
@@ -69,15 +54,7 @@ class RepoInfoView: BaseView {
         self.addSubview(self.imageView)
         self.addSubview(self.nameLabel)
         self.addSubview(self.languageLabel)
-//        self.addSubview(self.nameLabel)
-//        self.addSubview(self.timeLabel)
-//        self.addSubview(self.descLabel)
-//        themeService.rx
-//            .bind({ $0.titleColor }, to: [
-//                self.nameLabel.rx.textColor,
-//                self.timeLabel.rx.textColor
-//            ])
-//            .disposed(by: self.rx.disposeBag)
+        self.addSubview(self.starsLabel)
     }
     
     required init?(coder: NSCoder) {
@@ -98,22 +75,23 @@ class RepoInfoView: BaseView {
         self.languageLabel.sizeToFit()
         self.languageLabel.left = self.nameLabel.left
         self.languageLabel.top = self.nameLabel.bottom + 4
-//        self.imageView.left = Metric.margin.left
-//        self.imageView.top = Metric.margin.top
-//        self.nameLabel.sizeToFit()
-//        self.nameLabel.height = (self.nameLabel.font.lineHeight * 2).flat
-//        self.nameLabel.left = self.imageView.right + Metric.padding
-//        self.nameLabel.width = self.width - self.nameLabel.left - Metric.margin.right
-//        self.nameLabel.centerY = self.imageView.centerY
-//        self.timeLabel.sizeToFit()
-//        self.timeLabel.height = Metric.timeHeight
-//        self.timeLabel.width = self.width - Metric.margin.left - Metric.margin.right
-//        self.timeLabel.right = self.width - Metric.margin.right
-//        self.timeLabel.bottom = self.height - Metric.margin.bottom
-//        self.descLabel.width = self.timeLabel.width
-//        self.descLabel.height = (self.timeLabel.top - self.imageView.bottom - Metric.padding).flat
-//        self.descLabel.left = self.imageView.left
-//        self.descLabel.top = self.imageView.bottom + Metric.padding / 2.f
+        self.starsLabel.sizeToFit()
+        self.starsLabel.right = self.width - 10
+        self.starsLabel.centerY = self.languageLabel.centerY
     }
 
+}
+
+extension Reactive where Base: RepoInfoView {
+    
+    var repo: Binder<Repo?> {
+        return Binder(self.base) { view, repo in
+            view.nameLabel.attributedText = repo?.fullnameAttributedText
+            view.languageLabel.attributedText = repo?.languageAttributedText
+            view.starsLabel.attributedText = repo?.starsAttributedText
+            view.setNeedsLayout()
+            view.layoutIfNeeded()
+        }
+    }
+    
 }

@@ -28,6 +28,13 @@
 "Click To Login" = "点击登录";
 "App Slogan" = "Let's build from here";
 "Joined on" = "Joined on %@";
+/* 句子 - None */
+"None.Repo" = "No hot repository";
+"None.Desc" = "No description provided";
+"None.Company" = "No company provided";
+"None.Location" = "No location provided";
+"None.Email" = "No email provided";
+"None.Blog" = "No blog provided";
 /* 句子 - Login */
 "Login.Slogan" = "Develop By Swift";
 "Login.Button.Title" = "使用GitHub登录";

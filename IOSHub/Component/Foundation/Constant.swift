@@ -28,6 +28,10 @@ var userParameters: [String: Any] {
 
 struct Metric {
 
+    struct Repo {
+        static let maxLines             = 5
+    }
+    
     struct Personal {
         static let parallaxTopHeight    = 244.0
         static let parallaxAllHeight    = 290.0
