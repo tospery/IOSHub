@@ -86,9 +86,9 @@ extension Reactive where Base: RepoInfoView {
     
     var repo: Binder<Repo?> {
         return Binder(self.base) { view, repo in
-            view.nameLabel.attributedText = repo?.fullnameAttributedText
-            view.languageLabel.attributedText = repo?.languageAttributedText
-            view.starsLabel.attributedText = repo?.starsAttributedText
+            view.nameLabel.attributedText = repo?.attrFullname
+            view.languageLabel.attributedText = repo?.attrLanguage
+            view.starsLabel.attributedText = repo?.attrStars
             view.setNeedsLayout()
             view.layoutIfNeeded()
         }

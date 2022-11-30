@@ -238,15 +238,15 @@ class PersonalParallaxView: UIImageView {
             .distinctUntilChanged()
             .bind(to: self.descLabel.rx.attributedText)
             .disposed(by: self.rx.disposeBag)
-        reactor.state.map { $0.user?.repositoresText }
+        reactor.state.map { $0.user?.attrRepositores }
             .distinctUntilChanged()
             .bind(to: self.repositoriesButton.rx.attributedTitle(for: .normal))
             .disposed(by: self.rx.disposeBag)
-        reactor.state.map { $0.user?.followersText }
+        reactor.state.map { $0.user?.attrFollowers }
             .distinctUntilChanged()
             .bind(to: self.followerButton.rx.attributedTitle(for: .normal))
             .disposed(by: self.rx.disposeBag)
-        reactor.state.map { $0.user?.followingText }
+        reactor.state.map { $0.user?.attrfollowing }
             .distinctUntilChanged()
             .bind(to: self.followingButton.rx.attributedTitle(for: .normal))
             .disposed(by: self.rx.disposeBag)

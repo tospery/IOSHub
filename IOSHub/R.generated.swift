@@ -154,18 +154,22 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 5 files.
+  /// This `R.file` struct is generated, and contains static references to 7 files.
   struct file {
     /// Resource file `Configuration.json`.
     static let configurationJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Configuration", pathExtension: "json")
     /// Resource file `Languages.json`.
     static let languagesJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Languages", pathExtension: "json")
+    /// Resource file `Repos#trending.json`.
+    static let reposTrendingJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Repos#trending", pathExtension: "json")
     /// Resource file `Simples#about.json`.
     static let simplesAboutJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Simples#about", pathExtension: "json")
     /// Resource file `Simples#personal.json`.
     static let simplesPersonalJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Simples#personal", pathExtension: "json")
     /// Resource file `Simples#profile.json`.
     static let simplesProfileJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Simples#profile", pathExtension: "json")
+    /// Resource file `Users#trending.json`.
+    static let usersTrendingJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Users#trending", pathExtension: "json")
 
     /// `bundle.url(forResource: "Configuration", withExtension: "json")`
     static func configurationJson(_: Void = ()) -> Foundation.URL? {
@@ -176,6 +180,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "Languages", withExtension: "json")`
     static func languagesJson(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.languagesJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "Repos#trending", withExtension: "json")`
+    static func reposTrendingJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.reposTrendingJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 
@@ -197,10 +207,16 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
 
+    /// `bundle.url(forResource: "Users#trending", withExtension: "json")`
+    static func usersTrendingJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.usersTrendingJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 20 images.
+  /// This `R.image` struct is generated, and contains static references to 21 images.
   struct image {
     /// Image `AppLogo`.
     static let appLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AppLogo")
@@ -220,6 +236,8 @@ struct R: Rswift.Validatable {
     static let ic_feedback = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_feedback")
     /// Image `ic_location`.
     static let ic_location = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_location")
+    /// Image `ic_repo_small`.
+    static let ic_repo_small = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_repo_small")
     /// Image `ic_repo`.
     static let ic_repo = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_repo")
     /// Image `ic_setting`.
@@ -310,6 +328,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "ic_repo", bundle: ..., traitCollection: ...)`
     static func ic_repo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_repo, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_repo_small", bundle: ..., traitCollection: ...)`
+    static func ic_repo_small(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_repo_small, compatibleWith: traitCollection)
     }
     #endif
 

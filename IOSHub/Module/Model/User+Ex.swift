@@ -19,16 +19,34 @@ extension User {
         return R.string.localizable.joinedOn(value)
     }
     
-    var repositoresText: NSAttributedString {
-        self.stat(R.string.localizable.repositores(), self.publicRepos)
+    var attrFullname: NSAttributedString {
+        .composed(of: [
+            (self.username ?? R.string.localizable.unknown())
+                .styled(with: .color(.primary)),
+            Special.space,
+            "(\(self.nickname ?? R.string.localizable.unknown()))"
+                .styled(with: .color(.title))
+        ]).styled(with: .font(.normal(17)))
     }
     
-    var followersText: NSAttributedString {
-        self.stat(R.string.localizable.followers(), self.followers)
+    var attrRepo: NSAttributedString {
+        NSAttributedString.composed(of: [
+            R.image.ic_repo_small()!.styled(with: .baselineOffset(-3)),
+            Special.space,
+            (self.repo?.name ?? R.string.localizable.noneRepo()).attributedString()
+        ]).styled(with: .color(.title), .font(.normal(15)))
     }
     
-    var followingText: NSAttributedString {
-        self.stat(R.string.localizable.following(), self.following)
+    var attrRepositores: NSAttributedString {
+        self.attr(R.string.localizable.repositores(), self.publicRepos)
+    }
+    
+    var attrFollowers: NSAttributedString {
+        self.attr(R.string.localizable.followers(), self.followers)
+    }
+    
+    var attrfollowing: NSAttributedString {
+        self.attr(R.string.localizable.following(), self.following)
     }
     
     func text(cellId: CellId) -> String? {
@@ -44,7 +62,7 @@ extension User {
         return result ?? R.string.localizable.noDescription()
     }
     
-    func stat(_ text: String, _ count: Int) -> NSAttributedString {
+    func attr(_ text: String, _ count: Int) -> NSAttributedString {
         .composed(of: [
             count.string.styled(with: .color(.foreground), .font(.bold(22))),
             Special.nextLine,

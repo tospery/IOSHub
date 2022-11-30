@@ -203,7 +203,7 @@ struct Repo: Subjective, Eventable {
         }
         fullname            <- map["full_name"]
         if fullname?.isEmpty ?? true {
-            fullname = "\(String(describing: owner.username))/\(String(describing: name))"
+            fullname = "\(owner.username ?? "")/\(name ?? "")"
         }
         forks                <- map["forks|forks_count", nested: false, delimiter: "|"]
         stars                <- map["stars|stargazers_count", nested: false, delimiter: "|"]

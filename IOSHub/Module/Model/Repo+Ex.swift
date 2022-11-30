@@ -11,14 +11,15 @@ import HiIOS
 
 extension Repo {
     
-    var fullnameAttributedText: NSAttributedString {
-        if let name = self.fullname {
-            return name.styled(with: .color(.title), .font(.normal(17)))
-        }
-        return "\(owner.username ?? "")/\(name ?? "")".styled(with: .color(.title), .font(.normal(17)))
+    var attrFullname: NSAttributedString {
+//        if let name = self.fullname {
+//            return name.styled(with: .color(.title), .font(.normal(17)))
+//        }
+//        return "\(owner.username ?? "")/\(name ?? "")".styled(with: .color(.title), .font(.normal(17)))
+        return (self.fullname ?? R.string.localizable.unknown()).styled(with: .color(.title), .font(.normal(17)))
     }
     
-    var languageAttributedText: NSAttributedString {
+    var attrLanguage: NSAttributedString {
         .composed(of: [
             "●".styled(with: .color(self.languageColor?.color ?? .random)),
             Special.space,
@@ -27,7 +28,7 @@ extension Repo {
         ]).styled(with: .font(.normal(12)))
     }
     
-    var starsAttributedText: NSAttributedString {
+    var attrStars: NSAttributedString {
         .composed(of: [
             R.image.ic_star()!.template.styled(with: .baselineOffset(-2), .color(.title)),
             Special.space,
@@ -35,7 +36,7 @@ extension Repo {
         ]).styled(with: .font(.normal(11)))
     }
     
-    var descAttributedText: NSAttributedString? {
+    var attrDesc: NSAttributedString? {
         (self.desc ?? R.string.localizable.noneDesc()).styled(
             with: .font(.normal(15)),
             .lineHeightMultiple(1.1),

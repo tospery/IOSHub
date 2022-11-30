@@ -23,6 +23,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         static let simpleCell = ReusableCell<SimpleCell>()
         static let appInfoCell = ReusableCell<AppInfoCell>()
         static let repoCell = ReusableCell<RepoCell>()
+        static let userCell = ReusableCell<UserCell>()
         static let headerView = ReusableView<CollectionHeaderView>()
         static let footerView = ReusableView<CollectionFooterView>()
     }
@@ -44,6 +45,11 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                     return cell
                 case let .repo(item):
                     let cell = collectionView.dequeue(Reusable.repoCell, for: indexPath)
+                    item.parent = self.reactor
+                    cell.reactor = item
+                    return cell
+                case let .user(item):
+                    let cell = collectionView.dequeue(Reusable.userCell, for: indexPath)
                     item.parent = self.reactor
                     cell.reactor = item
                     return cell
@@ -82,6 +88,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         self.collectionView.register(Reusable.simpleCell)
         self.collectionView.register(Reusable.appInfoCell)
         self.collectionView.register(Reusable.repoCell)
+        self.collectionView.register(Reusable.userCell)
         self.collectionView.register(Reusable.headerView, kind: .header)
         self.collectionView.register(Reusable.footerView, kind: .footer)
         self.collectionView.theme.backgroundColor = themeService.attribute { $0.lightColor }
@@ -311,6 +318,7 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
         case let .simple(item): return Reusable.simpleCell.class.size(width: width, item: item)
         case let .appInfo(item): return Reusable.appInfoCell.class.size(width: width, item: item)
         case let .repo(item): return Reusable.repoCell.class.size(width: width, item: item)
+        case let .user(item): return Reusable.userCell.class.size(width: width, item: item)
         }
     }
     

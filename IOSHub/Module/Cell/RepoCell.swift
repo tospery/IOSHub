@@ -40,7 +40,6 @@ class RepoCell: BaseCollectionCell, ReactorKit.View {
         self.contentView.qmui_borderPosition = .bottom
         self.contentView.qmui_borderInsets = .init(top: 0, left: 0, bottom: 0, right: 10)
         self.contentView.theme.qmui_borderColor = themeService.attribute { $0.borderColor }
-        self.contentView.theme.backgroundColor = themeService.attribute { $0.backgroundColor }
         self.contentView.addSubview(self.infoView)
         self.contentView.addSubview(self.descLabel)
     }

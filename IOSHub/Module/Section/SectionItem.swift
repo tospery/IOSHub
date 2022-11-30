@@ -15,6 +15,7 @@ enum SectionItem: IdentifiableType, Equatable {
     case simple(SimpleItem)
     case appInfo(AppInfoItem)
     case repo(RepoItem)
+    case user(UserItem)
 
     var identity: String {
         var string = ""
@@ -22,6 +23,7 @@ enum SectionItem: IdentifiableType, Equatable {
         case let .simple(item): string = item.description
         case let .appInfo(item): string = item.description
         case let .repo(item): string = item.description
+        case let .user(item): string = item.description
         }
         return string // String.init(string.sorted())
     }

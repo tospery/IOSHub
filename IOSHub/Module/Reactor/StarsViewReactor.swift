@@ -29,10 +29,14 @@ class StarsViewReactor: NormalViewReactor {
                 observer.onError(HiError.unknown)
                 return Disposables.create { }
             }
-           return self.provider.starredRepos(username: username, page: page)
-                .asObservable()
-                .map { [(header: nil, models: $0)] }
-                .subscribe(observer)
+            return self.provider.developers()
+                 .asObservable()
+                 .map { [(header: nil, models: $0)] }
+                 .subscribe(observer)
+//           return self.provider.starredRepos(username: username, page: page)
+//                .asObservable()
+//                .map { [(header: nil, models: $0)] }
+//                .subscribe(observer)
 //                .disposed(by: self.disposeBag)
 //            return Disposables.create { }
         }

@@ -15,7 +15,7 @@ extension ProviderType {
     
     // MARK: - TrendingAPI
     /// 仓库推荐: https://gtrend.yapie.me/repositories
-    func repositories(language: Language?, since: Since?) -> Single<[Repo]> {
+    func repositories(language: Language? = nil, since: Since? = nil) -> Single<[Repo]> {
         return networking.requestArray(
             MultiTarget.init(
                 TrendingAPI.repositories(language: language, since: since)
@@ -25,7 +25,7 @@ extension ProviderType {
     }
     
     /// 开发者推荐: https://gtrend.yapie.me/developers
-    func developers(language: Language?, since: Since?) -> Single<[User]> {
+    func developers(language: Language? = nil, since: Since? = nil) -> Single<[User]> {
         networking.requestArray(
             MultiTarget.init(
                 TrendingAPI.developers(language: language, since: since)

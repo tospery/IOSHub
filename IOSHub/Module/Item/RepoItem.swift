@@ -32,11 +32,11 @@ class RepoItem: BaseCollectionItem, ReactorKit.Reactor {
         super.init(model)
         guard let repo = model as? Repo else { return }
         self.initialState = State(
-//            name: repo.fullnameAttributedText,
-//            language: repo.languageAttributedText,
-//            stars: repo.starsAttributedText,
+//            name: repo.attrFullname,
+//            language: repo.attrLanguage,
+//            stars: repo.attrStars,
             repo: repo,
-            desc: repo.descAttributedText
+            desc: repo.attrDesc
         )
     }
     
