@@ -18,28 +18,28 @@ class StarsViewReactor: NormalViewReactor {
     required init(_ provider: HiIOS.ProviderType, _ parameters: [String: Any]?) {
         super.init(provider, parameters)
         self.initialState = State(
-            title: self.title ?? R.string.localizable.about()
+            title: self.title ?? R.string.localizable.stars()
         )
     }
     
-    override func loadData(_ page: Int) -> Observable<[SectionData]> {
-        .create { [weak self] observer -> Disposable in
-            guard let `self` = self else { fatalError() }
-            guard let username = self.currentState.user?.username, username.isNotEmpty else {
-                observer.onError(HiError.unknown)
-                return Disposables.create { }
-            }
-            return self.provider.developers()
-                 .asObservable()
-                 .map { [(header: nil, models: $0)] }
-                 .subscribe(observer)
+//    override func loadData(_ page: Int) -> Observable<[SectionData]> {
+//        .create { [weak self] observer -> Disposable in
+//            guard let `self` = self else { fatalError() }
+//            guard let username = self.currentState.user?.username, username.isNotEmpty else {
+//                observer.onError(HiError.unknown)
+//                return Disposables.create { }
+//            }
+//            return self.provider.developers()
+//                 .asObservable()
+//                 .map { [(header: nil, models: $0)] }
+//                 .subscribe(observer)
 //           return self.provider.starredRepos(username: username, page: page)
 //                .asObservable()
 //                .map { [(header: nil, models: $0)] }
 //                .subscribe(observer)
 //                .disposed(by: self.disposeBag)
 //            return Disposables.create { }
-        }
-    }
+//        }
+//    }
 
 }

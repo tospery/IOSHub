@@ -216,7 +216,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 21 images.
+  /// This `R.image` struct is generated, and contains static references to 25 images.
   struct image {
     /// Image `AppLogo`.
     static let appLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AppLogo")
@@ -256,10 +256,18 @@ struct R: Rswift.Validatable {
     static let tabbar_dashboard_normal = Rswift.ImageResource(bundle: R.hostingBundle, name: "tabbar_dashboard_normal")
     /// Image `tabbar_dashboard_selected`.
     static let tabbar_dashboard_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "tabbar_dashboard_selected")
+    /// Image `tabbar_event_normal`.
+    static let tabbar_event_normal = Rswift.ImageResource(bundle: R.hostingBundle, name: "tabbar_event_normal")
+    /// Image `tabbar_event_selected`.
+    static let tabbar_event_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "tabbar_event_selected")
     /// Image `tabbar_personal_normal`.
     static let tabbar_personal_normal = Rswift.ImageResource(bundle: R.hostingBundle, name: "tabbar_personal_normal")
     /// Image `tabbar_personal_selected`.
     static let tabbar_personal_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "tabbar_personal_selected")
+    /// Image `tabbar_stars_normal`.
+    static let tabbar_stars_normal = Rswift.ImageResource(bundle: R.hostingBundle, name: "tabbar_stars_normal")
+    /// Image `tabbar_stars_selected`.
+    static let tabbar_stars_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "tabbar_stars_selected")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "AppLogo", bundle: ..., traitCollection: ...)`
@@ -395,6 +403,20 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "tabbar_event_normal", bundle: ..., traitCollection: ...)`
+    static func tabbar_event_normal(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.tabbar_event_normal, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "tabbar_event_selected", bundle: ..., traitCollection: ...)`
+    static func tabbar_event_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.tabbar_event_selected, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "tabbar_personal_normal", bundle: ..., traitCollection: ...)`
     static func tabbar_personal_normal(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.tabbar_personal_normal, compatibleWith: traitCollection)
@@ -408,12 +430,26 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "tabbar_stars_normal", bundle: ..., traitCollection: ...)`
+    static func tabbar_stars_normal(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.tabbar_stars_normal, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "tabbar_stars_selected", bundle: ..., traitCollection: ...)`
+    static func tabbar_stars_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.tabbar_stars_selected, compatibleWith: traitCollection)
+    }
+    #endif
+
     fileprivate init() {}
   }
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 62 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 65 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -449,6 +485,8 @@ struct R: Rswift.Validatable {
       static let since = Rswift.StringResource(key: "Since", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 个人主页
       static let blog = Rswift.StringResource(key: "Blog", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 事件
+      static let event = Rswift.StringResource(key: "Event", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 仅公开库
       static let loginPrivilegeOnlyPublic = Rswift.StringResource(key: "Login.Privilege.OnlyPublic", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 仓库访问权限选项
@@ -479,6 +517,8 @@ struct R: Rswift.Validatable {
       static let errorSystemNavigationTitle = Rswift.StringResource(key: "Error.System.Navigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 我的
       static let mine = Rswift.StringResource(key: "Mine", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 收藏
+      static let stars = Rswift.StringResource(key: "Stars", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 数据解析异常
       static let errorSystemDataFormatMessage = Rswift.StringResource(key: "Error.System.DataFormat.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 数据解析异常
@@ -499,6 +539,8 @@ struct R: Rswift.Validatable {
       static let errorSystemUnknownTitle = Rswift.StringResource(key: "Error.System.Unknown.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 点击登录
       static let clickToLogin = Rswift.StringResource(key: "Click To Login", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 热门
+      static let hot = Rswift.StringResource(key: "Hot", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 用户未登录
       static let errorUserNotLoggedInMessage = Rswift.StringResource(key: "Error.User.NotLoggedIn.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 用户未登录
@@ -763,6 +805,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Blog", bundle: bundle, comment: "")
       }
 
+      /// Value: 事件
+      static func event(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Event", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Event"
+        }
+
+        return NSLocalizedString("Event", bundle: bundle, comment: "")
+      }
+
       /// Value: 仅公开库
       static func loginPrivilegeOnlyPublic(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
@@ -958,6 +1013,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Mine", bundle: bundle, comment: "")
       }
 
+      /// Value: 收藏
+      static func stars(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Stars", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Stars"
+        }
+
+        return NSLocalizedString("Stars", bundle: bundle, comment: "")
+      }
+
       /// Value: 数据解析异常
       static func errorSystemDataFormatMessage(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
@@ -1086,6 +1154,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Click To Login", bundle: bundle, comment: "")
+      }
+
+      /// Value: 热门
+      static func hot(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Hot", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Hot"
+        }
+
+        return NSLocalizedString("Hot", bundle: bundle, comment: "")
       }
 
       /// Value: 用户未登录

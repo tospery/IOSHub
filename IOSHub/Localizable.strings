@@ -21,6 +21,10 @@
 "Following" = "Following";
 "Exit" = "退出";
 "Since" = "Since";
+"Hot" = "热门";
+"Event" = "事件";
+"Stars" = "收藏";
+"Mine" = "我的";
 /* 词语 */
 "Exit Login" = "退出登录";
 "No Description" = "No Description";

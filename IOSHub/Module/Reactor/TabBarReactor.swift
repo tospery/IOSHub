@@ -19,7 +19,7 @@ class TabBarReactor: HiIOS.TabBarReactor, ReactorKit.Reactor {
 
     struct State {
         let keys: [TabBarKey] = [
-            .dashboard, .personal
+            .dashboard, .event, .stars, .personal
         ]
     }
 

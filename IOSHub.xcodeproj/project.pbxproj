@@ -79,6 +79,8 @@
 		915F100C29375343009413D6 /* Users#trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 915F100B29375343009413D6 /* Users#trending.json */; };
 		915F100E293756B2009413D6 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915F100D293756B2009413D6 /* UserItem.swift */; };
 		915F1010293756B9009413D6 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915F100F293756B9009413D6 /* UserCell.swift */; };
+		915F10122937ABEE009413D6 /* EventViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915F10112937ABEE009413D6 /* EventViewReactor.swift */; };
+		915F10142937ABFE009413D6 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915F10132937ABFE009413D6 /* EventViewController.swift */; };
 		91B9DCC62935F8C200CD2E1B /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCC52935F8C200CD2E1B /* Repo.swift */; };
 		91B9DCC82935F8CA00CD2E1B /* Repo+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCC72935F8CA00CD2E1B /* Repo+Ex.swift */; };
 		91B9DCCA2935F8D200CD2E1B /* User+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCC92935F8D200CD2E1B /* User+Ex.swift */; };
@@ -188,6 +190,8 @@
 		915F100B29375343009413D6 /* Users#trending.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Users#trending.json"; sourceTree = "<group>"; };
 		915F100D293756B2009413D6 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
 		915F100F293756B9009413D6 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		915F10112937ABEE009413D6 /* EventViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewReactor.swift; sourceTree = "<group>"; };
+		915F10132937ABFE009413D6 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		91B9DCC42935F81B00CD2E1B /* repo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = repo.json; sourceTree = "<group>"; };
 		91B9DCC52935F8C200CD2E1B /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 		91B9DCC72935F8CA00CD2E1B /* Repo+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repo+Ex.swift"; sourceTree = "<group>"; };
@@ -438,6 +442,7 @@
 				9110A0A22932910A00B09DB1 /* AboutViewController.swift */,
 				914091952932D2DA009CA633 /* ProfileViewController.swift */,
 				91B9DCD72935FFD900CD2E1B /* StarsViewController.swift */,
+				915F10132937ABFE009413D6 /* EventViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -493,6 +498,7 @@
 				9110A0A0293290FF00B09DB1 /* AboutViewReactor.swift */,
 				914091932932D2CB009CA633 /* ProfileViewReactor.swift */,
 				91B9DCD52935FFCF00CD2E1B /* StarsViewReactor.swift */,
+				915F10112937ABEE009413D6 /* EventViewReactor.swift */,
 			);
 			path = Reactor;
 			sourceTree = "<group>";
@@ -712,6 +718,7 @@
 				91B9DCC62935F8C200CD2E1B /* Repo.swift in Sources */,
 				8C9A45E02887F6F40041937A /* Configuration.swift in Sources */,
 				91B9DCCE2935F98900CD2E1B /* BaseRepo.swift in Sources */,
+				915F10122937ABEE009413D6 /* EventViewReactor.swift in Sources */,
 				9110A0BC2932C44D00B09DB1 /* Router+Dialog+Sheet.swift in Sources */,
 				91C267EC28EB326C00DD5677 /* Simple+Ex.swift in Sources */,
 				91B9DCDC2936004300CD2E1B /* RepoCell.swift in Sources */,
@@ -753,6 +760,7 @@
 				9110A0A52932919F00B09DB1 /* AppInfoItem.swift in Sources */,
 				91B9DCD42935FAF100CD2E1B /* Plan.swift in Sources */,
 				9110A09F29326C3B00B09DB1 /* PersonalParallaxView.swift in Sources */,
+				915F10142937ABFE009413D6 /* EventViewController.swift in Sources */,
 				91C267E428EB302500DD5677 /* NormalViewReactor.swift in Sources */,
 				91B9DCD02935F9FB00CD2E1B /* License.swift in Sources */,
 				8C9A45C92887F6F40041937A /* OCHelper.m in Sources */,

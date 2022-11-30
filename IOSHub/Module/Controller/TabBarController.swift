@@ -57,6 +57,18 @@ class TabBarController: HiIOS.TabBarController, ReactorKit.View {
             )
             viewController.tabBarItem.image = R.image.tabbar_dashboard_normal()?.original
             viewController.tabBarItem.selectedImage = R.image.tabbar_dashboard_selected()?.original
+        case .event:
+            viewController = self.navigator.viewController(
+                for: Router.shared.urlString(host: .event)
+            )
+            viewController.tabBarItem.image = R.image.tabbar_event_normal()?.original
+            viewController.tabBarItem.selectedImage = R.image.tabbar_event_selected()?.original
+        case .stars:
+            viewController = self.navigator.viewController(
+                for: Router.shared.urlString(host: .stars)
+            )
+            viewController.tabBarItem.image = R.image.tabbar_stars_normal()?.original
+            viewController.tabBarItem.selectedImage = R.image.tabbar_stars_selected()?.original
         case .personal:
             viewController = self.navigator.viewController(
                 for: Router.shared.urlString(host: .personal, parameters: [

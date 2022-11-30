@@ -10,6 +10,8 @@ import HiIOS
 
 enum TabBarKey {
     case dashboard
+    case event
+    case stars
     case personal
 }
 
