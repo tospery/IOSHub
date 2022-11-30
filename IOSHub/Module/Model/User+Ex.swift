@@ -21,20 +21,22 @@ extension User {
     
     var attrFullname: NSAttributedString {
         .composed(of: [
-            (self.username ?? R.string.localizable.unknown())
-                .styled(with: .color(.primary)),
+            (self.username ?? R.string.localizable.unknown()).attributedString(),
             Special.space,
-            "(\(self.nickname ?? R.string.localizable.unknown()))"
-                .styled(with: .color(.title))
-        ]).styled(with: .font(.normal(17)))
+            "(\(self.nickname ?? R.string.localizable.unknown()))".attributedString()
+        ]).styled(with: .color(.title), .font(.normal(17)))
     }
     
-    var attrRepo: NSAttributedString {
+    var attrRepoName: NSAttributedString {
         NSAttributedString.composed(of: [
-            R.image.ic_repo_small()!.styled(with: .baselineOffset(-3)),
+            R.image.ic_repo_small()!.styled(with: .baselineOffset(-4)),
             Special.space,
             (self.repo?.name ?? R.string.localizable.noneRepo()).attributedString()
-        ]).styled(with: .color(.title), .font(.normal(15)))
+        ]).styled(with: .color(.primary), .font(.normal(14)))
+    }
+    
+    var repoDesc: String {
+        self.repo?.desc ?? R.string.localizable.noneDesc()
     }
     
     var attrRepositores: NSAttributedString {

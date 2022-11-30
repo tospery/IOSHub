@@ -12,11 +12,7 @@ import HiIOS
 extension Repo {
     
     var attrFullname: NSAttributedString {
-//        if let name = self.fullname {
-//            return name.styled(with: .color(.title), .font(.normal(17)))
-//        }
-//        return "\(owner.username ?? "")/\(name ?? "")".styled(with: .color(.title), .font(.normal(17)))
-        return (self.fullname ?? R.string.localizable.unknown()).styled(with: .color(.title), .font(.normal(17)))
+        (self.fullname ?? R.string.localizable.unknown()).styled(with: .color(.title), .font(.normal(17)))
     }
     
     var attrLanguage: NSAttributedString {

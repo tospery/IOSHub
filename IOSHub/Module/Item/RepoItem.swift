@@ -19,9 +19,6 @@ class RepoItem: BaseCollectionItem, ReactorKit.Reactor {
     typealias Mutation = NoMutation
 
     struct State {
-//        var name: NSAttributedString?
-//        var language: NSAttributedString?
-//        var stars: NSAttributedString?
         var repo: Repo?
         var desc: NSAttributedString?
     }
@@ -32,9 +29,6 @@ class RepoItem: BaseCollectionItem, ReactorKit.Reactor {
         super.init(model)
         guard let repo = model as? Repo else { return }
         self.initialState = State(
-//            name: repo.attrFullname,
-//            language: repo.attrLanguage,
-//            stars: repo.attrStars,
             repo: repo,
             desc: repo.attrDesc
         )

@@ -19,8 +19,9 @@ class UserItem: BaseCollectionItem, ReactorKit.Reactor {
     typealias Mutation = NoMutation
 
     struct State {
-        var name: NSAttributedString?
-        var repo: NSAttributedString?
+        var fullname: NSAttributedString?
+        var repoName: NSAttributedString?
+        var repoDesc: String?
         var avatar: ImageSource?
     }
 
@@ -30,8 +31,9 @@ class UserItem: BaseCollectionItem, ReactorKit.Reactor {
         super.init(model)
         guard let user = model as? User else { return }
         self.initialState = State(
-            name: user.attrFullname,
-            repo: user.attrRepo,
+            fullname: user.attrFullname,
+            repoName: user.attrRepoName,
+            repoDesc: user.repoDesc,
             avatar: user.avatar?.url
         )
     }
