@@ -176,7 +176,7 @@ class LoginViewController: ScrollViewController, ReactorKit.View {
             User.update(user, reactive: true)
             return Disposables.create {}
         }.disposed(by: self.disposeBag)
-        self.close()
+        self.back()
     }
     
 }

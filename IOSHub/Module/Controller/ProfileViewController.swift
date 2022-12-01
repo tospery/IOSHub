@@ -38,7 +38,7 @@ class ProfileViewController: NormalViewController {
                     if action == IHAlertAction.exit {
                         Subjection.update(AccessToken.self, nil)
                         User.update(nil, reactive: true)
-                        self.close()
+                        self.back()
                     }
                 }).disposed(by: self.disposeBag)
         default: break
