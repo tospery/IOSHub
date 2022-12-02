@@ -55,6 +55,10 @@
 		8C9A45E52887F6F40041937A /* DashboardViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A45AC2887F6F30041937A /* DashboardViewReactor.swift */; };
 		8C9A45E62887F6F40041937A /* TabBarReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A45AD2887F6F30041937A /* TabBarReactor.swift */; };
 		8C9A45E92887F7120041937A /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A45E82887F7120041937A /* AppDependency.swift */; };
+		910B42ED293A2A5E000719BA /* DashboardViewReactor+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910B42EC293A2A5E000719BA /* DashboardViewReactor+Ex.swift */; };
+		910B42EF293A2A7F000719BA /* DashboardViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910B42EE293A2A7F000719BA /* DashboardViewController+Ex.swift */; };
+		910B42F1293A2C51000719BA /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910B42F0293A2C51000719BA /* Category.swift */; };
+		910B42F3293A2C85000719BA /* Categorys.json in Resources */ = {isa = PBXBuildFile; fileRef = 910B42F2293A2C85000719BA /* Categorys.json */; };
 		9110A09A29326A3200B09DB1 /* Simples#personal.json in Resources */ = {isa = PBXBuildFile; fileRef = 9110A09929326A3200B09DB1 /* Simples#personal.json */; };
 		9110A09C29326A4900B09DB1 /* Simples#about.json in Resources */ = {isa = PBXBuildFile; fileRef = 9110A09B29326A4900B09DB1 /* Simples#about.json */; };
 		9110A09F29326C3B00B09DB1 /* PersonalParallaxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110A09E29326C3B00B09DB1 /* PersonalParallaxView.swift */; };
@@ -165,6 +169,10 @@
 		8C9A45E82887F7120041937A /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		8C9A45EA2887F74D0041937A /* readme.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		8C9A45EC2887F76D0041937A /* OC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OC-Bridging-Header.h"; sourceTree = "<group>"; };
+		910B42EC293A2A5E000719BA /* DashboardViewReactor+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardViewReactor+Ex.swift"; sourceTree = "<group>"; };
+		910B42EE293A2A7F000719BA /* DashboardViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardViewController+Ex.swift"; sourceTree = "<group>"; };
+		910B42F0293A2C51000719BA /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		910B42F2293A2C85000719BA /* Categorys.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Categorys.json; sourceTree = "<group>"; };
 		9110A09929326A3200B09DB1 /* Simples#personal.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Simples#personal.json"; sourceTree = "<group>"; };
 		9110A09B29326A4900B09DB1 /* Simples#about.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Simples#about.json"; sourceTree = "<group>"; };
 		9110A09E29326C3B00B09DB1 /* PersonalParallaxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalParallaxView.swift; sourceTree = "<group>"; };
@@ -443,6 +451,7 @@
 				914091952932D2DA009CA633 /* ProfileViewController.swift */,
 				91B9DCD72935FFD900CD2E1B /* StarsViewController.swift */,
 				915F10132937ABFE009413D6 /* EventViewController.swift */,
+				910B42EE293A2A7F000719BA /* DashboardViewController+Ex.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -484,6 +493,7 @@
 				91B9DCD12935FA1F00CD2E1B /* Organization.swift */,
 				91B9DCD32935FAF100CD2E1B /* Plan.swift */,
 				91B9DCE229368D0F00CD2E1B /* Language.swift */,
+				910B42F0293A2C51000719BA /* Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -499,6 +509,7 @@
 				914091932932D2CB009CA633 /* ProfileViewReactor.swift */,
 				91B9DCD52935FFCF00CD2E1B /* StarsViewReactor.swift */,
 				915F10112937ABEE009413D6 /* EventViewReactor.swift */,
+				910B42EC293A2A5E000719BA /* DashboardViewReactor+Ex.swift */,
 			);
 			path = Reactor;
 			sourceTree = "<group>";
@@ -523,6 +534,7 @@
 				91B9DCE829368E9600CD2E1B /* Languages.json */,
 				915F10092937532C009413D6 /* Repos#trending.json */,
 				915F100B29375343009413D6 /* Users#trending.json */,
+				910B42F2293A2C85000719BA /* Categorys.json */,
 			);
 			path = json;
 			sourceTree = "<group>";
@@ -620,6 +632,7 @@
 				8C5A3FD82887A0E30009A00F /* LaunchScreen.storyboard in Resources */,
 				9110A09C29326A4900B09DB1 /* Simples#about.json in Resources */,
 				9110A09A29326A3200B09DB1 /* Simples#personal.json in Resources */,
+				910B42F3293A2C85000719BA /* Categorys.json in Resources */,
 				8C9A455D2887E3870041937A /* Localizable.strings in Resources */,
 				915F100A2937532C009413D6 /* Repos#trending.json in Resources */,
 				91B9DCE929368E9600CD2E1B /* Languages.json in Resources */,
@@ -735,6 +748,7 @@
 				8C9A45B62887F6F30041937A /* Logger+Ex.swift in Sources */,
 				9110A0A1293290FF00B09DB1 /* AboutViewReactor.swift in Sources */,
 				91B9DCE129368CF300CD2E1B /* TrendingAPI.swift in Sources */,
+				910B42EF293A2A7F000719BA /* DashboardViewController+Ex.swift in Sources */,
 				914091942932D2CB009CA633 /* ProfileViewReactor.swift in Sources */,
 				915F1010293756B9009413D6 /* UserCell.swift in Sources */,
 				915F100E293756B2009413D6 /* UserItem.swift in Sources */,
@@ -789,6 +803,7 @@
 				91B9DCDA2936003300CD2E1B /* RepoItem.swift in Sources */,
 				8C9A45B72887F6F30041937A /* Router+Ex.swift in Sources */,
 				91B9DCCA2935F8D200CD2E1B /* User+Ex.swift in Sources */,
+				910B42ED293A2A5E000719BA /* DashboardViewReactor+Ex.swift in Sources */,
 				8C9A45CE2887F6F40041937A /* Router+Dialog.swift in Sources */,
 				8C9A45B52887F6F30041937A /* Parameter+Ex.swift in Sources */,
 				8C9A45E42887F6F40041937A /* PersonalViewReactor.swift in Sources */,
@@ -800,6 +815,7 @@
 				8C9A45BD2887F6F30041937A /* ScrollViewController+Ex.swift in Sources */,
 				9110A0BE2932C4C500B09DB1 /* Router+Dialog+Popup.swift in Sources */,
 				9110A0B32932C03700B09DB1 /* Date+Ex.swift in Sources */,
+				910B42F1293A2C51000719BA /* Category.swift in Sources */,
 				8C9A45B82887F6F30041937A /* Storable+Ex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

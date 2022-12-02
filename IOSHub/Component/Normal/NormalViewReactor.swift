@@ -126,7 +126,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
     }
     
     func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
-        return .merge(
+        .merge(
             mutation,
             Subjection.for(User.self)
                 .distinctUntilChanged()

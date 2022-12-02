@@ -52,7 +52,7 @@ class TabBarController: HiIOS.TabBarController, ReactorKit.View {
         case .dashboard:
             viewController = self.navigator.viewController(
                 for: Router.shared.urlString(host: .dashboard, parameters: [
-                    Parameter.hidesNavigationBar: true.string
+                    : // Parameter.hidesNavigationBar: true.string
                 ])
             )
             viewController.tabBarItem.image = R.image.tabbar_dashboard_normal()?.original
