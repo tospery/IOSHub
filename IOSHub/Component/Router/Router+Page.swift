@@ -17,8 +17,8 @@ extension Router {
 //            return NormalViewController(navigator, NormalViewReactor.init(provider, parameters))
 //        }
 //        navigator.register(self.urlPattern(host: .about), normalFactory)
-        navigator.register(self.urlPattern(host: .dashboard)) { url, values, context in
-            DashboardViewController(navigator, DashboardViewReactor(provider, self.parameters(url, values, context)))
+        navigator.register(self.urlPattern(host: .trending)) { url, values, context in
+            TrendingViewController(navigator, TrendingViewReactor(provider, self.parameters(url, values, context)))
         }
         navigator.register(self.urlPattern(host: .event)) { url, values, context in
             EventViewController(navigator, EventViewReactor(provider, self.parameters(url, values, context)))
@@ -34,6 +34,12 @@ extension Router {
         }
         navigator.register(self.urlPattern(host: .profile)) { url, values, context in
             ProfileViewController(navigator, ProfileViewReactor(provider, self.parameters(url, values, context)))
+        }
+        navigator.register(self.urlPattern(host: .repos)) { url, values, context in
+            ReposViewController(navigator, ReposViewReactor(provider, self.parameters(url, values, context)))
+        }
+        navigator.register(self.urlPattern(host: .users)) { url, values, context in
+            UsersViewController(navigator, UsersViewReactor(provider, self.parameters(url, values, context)))
         }
     }
     

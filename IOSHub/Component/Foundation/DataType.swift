@@ -9,10 +9,14 @@ import Foundation
 import HiIOS
 
 enum TabBarKey {
-    case dashboard
+    case trending
     case event
     case stars
     case personal
+}
+
+enum ListType: Int {
+    case trending = 0
 }
 
 enum Platform {

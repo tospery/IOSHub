@@ -19,7 +19,6 @@ extension Repo {
         .composed(of: [
             "●".styled(with: .color(self.languageColor?.color ?? .random)),
             Special.space,
-            Special.space,
             (self.language ?? R.string.localizable.unknown()).styled(with: .color(.title))
         ]).styled(with: .font(.normal(12)))
     }

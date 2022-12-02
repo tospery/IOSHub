@@ -1,5 +1,5 @@
 //
-//  DashboardViewController.swift
+//  TrendingViewController.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2020/11/28.
@@ -20,7 +20,7 @@ import Parchment
 import SnapKit
 import HiIOS
 
-class DashboardViewController: ScrollViewController, ReactorKit.View {
+class TrendingViewController: ScrollViewController, ReactorKit.View {
     
     lazy var paging: NavigationBarPagingViewController = {
         let paging = NavigationBarPagingViewController()
@@ -33,10 +33,10 @@ class DashboardViewController: ScrollViewController, ReactorKit.View {
     
     required init(_ navigator: NavigatorProtocol, _ reactor: BaseViewReactor) {
         defer {
-            self.reactor = reactor as? DashboardViewReactor
+            self.reactor = reactor as? TrendingViewReactor
         }
         super.init(navigator, reactor)
-        self.tabBarItem.title = reactor.title ?? (reactor as? DashboardViewReactor)?.currentState.title
+        self.tabBarItem.title = reactor.title ?? (reactor as? TrendingViewReactor)?.currentState.title
     }
 
     required init?(coder: NSCoder) {
@@ -90,7 +90,7 @@ class DashboardViewController: ScrollViewController, ReactorKit.View {
 //            .disposed(by: self.rx.disposeBag)
     }
     
-    func bind(reactor: DashboardViewReactor) {
+    func bind(reactor: TrendingViewReactor) {
         super.bind(reactor: reactor)
         // action
         self.rx.load.map { Reactor.Action.load }

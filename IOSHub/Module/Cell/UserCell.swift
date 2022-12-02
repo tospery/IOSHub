@@ -16,7 +16,7 @@ import HiIOS
 class UserCell: BaseCollectionCell, ReactorKit.View {
     
     struct Metric {
-        static let height = 75.f
+        static let height = 65.f
         static let maxLines = 2
     }
 
@@ -81,10 +81,10 @@ class UserCell: BaseCollectionCell, ReactorKit.View {
         self.fullnameLabel.top = self.avatarImageView.top - 4
         self.repoNameLabel.width = self.fullnameLabel.width
         self.repoNameLabel.left = self.fullnameLabel.left
-        self.repoNameLabel.top = self.fullnameLabel.bottom + 3
+        self.repoNameLabel.top = self.fullnameLabel.bottom + 1
         self.repoDescLabel.width = self.fullnameLabel.width
         self.repoDescLabel.left = self.fullnameLabel.left
-        self.repoDescLabel.top = self.repoNameLabel.bottom + 3
+        self.repoDescLabel.top = self.repoNameLabel.bottom + 1
     }
 
     func bind(reactor: UserItem) {

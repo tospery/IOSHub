@@ -24,7 +24,6 @@ class RepoInfoView: BaseView {
         let label = UILabel.init()
         label.font = .normal(17)
         label.theme.textColor = themeService.attribute { $0.titleColor }
-        label.text = "CarGuo/gsy_flutter_demo"
         label.sizeToFit()
         return label
     }()
@@ -71,6 +70,7 @@ class RepoInfoView: BaseView {
         self.imageView.top = self.imageView.topWhenCenter
         self.nameLabel.sizeToFit()
         self.nameLabel.left = self.imageView.right + 5
+        self.nameLabel.width = self.width - self.nameLabel.left - 10
         self.nameLabel.bottom = self.imageView.centerY
         self.languageLabel.sizeToFit()
         self.languageLabel.left = self.nameLabel.left

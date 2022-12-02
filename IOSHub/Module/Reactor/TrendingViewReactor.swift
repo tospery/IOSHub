@@ -1,5 +1,5 @@
 //
-//  DashboardViewReactor.swift
+//  TrendingViewReactor.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2020/11/28.
@@ -14,7 +14,7 @@ import Rswift
 import Parchment
 import HiIOS
 
-class DashboardViewReactor: ScrollViewReactor, ReactorKit.Reactor {
+class TrendingViewReactor: ScrollViewReactor, ReactorKit.Reactor {
 
     enum Action {
         case load
@@ -28,7 +28,7 @@ class DashboardViewReactor: ScrollViewReactor, ReactorKit.Reactor {
         case setError(Error?)
         case setUser(User?)
         case setConfiguration(Configuration)
-        case setCategories([Category])
+        case setPages([Page])
         case initial([SectionData])
         case append([SectionData])
     }
@@ -42,7 +42,7 @@ class DashboardViewReactor: ScrollViewReactor, ReactorKit.Reactor {
         var title: String?
         var user: User?
         var configuration = Configuration.current!
-        var categories = [Category].init()
+        var pages = [Page].init()
         var originals = [SectionData].init()
         var additions = [SectionData].init()
         var sections = [Section].init()
@@ -53,8 +53,8 @@ class DashboardViewReactor: ScrollViewReactor, ReactorKit.Reactor {
     required init(_ provider: HiIOS.ProviderType, _ parameters: [String: Any]?) {
         super.init(provider, parameters)
         self.initialState = State(
-            title: self.title ?? R.string.localizable.home(),
-            categories: Category.cachedArray() ?? []
+            title: self.title ?? R.string.localizable.trending(),
+            pages: Page.cachedArray() ?? []
         )
     }
     
@@ -96,8 +96,8 @@ class DashboardViewReactor: ScrollViewReactor, ReactorKit.Reactor {
             newState.user = user
         case let .setConfiguration(configuration):
             newState.configuration = configuration
-        case let .setCategories(categories):
-            newState.categories = categories
+        case let .setPages(pages):
+            newState.pages = pages
         case let .initial(data):
             newState.originals = data
             return self.reduceSections(newState, additional: false)

@@ -1,5 +1,5 @@
 //
-//  Category.swift
+//  Page.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/12/2.
@@ -15,7 +15,7 @@ import HiIOS
 import ReusableKit_Hi
 import ObjectMapper_Hi
 
-struct Category: Subjective, Eventable {
+struct Page: Subjective, Eventable {
     
     enum Event {
     }

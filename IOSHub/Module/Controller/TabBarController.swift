@@ -49,9 +49,9 @@ class TabBarController: HiIOS.TabBarController, ReactorKit.View {
     func viewController(with key: TabBarKey) -> UIViewController {
         var viewController: UIViewController!
         switch key {
-        case .dashboard:
+        case .trending:
             viewController = self.navigator.viewController(
-                for: Router.shared.urlString(host: .dashboard, parameters: [
+                for: Router.shared.urlString(host: .trending, parameters: [
                     : // Parameter.hidesNavigationBar: true.string
                 ])
             )

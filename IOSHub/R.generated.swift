@@ -156,12 +156,12 @@ struct R: Rswift.Validatable {
 
   /// This `R.file` struct is generated, and contains static references to 8 files.
   struct file {
-    /// Resource file `Categorys.json`.
-    static let categorysJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Categorys", pathExtension: "json")
     /// Resource file `Configuration.json`.
     static let configurationJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Configuration", pathExtension: "json")
     /// Resource file `Languages.json`.
     static let languagesJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Languages", pathExtension: "json")
+    /// Resource file `Pages.json`.
+    static let pagesJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Pages", pathExtension: "json")
     /// Resource file `Repos#trending.json`.
     static let reposTrendingJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Repos#trending", pathExtension: "json")
     /// Resource file `Simples#about.json`.
@@ -173,12 +173,6 @@ struct R: Rswift.Validatable {
     /// Resource file `Users#trending.json`.
     static let usersTrendingJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Users#trending", pathExtension: "json")
 
-    /// `bundle.url(forResource: "Categorys", withExtension: "json")`
-    static func categorysJson(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.categorysJson
-      return fileResource.bundle.url(forResource: fileResource)
-    }
-
     /// `bundle.url(forResource: "Configuration", withExtension: "json")`
     static func configurationJson(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.configurationJson
@@ -188,6 +182,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "Languages", withExtension: "json")`
     static func languagesJson(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.languagesJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "Pages", withExtension: "json")`
+    static func pagesJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.pagesJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 
@@ -457,7 +457,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 65 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 66 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -575,6 +575,8 @@ struct R: Rswift.Validatable {
       static let errorNetworkTitle = Rswift.StringResource(key: "Error.Network.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 设置
       static let setting = Rswift.StringResource(key: "Setting", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 趋势
+      static let trending = Rswift.StringResource(key: "Trending", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 退出
       static let exit = Rswift.StringResource(key: "Exit", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 退出登录
@@ -1344,6 +1346,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Setting", bundle: bundle, comment: "")
+      }
+
+      /// Value: 趋势
+      static func trending(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Trending", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Trending"
+        }
+
+        return NSLocalizedString("Trending", bundle: bundle, comment: "")
       }
 
       /// Value: 退出

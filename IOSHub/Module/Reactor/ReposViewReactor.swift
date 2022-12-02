@@ -1,8 +1,8 @@
 //
-//  StarsViewReactor.swift
+//  ReposViewReactor.swift
 //  IOSHub
 //
-//  Created by 杨建祥 on 2022/11/29.
+//  Created by 杨建祥 on 2022/12/3.
 //
 
 import Foundation
@@ -13,23 +13,20 @@ import URLNavigator
 import Rswift
 import HiIOS
 
-class StarsViewReactor: NormalViewReactor {
+class ReposViewReactor: NormalViewReactor {
     
     required init(_ provider: HiIOS.ProviderType, _ parameters: [String: Any]?) {
         super.init(provider, parameters)
-        self.initialState = State(
-            title: self.title ?? R.string.localizable.stars()
-        )
     }
-    
+
     override func loadData(_ page: Int) -> Observable<[SectionData]> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
-            guard let username = self.currentState.user?.username, username.isNotEmpty else {
-                observer.onError(HiError.unknown)
-                return Disposables.create { }
-            }
-            return self.provider.trendingUsers()
+//            guard let username = self.currentState.user?.username, username.isNotEmpty else {
+//                observer.onError(HiError.unknown)
+//                return Disposables.create { }
+//            }
+            return self.provider.trendingRepos()
                  .asObservable()
                  .map { [(header: nil, models: $0)] }
                  .subscribe(observer)
@@ -41,5 +38,5 @@ class StarsViewReactor: NormalViewReactor {
 //            return Disposables.create { }
         }
     }
-
+    
 }

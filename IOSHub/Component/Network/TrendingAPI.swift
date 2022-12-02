@@ -12,8 +12,8 @@ import HiIOS
 
 enum TrendingAPI {
     case languages
-    case developers(language: Language?, since: Since?)
-    case repositories(language: Language?, since: Since?)
+    case trendingUsers(language: Language?, since: Since?)
+    case trendingRepos(language: Language?, since: Since?)
 }
 
 extension TrendingAPI: TargetType {
@@ -25,8 +25,8 @@ extension TrendingAPI: TargetType {
     var path: String {
         switch self {
         case .languages: return "/languages"
-        case .developers: return "/developers"
-        case .repositories: return "/repositories"
+        case .trendingUsers: return "/developers"
+        case .trendingRepos: return "/repositories"
         }
     }
 
@@ -38,8 +38,8 @@ extension TrendingAPI: TargetType {
         var parameters = envParameters
         let encoding: ParameterEncoding = URLEncoding.default
         switch self {
-        case .developers(let language, let since),
-             .repositories(let language, let since):
+        case .trendingUsers(let language, let since),
+             .trendingRepos(let language, let since):
             parameters[Parameter.language] = language?.urlParam
             parameters[Parameter.since] = since?.rawValue
         default:

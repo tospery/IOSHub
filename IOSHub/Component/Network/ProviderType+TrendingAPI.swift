@@ -15,20 +15,20 @@ extension ProviderType {
     
     // MARK: - TrendingAPI
     /// 仓库推荐: https://gtrend.yapie.me/repositories
-    func repositories(language: Language? = nil, since: Since? = nil) -> Single<[Repo]> {
+    func trendingRepos(language: Language? = nil, since: Since? = nil) -> Single<[Repo]> {
         return networking.requestArray(
             MultiTarget.init(
-                TrendingAPI.repositories(language: language, since: since)
+                TrendingAPI.trendingRepos(language: language, since: since)
             ),
             type: Repo.self
         )
     }
     
     /// 开发者推荐: https://gtrend.yapie.me/developers
-    func developers(language: Language? = nil, since: Since? = nil) -> Single<[User]> {
+    func trendingUsers(language: Language? = nil, since: Since? = nil) -> Single<[User]> {
         networking.requestArray(
             MultiTarget.init(
-                TrendingAPI.developers(language: language, since: since)
+                TrendingAPI.trendingUsers(language: language, since: since)
             ),
             type: User.self
         )
