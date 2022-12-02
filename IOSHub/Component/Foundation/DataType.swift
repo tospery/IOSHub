@@ -17,6 +17,12 @@ enum TabBarKey {
 
 enum ListType: Int {
     case trending = 0
+    
+    var stringValue: String {
+        switch self {
+        case .trending: return "trending"
+        }
+    }
 }
 
 enum Platform {

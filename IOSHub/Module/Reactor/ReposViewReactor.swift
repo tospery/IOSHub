@@ -15,27 +15,23 @@ import HiIOS
 
 class ReposViewReactor: NormalViewReactor {
     
+    let listType: ListType
+    
     required init(_ provider: HiIOS.ProviderType, _ parameters: [String: Any]?) {
+        listType = parameters?.enum(for: Parameter.type, type: ListType.self) ?? .trending
         super.init(provider, parameters)
     }
 
     override func loadData(_ page: Int) -> Observable<[SectionData]> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
-//            guard let username = self.currentState.user?.username, username.isNotEmpty else {
-//                observer.onError(HiError.unknown)
-//                return Disposables.create { }
-//            }
+            if let repos = Repo.cachedArray(page: self.listType.stringValue) {
+                observer.onNext([(header: nil, models: repos)])
+            }
             return self.provider.trendingRepos()
                  .asObservable()
                  .map { [(header: nil, models: $0)] }
                  .subscribe(observer)
-//           return self.provider.starredRepos(username: username, page: page)
-//                .asObservable()
-//                .map { [(header: nil, models: $0)] }
-//                .subscribe(observer)
-//                .disposed(by: self.disposeBag)
-//            return Disposables.create { }
         }
     }
     
