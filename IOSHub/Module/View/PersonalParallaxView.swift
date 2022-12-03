@@ -238,15 +238,36 @@ class PersonalParallaxView: UIImageView {
             .distinctUntilChanged()
             .bind(to: self.descLabel.rx.attributedText)
             .disposed(by: self.rx.disposeBag)
-        reactor.state.map { $0.user?.attrRepositores }
+        reactor.state.map {
+            $0.user?.attrRepositores ??
+            NSAttributedString.composed(of: [
+                "0".styled(with: .color(.foreground), .font(.bold(22))),
+                Special.nextLine,
+                R.string.localizable.repositores().styled(with: .color(.body), .font(.normal(13)))
+            ]).styled(with: .lineSpacing(4), .alignment(.center))
+        }
             .distinctUntilChanged()
             .bind(to: self.repositoriesButton.rx.attributedTitle(for: .normal))
             .disposed(by: self.rx.disposeBag)
-        reactor.state.map { $0.user?.attrFollowers }
+        reactor.state.map {
+            $0.user?.attrFollowers ??
+            NSAttributedString.composed(of: [
+                "0".styled(with: .color(.foreground), .font(.bold(22))),
+                Special.nextLine,
+                R.string.localizable.followers().styled(with: .color(.body), .font(.normal(13)))
+            ]).styled(with: .lineSpacing(4), .alignment(.center))
+        }
             .distinctUntilChanged()
             .bind(to: self.followerButton.rx.attributedTitle(for: .normal))
             .disposed(by: self.rx.disposeBag)
-        reactor.state.map { $0.user?.attrfollowing }
+        reactor.state.map {
+            $0.user?.attrfollowing ??
+            NSAttributedString.composed(of: [
+                "0".styled(with: .color(.foreground), .font(.bold(22))),
+                Special.nextLine,
+                R.string.localizable.following().styled(with: .color(.body), .font(.normal(13)))
+            ]).styled(with: .lineSpacing(4), .alignment(.center))
+        }
             .distinctUntilChanged()
             .bind(to: self.followingButton.rx.attributedTitle(for: .normal))
             .disposed(by: self.rx.disposeBag)

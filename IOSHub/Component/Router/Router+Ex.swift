@@ -86,7 +86,7 @@ extension Router: RouterCompatible {
         let controller = LoginViewController(navigator, reactor)
         let navigation = NavigationController(rootViewController: controller)
         top.present(navigation, animated: true)
-        return false
+        return true
     }
     
 //    public func shouldRefresh(host: Host, path: Router.Path? = nil) -> Bool {

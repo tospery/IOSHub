@@ -224,7 +224,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 25 images.
+  /// This `R.image` struct is generated, and contains static references to 26 images.
   struct image {
     /// Image `AppLogo`.
     static let appLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AppLogo")
@@ -254,6 +254,8 @@ struct R: Rswift.Validatable {
     static let ic_star = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_star")
     /// Image `ic_user_default`.
     static let ic_user_default = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_user_default")
+    /// Image `navbar_search`.
+    static let navbar_search = Rswift.ImageResource(bundle: R.hostingBundle, name: "navbar_search")
     /// Image `navbar_theme_dark`.
     static let navbar_theme_dark = Rswift.ImageResource(bundle: R.hostingBundle, name: "navbar_theme_dark")
     /// Image `navbar_theme_light`.
@@ -372,6 +374,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "ic_user_default", bundle: ..., traitCollection: ...)`
     static func ic_user_default(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_user_default, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "navbar_search", bundle: ..., traitCollection: ...)`
+    static func navbar_search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.navbar_search, compatibleWith: traitCollection)
     }
     #endif
 

@@ -79,9 +79,9 @@ class TrendingViewController: ScrollViewController, ReactorKit.View {
 //        self.navigationBar.addButtonToLeft(image: R.image.nav_menu()).rx.tap
 //            .subscribeNext(weak: self, type(of: self).tapMenu)
 //            .disposed(by: self.disposeBag)
-//        self.navigationBar.addButtonToRight(image: R.image.nav_search()).rx.tap
-//            .subscribeNext(weak: self, type(of: self).tapSearch)
-//            .disposed(by: self.disposeBag)
+        self.navigationBar.addButtonToRight(image: R.image.navbar_search()).rx.tap
+            .subscribeNext(weak: self, type(of: self).tapSearch)
+            .disposed(by: self.disposeBag)
 //
 //        themeService.rx
 //            .bind({ $0.brightColor }, to: self.paging.view.rx.backgroundColor)
@@ -107,6 +107,14 @@ class TrendingViewController: ScrollViewController, ReactorKit.View {
 //            .disposed(by: self.disposeBag)
     }
 
+    func tapSearch(_: Void? = nil) {
+        self.navigator.present(
+            Router.shared.urlString(host: .search),
+            wrap: NavigationController.self,
+            animated: false
+        )
+    }
+    
 }
 
 class NavigationBarPagingView: PagingView {

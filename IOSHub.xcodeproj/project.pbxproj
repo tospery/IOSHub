@@ -113,6 +113,8 @@
 		91C267EA28EB310300DD5677 /* SectionItemValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E928EB310300DD5677 /* SectionItemValue.swift */; };
 		91C267EC28EB326C00DD5677 /* Simple+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267EB28EB326C00DD5677 /* Simple+Ex.swift */; };
 		91C267EE28EB33A800DD5677 /* Configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 91C267ED28EB33A800DD5677 /* Configuration.json */; };
+		91FF7C7C293BA2B10045971B /* SearchViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF7C7B293BA2B10045971B /* SearchViewReactor.swift */; };
+		91FF7C7E293BA2C20045971B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF7C7D293BA2C20045971B /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -234,6 +236,8 @@
 		91C267E928EB310300DD5677 /* SectionItemValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionItemValue.swift; sourceTree = "<group>"; };
 		91C267EB28EB326C00DD5677 /* Simple+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Simple+Ex.swift"; sourceTree = "<group>"; };
 		91C267ED28EB33A800DD5677 /* Configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Configuration.json; sourceTree = "<group>"; };
+		91FF7C7B293BA2B10045971B /* SearchViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewReactor.swift; sourceTree = "<group>"; };
+		91FF7C7D293BA2C20045971B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		92D09778F1C04DA23DCECE8E /* Pods_IOSHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOSHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C18589FA40C38D0C3B33B15F /* Pods-HiTemplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiTemplate.debug.xcconfig"; path = "Target Support Files/Pods-HiTemplate/Pods-HiTemplate.debug.xcconfig"; sourceTree = "<group>"; };
 		CDF43FBDA0A19283DCD075F2 /* Pods-HiTemplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiTemplate.release.xcconfig"; path = "Target Support Files/Pods-HiTemplate/Pods-HiTemplate.release.xcconfig"; sourceTree = "<group>"; };
@@ -465,6 +469,7 @@
 				910B42EE293A2A7F000719BA /* TrendingViewController+Ex.swift */,
 				910B42F6293A6283000719BA /* ReposViewController.swift */,
 				910B42FA293A629E000719BA /* UsersViewController.swift */,
+				91FF7C7D293BA2C20045971B /* SearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -525,6 +530,7 @@
 				910B42EC293A2A5E000719BA /* TrendingViewReactor+Ex.swift */,
 				910B42F4293A6277000719BA /* ReposViewReactor.swift */,
 				910B42F8293A628E000719BA /* UsersViewReactor.swift */,
+				91FF7C7B293BA2B10045971B /* SearchViewReactor.swift */,
 			);
 			path = Reactor;
 			sourceTree = "<group>";
@@ -777,6 +783,7 @@
 				9110A0BA2932C3FF00B09DB1 /* Router+Dialog+Alert.swift in Sources */,
 				8C9A45C42887F6F40041937A /* Constant.swift in Sources */,
 				910B42FD293A67EA000719BA /* UIViewController+Ex.swift in Sources */,
+				91FF7C7C293BA2B10045971B /* SearchViewReactor.swift in Sources */,
 				91C267E628EB302E00DD5677 /* NormalViewController.swift in Sources */,
 				9110A0AF29329CAB00B09DB1 /* GithubBaseAPI.swift in Sources */,
 				8C9A45BB2887F6F30041937A /* Library+Ex.swift in Sources */,
@@ -784,6 +791,7 @@
 				8C9A45BA2887F6F30041937A /* UIApplication+Ex.swift in Sources */,
 				8C9A45E92887F7120041937A /* AppDependency.swift in Sources */,
 				8C9A45C02887F6F40041937A /* ScrollViewController+Rx.swift in Sources */,
+				91FF7C7E293BA2C20045971B /* SearchViewController.swift in Sources */,
 				8C9A45BF2887F6F40041937A /* WebViewReactor.swift in Sources */,
 				8C9A45E52887F6F40041937A /* TrendingViewReactor.swift in Sources */,
 				91B9DCDF29368A6300CD2E1B /* RepoInfoView.swift in Sources */,
