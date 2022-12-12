@@ -21,5 +21,13 @@ class HistoryViewReactor: NormalViewReactor {
             title: self.title
         )
     }
+    
+    override func loadData(_ page: Int) -> Observable<[SectionData]> {
+        // guard let simples = Simple.cachedArray(page: self.host) else { return .empty() }
+        var models = [ModelType].init()
+        models.append(BaseModel.init(SectionItemValue.searchType))
+        // models.append(contentsOf: simples)
+        return .just([(header: nil, models: models)])
+    }
 
 }

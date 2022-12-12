@@ -25,6 +25,18 @@ enum ListType: Int {
     }
 }
 
+enum Sort: String, Codable {
+    case stars
+    case forks
+    case updated
+    case issues  = "help-wanted-issues"
+}
+
+enum Order: String, Codable {
+    case asc
+    case desc
+}
+
 enum Platform {
     case github
     case umeng

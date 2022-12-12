@@ -47,4 +47,28 @@ extension ProviderType {
         )
     }
     
+    /// 搜索仓库
+    /// - API: https://docs.github.com/v3/search
+    /// - Demo: https://api.github.com/search/repositories?q=rxswift
+    func searchRepos(keyword: String, sort: Sort = .stars, order: Order = .desc, page: Int) -> Single<[Repo]> {
+        networking.requestList(
+            MultiTarget.init(
+                GithubBaseAPI.searchRepos(keyword: keyword, sort: sort, order: order, page: page)
+            ),
+            type: Repo.self
+        ).map { $0.items }
+    }
+    
+    /// 搜索开发者
+    /// - API: https://docs.github.com/v3/search
+    /// - Demo: https://api.github.com/search/users?q=rxswift
+    func searchUsers(keyword: String, sort: Sort = .stars, order: Order = .desc, page: Int) -> Single<[User]> {
+        networking.requestList(
+            MultiTarget.init(
+                GithubBaseAPI.searchUsers(keyword: keyword, sort: sort, order: order, page: page)
+            ),
+            type: User.self
+        ).map { $0.items }
+    }
+    
 }

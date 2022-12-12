@@ -23,4 +23,7 @@ extension Parameter {
     static var pageSize: String { "per_page" }
     static var language: String { "language" }
     static var since: String { "since" }
+    static var sort: String { "sort" }
+    static var order: String { "order" }
+    static var searchKey: String { "q" }
 }

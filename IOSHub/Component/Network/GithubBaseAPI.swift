@@ -15,6 +15,8 @@ enum GithubBaseAPI {
     case user(username: String)
     case userRepos(username: String, page: Int)
     case starredRepos(username: String, page: Int)
+    case searchRepos(keyword: String, sort: Sort, order: Order, page: Int)
+    case searchUsers(keyword: String, sort: Sort, order: Order, page: Int)
 }
 
 extension GithubBaseAPI: TargetType {
@@ -29,6 +31,8 @@ extension GithubBaseAPI: TargetType {
         case let .user(username): return "/users/\(username)"
         case let .userRepos(username, _): return "/users/\(username)/repos"
         case let .starredRepos(username, _): return "/users/\(username)/starred"
+        case .searchRepos: return "/search/repositories"
+        case .searchUsers: return "/search/users"
         }
     }
 
@@ -58,6 +62,13 @@ extension GithubBaseAPI: TargetType {
                 Parameter.pageIndex: page,
                 Parameter.pageSize: UIApplication.shared.pageSize
             ]
+        case .searchRepos(let keyword, let sort, let order, let page),
+             .searchUsers(let keyword, let sort, let order, let page):
+            parameters[Parameter.searchKey] = keyword
+            parameters[Parameter.sort] = sort.rawValue
+            parameters[Parameter.order] = order.rawValue
+            parameters[Parameter.pageIndex] = page
+            parameters[Parameter.pageSize] = UIApplication.shared.pageSize
         default:
             break
         }

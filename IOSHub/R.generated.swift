@@ -466,7 +466,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 66 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 67 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -500,6 +500,8 @@ struct R: Rswift.Validatable {
       static let repositores = Rswift.StringResource(key: "Repositores", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Since
       static let since = Rswift.StringResource(key: "Since", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Users
+      static let users = Rswift.StringResource(key: "Users", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 个人主页
       static let blog = Rswift.StringResource(key: "Blog", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 事件
@@ -809,6 +811,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Since", bundle: bundle, comment: "")
+      }
+
+      /// Value: Users
+      static func users(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Users", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Users"
+        }
+
+        return NSLocalizedString("Users", bundle: bundle, comment: "")
       }
 
       /// Value: 个人主页

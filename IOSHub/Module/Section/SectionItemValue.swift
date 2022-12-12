@@ -9,14 +9,15 @@ import Foundation
 
 enum SectionItemValue {
     case appInfo
-    case milestone
+    // case milestone
+    case searchType
 }
 
 extension SectionItemValue: CustomStringConvertible {
     var description: String {
         switch self {
         case .appInfo: return "appInfo"
-        case .milestone: return "milestone"
+        case .searchType: return "searchType"
         }
     }
 }
