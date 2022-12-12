@@ -109,7 +109,7 @@ class TrendingViewController: ScrollViewController, ReactorKit.View {
 
     func tapSearch(_: Void? = nil) {
         self.navigator.present(
-            Router.shared.urlString(host: .search),
+            Router.shared.urlString(host: .history),
             wrap: NavigationController.self,
             animated: false
         )

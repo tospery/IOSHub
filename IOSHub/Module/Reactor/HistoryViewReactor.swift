@@ -1,5 +1,5 @@
 //
-//  SearchViewReactor.swift
+//  HistoryViewReactor.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/12/3.
@@ -13,7 +13,7 @@ import URLNavigator
 import Rswift
 import HiIOS
 
-class SearchViewReactor: NormalViewReactor {
+class HistoryViewReactor: NormalViewReactor {
     
     required init(_ provider: HiIOS.ProviderType, _ parameters: [String: Any]?) {
         super.init(provider, parameters)

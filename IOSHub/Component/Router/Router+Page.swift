@@ -41,8 +41,8 @@ extension Router {
         navigator.register(self.urlPattern(host: .users)) { url, values, context in
             UsersViewController(navigator, UsersViewReactor(provider, self.parameters(url, values, context)))
         }
-        navigator.register(self.urlPattern(host: .search)) { url, values, context in
-            SearchViewController(navigator, SearchViewReactor(provider, self.parameters(url, values, context)))
+        navigator.register(self.urlPattern(host: .history)) { url, values, context in
+            HistoryViewController(navigator, HistoryViewReactor(provider, self.parameters(url, values, context)))
         }
     }
     

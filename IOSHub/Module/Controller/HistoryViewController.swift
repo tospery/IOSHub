@@ -1,5 +1,5 @@
 //
-//  SearchViewController.swift
+//  HistoryViewController.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/12/3.
@@ -17,7 +17,7 @@ import RxDataSources
 import RxGesture
 import HiIOS
 
-class SearchViewController: NormalViewController {
+class HistoryViewController: NormalViewController {
     
     required init(_ navigator: NavigatorProtocol, _ reactor: BaseViewReactor) {
         super.init(navigator, reactor)
