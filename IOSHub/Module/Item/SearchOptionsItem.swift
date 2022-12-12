@@ -1,5 +1,5 @@
 //
-//  SearchTypeItem.swift
+//  SearchOptionsItem.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/12/12.
@@ -13,7 +13,7 @@ import URLNavigator
 import Rswift
 import HiIOS
 
-class SearchTypeItem: BaseCollectionItem, ReactorKit.Reactor {
+class SearchOptionsItem: BaseCollectionItem, ReactorKit.Reactor {
 
     typealias Action = NoAction
     typealias Mutation = NoMutation

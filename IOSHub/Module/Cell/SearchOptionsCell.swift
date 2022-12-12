@@ -1,5 +1,5 @@
 //
-//  SearchTypeCell.swift
+//  SearchOptionsCell.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/12/12.
@@ -13,31 +13,16 @@ import URLNavigator
 import Rswift
 import HiIOS
 
-class SearchTypeCell: BaseCollectionCell, ReactorKit.View {
-    
-//    lazy var titleLabel: UILabel = {
-//        let label = UILabel.init(frame: .zero)
-//        label.font = .normal(15)
-//        label.text = "v\(UIApplication.shared.version!)(\(UIApplication.shared.buildNumber!))"
-//        label.theme.textColor = themeService.attribute { $0.bodyColor }
-//        label.sizeToFit()
-//        return label
-//    }()
-//
-//    lazy var imageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.image = R.image.appLogo()
-//        imageView.sizeToFit()
-//        imageView.size = .init(deviceWidth * 0.24)
-//        return imageView
-//    }()
-    
+class SearchOptionsCell: BaseCollectionCell, ReactorKit.View {
+ 
     lazy var segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl.init(items: [
             R.string.localizable.repositores(),
             R.string.localizable.users()
         ])
         segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.setWidth(120, forSegmentAt: 0)
+        segmentedControl.setWidth(120, forSegmentAt: 1)
         segmentedControl.setTitleTextAttributes([
             NSAttributedString.Key.font: UIFont.normal(15),
             NSAttributedString.Key.foregroundColor: UIColor.black
@@ -69,15 +54,11 @@ class SearchTypeCell: BaseCollectionCell, ReactorKit.View {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-//        self.imageView.left = self.imageView.leftWhenCenter
-//        self.imageView.top = (self.imageView.topWhenCenter * 0.9).flat
-//        self.titleLabel.left = self.titleLabel.leftWhenCenter
-//        self.titleLabel.top = self.imageView.bottom + 5
         self.segmentedControl.left = self.segmentedControl.leftWhenCenter
         self.segmentedControl.top = self.segmentedControl.topWhenCenter
     }
 
-    func bind(reactor: SearchTypeItem) {
+    func bind(reactor: SearchOptionsItem) {
         super.bind(item: reactor)
         reactor.state.map { _ in }
             .bind(to: self.rx.setNeedsLayout)
@@ -85,7 +66,7 @@ class SearchTypeCell: BaseCollectionCell, ReactorKit.View {
     }
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
-        .init(width: width, height: 90)
+        .init(width: width, height: 70)
     }
 
 }

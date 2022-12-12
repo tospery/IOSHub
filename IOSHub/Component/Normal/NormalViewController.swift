@@ -24,7 +24,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         static let appInfoCell = ReusableCell<AppInfoCell>()
         static let repoCell = ReusableCell<RepoCell>()
         static let userCell = ReusableCell<UserCell>()
-        static let searchTypeCell = ReusableCell<SearchTypeCell>()
+        static let searchOptionsCell = ReusableCell<SearchOptionsCell>()
         static let headerView = ReusableView<CollectionHeaderView>()
         static let footerView = ReusableView<CollectionFooterView>()
     }
@@ -54,8 +54,8 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                     item.parent = self.reactor
                     cell.reactor = item
                     return cell
-                case let .searchType(item):
-                    let cell = collectionView.dequeue(Reusable.searchTypeCell, for: indexPath)
+                case let .searchOptions(item):
+                    let cell = collectionView.dequeue(Reusable.searchOptionsCell, for: indexPath)
                     item.parent = self.reactor
                     cell.reactor = item
                     return cell
@@ -95,7 +95,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         self.collectionView.register(Reusable.appInfoCell)
         self.collectionView.register(Reusable.repoCell)
         self.collectionView.register(Reusable.userCell)
-        self.collectionView.register(Reusable.searchTypeCell)
+        self.collectionView.register(Reusable.searchOptionsCell)
         self.collectionView.register(Reusable.headerView, kind: .header)
         self.collectionView.register(Reusable.footerView, kind: .footer)
         self.collectionView.theme.backgroundColor = themeService.attribute { $0.lightColor }
@@ -326,7 +326,7 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
         case let .appInfo(item): return Reusable.appInfoCell.class.size(width: width, item: item)
         case let .repo(item): return Reusable.repoCell.class.size(width: width, item: item)
         case let .user(item): return Reusable.userCell.class.size(width: width, item: item)
-        case let .searchType(item): return Reusable.userCell.class.size(width: width, item: item)
+        case let .searchOptions(item): return Reusable.userCell.class.size(width: width, item: item)
         }
     }
     

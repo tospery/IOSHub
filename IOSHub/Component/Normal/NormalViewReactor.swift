@@ -263,7 +263,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
                 if let value = ($0 as? BaseModel)?.data as? SectionItemValue {
                     switch value {
                     case .appInfo: return .appInfo(.init($0))
-                    case .searchType: return .searchType(.init($0))
+                    case .searchOptions: return .searchOptions(.init($0))
                     }
 //                    if let value = data as? SectionItemValue {
 //                        switch value {
