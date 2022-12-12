@@ -41,6 +41,9 @@
 "None.Location" = "No location provided";
 "None.Email" = "No email provided";
 "None.Blog" = "No blog provided";
+/* 句子 - Search */
+"Search.Hint" = "搜索您想要的内容";
+"Search.History" = "搜索历史";
 /* 句子 - Login */
 "Login.Slogan" = "Develop By Swift";
 "Login.Button.Title" = "使用GitHub登录";

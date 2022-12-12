@@ -16,6 +16,7 @@ import RxGesture
 import SnapKit
 import HiIOS
 
+// swiftlint:disable type_body_length
 class PersonalParallaxView: UIImageView {
     
     lazy var topImageView: UIImageView = {
@@ -216,6 +217,7 @@ class PersonalParallaxView: UIImageView {
         .init(width: deviceWidth, height: Metric.Personal.parallaxAllHeight / standardWidth * deviceWidth)
     }
     
+    // swiftlint:disable function_body_length
     func bind(reactor: PersonalViewReactor) {
         reactor.state.map { $0.isRefreshing }
             .distinctUntilChanged()
@@ -277,6 +279,7 @@ class PersonalParallaxView: UIImageView {
             .bind(to: self.rx.setNeedsLayout)
             .disposed(by: self.rx.disposeBag)
     }
+    // swiftlint:enable function_body_length
     
 }
 
@@ -314,3 +317,4 @@ extension Reactive where Base: PersonalParallaxView {
     }
     
 }
+// swiftlint:enable type_body_length
