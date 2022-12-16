@@ -493,7 +493,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 69 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 70 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -564,7 +564,7 @@ struct R: Rswift.Validatable {
       /// Value: 我的
       static let mine = Rswift.StringResource(key: "Mine", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 搜索历史
-      static let searchHistory = Rswift.StringResource(key: "Search.History", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let searchHistory = Rswift.StringResource(key: "Search History", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 搜索您想要的内容
       static let searchHint = Rswift.StringResource(key: "Search.Hint", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 收藏
@@ -587,6 +587,8 @@ struct R: Rswift.Validatable {
       static let errorSystemUnknownMessage = Rswift.StringResource(key: "Error.System.Unknown.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 未知错误
       static let errorSystemUnknownTitle = Rswift.StringResource(key: "Error.System.Unknown.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 清除历史
+      static let clearHistory = Rswift.StringResource(key: "Clear History", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 点击登录
       static let clickToLogin = Rswift.StringResource(key: "Click To Login", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 热门
@@ -1081,14 +1083,14 @@ struct R: Rswift.Validatable {
       /// Value: 搜索历史
       static func searchHistory(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.History", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("Search History", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "Search.History"
+          return "Search History"
         }
 
-        return NSLocalizedString("Search.History", bundle: bundle, comment: "")
+        return NSLocalizedString("Search History", bundle: bundle, comment: "")
       }
 
       /// Value: 搜索您想要的内容
@@ -1232,6 +1234,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Error.System.Unknown.Title", bundle: bundle, comment: "")
+      }
+
+      /// Value: 清除历史
+      static func clearHistory(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Clear History", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Clear History"
+        }
+
+        return NSLocalizedString("Clear History", bundle: bundle, comment: "")
       }
 
       /// Value: 点击登录

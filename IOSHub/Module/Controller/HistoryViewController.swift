@@ -19,8 +19,8 @@ import HiIOS
 
 class HistoryViewController: NormalViewController {
     
-    lazy var searchView: SearchView = {
-        let view = SearchView.init(frame: .zero)
+    lazy var searchView: SearchTitleView = {
+        let view = SearchTitleView.init(frame: .zero)
         view.textField.isEnabled = true
         view.textField.textAlignment = .left
         view.textField.placeholder = R.string.localizable.searchHint()
@@ -59,6 +59,30 @@ class HistoryViewController: NormalViewController {
     }
     
     func options(_: Void? = nil) {
+    }
+    
+    override func headerView(
+        _ collectionView: UICollectionView,
+        for indexPath: IndexPath
+    ) -> UICollectionReusableView {
+        let header = collectionView.dequeue(
+            Reusable.historyHeaderView,
+            kind: UICollectionView.elementKindSectionHeader,
+            for: indexPath
+        )
+        header.bind(reactor: self.reactor!, section: indexPath.section)
+//        header.rx.clear
+//            .subscribeNext(weak: self, type(of: self).clear)
+//            .disposed(by: header.rx.disposeBag)
+        return header
+    }
+    
+    override func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        referenceSizeForHeaderInSection section: Int
+    ) -> CGSize {
+        .init(width: collectionView.sectionWidth(at: section), height: 50)
     }
 
 }

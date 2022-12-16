@@ -18,14 +18,14 @@ class HistoryViewReactor: NormalViewReactor {
     required init(_ provider: HiIOS.ProviderType, _ parameters: [String: Any]?) {
         super.init(provider, parameters)
         self.initialState = State(
-            title: self.title
+            keywords: ["aaa", "响应式"]
         )
     }
     
     override func loadData(_ page: Int) -> Observable<[SectionData]> {
         // guard let simples = Simple.cachedArray(page: self.host) else { return .empty() }
         var models = [ModelType].init()
-        models.append(BaseModel.init(SectionItemValue.searchOptions))
+        models.append(BaseModel.init(SectionItemValue.historyKeywords))
         // models.append(contentsOf: simples)
         return .just([(header: nil, models: models)])
     }

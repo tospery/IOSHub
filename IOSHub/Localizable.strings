@@ -34,6 +34,8 @@
 "Click To Login" = "点击登录";
 "App Slogan" = "Let's build from here";
 "Joined on" = "Joined on %@";
+"Search History" = "搜索历史";
+"Clear History" = "清除历史";
 /* 句子 - None */
 "None.Repo" = "No hot repository";
 "None.Desc" = "No description provided";
@@ -43,7 +45,6 @@
 "None.Blog" = "No blog provided";
 /* 句子 - Search */
 "Search.Hint" = "搜索您想要的内容";
-"Search.History" = "搜索历史";
 /* 句子 - Login */
 "Login.Slogan" = "Develop By Swift";
 "Login.Button.Title" = "使用GitHub登录";

@@ -25,6 +25,7 @@ target 'IOSHub' do
   # Advanced
   pod 'MXParallaxHeader', '1.1.0'
   pod 'Parchment', '3.2.0'
+  pod 'TagListView', '1.4.1'
   # pod 'lottie-ios', '3.5.0'
   pod 'SwiftSVG', '2.3.2'
   pod 'Toast-Swift', '5.0.1'

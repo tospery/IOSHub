@@ -31,6 +31,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         case setLoadingMore(Bool)
         case setActivating(Bool)
         case setTitle(String?)
+        case setKeywords([String])
         case setError(Error?)
         case setUser(User?)
         case setConfiguration(Configuration)
@@ -47,6 +48,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         var noMoreData = false
         var error: Error?
         var title: String?
+        var keywords = [String].init()
         var user = User.current
         var configuration = Configuration.current!
         var target: String?
@@ -106,6 +108,8 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
             newState.error = error
         case let .setUser(user):
             newState.user = user
+        case let .setKeywords(keywords):
+            newState.keywords = keywords
         case let .setConfiguration(configuration):
             newState.configuration = configuration
         case let .setTarget(target):
@@ -264,14 +268,8 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
                     switch value {
                     case .appInfo: return .appInfo(.init($0))
                     case .searchOptions: return .searchOptions(.init($0))
+                    case .historyKeywords: return .historyKeywords(.init($0))
                     }
-//                    if let value = data as? SectionItemValue {
-//                        switch value {
-//                        case .appInfo: return .appInfo(.init($0))
-//                        //case .milestone: return .milestone(.init($0))
-//                        default: break
-//                        }
-//                    }
                 }
                 if $0 is Repo {
                     return .repo(.init($0))

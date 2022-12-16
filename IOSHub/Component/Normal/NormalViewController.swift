@@ -25,8 +25,10 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         static let repoCell = ReusableCell<RepoCell>()
         static let userCell = ReusableCell<UserCell>()
         static let searchOptionsCell = ReusableCell<SearchOptionsCell>()
+        static let historyKeywordsCell = ReusableCell<HistoryKeywordsCell>()
         static let headerView = ReusableView<CollectionHeaderView>()
         static let footerView = ReusableView<CollectionFooterView>()
+        static let historyHeaderView = ReusableView<HistoryHeaderView>()
     }
     
     lazy var dataSource: RxCollectionViewSectionedReloadDataSource<Section> = {
@@ -56,6 +58,11 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                     return cell
                 case let .searchOptions(item):
                     let cell = collectionView.dequeue(Reusable.searchOptionsCell, for: indexPath)
+                    item.parent = self.reactor
+                    cell.reactor = item
+                    return cell
+                case let .historyKeywords(item):
+                    let cell = collectionView.dequeue(Reusable.historyKeywordsCell, for: indexPath)
                     item.parent = self.reactor
                     cell.reactor = item
                     return cell
@@ -96,8 +103,10 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         self.collectionView.register(Reusable.repoCell)
         self.collectionView.register(Reusable.userCell)
         self.collectionView.register(Reusable.searchOptionsCell)
+        self.collectionView.register(Reusable.historyKeywordsCell)
         self.collectionView.register(Reusable.headerView, kind: .header)
         self.collectionView.register(Reusable.footerView, kind: .footer)
+        self.collectionView.register(Reusable.historyHeaderView, kind: .header)
         self.collectionView.theme.backgroundColor = themeService.attribute { $0.lightColor }
         self.collectionView.rx.itemSelected(dataSource: self.dataSource)
             .subscribeNext(weak: self, type(of: self).tapItem)
@@ -326,7 +335,8 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
         case let .appInfo(item): return Reusable.appInfoCell.class.size(width: width, item: item)
         case let .repo(item): return Reusable.repoCell.class.size(width: width, item: item)
         case let .user(item): return Reusable.userCell.class.size(width: width, item: item)
-        case let .searchOptions(item): return Reusable.userCell.class.size(width: width, item: item)
+        case let .searchOptions(item): return Reusable.searchOptionsCell.class.size(width: width, item: item)
+        case let .historyKeywords(item): return Reusable.historyKeywordsCell.class.size(width: width, item: item)
         }
     }
     

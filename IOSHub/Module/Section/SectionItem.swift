@@ -17,7 +17,8 @@ enum SectionItem: IdentifiableType, Equatable {
     case repo(RepoItem)
     case user(UserItem)
     case searchOptions(SearchOptionsItem)
-
+    case historyKeywords(HistoryKeywordsItem)
+    
     var identity: String {
         var string = ""
         switch self {
@@ -26,6 +27,7 @@ enum SectionItem: IdentifiableType, Equatable {
         case let .repo(item): string = item.description
         case let .user(item): string = item.description
         case let .searchOptions(item): string = item.description
+        case let .historyKeywords(item): string = item.description
         }
         return string // String.init(string.sorted())
     }

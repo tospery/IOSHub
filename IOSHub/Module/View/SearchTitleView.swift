@@ -1,5 +1,5 @@
 //
-//  SearchView.swift
+//  SearchTitleView.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/12/13.
@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import RxGesture
 
-class SearchView: BaseView {
+class SearchTitleView: BaseView {
     
     lazy var textField: UITextField = {
         let field = UITextField.init()
@@ -76,7 +76,7 @@ class SearchView: BaseView {
     
 }
 
-extension Reactive where Base: SearchView {
+extension Reactive where Base: SearchTitleView {
     var tap: ControlEvent<Void> {
         let source = base.rx.tapGesture().when(.recognized).map { _ in }
         return ControlEvent(events: source)
