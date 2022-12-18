@@ -30,11 +30,19 @@ class HistoryViewReactor: NormalViewReactor {
     override func loadData(_ page: Int) -> Observable<[SectionData]> {
         .just([
             (
-                header: nil,
+                header: BaseModel.init([
+                    R.image.ic_search_options()!,
+                    R.string.localizable.searchOptions(),
+                    R.image.ic_search_setting()!
+                ]),
                 models: [BaseModel.init(SectionItemValue.searchOptions)]
             ),
             (
-                header: nil,
+                header: BaseModel.init([
+                    R.image.ic_search_history()!,
+                    R.string.localizable.searchHistory(),
+                    R.image.ic_search_erase()!
+                ]),
                 models: [BaseModel.init(SectionItemValue.historyKeywords)]
             )
         ])

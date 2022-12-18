@@ -81,6 +81,8 @@
 		9110A0BA2932C3FF00B09DB1 /* Router+Dialog+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110A0B92932C3FF00B09DB1 /* Router+Dialog+Alert.swift */; };
 		9110A0BC2932C44D00B09DB1 /* Router+Dialog+Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110A0BB2932C44D00B09DB1 /* Router+Dialog+Sheet.swift */; };
 		9110A0BE2932C4C500B09DB1 /* Router+Dialog+Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110A0BD2932C4C500B09DB1 /* Router+Dialog+Popup.swift */; };
+		91209401294ED328002C593F /* SearchViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91209400294ED328002C593F /* SearchViewReactor.swift */; };
+		91209403294ED33A002C593F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91209402294ED33A002C593F /* SearchViewController.swift */; };
 		914091942932D2CB009CA633 /* ProfileViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914091932932D2CB009CA633 /* ProfileViewReactor.swift */; };
 		914091962932D2DA009CA633 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914091952932D2DA009CA633 /* ProfileViewController.swift */; };
 		914091982932D378009CA633 /* Simples#profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 914091972932D378009CA633 /* Simples#profile.json */; };
@@ -210,6 +212,8 @@
 		9110A0B92932C3FF00B09DB1 /* Router+Dialog+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Router+Dialog+Alert.swift"; sourceTree = "<group>"; };
 		9110A0BB2932C44D00B09DB1 /* Router+Dialog+Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Router+Dialog+Sheet.swift"; sourceTree = "<group>"; };
 		9110A0BD2932C4C500B09DB1 /* Router+Dialog+Popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Router+Dialog+Popup.swift"; sourceTree = "<group>"; };
+		91209400294ED328002C593F /* SearchViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewReactor.swift; sourceTree = "<group>"; };
+		91209402294ED33A002C593F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		914091932932D2CB009CA633 /* ProfileViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewReactor.swift; sourceTree = "<group>"; };
 		914091952932D2DA009CA633 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		914091972932D378009CA633 /* Simples#profile.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Simples#profile.json"; sourceTree = "<group>"; };
@@ -484,6 +488,7 @@
 				910B42F6293A6283000719BA /* ReposViewController.swift */,
 				910B42FA293A629E000719BA /* UsersViewController.swift */,
 				91FF7C7D293BA2C20045971B /* HistoryViewController.swift */,
+				91209402294ED33A002C593F /* SearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -550,6 +555,7 @@
 				910B42F4293A6277000719BA /* ReposViewReactor.swift */,
 				910B42F8293A628E000719BA /* UsersViewReactor.swift */,
 				91FF7C7B293BA2B10045971B /* HistoryViewReactor.swift */,
+				91209400294ED328002C593F /* SearchViewReactor.swift */,
 			);
 			path = Reactor;
 			sourceTree = "<group>";
@@ -785,6 +791,7 @@
 				91B9DCD22935FA1F00CD2E1B /* Organization.swift in Sources */,
 				914091962932D2DA009CA633 /* ProfileViewController.swift in Sources */,
 				8C9A45D22887F6F40041937A /* Section.swift in Sources */,
+				91209403294ED33A002C593F /* SearchViewController.swift in Sources */,
 				91B9DCD62935FFCF00CD2E1B /* StarsViewReactor.swift in Sources */,
 				9110A0B82932C3CA00B09DB1 /* Router+Dialog+Toast.swift in Sources */,
 				9110A0AB29329C4100B09DB1 /* ProviderType+GithubMainAPI.swift in Sources */,
@@ -821,6 +828,7 @@
 				91B9DCDF29368A6300CD2E1B /* RepoInfoView.swift in Sources */,
 				91B9DCC82935F8CA00CD2E1B /* Repo+Ex.swift in Sources */,
 				9110A0A52932919F00B09DB1 /* AppInfoItem.swift in Sources */,
+				91209401294ED328002C593F /* SearchViewReactor.swift in Sources */,
 				91B9DCD42935FAF100CD2E1B /* Plan.swift in Sources */,
 				9110A09F29326C3B00B09DB1 /* PersonalParallaxView.swift in Sources */,
 				915F10142937ABFE009413D6 /* EventViewController.swift in Sources */,

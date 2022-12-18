@@ -49,7 +49,7 @@ class SearchTitleView: BaseView {
         self.layerCornerRadius = intrinsicContentSize.height / 2.f
         self.theme.backgroundColor = themeService.attribute { $0.lightColor }
         self.addSubview(self.textField)
-        //self.addSubview(self.button)
+        // self.addSubview(self.button)
     }
     
     required init?(coder: NSCoder) {

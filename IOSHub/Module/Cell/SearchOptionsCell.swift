@@ -15,12 +15,12 @@ import HiIOS
 
 class SearchOptionsCell: BaseCollectionCell, ReactorKit.View {
     
-    lazy var button: UIButton = {
-        let button = UIButton.init(type: .custom)
-        button.setImage(R.image.ic_search_setting(), for: .normal)
-        button.sizeToFit()
-        return button
-    }()
+//    lazy var button: UIButton = {
+//        let button = UIButton.init(type: .custom)
+//        button.setImage(R.image.ic_search_setting(), for: .normal)
+//        button.sizeToFit()
+//        return button
+//    }()
  
     lazy var segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl.init(items: [
@@ -47,7 +47,7 @@ class SearchOptionsCell: BaseCollectionCell, ReactorKit.View {
 //        self.contentView.addSubview(self.titleLabel)
 //        self.contentView.addSubview(self.imageView)
 //        self.contentView.theme.backgroundColor = themeService.attribute { $0.lightColor }
-        self.contentView.addSubview(self.button)
+        // self.contentView.addSubview(self.button)
         self.contentView.addSubview(self.segmentedControl)
         // self.contentView.backgroundColor = .orange
     }
@@ -62,8 +62,8 @@ class SearchOptionsCell: BaseCollectionCell, ReactorKit.View {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.button.top = self.button.topWhenCenter
-        self.button.right = self.contentView.width - 20
+//        self.button.top = self.button.topWhenCenter
+//        self.button.right = self.contentView.width - 20
         self.segmentedControl.left = self.segmentedControl.leftWhenCenter
         self.segmentedControl.top = self.segmentedControl.topWhenCenter
     }
@@ -76,7 +76,7 @@ class SearchOptionsCell: BaseCollectionCell, ReactorKit.View {
     }
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
-        .init(width: width, height: 55)
+        .init(width: width, height: 44)
     }
 
 }

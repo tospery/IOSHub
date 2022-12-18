@@ -8,34 +8,28 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import BonMot
 import HiIOS
 
 class HistoryHeaderView: CollectionHeaderView {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel.init(frame: .zero)
-        label.font = .normal(16)
-        label.theme.textColor = themeService.attribute { $0.titleColor }
-        label.text = R.string.localizable.searchHistory()
+        label.attributedText = .composed(of: [
+            R.image.ic_search_history()!.template
+                .styled(with: .baselineOffset(-4)),
+            Special.space,
+            Special.space,
+            R.string.localizable.searchHistory()
+                .styled(with: .font(.normal(15)))
+        ]).styled(with: .color(.title))
         label.sizeToFit()
         return label
     }()
     
-    lazy var imageView: UIImageView = {
-        let iv = UIImageView()
-        iv.sizeToFit()
-        iv.theme.tintColor = themeService.attribute { $0.primaryColor }
-        return iv
-    }()
-    
     lazy var button: UIButton = {
         let button = UIButton.init(type: .custom)
-        button.titleLabel?.font = .normal(13)
-        button.setTitle(R.string.localizable.clearHistory(), for: .normal)
-        button.theme.titleColor(
-            from: themeService.attribute { $0.bodyColor },
-            for: .normal
-        )
+        button.setImage(R.image.ic_search_erase(), for: .normal)
         button.sizeToFit()
         return button
     }()
@@ -43,7 +37,6 @@ class HistoryHeaderView: CollectionHeaderView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(self.titleLabel)
-        self.addSubview(self.imageView)
         self.addSubview(self.button)
     }
 
@@ -53,11 +46,8 @@ class HistoryHeaderView: CollectionHeaderView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.imageView.sizeToFit()
-        self.imageView.left = 20
-        self.imageView.top = self.imageView.topWhenCenter
         self.titleLabel.sizeToFit()
-        self.titleLabel.left = self.imageView.right + 10
+        self.titleLabel.left = 20
         self.titleLabel.top = self.titleLabel.topWhenCenter
         self.button.right = self.width - 30
         self.button.top = self.button.topWhenCenter
@@ -65,18 +55,18 @@ class HistoryHeaderView: CollectionHeaderView {
     
     override func bind(reactor: BaseViewReactor, section: Int = 0) {
         super.bind(reactor: reactor, section: section)
-//        if let parent = reactor as? SearchViewReactor {
-//            parent.state
-//                .map { state -> SearchHeader? in
-//                    if state.originals.count <= section {
-//                        return nil
-//                    }
-//                    return state.originals[section].header as? SearchHeader
-//                }
-//                .distinctUntilChanged()
-//                .bind(to: self.rx.model)
-//                .disposed(by: self.disposeBag)
-//        }
+        if let parent = reactor as? NormalViewReactor {
+            parent.state
+                .map { state -> [Any] in
+                    if state.originals.count <= section {
+                        return []
+                    }
+                    return (state.originals[section].header as? BaseModel)?.data as? [Any] ?? []
+                }
+                .distinctUntilChanged { HiIOS.compareAny($0, $1) }
+                .bind(to: self.rx.info)
+                .disposed(by: self.disposeBag)
+        }
     }
     
 }
@@ -87,14 +77,22 @@ extension Reactive where Base: HistoryHeaderView {
         self.base.button.rx.tap
     }
     
-//    var model: Binder<SearchHeader?> {
-//        return Binder(self.base) { cell, model in
-//            cell.imageView.image = model?.icon
-//            cell.titleLabel.text = model?.name
-//            cell.button.isHidden = model?.name == R.string.localizable.searchHots()
-//            cell.setNeedsLayout()
-//            cell.layoutIfNeeded()
-//        }
-//    }
+    var info: Binder<[Any]> {
+        return Binder(self.base) { header, info in
+            guard info.count >= 3 else { return }
+            guard let icon = info.first as? UIImage else { return }
+            guard let title = info[1] as? String else { return }
+            guard let image = info.last as? UIImage else { return }
+            header.titleLabel.attributedText = .composed(of: [
+                icon.template.styled(with: .baselineOffset(-4)),
+                Special.space,
+                Special.space,
+                title.styled(with: .font(.normal(15)))
+            ]).styled(with: .color(.title))
+            header.button.setImage(image, for: .normal)
+            header.setNeedsLayout()
+            header.layoutIfNeeded()
+        }
+    }
 
 }
