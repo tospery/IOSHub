@@ -224,7 +224,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 29 images.
+  /// This `R.image` struct is generated, and contains static references to 31 images.
   struct image {
     /// Image `AppLogo`.
     static let appLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AppLogo")
@@ -248,10 +248,14 @@ struct R: Rswift.Validatable {
     static let ic_repo_small = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_repo_small")
     /// Image `ic_repo`.
     static let ic_repo = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_repo")
-    /// Image `ic_search_clear`.
-    static let ic_search_clear = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_search_clear")
-    /// Image `ic_search_option`.
-    static let ic_search_option = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_search_option")
+    /// Image `ic_search_erase`.
+    static let ic_search_erase = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_search_erase")
+    /// Image `ic_search_history`.
+    static let ic_search_history = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_search_history")
+    /// Image `ic_search_options`.
+    static let ic_search_options = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_search_options")
+    /// Image `ic_search_setting`.
+    static let ic_search_setting = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_search_setting")
     /// Image `ic_search`.
     static let ic_search = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_search")
     /// Image `ic_setting`.
@@ -370,16 +374,30 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ic_search_clear", bundle: ..., traitCollection: ...)`
-    static func ic_search_clear(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.ic_search_clear, compatibleWith: traitCollection)
+    /// `UIImage(named: "ic_search_erase", bundle: ..., traitCollection: ...)`
+    static func ic_search_erase(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_search_erase, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ic_search_option", bundle: ..., traitCollection: ...)`
-    static func ic_search_option(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.ic_search_option, compatibleWith: traitCollection)
+    /// `UIImage(named: "ic_search_history", bundle: ..., traitCollection: ...)`
+    static func ic_search_history(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_search_history, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_search_options", bundle: ..., traitCollection: ...)`
+    static func ic_search_options(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_search_options, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_search_setting", bundle: ..., traitCollection: ...)`
+    static func ic_search_setting(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_search_setting, compatibleWith: traitCollection)
     }
     #endif
 
@@ -493,7 +511,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 70 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 71 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -567,6 +585,8 @@ struct R: Rswift.Validatable {
       static let searchHistory = Rswift.StringResource(key: "Search History", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 搜索您想要的内容
       static let searchHint = Rswift.StringResource(key: "Search.Hint", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 搜索选项
+      static let searchOptions = Rswift.StringResource(key: "Search Options", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 收藏
       static let stars = Rswift.StringResource(key: "Stars", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 数据解析异常
@@ -1104,6 +1124,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Search.Hint", bundle: bundle, comment: "")
+      }
+
+      /// Value: 搜索选项
+      static func searchOptions(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search Options", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search Options"
+        }
+
+        return NSLocalizedString("Search Options", bundle: bundle, comment: "")
       }
 
       /// Value: 收藏

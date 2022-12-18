@@ -31,17 +31,17 @@ class SearchTitleView: BaseView {
         return field
     }()
     
-    lazy var button: UIButton = {
-        let button = UIButton.init(type: .custom)
-        button.titleLabel?.font = .normal(15)
-        button.setTitle(R.string.localizable.cancel(), for: .normal)
-        button.theme.titleColor(
-            from: themeService.attribute { $0.primaryColor },
-            for: .normal
-        )
-        button.sizeToFit()
-        return button
-    }()
+//    lazy var button: UIButton = {
+//        let button = UIButton.init(type: .custom)
+//        button.titleLabel?.font = .normal(15)
+//        button.setTitle(R.string.localizable.cancel(), for: .normal)
+//        button.theme.titleColor(
+//            from: themeService.attribute { $0.primaryColor },
+//            for: .normal
+//        )
+//        button.sizeToFit()
+//        return button
+//    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,7 +49,7 @@ class SearchTitleView: BaseView {
         self.layerCornerRadius = intrinsicContentSize.height / 2.f
         self.theme.backgroundColor = themeService.attribute { $0.lightColor }
         self.addSubview(self.textField)
-        self.addSubview(self.button)
+        //self.addSubview(self.button)
     }
     
     required init?(coder: NSCoder) {
@@ -62,8 +62,8 @@ class SearchTitleView: BaseView {
         self.textField.height = self.height
         self.textField.left = self.textField.leftWhenCenter
         self.textField.top = self.textField.topWhenCenter
-        self.button.top = self.button.topWhenCenter
-        self.button.right = self.textField.right
+//        self.button.top = self.button.topWhenCenter
+//        self.button.right = self.textField.right
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {

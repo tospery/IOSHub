@@ -17,7 +17,7 @@ class SearchOptionsCell: BaseCollectionCell, ReactorKit.View {
     
     lazy var button: UIButton = {
         let button = UIButton.init(type: .custom)
-        button.setImage(R.image.ic_search_option(), for: .normal)
+        button.setImage(R.image.ic_search_setting(), for: .normal)
         button.sizeToFit()
         return button
     }()

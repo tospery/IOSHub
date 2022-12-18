@@ -37,7 +37,6 @@ class HistoryKeywordsCell: BaseCollectionCell, ReactorKit.View {
         super.init(frame: frame)
         self.contentView.addSubview(self.tagView)
         self.contentView.clipsToBounds = true
-        self.contentView.backgroundColor = .red
     }
 
     required init?(coder: NSCoder) {
@@ -77,7 +76,7 @@ class HistoryKeywordsCell: BaseCollectionCell, ReactorKit.View {
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
 //        guard let id = (item as? SearchKeywordItem)?.currentState.id else { return .zero }
 //        return .init(width: width, height: id == R.string.localizable.searchHistory() ? 40 : 120)
-        .init(width: width, height: 100)
+        .init(width: width, height: 76)
     }
 
 }
