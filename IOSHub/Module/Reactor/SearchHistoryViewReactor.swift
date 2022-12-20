@@ -1,5 +1,5 @@
 //
-//  HistoryViewReactor.swift
+//  SearchHistoryViewReactor.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/12/3.
@@ -13,7 +13,7 @@ import URLNavigator
 import Rswift
 import HiIOS
 
-class HistoryViewReactor: NormalViewReactor {
+class SearchHistoryViewReactor: NormalViewReactor {
     
     required init(_ provider: HiIOS.ProviderType, _ parameters: [String: Any]?) {
         super.init(provider, parameters)
@@ -43,7 +43,7 @@ class HistoryViewReactor: NormalViewReactor {
                     R.string.localizable.searchHistory(),
                     R.image.ic_search_erase()!
                 ]),
-                models: [BaseModel.init(SectionItemValue.historyKeywords)]
+                models: [BaseModel.init(SectionItemValue.searchKeywords)]
             )
         ])
     }

@@ -1,5 +1,5 @@
 //
-//  HistoryKeywordsItem.swift
+//  SearchKeywordsItem.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/12/17.
@@ -13,7 +13,7 @@ import URLNavigator
 import Rswift
 import HiIOS
 
-class HistoryKeywordsItem: BaseCollectionItem, ReactorKit.Reactor {
+class SearchKeywordsItem: BaseCollectionItem, ReactorKit.Reactor {
 
     enum Action {
         case keywords([String])

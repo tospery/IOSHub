@@ -268,7 +268,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
                     switch value {
                     case .appInfo: return .appInfo(.init($0))
                     case .searchOptions: return .searchOptions(.init($0))
-                    case .historyKeywords: return .historyKeywords(.init($0))
+                    case .searchKeywords: return .searchKeywords(.init($0))
                     }
                 }
                 if $0 is Repo {

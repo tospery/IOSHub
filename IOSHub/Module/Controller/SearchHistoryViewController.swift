@@ -1,5 +1,5 @@
 //
-//  HistoryViewController.swift
+//  SearchHistoryViewController.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/12/3.
@@ -17,7 +17,7 @@ import RxDataSources
 import RxGesture
 import HiIOS
 
-class HistoryViewController: NormalViewController {
+class SearchHistoryViewController: NormalViewController {
     
     lazy var searchView: SearchTitleView = {
         let view = SearchTitleView.init(frame: .zero)
@@ -87,7 +87,7 @@ class HistoryViewController: NormalViewController {
 
 }
 
-extension HistoryViewController: UITextFieldDelegate {
+extension SearchHistoryViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let keyword = textField.text, keyword.isNotEmpty {

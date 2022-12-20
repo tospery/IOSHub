@@ -1,5 +1,5 @@
 //
-//  HistoryHeaderView.swift
+//  SearchHistoryHeaderView.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/12/17.
@@ -11,7 +11,7 @@ import RxCocoa
 import BonMot
 import HiIOS
 
-class HistoryHeaderView: CollectionHeaderView {
+class SearchHistoryHeaderView: CollectionHeaderView {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel.init(frame: .zero)
@@ -71,7 +71,7 @@ class HistoryHeaderView: CollectionHeaderView {
     
 }
 
-extension Reactive where Base: HistoryHeaderView {
+extension Reactive where Base: SearchHistoryHeaderView {
 
     var clear: ControlEvent<Void> {
         self.base.button.rx.tap

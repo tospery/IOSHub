@@ -1,5 +1,5 @@
 //
-//  HistoryKeywordsCell.swift
+//  SearchKeywordsCell.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/12/17.
@@ -14,7 +14,7 @@ import Rswift
 import TagListView
 import HiIOS
 
-class HistoryKeywordsCell: BaseCollectionCell, ReactorKit.View {
+class SearchKeywordsCell: BaseCollectionCell, ReactorKit.View {
     
     let tagSubject = PublishSubject<String>()
     
@@ -55,7 +55,7 @@ class HistoryKeywordsCell: BaseCollectionCell, ReactorKit.View {
         self.tagView.top = 0
     }
 
-    func bind(reactor: HistoryKeywordsItem) {
+    func bind(reactor: SearchKeywordsItem) {
         super.bind(item: reactor)
         if let parent = reactor.parent as? NormalViewReactor {
             parent.state.map { $0.keywords }
@@ -81,13 +81,13 @@ class HistoryKeywordsCell: BaseCollectionCell, ReactorKit.View {
 
 }
 
-extension HistoryKeywordsCell: TagListViewDelegate {
+extension SearchKeywordsCell: TagListViewDelegate {
     func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
         self.tagSubject.onNext(title)
     }
 }
 
-extension Reactive where Base: HistoryKeywordsCell {
+extension Reactive where Base: SearchKeywordsCell {
     var select: ControlEvent<String> {
         ControlEvent(events: self.base.tagSubject)
     }

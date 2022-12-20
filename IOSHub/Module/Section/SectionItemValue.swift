@@ -11,7 +11,7 @@ enum SectionItemValue {
     case appInfo
     // case milestone
     case searchOptions
-    case historyKeywords
+    case searchKeywords
 }
 
 extension SectionItemValue: CustomStringConvertible {
@@ -19,7 +19,7 @@ extension SectionItemValue: CustomStringConvertible {
         switch self {
         case .appInfo: return "appInfo"
         case .searchOptions: return "searchOptions"
-        case .historyKeywords: return "historyKeywords"
+        case .searchKeywords: return "searchKeywords"
         }
     }
 }

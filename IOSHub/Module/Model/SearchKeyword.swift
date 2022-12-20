@@ -15,7 +15,7 @@ import HiIOS
 import ReusableKit_Hi
 import ObjectMapper_Hi
 
-struct History: Subjective, Eventable {
+struct SearchKeyword: Subjective, Eventable {
     
     enum Event {
     }
