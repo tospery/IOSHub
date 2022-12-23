@@ -65,6 +65,9 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                     let cell = collectionView.dequeue(Reusable.searchKeywordsCell, for: indexPath)
                     item.parent = self.reactor
                     cell.reactor = item
+                    cell.rx.select
+                        .subscribeNext(weak: self, type(of: self).tapKeyword)
+                        .disposed(by: cell.disposeBag)
                     return cell
                 }
             },
@@ -317,6 +320,22 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
 //            self.handleSimple(simple: simple)
         default:
             log("不需要处理的Item: \(sectionItem)")
+        }
+    }
+    
+    func tapKeyword(keyword: String) {
+        if keyword.isEmpty {
+            return
+        }
+        self.navigator.push(
+            Router.shared.urlString(host: .search, parameters: [
+                Parameter.keyword: keyword
+            ]),
+            animated: false
+        )
+        if var vcs = self.navigationController?.viewControllers {
+            vcs.removeFirst()
+            self.navigationController?.setViewControllers(vcs, animated: false)
         }
     }
     

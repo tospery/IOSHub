@@ -45,6 +45,10 @@ final class AppDependency: HiIOS.AppDependency {
 //        let url = "http://localhost:5000/MovieComparer?film=1&film=2&film=3".url!
 //        let value = url.queryValue(for: "film")
         log("环境参数: \(envParameters)", module: .common)
+//        var config = Configuration.current!
+//        config.keywords = ["abc", "123"]
+//        Subjection.update(Configuration.self, config, true)
+//        var aaa = Configuration.current!
         log("用户参数: \(userParameters)", module: .common)
 //        self.provider.starredRepos(username: "tospery", page: 1)
 //            .asObservable()

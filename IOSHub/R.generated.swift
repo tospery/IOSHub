@@ -511,7 +511,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 71 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 72 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -629,6 +629,8 @@ struct R: Rswift.Validatable {
       static let oK = Rswift.StringResource(key: "OK", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 确定
       static let sure = Rswift.StringResource(key: "Sure", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 确定清除搜索历史？
+      static let alertEraseMessage = Rswift.StringResource(key: "Alert.Erase.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 确定退出登录？
       static let alertLogoutMessage = Rswift.StringResource(key: "Alert.Logout.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 简介
@@ -1410,6 +1412,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Sure", bundle: bundle, comment: "")
+      }
+
+      /// Value: 确定清除搜索历史？
+      static func alertEraseMessage(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Alert.Erase.Message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Alert.Erase.Message"
+        }
+
+        return NSLocalizedString("Alert.Erase.Message", bundle: bundle, comment: "")
       }
 
       /// Value: 确定退出登录？

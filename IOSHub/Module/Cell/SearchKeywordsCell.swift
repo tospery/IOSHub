@@ -18,7 +18,6 @@ class SearchKeywordsCell: BaseCollectionCell, ReactorKit.View {
     
     let tagSubject = PublishSubject<String>()
     
-    // tagListView
     lazy var tagView: TagListView = {
         let view = TagListView.init(frame: .zero)
         view.paddingX = 20
@@ -58,7 +57,7 @@ class SearchKeywordsCell: BaseCollectionCell, ReactorKit.View {
     func bind(reactor: SearchKeywordsItem) {
         super.bind(item: reactor)
         if let parent = reactor.parent as? NormalViewReactor {
-            parent.state.map { $0.keywords }
+            parent.state.map { $0.configuration.keywords }
                 .distinctUntilChanged()
                 .map { Reactor.Action.keywords($0) }
                 .bind(to: reactor.action)
@@ -74,8 +73,6 @@ class SearchKeywordsCell: BaseCollectionCell, ReactorKit.View {
     }
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
-//        guard let id = (item as? SearchKeywordItem)?.currentState.id else { return .zero }
-//        return .init(width: width, height: id == R.string.localizable.searchHistory() ? 40 : 120)
         .init(width: width, height: 76)
     }
 

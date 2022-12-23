@@ -71,9 +71,27 @@ class SearchHistoryViewController: NormalViewController {
             for: indexPath
         )
         header.bind(reactor: self.reactor!, section: indexPath.section)
-//        header.rx.clear
-//            .subscribeNext(weak: self, type(of: self).clear)
+//        header.rx.operate
+//            .flatMap { [weak self] _  -> Observable<Any> in
+//                guard let `self` = self else { fatalError() }
+//                self.searchView.textField.resignFirstResponder()
+//                return self.navigator.rxAlert(
+//                    "",
+//                    R.string.localizable.alertEraseMessage(),
+//                    [
+//                        IHAlertAction.cancel,
+//                        IHAlertAction.default
+//                    ]
+//                )
+//            }
+//            .subscribeNext(weak: self, type(of: self).operate)
 //            .disposed(by: header.rx.disposeBag)
+        header.rx.operate
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                self.operate(indexPath.section)
+            })
+            .disposed(by: header.rx.disposeBag)
         return header
     }
     
@@ -85,18 +103,36 @@ class SearchHistoryViewController: NormalViewController {
         .init(width: collectionView.sectionWidth(at: section), height: 50)
     }
 
+    func operate(_ section: Int) {
+        if section == 0 {
+            return
+        }
+        self.searchView.textField.resignFirstResponder()
+        self.navigator.rxAlert(
+            "",
+            R.string.localizable.alertEraseMessage(),
+            [
+                IHAlertAction.cancel,
+                IHAlertAction.default
+            ]
+        ).subscribe(onNext: { [weak self] action in
+            guard let `self` = self else { return }
+            self.searchView.textField.becomeFirstResponder()
+            guard let action = action as? IHAlertAction, action == IHAlertAction.default else { return }
+            var configuration = self.reactor?.currentState.configuration
+            configuration?.keywords = []
+            Subjection.update(Configuration.self, configuration, true)
+            self.reactor?.action.onNext(.reload)
+        }).disposed(by: self.disposeBag)
+    }
+    
 }
 
 extension SearchHistoryViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let keyword = textField.text, keyword.isNotEmpty {
-//            self.navigator.push(
-//                Router.shared.urlString(host: .result, parameters: [
-//                    Parameter.keyword: keyword
-//                ]),
-//                animated: false
-//            )
+            self.tapKeyword(keyword: keyword)
             return true
         }
         return false

@@ -73,7 +73,7 @@ class SearchHistoryHeaderView: CollectionHeaderView {
 
 extension Reactive where Base: SearchHistoryHeaderView {
 
-    var clear: ControlEvent<Void> {
+    var operate: ControlEvent<Void> {
         self.base.button.rx.tap
     }
     

@@ -15,31 +15,42 @@ import HiIOS
 
 class SearchViewReactor: NormalViewReactor {
     
-    required init(_ provider: HiIOS.ProviderType, _ parameters: [String: Any]?) {
-        super.init(provider, parameters)
-        self.initialState = State(
-        )
+    var keyword = "" {
+        didSet {
+            self.saveKeyword()
+        }
     }
     
-//    override func loadData(_ page: Int) -> Observable<[SectionData]> {
-//        .just([
-//            (
-//                header: BaseModel.init([
-//                    R.image.ic_search_options()!,
-//                    R.string.localizable.searchOptions(),
-//                    R.image.ic_search_setting()!
-//                ]),
-//                models: [BaseModel.init(SectionItemValue.searchOptions)]
-//            ),
-//            (
-//                header: BaseModel.init([
-//                    R.image.ic_search_history()!,
-//                    R.string.localizable.searchHistory(),
-//                    R.image.ic_search_erase()!
-//                ]),
-//                models: [BaseModel.init(SectionItemValue.historyKeywords)]
-//            )
-//        ])
-//    }
+    required init(_ provider: HiIOS.ProviderType, _ parameters: [String: Any]?) {
+        super.init(provider, parameters)
+        self.pageStart = 0
+        self.pageIndex = self.pageStart
+        self.keyword = parameters?.string(for: Parameter.keyword) ?? ""
+        self.saveKeyword()
+    }
+    
+    override func loadData(_ page: Int) -> Observable<[SectionData]> {
+        .create { [weak self] observer -> Disposable in
+            guard let `self` = self else { fatalError() }
+            return self.provider.searchRepos(
+                keyword: self.keyword,
+                sort: .stars,
+                order: .desc,
+                page: page
+            )
+                .asObservable()
+                .map { [(header: nil, models: $0)] }
+                .subscribe(observer)
+        }
+    }
 
+    func saveKeyword() {
+        var configuration = self.currentState.configuration
+        var keywords = configuration.keywords
+        keywords.removeFirst { $0 == self.keyword }
+        keywords.insert(self.keyword, at: 0)
+        configuration.keywords = keywords
+        Subjection.update(Configuration.self, configuration, true)
+    }
+    
 }

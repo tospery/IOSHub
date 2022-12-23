@@ -21,6 +21,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         case refresh
         case loadMore
         case reload
+        // case erase
         case activate(Any?)
         case target(String)
     }
@@ -31,7 +32,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         case setLoadingMore(Bool)
         case setActivating(Bool)
         case setTitle(String?)
-        case setKeywords([String])
+        // case setKeywords([String])
         case setError(Error?)
         case setUser(User?)
         case setConfiguration(Configuration)
@@ -48,7 +49,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         var noMoreData = false
         var error: Error?
         var title: String?
-        var keywords = [String].init()
+        // var keywords = [String].init()
         var user = User.current
         var configuration = Configuration.current!
         var target: String?
@@ -80,6 +81,8 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
             return self.loadMore()
         case .reload:
             return self.reload()
+//        case .erase:
+//            return self.erase()
         case let .activate(data):
             return self.activate(data)
         case let .target(target):
@@ -108,8 +111,8 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
             newState.error = error
         case let .setUser(user):
             newState.user = user
-        case let .setKeywords(keywords):
-            newState.keywords = keywords
+//        case let .setKeywords(keywords):
+//            newState.keywords = keywords
         case let .setConfiguration(configuration):
             newState.configuration = configuration
         case let .setTarget(target):
@@ -151,6 +154,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
     // MARK: - actions
     func load() -> Observable<Mutation> {
         return Observable.concat([
+            .just(.initial([])),
             .just(.setError(nil)),
             .just(.setLoading(true)),
             self.loadDependency(),
@@ -223,6 +227,18 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
     func reload() -> Observable<Mutation> {
         self.load()
     }
+    
+//    func erase() -> Observable<Mutation> {
+//        .concat([
+//            self.reload()
+//        ]).catch({
+//            .concat([
+//                .just(.initial([])),
+//                .just(.setError($0)),
+//                .just(.setLoading(false))
+//            ])
+//        })
+//    }
     
     func business(_ data: Any?) -> Observable<Mutation> {
         .empty()
@@ -305,6 +321,21 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
     func loadExtra() -> Observable<Mutation> {
         .empty()
     }
+    
+//    // MARK: - other
+//    func eraseAlert() -> Observable<Mutation> {
+//        let alert = AppDependency.shared.navigator.rxAlert(
+//            "",
+//            R.string.localizable.alertLogoutMessage(),
+//            [
+//                IHAlertAction.cancel,
+//                IHAlertAction.default
+//            ]
+//        ).flatMap { action -> Observable<Mutation> in
+//            <#code#>
+//        }
+//        return .empty()
+//    }
     
 }
 
