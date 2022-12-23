@@ -49,7 +49,7 @@ class SearchViewController: NormalViewController {
             .subscribeNext(weak: self, type(of: self).navBack)
             .disposed(by: self.disposeBag)
         self.navigationBar.titleView = self.searchView
-        self.searchView.textField.becomeFirstResponder()
+        // self.searchView.textField.becomeFirstResponder()
         self.navigationBar.theme.rightItemColor = themeService.attribute { $0.primaryColor }
         self.collectionView.theme.backgroundColor = themeService.attribute { $0.backgroundColor }
     }
