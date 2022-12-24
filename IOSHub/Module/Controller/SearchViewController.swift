@@ -74,13 +74,13 @@ class SearchViewController: NormalViewController {
 //        return header
 //    }
     
-    override func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        referenceSizeForHeaderInSection section: Int
-    ) -> CGSize {
-        .init(width: collectionView.sectionWidth(at: section), height: 50)
-    }
+//    override func collectionView(
+//        _ collectionView: UICollectionView,
+//        layout collectionViewLayout: UICollectionViewLayout,
+//        referenceSizeForHeaderInSection section: Int
+//    ) -> CGSize {
+//        .init(width: collectionView.sectionWidth(at: section), height: 50)
+//    }
 
 }
 

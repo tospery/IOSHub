@@ -511,7 +511,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 72 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 75 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -539,12 +539,18 @@ struct R: Rswift.Validatable {
       static let noneRepo = Rswift.StringResource(key: "None.Repo", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: No location provided
       static let noneLocation = Rswift.StringResource(key: "None.Location", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Organization
+      static let organization = Rswift.StringResource(key: "Organization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Personal Access Token
       static let loginPersonalToken = Rswift.StringResource(key: "Login.Personal.Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Repositores
       static let repositores = Rswift.StringResource(key: "Repositores", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Repository
+      static let repository = Rswift.StringResource(key: "Repository", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Since
       static let since = Rswift.StringResource(key: "Since", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: User
+      static let user = Rswift.StringResource(key: "User", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Users
       static let users = Rswift.StringResource(key: "Users", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 个人主页
@@ -829,6 +835,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("None.Location", bundle: bundle, comment: "")
       }
 
+      /// Value: Organization
+      static func organization(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Organization", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Organization"
+        }
+
+        return NSLocalizedString("Organization", bundle: bundle, comment: "")
+      }
+
       /// Value: Personal Access Token
       static func loginPersonalToken(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
@@ -855,6 +874,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Repositores", bundle: bundle, comment: "")
       }
 
+      /// Value: Repository
+      static func repository(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository"
+        }
+
+        return NSLocalizedString("Repository", bundle: bundle, comment: "")
+      }
+
       /// Value: Since
       static func since(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
@@ -866,6 +898,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Since", bundle: bundle, comment: "")
+      }
+
+      /// Value: User
+      static func user(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("User", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "User"
+        }
+
+        return NSLocalizedString("User", bundle: bundle, comment: "")
       }
 
       /// Value: Users

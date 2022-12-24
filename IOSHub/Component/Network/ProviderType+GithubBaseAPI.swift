@@ -35,6 +35,18 @@ extension ProviderType {
         )
     }
     
+    /// 仓库详情
+    /// - API: https://docs.github.com/rest/reference/repos#get-a-repository
+    /// - Demo: https://api.github.com/repos/ReactiveX/RxSwift
+    func repo(username: String, reponame: String) -> Single<Repo> {
+        networking.requestObject(
+            MultiTarget.init(
+                GithubBaseAPI.repo(username: username, reponame: reponame)
+            ),
+            type: Repo.self
+        )
+    }
+    
     /// 用户关注的仓库列表
     /// - API: https://docs.github.com/en/rest/reference/activity#list-repositories-starred-by-a-user
     /// - Demo: https://api.github.com/users/tospery/starred?page=1&per_page=20

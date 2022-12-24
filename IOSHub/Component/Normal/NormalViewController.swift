@@ -17,6 +17,7 @@ import ObjectMapper_Hi
 import RxDataSources
 import RxGesture
 
+// swiftlint:disable type_body_length
 class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
     
     struct Reusable {
@@ -318,6 +319,11 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
 //                return
 //            }
 //            self.handleSimple(simple: simple)
+        case let .repo(item):
+            guard let repo = item.model as? Repo else { return }
+            guard let username = repo.owner.username, username.isNotEmpty else { return }
+            guard let reponame = repo.name, reponame.isNotEmpty else { return }
+            self.navigator.forward(Router.shared.urlString(host: .repo, path: "\(username)/\(reponame)"))
         default:
             log("不需要处理的Item: \(sectionItem)")
         }
@@ -396,3 +402,4 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
     }
 
 }
+// swiftlint:enable type_body_length

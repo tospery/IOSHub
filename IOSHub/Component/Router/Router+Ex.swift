@@ -21,6 +21,7 @@ extension Router.Host {
     static var about: Router.Host { "about" }
     static var repos: Router.Host { "repos" }
     static var users: Router.Host { "users" }
+    static var repo: Router.Host { "repo" }
 }
 
 extension Router.Path {
@@ -46,17 +47,26 @@ extension Router: RouterCompatible {
         }
     }
     
-    public func hasType(host: Router.Host) -> Bool {
-        switch host {
-        case .popup: return true
-        default: return false
-        }
-    }
+//    public func hasType(host: Router.Host) -> Bool {
+//        switch host {
+//        case .popup: return true
+//        default: return false
+//        }
+//    }
+//
+//    public func forDetail(host: Router.Host) -> Bool {
+//        switch host {
+//        case .user: return true
+//        default: return false
+//        }
+//    }
     
-    public func forDetail(host: Router.Host) -> Bool {
+    public func customPattern(host: Router.Host) -> String {
         switch host {
-        case .user: return true
-        default: return false
+        case .repo:
+            return "\(UIApplication.shared.urlScheme)://\(host)/<username>/<reponame>"
+        default:
+            return "\(UIApplication.shared.urlScheme)://\(host)"
         }
     }
     

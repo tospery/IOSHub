@@ -13,6 +13,7 @@ import HiIOS
 enum GithubBaseAPI {
     case login(token: String)
     case user(username: String)
+    case repo(username: String, reponame: String)
     case userRepos(username: String, page: Int)
     case starredRepos(username: String, page: Int)
     case searchRepos(keyword: String, sort: Sort, order: Order, page: Int)
@@ -29,6 +30,7 @@ extension GithubBaseAPI: TargetType {
         switch self {
         case .login: return "/user"
         case let .user(username): return "/users/\(username)"
+        case let .repo(username, reponame): return "/repos/\(username)/\(reponame)"
         case let .userRepos(username, _): return "/users/\(username)/repos"
         case let .starredRepos(username, _): return "/users/\(username)/starred"
         case .searchRepos: return "/search/repositories"

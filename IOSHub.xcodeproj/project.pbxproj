@@ -122,6 +122,8 @@
 		91C267EA28EB310300DD5677 /* SectionItemValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E928EB310300DD5677 /* SectionItemValue.swift */; };
 		91C267EC28EB326C00DD5677 /* Simple+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267EB28EB326C00DD5677 /* Simple+Ex.swift */; };
 		91C267EE28EB33A800DD5677 /* Configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 91C267ED28EB33A800DD5677 /* Configuration.json */; };
+		91E672402957108E00F8E227 /* RepoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E6723F2957108E00F8E227 /* RepoViewReactor.swift */; };
+		91E672422957109C00F8E227 /* RepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E672412957109C00F8E227 /* RepoViewController.swift */; };
 		91FF7C7C293BA2B10045971B /* SearchHistoryViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF7C7B293BA2B10045971B /* SearchHistoryViewReactor.swift */; };
 		91FF7C7E293BA2C20045971B /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF7C7D293BA2C20045971B /* SearchHistoryViewController.swift */; };
 /* End PBXBuildFile section */
@@ -255,6 +257,8 @@
 		91C267E928EB310300DD5677 /* SectionItemValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionItemValue.swift; sourceTree = "<group>"; };
 		91C267EB28EB326C00DD5677 /* Simple+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Simple+Ex.swift"; sourceTree = "<group>"; };
 		91C267ED28EB33A800DD5677 /* Configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Configuration.json; sourceTree = "<group>"; };
+		91E6723F2957108E00F8E227 /* RepoViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoViewReactor.swift; sourceTree = "<group>"; };
+		91E672412957109C00F8E227 /* RepoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoViewController.swift; sourceTree = "<group>"; };
 		91FF7C7B293BA2B10045971B /* SearchHistoryViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewReactor.swift; sourceTree = "<group>"; };
 		91FF7C7D293BA2C20045971B /* SearchHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewController.swift; sourceTree = "<group>"; };
 		92D09778F1C04DA23DCECE8E /* Pods_IOSHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOSHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -490,6 +494,7 @@
 				910B42FA293A629E000719BA /* UsersViewController.swift */,
 				91FF7C7D293BA2C20045971B /* SearchHistoryViewController.swift */,
 				91209402294ED33A002C593F /* SearchViewController.swift */,
+				91E672412957109C00F8E227 /* RepoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -557,6 +562,7 @@
 				910B42F8293A628E000719BA /* UsersViewReactor.swift */,
 				91FF7C7B293BA2B10045971B /* SearchHistoryViewReactor.swift */,
 				91209400294ED328002C593F /* SearchViewReactor.swift */,
+				91E6723F2957108E00F8E227 /* RepoViewReactor.swift */,
 			);
 			path = Reactor;
 			sourceTree = "<group>";
@@ -867,6 +873,7 @@
 				910B42FB293A629E000719BA /* UsersViewController.swift in Sources */,
 				8C9A45B72887F6F30041937A /* Router+Ex.swift in Sources */,
 				91B9DCCA2935F8D200CD2E1B /* User+Ex.swift in Sources */,
+				91E672402957108E00F8E227 /* RepoViewReactor.swift in Sources */,
 				910B42ED293A2A5E000719BA /* TrendingViewReactor+Ex.swift in Sources */,
 				8C9A45CE2887F6F40041937A /* Router+Dialog.swift in Sources */,
 				8C9A45B52887F6F30041937A /* Parameter+Ex.swift in Sources */,
@@ -880,6 +887,7 @@
 				8C9A45BD2887F6F30041937A /* ScrollViewController+Ex.swift in Sources */,
 				9110A0BE2932C4C500B09DB1 /* Router+Dialog+Popup.swift in Sources */,
 				9154BF97294CE1EF003BC1F3 /* SearchKeywordsItem.swift in Sources */,
+				91E672422957109C00F8E227 /* RepoViewController.swift in Sources */,
 				9110A0B32932C03700B09DB1 /* Date+Ex.swift in Sources */,
 				910B42F1293A2C51000719BA /* Page.swift in Sources */,
 				8C9A45B82887F6F30041937A /* Storable+Ex.swift in Sources */,

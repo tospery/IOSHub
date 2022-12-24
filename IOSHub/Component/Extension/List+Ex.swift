@@ -14,8 +14,7 @@ extension List: ListCompatible {
     public func hasNext(map: Map) -> Bool {
         var hasNext: Bool?
         hasNext   <- map["incomplete_results"]
-        // return hasNext != nil ? !hasNext! : false
-        return hasNext ?? false
+        return !(hasNext ?? false)
     }
     
     public func count(map: Map) -> Int {

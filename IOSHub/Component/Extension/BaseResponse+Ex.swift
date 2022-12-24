@@ -15,9 +15,7 @@ extension BaseResponse: ResponseCompatible {
     public func code(map: Map) -> Int {
         var code: Int?
         code        <- map["code"]
-        if code == nil {
-            code = -1
-        }
+        code = code == nil ? -1 : code
         return code == 0 ? ErrorCode.ok : code!
     }
     
@@ -34,6 +32,15 @@ extension BaseResponse: ResponseCompatible {
     }
     
     public func code(_ target: TargetType) -> Int {
+        guard let multi = target as? MultiTarget else { return self.code }
+        if let api = multi.target as? GithubBaseAPI {
+            switch api {
+            case .searchRepos, .searchUsers:
+                return ErrorCode.ok
+            default:
+                return self.code
+            }
+        }
         return self.code
     }
     
@@ -42,6 +49,15 @@ extension BaseResponse: ResponseCompatible {
     }
     
     public func data(_ target: TargetType) -> Any? {
+        guard let multi = target as? MultiTarget else { return self.data }
+        if let api = multi.target as? GithubBaseAPI {
+            switch api {
+            case .searchRepos, .searchUsers:
+                return self.json
+            default:
+                return self.data
+            }
+        }
         return self.data
     }
 

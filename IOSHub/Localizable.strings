@@ -27,6 +27,9 @@
 "Stars" = "收藏";
 "Mine" = "我的";
 "Trending" = "趋势";
+"Repository" = "Repository";
+"User" = "User";
+"Organization" = "Organization";
 /* 词语 */
 "Exit Login" = "退出登录";
 "No Description" = "No Description";
