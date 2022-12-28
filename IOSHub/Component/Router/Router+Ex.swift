@@ -47,29 +47,6 @@ extension Router: RouterCompatible {
         }
     }
     
-//    public func hasType(host: Router.Host) -> Bool {
-//        switch host {
-//        case .popup: return true
-//        default: return false
-//        }
-//    }
-//
-//    public func forDetail(host: Router.Host) -> Bool {
-//        switch host {
-//        case .user: return true
-//        default: return false
-//        }
-//    }
-    
-    public func customPattern(host: Router.Host) -> String {
-        switch host {
-        case .repo:
-            return "\(UIApplication.shared.urlScheme)://\(host)/<username>/<reponame>"
-        default:
-            return "\(UIApplication.shared.urlScheme)://\(host)"
-        }
-    }
-    
     public func needLogin(host: Router.Host, path: Router.Path?) -> Bool {
         switch host {
         case .stars: return true

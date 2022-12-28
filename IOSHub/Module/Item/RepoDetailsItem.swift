@@ -1,8 +1,8 @@
 //
-//  RepoItem.swift
+//  RepoDetailsItem.swift
 //  IOSHub
 //
-//  Created by 杨建祥 on 2022/11/29.
+//  Created by 杨建祥 on 2022/12/28.
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import URLNavigator
 import Rswift
 import HiIOS
 
-class RepoItem: BaseCollectionItem, ReactorKit.Reactor {
+class RepoDetailsItem: BaseCollectionItem, ReactorKit.Reactor {
 
     typealias Action = NoAction
     typealias Mutation = NoMutation
@@ -35,3 +35,4 @@ class RepoItem: BaseCollectionItem, ReactorKit.Reactor {
     }
     
 }
+

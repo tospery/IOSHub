@@ -288,7 +288,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
                     }
                 }
                 if $0 is Repo {
-                    return .repo(.init($0))
+                    return .repoSummary(.init($0))
                 }
                 if $0 is User {
                     return .user(.init($0))

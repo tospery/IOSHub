@@ -14,7 +14,8 @@ import HiIOS
 enum SectionItem: IdentifiableType, Equatable {
     case simple(SimpleItem)
     case appInfo(AppInfoItem)
-    case repo(RepoItem)
+    case repoSummary(RepoSummaryItem)
+    case repoDetails(RepoDetailsItem)
     case user(UserItem)
     case searchOptions(SearchOptionsItem)
     case searchKeywords(SearchKeywordsItem)
@@ -24,7 +25,8 @@ enum SectionItem: IdentifiableType, Equatable {
         switch self {
         case let .simple(item): string = item.description
         case let .appInfo(item): string = item.description
-        case let .repo(item): string = item.description
+        case let .repoSummary(item): string = item.description
+        case let .repoDetails(item): string = item.description
         case let .user(item): string = item.description
         case let .searchOptions(item): string = item.description
         case let .searchKeywords(item): string = item.description

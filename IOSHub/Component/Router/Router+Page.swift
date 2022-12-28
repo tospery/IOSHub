@@ -50,7 +50,7 @@ extension Router {
         navigator.register(self.urlPattern(host: .search)) { url, values, context in
             SearchViewController(navigator, SearchViewReactor(provider, self.parameters(url, values, context)))
         }
-        navigator.register(self.urlPattern(host: .repo)) { url, values, context in
+        navigator.register(self.urlPattern(host: .repo, placeholder: "<username>/<reponame>")) { url, values, context in
             RepoViewController(navigator, RepoViewReactor(provider, self.parameters(url, values, context)))
         }
     }
