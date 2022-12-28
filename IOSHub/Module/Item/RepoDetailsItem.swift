@@ -35,4 +35,3 @@ class RepoDetailsItem: BaseCollectionItem, ReactorKit.Reactor {
     }
     
 }
-

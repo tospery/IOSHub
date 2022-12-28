@@ -52,6 +52,8 @@ final class AppDependency: HiIOS.AppDependency {
         log("用户参数: \(userParameters)", module: .common)
 //        self.provider.starredRepos(username: "tospery", page: 1)
 //            .asObservable()
+//        self.provider.repo(username: "skyzh", reponame: "mini-lsm")
+//            .asObservable()
 //            .subscribe(onNext: { repos in
 //                let aaa = repos
 //                log("")

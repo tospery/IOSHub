@@ -101,6 +101,9 @@
 		915F10142937ABFE009413D6 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915F10132937ABFE009413D6 /* EventViewController.swift */; };
 		91A49934295C7A1A0090EC30 /* RepoDetailsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A49933295C7A1A0090EC30 /* RepoDetailsItem.swift */; };
 		91A49936295C7A250090EC30 /* RepoDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A49935295C7A250090EC30 /* RepoDetailsCell.swift */; };
+		91A49939295C81BD0090EC30 /* Readme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A49938295C81BD0090EC30 /* Readme.swift */; };
+		91A4993B295C81E10090EC30 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4993A295C81E10090EC30 /* Link.swift */; };
+		91A4993D295C81EF0090EC30 /* Href.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4993C295C81EF0090EC30 /* Href.swift */; };
 		91B9DCC62935F8C200CD2E1B /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCC52935F8C200CD2E1B /* Repo.swift */; };
 		91B9DCC82935F8CA00CD2E1B /* Repo+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCC72935F8CA00CD2E1B /* Repo+Ex.swift */; };
 		91B9DCCA2935F8D200CD2E1B /* User+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCC92935F8D200CD2E1B /* User+Ex.swift */; };
@@ -237,6 +240,9 @@
 		915F10132937ABFE009413D6 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		91A49933295C7A1A0090EC30 /* RepoDetailsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoDetailsItem.swift; sourceTree = "<group>"; };
 		91A49935295C7A250090EC30 /* RepoDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoDetailsCell.swift; sourceTree = "<group>"; };
+		91A49938295C81BD0090EC30 /* Readme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Readme.swift; sourceTree = "<group>"; };
+		91A4993A295C81E10090EC30 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
+		91A4993C295C81EF0090EC30 /* Href.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Href.swift; sourceTree = "<group>"; };
 		91B9DCC42935F81B00CD2E1B /* repo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = repo.json; sourceTree = "<group>"; };
 		91B9DCC52935F8C200CD2E1B /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 		91B9DCC72935F8CA00CD2E1B /* Repo+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repo+Ex.swift"; sourceTree = "<group>"; };
@@ -548,6 +554,9 @@
 				91B9DCE229368D0F00CD2E1B /* Language.swift */,
 				910B42F0293A2C51000719BA /* Page.swift */,
 				9154B9B0294728A20091EB91 /* SearchKeyword.swift */,
+				91A49938295C81BD0090EC30 /* Readme.swift */,
+				91A4993A295C81E10090EC30 /* Link.swift */,
+				91A4993C295C81EF0090EC30 /* Href.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -800,11 +809,13 @@
 				91B9DCDC2936004300CD2E1B /* RepoSummaryCell.swift in Sources */,
 				91B9DCE729368E4800CD2E1B /* ProviderType+TrendingAPI.swift in Sources */,
 				8C9A45B32887F6F30041937A /* Appearance+Ex.swift in Sources */,
+				91A4993D295C81EF0090EC30 /* Href.swift in Sources */,
 				8C9A45D62887F6F40041937A /* LoginViewController.swift in Sources */,
 				8C9A45B42887F6F30041937A /* String+Ex.swift in Sources */,
 				91B9DCD22935FA1F00CD2E1B /* Organization.swift in Sources */,
 				914091962932D2DA009CA633 /* ProfileViewController.swift in Sources */,
 				8C9A45D22887F6F40041937A /* Section.swift in Sources */,
+				91A49939295C81BD0090EC30 /* Readme.swift in Sources */,
 				91209403294ED33A002C593F /* SearchViewController.swift in Sources */,
 				91B9DCD62935FFCF00CD2E1B /* StarsViewReactor.swift in Sources */,
 				9110A0B82932C3CA00B09DB1 /* Router+Dialog+Toast.swift in Sources */,
@@ -885,6 +896,7 @@
 				910B42ED293A2A5E000719BA /* TrendingViewReactor+Ex.swift in Sources */,
 				8C9A45CE2887F6F40041937A /* Router+Dialog.swift in Sources */,
 				8C9A45B52887F6F30041937A /* Parameter+Ex.swift in Sources */,
+				91A4993B295C81E10090EC30 /* Link.swift in Sources */,
 				8C9A45E42887F6F40041937A /* PersonalViewReactor.swift in Sources */,
 				8C9A45CA2887F6F40041937A /* QMUIConfigurationTemplate.m in Sources */,
 				9154B9B529472D210091EB91 /* SearchOptionsCell.swift in Sources */,

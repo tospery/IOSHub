@@ -26,4 +26,6 @@ extension Parameter {
     static var sort: String { "sort" }
     static var order: String { "order" }
     static var searchKey: String { "q" }
+    static var reponame: String { "reponame" }
+    static var ref: String { "ref" }
 }

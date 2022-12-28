@@ -18,6 +18,11 @@ import BonMot
 
 struct Repo: Subjective, Eventable {
     
+    enum CellType: Int, Codable {
+        case summary
+        case details
+    }
+    
     enum Event {
     }
 
@@ -100,6 +105,7 @@ struct Repo: Subjective, Eventable {
     var organization: Organization?
     // 扩展属性
     // var branchs = [Branch].init()
+    var cellType = CellType.summary
     // 合并属性
     var ranking: Int?
     var forks = 0
@@ -209,5 +215,11 @@ struct Repo: Subjective, Eventable {
         stars                <- map["stars|stargazers_count", nested: false, delimiter: "|"]
     }
     // swiftlint:enable function_body_length
+    
+    mutating func setup(cellType: CellType) {
+        var repo = self
+        repo.cellType = cellType
+        self = repo
+    }
     
 }

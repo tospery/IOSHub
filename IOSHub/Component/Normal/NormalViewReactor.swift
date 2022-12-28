@@ -35,6 +35,9 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         // case setKeywords([String])
         case setError(Error?)
         case setUser(User?)
+        case setRepo(Repo?)
+        case setReadme(Readme?)
+        case setDataset(Dataset?)
         case setConfiguration(Configuration)
         case setTarget(String?)
         case initial([SectionData])
@@ -51,6 +54,9 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         var title: String?
         // var keywords = [String].init()
         var user = User.current
+        var repo: Repo?
+        var readme: Readme?
+        var dataset: Dataset?
         var configuration = Configuration.current!
         var target: String?
         var originals = [SectionData].init()
@@ -58,11 +64,26 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         var sections = [Section].init()
     }
 
+    struct Dataset {
+        var repo: Repo?
+        var readme: Readme?
+        
+//        init(
+//            repo: Repo? = nil,
+//            readme: Readme? = nil
+//        ) {
+//            self.repo = repo
+//            self.readme = readme
+//        }
+    }
+    
     let username: String!
+    let reponame: String!
     var initialState = State()
 
     required init(_ provider: HiIOS.ProviderType, _ parameters: [String: Any]?) {
         self.username = parameters?.string(for: Parameter.username)
+        self.reponame = parameters?.string(for: Parameter.reponame)
         super.init(provider, parameters)
         self.pageStart = 0
         self.pageIndex = self.pageStart
@@ -111,6 +132,14 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
             newState.error = error
         case let .setUser(user):
             newState.user = user
+        case let .setRepo(repo):
+            newState.repo = repo
+        case let .setReadme(readme):
+            newState.readme = readme
+        case let .setDataset(dataset):
+            newState.dataset = dataset
+            newState.repo = dataset?.repo
+            newState.readme = dataset?.readme
 //        case let .setKeywords(keywords):
 //            newState.keywords = keywords
         case let .setConfiguration(configuration):
@@ -287,8 +316,11 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
                     case .searchKeywords: return .searchKeywords(.init($0))
                     }
                 }
-                if $0 is Repo {
-                    return .repoSummary(.init($0))
+                if let repo = $0 as? Repo {
+                    switch repo.cellType {
+                    case .summary: return .repoSummary(.init($0))
+                    case .details: return .repoDetails(.init($0))
+                    }
                 }
                 if $0 is User {
                     return .user(.init($0))

@@ -36,12 +36,13 @@ class RepoDetailsCell: BaseCollectionCell, ReactorKit.View {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.contentView.qmui_borderWidth = pixelOne
-        self.contentView.qmui_borderPosition = .bottom
-        self.contentView.qmui_borderInsets = .init(top: 0, left: 0, bottom: 0, right: 10)
-        self.contentView.theme.qmui_borderColor = themeService.attribute { $0.borderColor }
-        self.contentView.addSubview(self.infoView)
-        self.contentView.addSubview(self.descLabel)
+//        self.contentView.qmui_borderWidth = pixelOne
+//        self.contentView.qmui_borderPosition = .bottom
+//        self.contentView.qmui_borderInsets = .init(top: 0, left: 0, bottom: 0, right: 10)
+//        self.contentView.theme.qmui_borderColor = themeService.attribute { $0.borderColor }
+//        self.contentView.addSubview(self.infoView)
+//        self.contentView.addSubview(self.descLabel)
+        self.contentView.backgroundColor = .orange
     }
 
     required init?(coder: NSCoder) {
@@ -80,18 +81,19 @@ class RepoDetailsCell: BaseCollectionCell, ReactorKit.View {
     }
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
-        guard let item = item as? RepoDetailsItem else { return .zero }
-        var height = RepoInfoView.Metric.height
-        height += UILabel.size(
-            attributedString: item.currentState.desc,
-            withConstraints: .init(
-                width: width - Metric.margin * 2,
-                height: .greatestFiniteMagnitude
-            ),
-            limitedToNumberOfLines: UInt(Metric.maxLines)
-        ).height
-        height += Metric.margin
-        return .init(width: width, height: height)
+        .init(width: width, height: 190)
+//        guard let item = item as? RepoDetailsItem else { return .zero }
+//        var height = RepoInfoView.Metric.height
+//        height += UILabel.size(
+//            attributedString: item.currentState.desc,
+//            withConstraints: .init(
+//                width: width - Metric.margin * 2,
+//                height: .greatestFiniteMagnitude
+//            ),
+//            limitedToNumberOfLines: UInt(Metric.maxLines)
+//        ).height
+//        height += Metric.margin
+//        return .init(width: width, height: height)
     }
 
 }
