@@ -511,7 +511,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 75 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 78 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -521,6 +521,8 @@ struct R: Rswift.Validatable {
       static let followers = Rswift.StringResource(key: "Followers", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Following
       static let following = Rswift.StringResource(key: "Following", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Forks
+      static let forks = Rswift.StringResource(key: "Forks", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Joined on %@
       static let joinedOn = Rswift.StringResource(key: "Joined on", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Let's build from here
@@ -549,10 +551,14 @@ struct R: Rswift.Validatable {
       static let repository = Rswift.StringResource(key: "Repository", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Since
       static let since = Rswift.StringResource(key: "Since", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Stars
+      static let stars = Rswift.StringResource(key: "Stars", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: User
       static let user = Rswift.StringResource(key: "User", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Users
       static let users = Rswift.StringResource(key: "Users", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Watchs
+      static let watchs = Rswift.StringResource(key: "Watchs", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 个人主页
       static let blog = Rswift.StringResource(key: "Blog", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 事件
@@ -594,7 +600,7 @@ struct R: Rswift.Validatable {
       /// Value: 搜索选项
       static let searchOptions = Rswift.StringResource(key: "Search Options", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 收藏
-      static let stars = Rswift.StringResource(key: "Stars", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let collect = Rswift.StringResource(key: "Collect", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 数据解析异常
       static let errorSystemDataFormatMessage = Rswift.StringResource(key: "Error.System.DataFormat.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 数据解析异常
@@ -714,6 +720,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Following", bundle: bundle, comment: "")
+      }
+
+      /// Value: Forks
+      static func forks(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Forks", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Forks"
+        }
+
+        return NSLocalizedString("Forks", bundle: bundle, comment: "")
       }
 
       /// Value: Joined on %@
@@ -900,6 +919,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Since", bundle: bundle, comment: "")
       }
 
+      /// Value: Stars
+      static func stars(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Stars", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Stars"
+        }
+
+        return NSLocalizedString("Stars", bundle: bundle, comment: "")
+      }
+
       /// Value: User
       static func user(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
@@ -924,6 +956,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Users", bundle: bundle, comment: "")
+      }
+
+      /// Value: Watchs
+      static func watchs(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Watchs", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Watchs"
+        }
+
+        return NSLocalizedString("Watchs", bundle: bundle, comment: "")
       }
 
       /// Value: 个人主页
@@ -1187,16 +1232,16 @@ struct R: Rswift.Validatable {
       }
 
       /// Value: 收藏
-      static func stars(preferredLanguages: [String]? = nil) -> String {
+      static func collect(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Stars", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("Collect", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "Stars"
+          return "Collect"
         }
 
-        return NSLocalizedString("Stars", bundle: bundle, comment: "")
+        return NSLocalizedString("Collect", bundle: bundle, comment: "")
       }
 
       /// Value: 数据解析异常

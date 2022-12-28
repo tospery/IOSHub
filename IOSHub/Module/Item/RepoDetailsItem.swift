@@ -20,6 +20,8 @@ class RepoDetailsItem: BaseCollectionItem, ReactorKit.Reactor {
 
     struct State {
         var repo: Repo?
+        var avatar: ImageSource?
+        var fullname: NSAttributedString?
         var desc: NSAttributedString?
     }
 
@@ -30,6 +32,8 @@ class RepoDetailsItem: BaseCollectionItem, ReactorKit.Reactor {
         guard let repo = model as? Repo else { return }
         self.initialState = State(
             repo: repo,
+            avatar: repo.owner.avatar?.url,
+            fullname: repo.attrFullname,
             desc: repo.attrDesc
         )
     }

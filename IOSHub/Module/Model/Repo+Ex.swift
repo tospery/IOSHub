@@ -12,7 +12,7 @@ import HiIOS
 extension Repo {
     
     var attrFullname: NSAttributedString {
-        (self.fullname ?? R.string.localizable.unknown()).styled(with: .color(.title), .font(.normal(17)))
+        (self.fullname ?? R.string.localizable.unknown()).styled(with: .color(.primary), .font(.bold(16)))
     }
     
     var attrLanguage: NSAttributedString {

@@ -19,12 +19,15 @@
 "Repositores" = "Repositores";
 "Followers" = "Followers";
 "Following" = "Following";
+"Watchs" = "Watchs";
+"Stars" = "Stars";
+"Forks" = "Forks";
 "Users" = "Users";
 "Exit" = "退出";
 "Since" = "Since";
 "Hot" = "热门";
 "Event" = "事件";
-"Stars" = "收藏";
+"Collect" = "收藏";
 "Mine" = "我的";
 "Trending" = "趋势";
 "Repository" = "Repository";

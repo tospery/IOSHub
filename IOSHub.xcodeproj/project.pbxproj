@@ -104,6 +104,7 @@
 		91A49939295C81BD0090EC30 /* Readme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A49938295C81BD0090EC30 /* Readme.swift */; };
 		91A4993B295C81E10090EC30 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4993A295C81E10090EC30 /* Link.swift */; };
 		91A4993D295C81EF0090EC30 /* Href.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4993C295C81EF0090EC30 /* Href.swift */; };
+		91A4993F295C92C40090EC30 /* RepoStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A4993E295C92C40090EC30 /* RepoStatView.swift */; };
 		91B9DCC62935F8C200CD2E1B /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCC52935F8C200CD2E1B /* Repo.swift */; };
 		91B9DCC82935F8CA00CD2E1B /* Repo+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCC72935F8CA00CD2E1B /* Repo+Ex.swift */; };
 		91B9DCCA2935F8D200CD2E1B /* User+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCC92935F8D200CD2E1B /* User+Ex.swift */; };
@@ -243,6 +244,7 @@
 		91A49938295C81BD0090EC30 /* Readme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Readme.swift; sourceTree = "<group>"; };
 		91A4993A295C81E10090EC30 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
 		91A4993C295C81EF0090EC30 /* Href.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Href.swift; sourceTree = "<group>"; };
+		91A4993E295C92C40090EC30 /* RepoStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoStatView.swift; sourceTree = "<group>"; };
 		91B9DCC42935F81B00CD2E1B /* repo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = repo.json; sourceTree = "<group>"; };
 		91B9DCC52935F8C200CD2E1B /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 		91B9DCC72935F8CA00CD2E1B /* Repo+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repo+Ex.swift"; sourceTree = "<group>"; };
@@ -615,6 +617,7 @@
 				91B9DCDE29368A6300CD2E1B /* RepoInfoView.swift */,
 				9154B9B629478A0C0091EB91 /* SearchTitleView.swift */,
 				9154BF94294CE1A1003BC1F3 /* SearchHistoryHeaderView.swift */,
+				91A4993E295C92C40090EC30 /* RepoStatView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -877,6 +880,7 @@
 				8C9A45D32887F6F40041937A /* TrendingViewController.swift in Sources */,
 				8C9A45B12887F6F30041937A /* BaseResponse+Ex.swift in Sources */,
 				9110A0B129329CC800B09DB1 /* ProviderType+GithubBaseAPI.swift in Sources */,
+				91A4993F295C92C40090EC30 /* RepoStatView.swift in Sources */,
 				91C267E828EB30FA00DD5677 /* SectionItem.swift in Sources */,
 				91B9DCCC2935F97E00CD2E1B /* BaseUser.swift in Sources */,
 				9110A0A929329C0600B09DB1 /* GithubMainAPI.swift in Sources */,
