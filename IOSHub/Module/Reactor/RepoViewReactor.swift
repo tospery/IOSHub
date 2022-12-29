@@ -45,19 +45,20 @@ class RepoViewReactor: NormalViewReactor {
     override func loadData(_ page: Int) -> Observable<[SectionData]> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
-            var data = [SectionData].init()
+            var models = [ModelType].init()
             if var repo = self.currentState.repo {
-                repo.setup(cellType: .details)
-                data.append(
-                    (
-                        header: nil,
-                        models: [
-                            repo
-                        ]
-                    )
-                )
+                repo.cellType = .details
+                models.append(repo)
+                let cellIds: [CellId] = [.space, .language, .issues, .pullrequests, .space, .branches, .readme]
+                let simples = cellIds.map { id -> Simple in
+                    if id == .space {
+                        return .init(height: 10)
+                    }
+                    return .init(id: id.rawValue, icon: id.icon, title: id.title)
+                }
+                models.append(contentsOf: simples)
             }
-            observer.onNext(data)
+            observer.onNext([(header: nil, models: models)])
             observer.onCompleted()
             return Disposables.create { }
         }

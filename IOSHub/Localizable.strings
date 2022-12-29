@@ -33,7 +33,11 @@
 "Repository" = "Repository";
 "User" = "User";
 "Organization" = "Organization";
+"Issues" = "Issues";
+"Branches" = "Branches";
+"readme" = "readme";
 /* 词语 */
+"Pull Requests" = "Pull Requests";
 "Exit Login" = "退出登录";
 "No Description" = "No Description";
 "Access Token" = "Access Token";

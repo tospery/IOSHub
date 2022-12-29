@@ -216,10 +216,10 @@ struct Repo: Subjective, Eventable {
     }
     // swiftlint:enable function_body_length
     
-    mutating func setup(cellType: CellType) {
-        var repo = self
-        repo.cellType = cellType
-        self = repo
-    }
+//    mutating func setup(cellType: CellType) {
+//        var repo = self
+//        repo.cellType = cellType
+//        self = repo
+//    }
     
 }

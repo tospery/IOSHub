@@ -224,7 +224,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 31 images.
+  /// This `R.image` struct is generated, and contains static references to 36 images.
   struct image {
     /// Image `AppLogo`.
     static let appLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AppLogo")
@@ -244,6 +244,16 @@ struct R: Rswift.Validatable {
     static let ic_feedback = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_feedback")
     /// Image `ic_location`.
     static let ic_location = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_location")
+    /// Image `ic_repo_branches`.
+    static let ic_repo_branches = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_repo_branches")
+    /// Image `ic_repo_issues`.
+    static let ic_repo_issues = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_repo_issues")
+    /// Image `ic_repo_language`.
+    static let ic_repo_language = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_repo_language")
+    /// Image `ic_repo_pullrequests`.
+    static let ic_repo_pullrequests = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_repo_pullrequests")
+    /// Image `ic_repo_readme`.
+    static let ic_repo_readme = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_repo_readme")
     /// Image `ic_repo_small`.
     static let ic_repo_small = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_repo_small")
     /// Image `ic_repo`.
@@ -356,6 +366,41 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "ic_repo", bundle: ..., traitCollection: ...)`
     static func ic_repo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_repo, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_repo_branches", bundle: ..., traitCollection: ...)`
+    static func ic_repo_branches(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_repo_branches, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_repo_issues", bundle: ..., traitCollection: ...)`
+    static func ic_repo_issues(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_repo_issues, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_repo_language", bundle: ..., traitCollection: ...)`
+    static func ic_repo_language(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_repo_language, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_repo_pullrequests", bundle: ..., traitCollection: ...)`
+    static func ic_repo_pullrequests(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_repo_pullrequests, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_repo_readme", bundle: ..., traitCollection: ...)`
+    static func ic_repo_readme(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_repo_readme, compatibleWith: traitCollection)
     }
     #endif
 
@@ -511,10 +556,12 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 79 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 83 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Branches
+      static let branches = Rswift.StringResource(key: "Branches", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Develop By Swift
       static let loginSlogan = Rswift.StringResource(key: "Login.Slogan", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Followers
@@ -523,6 +570,8 @@ struct R: Rswift.Validatable {
       static let following = Rswift.StringResource(key: "Following", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Forks
       static let forks = Rswift.StringResource(key: "Forks", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Issues
+      static let issues = Rswift.StringResource(key: "Issues", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Joined on %@
       static let joinedOn = Rswift.StringResource(key: "Joined on", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Let's build from here
@@ -545,6 +594,8 @@ struct R: Rswift.Validatable {
       static let organization = Rswift.StringResource(key: "Organization", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Personal Access Token
       static let loginPersonalToken = Rswift.StringResource(key: "Login.Personal.Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Pull Requests
+      static let pullRequests = Rswift.StringResource(key: "Pull Requests", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Repositores
       static let repositores = Rswift.StringResource(key: "Repositores", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Repository
@@ -561,6 +612,8 @@ struct R: Rswift.Validatable {
       static let users = Rswift.StringResource(key: "Users", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Watchs
       static let watchs = Rswift.StringResource(key: "Watchs", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: readme
+      static let readme = Rswift.StringResource(key: "readme", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 个人主页
       static let blog = Rswift.StringResource(key: "Blog", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 事件
@@ -685,6 +738,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Access Token", bundle: bundle, comment: "")
       }
 
+      /// Value: Branches
+      static func branches(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Branches", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Branches"
+        }
+
+        return NSLocalizedString("Branches", bundle: bundle, comment: "")
+      }
+
       /// Value: Develop By Swift
       static func loginSlogan(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
@@ -735,6 +801,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Forks", bundle: bundle, comment: "")
+      }
+
+      /// Value: Issues
+      static func issues(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Issues", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Issues"
+        }
+
+        return NSLocalizedString("Issues", bundle: bundle, comment: "")
       }
 
       /// Value: Joined on %@
@@ -882,6 +961,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Login.Personal.Token", bundle: bundle, comment: "")
       }
 
+      /// Value: Pull Requests
+      static func pullRequests(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Pull Requests", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Pull Requests"
+        }
+
+        return NSLocalizedString("Pull Requests", bundle: bundle, comment: "")
+      }
+
       /// Value: Repositores
       static func repositores(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
@@ -986,6 +1078,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Watchs", bundle: bundle, comment: "")
+      }
+
+      /// Value: readme
+      static func readme(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("readme", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "readme"
+        }
+
+        return NSLocalizedString("readme", bundle: bundle, comment: "")
       }
 
       /// Value: 个人主页

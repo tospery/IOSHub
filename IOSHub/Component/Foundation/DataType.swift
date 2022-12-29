@@ -93,6 +93,28 @@ enum CellId: Int {
     case setting        = 10, about, feedback
     case company        = 20, location, email, blog, nickname, bio
     case author         = 30, weibo, shcemes, score, share
+    case language       = 40, issues, pullrequests, branches, readme
+    
+    var title: String? {
+        switch self {
+        case .issues: return R.string.localizable.issues()
+        case .pullrequests: return R.string.localizable.pullRequests()
+        case .branches: return R.string.localizable.branches()
+        case .readme: return R.string.localizable.readme().uppercased()
+        default: return nil
+        }
+    }
+    
+    var icon: String? {
+        switch self {
+        case .language: return R.image.ic_repo_language.name
+        case .issues: return R.image.ic_repo_issues.name
+        case .pullrequests: return R.image.ic_repo_pullrequests.name
+        case .branches: return R.image.ic_repo_branches.name
+        case .readme: return R.image.ic_repo_readme.name
+        default: return nil
+        }
+    }
 }
 
 enum IHAlertAction: AlertActionType, Equatable {
