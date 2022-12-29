@@ -7,12 +7,21 @@
 
 import Foundation
 import BonMot
+import DateToolsSwift_JX
 import HiIOS
 
 extension Repo {
     
+    var updateAgo: String? {
+        guard let string = self.updatedAt else { return nil }
+        guard let date = Date.init(iso8601: string) else { return nil }
+        return R.string.localizable.latestUpdate(date.timeAgoSinceNow)
+    }
+    
     var attrFullname: NSAttributedString {
-        (self.fullname ?? R.string.localizable.unknown()).styled(with: .color(.primary), .font(.bold(16)))
+        // (self.fullname ?? R.string.localizable.unknown()).styled(with: .color(.primary), .font(.bold(16)))
+        "\(self.owner.username ?? R.string.localizable.unknown()) / \(self.name ?? R.string.localizable.unknown())"
+            .styled(with: .color(.primary), .font(.bold(16)))
     }
     
     var attrLanguage: NSAttributedString {

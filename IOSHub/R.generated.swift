@@ -511,7 +511,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 78 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 79 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -553,6 +553,8 @@ struct R: Rswift.Validatable {
       static let since = Rswift.StringResource(key: "Since", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Stars
       static let stars = Rswift.StringResource(key: "Stars", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Update %@
+      static let latestUpdate = Rswift.StringResource(key: "Latest Update", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: User
       static let user = Rswift.StringResource(key: "User", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Users
@@ -930,6 +932,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Stars", bundle: bundle, comment: "")
+      }
+
+      /// Value: Update %@
+      static func latestUpdate(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("Latest Update", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Latest Update"
+        }
+
+        let format = NSLocalizedString("Latest Update", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
       }
 
       /// Value: User

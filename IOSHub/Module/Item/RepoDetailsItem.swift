@@ -21,7 +21,8 @@ class RepoDetailsItem: BaseCollectionItem, ReactorKit.Reactor {
     struct State {
         var repo: Repo?
         var avatar: ImageSource?
-        var fullname: NSAttributedString?
+        var updateAgo: String?
+        var name: NSAttributedString?
         var desc: NSAttributedString?
     }
 
@@ -33,7 +34,8 @@ class RepoDetailsItem: BaseCollectionItem, ReactorKit.Reactor {
         self.initialState = State(
             repo: repo,
             avatar: repo.owner.avatar?.url,
-            fullname: repo.attrFullname,
+            updateAgo: repo.updateAgo,
+            name: repo.attrFullname,
             desc: repo.attrDesc
         )
     }

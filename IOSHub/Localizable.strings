@@ -43,6 +43,7 @@
 "Search History" = "搜索历史";
 "Search Options" = "搜索选项";
 "Clear History" = "清除历史";
+"Latest Update" = "Update %@";
 /* 句子 - None */
 "None.Repo" = "No hot repository";
 "None.Desc" = "No description provided";

@@ -30,6 +30,8 @@ target 'IOSHub' do
   pod 'SwiftSVG', '2.3.2'
   pod 'Toast-Swift', '5.0.1'
   pod 'SwiftEntryKit', '2.0.0'
+  pod 'TTTAttributedLabel', '2.0.0'
+  pod 'DateToolsSwift-JX', '5.0.0-jx3'
   
   # Platform
   # pod 'MLeaksFinder', '1.0.0'

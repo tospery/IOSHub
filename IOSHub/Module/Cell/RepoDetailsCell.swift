@@ -11,6 +11,7 @@ import RxCocoa
 import ReactorKit
 import URLNavigator
 import Rswift
+import TTTAttributedLabel
 import HiIOS
 
 class RepoDetailsCell: BaseCollectionCell, ReactorKit.View {
@@ -18,17 +19,31 @@ class RepoDetailsCell: BaseCollectionCell, ReactorKit.View {
     struct Metric {
         static let maxLines = 5
         static let padding = 10.f
-        static let margin = 5.f
+        static let margin = 15.f
         static let avatar = 28.f
     }
     
-//    lazy var nameLabel: UILabel = {
-//        let label = UILabel.init()
-//        label.font = .bold(18)
-//        label.theme.textColor = themeService.attribute { $0.foregroundColor }
-//        label.sizeToFit()
-//        return label
-//    }()
+    lazy var nameLabel: TTTAttributedLabel = {
+        let label = TTTAttributedLabel.init(frame: .zero)
+        label.delegate = self
+        label.numberOfLines = 1
+        return label
+    }()
+    
+    lazy var updateLabel: UILabel = {
+        let label = UILabel.init()
+        label.font = .normal(11)
+        label.theme.textColor = themeService.attribute { $0.foregroundColor }
+        label.sizeToFit()
+        return label
+    }()
+    
+    lazy var descLabel: UILabel = {
+        let label = UILabel.init()
+        label.numberOfLines = Metric.maxLines
+        label.sizeToFit()
+        return label
+    }()
     
     lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
@@ -36,12 +51,6 @@ class RepoDetailsCell: BaseCollectionCell, ReactorKit.View {
         imageView.sizeToFit()
         imageView.size = .init(Metric.avatar)
         return imageView
-    }()
-    
-    lazy var fullnameLabel: UILabel = {
-        let label = UILabel.init()
-        label.sizeToFit()
-        return label
     }()
     
     lazy var statView: RepoStatView = {
@@ -52,15 +61,10 @@ class RepoDetailsCell: BaseCollectionCell, ReactorKit.View {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        self.contentView.qmui_borderWidth = pixelOne
-//        self.contentView.qmui_borderPosition = .bottom
-//        self.contentView.qmui_borderInsets = .init(top: 0, left: 0, bottom: 0, right: 10)
-//        self.contentView.theme.qmui_borderColor = themeService.attribute { $0.borderColor }
-//        self.contentView.addSubview(self.infoView)
-//        self.contentView.addSubview(self.descLabel)
-        // self.contentView.addSubview(self.nameLabel)
         self.contentView.addSubview(self.avatarImageView)
-        self.contentView.addSubview(self.fullnameLabel)
+        self.contentView.addSubview(self.nameLabel)
+        self.contentView.addSubview(self.descLabel)
+        self.contentView.addSubview(self.updateLabel)
         self.contentView.addSubview(self.statView)
     }
 
@@ -78,22 +82,22 @@ class RepoDetailsCell: BaseCollectionCell, ReactorKit.View {
 //        self.infoView.layoutIfNeeded()
 //        self.infoView.left = 0
 //        self.infoView.top = 0
-//        self.descLabel.width = self.contentView.width - Metric.margin * 2
-//        self.descLabel.height = self.contentView.height - RepoInfoView.Metric.height - Metric.margin
-//        self.descLabel.left = Metric.margin
-//        self.descLabel.top = self.infoView.bottom
         self.statView.left = 0
         self.statView.bottom = self.contentView.height
-//        self.nameLabel.sizeToFit()
-//        self.nameLabel.width = self.contentView.width - 15 * 2
-//        self.nameLabel.left = 15
-//        self.nameLabel.top = 5
-        self.avatarImageView.left = 15
-        self.avatarImageView.top = Metric.margin
-        self.fullnameLabel.sizeToFit()
-        self.fullnameLabel.left = self.avatarImageView.right + 10
-        self.fullnameLabel.width = self.contentView.width - self.fullnameLabel.left - 15
-        self.fullnameLabel.centerY = self.avatarImageView.centerY
+        self.avatarImageView.left = Metric.margin
+        self.avatarImageView.top = 5
+        self.nameLabel.sizeToFit()
+        self.nameLabel.left = self.avatarImageView.right + 10
+        self.nameLabel.width = self.contentView.width - self.nameLabel.left - Metric.margin
+        self.nameLabel.centerY = self.avatarImageView.centerY
+        self.updateLabel.sizeToFit()
+        self.updateLabel.right = self.contentView.width - Metric.margin
+        self.updateLabel.bottom = self.statView.top - 5
+        self.descLabel.sizeToFit()
+        self.descLabel.width = self.contentView.width - Metric.margin * 2
+        self.descLabel.left = Metric.margin
+        self.descLabel.top = self.avatarImageView.bottom + 5
+        self.descLabel.extendToBottom = self.updateLabel.top
     }
 
     func bind(reactor: RepoDetailsItem) {
@@ -102,9 +106,17 @@ class RepoDetailsCell: BaseCollectionCell, ReactorKit.View {
             .distinctUntilChanged()
             .bind(to: self.statView.rx.repo)
             .disposed(by: self.disposeBag)
-        reactor.state.map { $0.fullname }
+        reactor.state.map { $0.name }
             .distinctUntilChanged()
-            .bind(to: self.fullnameLabel.rx.attributedText)
+            .bind(to: self.rx.name)
+            .disposed(by: self.disposeBag)
+        reactor.state.map { $0.updateAgo }
+            .distinctUntilChanged()
+            .bind(to: self.updateLabel.rx.text)
+            .disposed(by: self.disposeBag)
+        reactor.state.map { $0.desc }
+            .distinctUntilChanged()
+            .bind(to: self.descLabel.rx.attributedText)
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.avatar }
             .distinctUntilChanged { HiIOS.compareImage($0, $1) }
@@ -116,19 +128,58 @@ class RepoDetailsCell: BaseCollectionCell, ReactorKit.View {
     }
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
-        .init(width: width, height: 190)
-//        guard let item = item as? RepoDetailsItem else { return .zero }
-//        var height = RepoInfoView.Metric.height
-//        height += UILabel.size(
-//            attributedString: item.currentState.desc,
-//            withConstraints: .init(
-//                width: width - Metric.margin * 2,
-//                height: .greatestFiniteMagnitude
-//            ),
-//            limitedToNumberOfLines: UInt(Metric.maxLines)
-//        ).height
-//        height += Metric.margin
-//        return .init(width: width, height: height)
+        // .init(width: width, height: 190)
+        guard let item = item as? RepoDetailsItem else { return .zero }
+        var height = RepoStatView.Metric.height
+        height += UILabel.size(
+            attributedString: item.currentState.desc,
+            withConstraints: .init(
+                width: width - Metric.margin * 2,
+                height: .greatestFiniteMagnitude
+            ),
+            limitedToNumberOfLines: UInt(Metric.maxLines)
+        ).height
+        height += (Metric.margin * 2)
+        height += Metric.avatar
+        return .init(width: width, height: height)
+    }
+
+}
+
+extension RepoDetailsCell: TTTAttributedLabelDelegate {
+    func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith result: NSTextCheckingResult!) {
+        // self.termBlock?(result.range.location)
+        log("点击位置->\(result.range.location)")
+    }
+}
+
+extension Reactive where Base: RepoDetailsCell {
+
+    var name: Binder<NSAttributedString?> {
+        return Binder(self.base) { cell, name in
+            cell.nameLabel.setText(name)
+            if let string = name?.string {
+                let array = string.components(separatedBy: " / ")
+                if array.count == 2 {
+                    let length = array.first?.count ?? 0
+                    cell.nameLabel.addLink(.init(
+                        attributes: [
+                            NSAttributedString.Key.foregroundColor: UIColor.primary,
+                            NSAttributedString.Key.font: UIFont.bold(16)
+                        ],
+                        activeAttributes: [
+                            NSAttributedString.Key.foregroundColor: UIColor.red
+                        ],
+                        inactiveAttributes: [
+                            NSAttributedString.Key.foregroundColor: UIColor.gray
+                        ],
+                        textCheckingResult: .spellCheckingResult(range: .init(location: 0, length: length))
+                    ))
+                }
+            }
+            cell.setNeedsLayout()
+            cell.layoutIfNeeded()
+        }
     }
 
 }
