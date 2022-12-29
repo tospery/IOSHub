@@ -19,6 +19,7 @@ enum SectionItem: IdentifiableType, Equatable {
     case user(UserItem)
     case searchOptions(SearchOptionsItem)
     case searchKeywords(SearchKeywordsItem)
+    case readmeContent(ReadmeContentItem)
     
     var identity: String {
         var string = ""
@@ -30,6 +31,7 @@ enum SectionItem: IdentifiableType, Equatable {
         case let .user(item): string = item.description
         case let .searchOptions(item): string = item.description
         case let .searchKeywords(item): string = item.description
+        case let .readmeContent(item): string = item.description
         }
         return string // String.init(string.sorted())
     }

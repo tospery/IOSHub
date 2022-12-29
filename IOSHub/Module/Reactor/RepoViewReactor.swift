@@ -58,6 +58,9 @@ class RepoViewReactor: NormalViewReactor {
                 }
                 models.append(contentsOf: simples)
             }
+            if let readme = self.currentState.readme {
+                models.append(readme)
+            }
             observer.onNext([(header: nil, models: models)])
             observer.onCompleted()
             return Disposables.create { }

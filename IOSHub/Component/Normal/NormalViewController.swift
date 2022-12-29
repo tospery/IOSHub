@@ -28,6 +28,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         static let userCell = ReusableCell<UserCell>()
         static let searchOptionsCell = ReusableCell<SearchOptionsCell>()
         static let searchKeywordsCell = ReusableCell<SearchKeywordsCell>()
+        static let readmeContentCell = ReusableCell<ReadmeContentCell>()
         static let headerView = ReusableView<CollectionHeaderView>()
         static let footerView = ReusableView<CollectionFooterView>()
         static let historyHeaderView = ReusableView<SearchHistoryHeaderView>()
@@ -76,6 +77,11 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                         .subscribeNext(weak: self, type(of: self).tapKeyword)
                         .disposed(by: cell.disposeBag)
                     return cell
+                case let .readmeContent(item):
+                    let cell = collectionView.dequeue(Reusable.readmeContentCell, for: indexPath)
+                    item.parent = self.reactor
+                    cell.reactor = item
+                    return cell
                 }
             },
             configureSupplementaryView: { [weak self] _, collectionView, kind, indexPath in
@@ -115,6 +121,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         self.collectionView.register(Reusable.userCell)
         self.collectionView.register(Reusable.searchOptionsCell)
         self.collectionView.register(Reusable.searchKeywordsCell)
+        self.collectionView.register(Reusable.readmeContentCell)
         self.collectionView.register(Reusable.headerView, kind: .header)
         self.collectionView.register(Reusable.footerView, kind: .footer)
         self.collectionView.register(Reusable.historyHeaderView, kind: .header)
@@ -370,6 +377,7 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
         case let .user(item): return Reusable.userCell.class.size(width: width, item: item)
         case let .searchOptions(item): return Reusable.searchOptionsCell.class.size(width: width, item: item)
         case let .searchKeywords(item): return Reusable.searchKeywordsCell.class.size(width: width, item: item)
+        case let .readmeContent(item): return Reusable.readmeContentCell.class.size(width: width, item: item)
         }
     }
     

@@ -12,6 +12,7 @@ import ReactorKit
 import URLNavigator
 import Rswift
 import HiIOS
+import Ink
 import ReusableKit_Hi
 import ObjectMapper_Hi
 
@@ -35,6 +36,15 @@ struct Readme: Subjective, Eventable {
     var height = 0.f
     
     var sha: String { self.id }
+    
+    var html: String? {
+        guard let content = self.content else { return nil }
+        guard let data = Data.init(base64Encoded: content, options: .ignoreUnknownCharacters) else { return nil }
+        guard let markdown = String.init(data: data, encoding: .utf8) else { return nil }
+        let parser = MarkdownParser()
+        let html = parser.html(from: markdown)
+        return html
+    }
     
     init() { }
 
