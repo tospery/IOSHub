@@ -17,8 +17,11 @@ import HiIOS
 class ReadmeContentCell: BaseCollectionCell, ReactorKit.View {
     
     struct Metric {
+        static let margin = 15.f
         static let height = 500.f
     }
+    
+    var contentHeight = 0.f
     
     lazy var webView: WKWebView = {
         let configuration = WKWebViewConfiguration.init()
@@ -33,14 +36,22 @@ class ReadmeContentCell: BaseCollectionCell, ReactorKit.View {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        self.contentView.addSubview(self.titleLabel)
-//        self.contentView.addSubview(self.imageView)
-//        self.contentView.theme.backgroundColor = themeService.attribute { $0.lightColor }
         self.contentView.addSubview(self.webView)
+        self.contentView.theme.backgroundColor = themeService.attribute { $0.lightColor }
+        self.webView.scrollView.addObserver(
+            self,
+            forKeyPath: "contentSize",
+            options: NSKeyValueObservingOptions.new,
+            context: nil
+        )
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        self.webView.scrollView.removeObserver(self, forKeyPath: "contentSize")
     }
 
     override func prepareForReuse() {
@@ -49,8 +60,8 @@ class ReadmeContentCell: BaseCollectionCell, ReactorKit.View {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.webView.width = self.contentView.width - 30
-        self.webView.height = self.contentView.height - 30
+        self.webView.width = self.contentView.width - Metric.margin * 2
+        self.webView.height = self.contentView.height - Metric.margin * 2
         self.webView.left = self.webView.leftWhenCenter
         self.webView.top = self.webView.topWhenCenter
     }
@@ -66,8 +77,31 @@ class ReadmeContentCell: BaseCollectionCell, ReactorKit.View {
             .disposed(by: self.disposeBag)
     }
     
+    // swiftlint:disable block_based_kvo
+    override func observeValue(
+        forKeyPath keyPath: String?,
+        of object: Any?,
+        change: [NSKeyValueChangeKey: Any]?,
+        context: UnsafeMutableRawPointer?
+    ) {
+        if keyPath == "contentSize" {
+            let height = self.webView.scrollView.contentSize.height.flat
+            if self.contentHeight != height {
+                self.contentHeight = height
+                log("查看高度: \(height)")
+//                if var readme = self.model as? Readme, let parent = self.reactor?.parent as? NormalViewReactor {
+//                    readme.height = self.contentHeight
+//                    parent.action.onNext(.reload(readme))
+//                }
+            }
+        }
+    }
+    // swiftlint:enable block_based_kvo
+    
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
-        .init(width: width, height: Metric.height)
+//        guard let readme = (item as? ReadmeContentItem)?.model as? Readme else { return .zero }
+//        return .init(width: width, height: readme.height + 1 + Metric.margin * 2)
+        .init(width: width, height: 1000)
     }
 
 }

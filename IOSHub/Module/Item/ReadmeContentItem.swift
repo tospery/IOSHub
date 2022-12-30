@@ -19,6 +19,7 @@ class ReadmeContentItem: BaseCollectionItem, ReactorKit.Reactor {
     typealias Mutation = NoMutation
 
     struct State {
+        var height = 0.f
         var html: String?
     }
 
@@ -28,8 +29,9 @@ class ReadmeContentItem: BaseCollectionItem, ReactorKit.Reactor {
         super.init(model)
         guard let readme = model as? Readme else { return }
         self.initialState = State(
+            height: readme.height,
             html: readme.html
         )
     }
-    
+
 }

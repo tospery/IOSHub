@@ -20,7 +20,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         case load
         case refresh
         case loadMore
-        case reload
+        case reload(Any?)
         // case erase
         case activate(Any?)
         case target(String)
@@ -100,8 +100,8 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
             return self.refresh()
         case .loadMore:
             return self.loadMore()
-        case .reload:
-            return self.reload()
+        case let .reload(data):
+            return self.reload(data)
 //        case .erase:
 //            return self.erase()
         case let .activate(data):
@@ -253,7 +253,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         })
     }
     
-    func reload() -> Observable<Mutation> {
+    func reload(_ data: Any?) -> Observable<Mutation> {
         self.load()
     }
     

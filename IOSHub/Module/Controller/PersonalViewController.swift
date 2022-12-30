@@ -111,7 +111,7 @@ class PersonalViewController: NormalViewController {
         guard self.scrollView.contentOffset.y < triggerOffset * -1 else { return }
         MainScheduler.asyncInstance.schedule(()) { [weak self] _ -> Disposable in
             guard let `self` = self else { fatalError() }
-            self.reactor?.action.onNext(.reload)
+            self.reactor?.action.onNext(.reload(nil))
             return Disposables.create {}
         }.disposed(by: self.disposeBag)
     }

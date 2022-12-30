@@ -285,7 +285,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                 if User.current != user {
                     User.update(user, reactive: true)
                 }
-                self.reactor?.action.onNext(.reload)
+                self.reactor?.action.onNext(.reload(nil))
                 return Disposables.create {}
             }.disposed(by: self.disposeBag)
             return

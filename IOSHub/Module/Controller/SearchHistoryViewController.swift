@@ -122,7 +122,7 @@ class SearchHistoryViewController: NormalViewController {
             var configuration = self.reactor?.currentState.configuration
             configuration?.keywords = []
             Subjection.update(Configuration.self, configuration, true)
-            self.reactor?.action.onNext(.reload)
+            self.reactor?.action.onNext(.reload(nil))
         }).disposed(by: self.disposeBag)
     }
     
