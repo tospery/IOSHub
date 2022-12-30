@@ -333,6 +333,9 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
 //                return
 //            }
 //            self.handleSimple(simple: simple)
+        case let .userBasic(item):
+            guard let username = (item.model as? User)?.username else { return }
+            self.navigator.forward(Router.shared.urlString(host: .user, path: username))
         case let .repoBasic(item):
             guard let repo = item.model as? Repo else { return }
             guard let username = repo.owner.username, username.isNotEmpty else { return }

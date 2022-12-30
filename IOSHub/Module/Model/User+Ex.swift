@@ -19,25 +19,25 @@ extension User {
         return R.string.localizable.joinedOn(value)
     }
     
-    var attrFullname: NSAttributedString {
-        .composed(of: [
-            (self.username ?? R.string.localizable.unknown()).attributedString(),
-            Special.space,
-            "(\(self.nickname ?? R.string.localizable.unknown()))".attributedString()
-        ]).styled(with: .color(.title), .font(.normal(17)))
-    }
-    
-    var attrRepoName: NSAttributedString {
-        NSAttributedString.composed(of: [
-            R.image.ic_repo_small()!.styled(with: .baselineOffset(-4)),
-            Special.space,
-            (self.repo?.name ?? R.string.localizable.noneRepo()).attributedString()
-        ]).styled(with: .color(.primary), .font(.normal(14)))
-    }
-    
-    var repoDesc: String {
-        self.repo?.desc ?? R.string.localizable.noneDesc()
-    }
+//    var attrFullname: NSAttributedString {
+//        .composed(of: [
+//            (self.username ?? R.string.localizable.unknown()).attributedString(),
+//            Special.space,
+//            "(\(self.nickname ?? R.string.localizable.unknown()))".attributedString()
+//        ]).styled(with: .color(.title), .font(.normal(17)))
+//    }
+//    
+//    var attrRepoName: NSAttributedString {
+//        NSAttributedString.composed(of: [
+//            R.image.ic_repo_small()!.styled(with: .baselineOffset(-4)),
+//            Special.space,
+//            (self.repo?.name ?? R.string.localizable.noneRepo()).attributedString()
+//        ]).styled(with: .color(.primary), .font(.normal(14)))
+//    }
+//    
+//    var repoDesc: String {
+//        self.repo?.desc ?? R.string.localizable.noneDesc()
+//    }
     
     var attrRepositores: NSAttributedString {
         self.attr(R.string.localizable.repositores(), self.publicRepos)

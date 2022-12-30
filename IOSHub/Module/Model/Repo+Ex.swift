@@ -18,13 +18,12 @@ extension Repo {
         return R.string.localizable.latestUpdate(date.timeAgoSinceNow)
     }
     
-    var attrFullname: NSAttributedString {
-        // (self.fullname ?? R.string.localizable.unknown()).styled(with: .color(.primary), .font(.bold(16)))
+    var fullnameAttributedText: NSAttributedString {
         "\(self.owner.username ?? R.string.localizable.unknown()) / \(self.name ?? R.string.localizable.unknown())"
             .styled(with: .color(.primary), .font(.bold(16)))
     }
     
-    var attrLanguage: NSAttributedString {
+    var languageAttributedText: NSAttributedString {
         .composed(of: [
             "●".styled(with: .color(self.languageColor?.color ?? .random)),
             Special.space,
@@ -32,7 +31,7 @@ extension Repo {
         ]).styled(with: .font(.normal(12)))
     }
     
-    var attrStars: NSAttributedString {
+    var starsnumAttributedText: NSAttributedString {
         .composed(of: [
             R.image.ic_star()!.template.styled(with: .baselineOffset(-2), .color(.title)),
             Special.space,
@@ -40,9 +39,9 @@ extension Repo {
         ]).styled(with: .font(.normal(11)))
     }
     
-    var attrDesc: NSAttributedString? {
+    var descAttributedText: NSAttributedString? {
         (self.desc ?? R.string.localizable.noneDesc()).styled(
-            with: .font(.normal(15)),
+            with: .font(.normal(15)), .color(.title),
             .lineHeightMultiple(1.1),
             .lineBreakMode(.byTruncatingTail)
         )

@@ -35,8 +35,8 @@ class RepoDetailItem: BaseCollectionItem, ReactorKit.Reactor {
             repo: repo,
             avatar: repo.owner.avatar?.url,
             updateAgo: repo.updateAgo,
-            name: repo.attrFullname,
-            desc: repo.attrDesc
+            name: repo.fullnameAttributedText,
+            desc: repo.descAttributedText
         )
     }
     

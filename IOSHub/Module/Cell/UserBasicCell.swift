@@ -16,39 +16,36 @@ import HiIOS
 class UserBasicCell: BaseCollectionCell, ReactorKit.View {
     
     struct Metric {
-        static let height = 65.f
-        static let maxLines = 2
+        static let height = 110.f
+        static let avatar = 36.f
     }
 
-    lazy var fullnameLabel: UILabel = {
+    lazy var userNameLabel: UILabel = {
         let label = UILabel.init()
         label.sizeToFit()
-        label.height = UIFont.normal(17).lineHeight
         return label
     }()
     
     lazy var repoNameLabel: UILabel = {
         let label = UILabel.init()
         label.sizeToFit()
-        label.height = UIFont.normal(14).lineHeight
         return label
     }()
     
-    lazy var repoDescLabel: UILabel = {
+    lazy var descLabel: UILabel = {
         let label = UILabel.init()
-        label.font = .normal(12)
-        label.numberOfLines = 1
-        label.theme.textColor = themeService.attribute { $0.bodyColor }
+        label.font = .normal(15)
+        label.numberOfLines = 3
+        label.theme.textColor = themeService.attribute { $0.titleColor }
         label.sizeToFit()
-        label.height = label.font.lineHeight
         return label
     }()
     
     lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layerCornerRadius = 6
+        imageView.layerCornerRadius = 4
         imageView.sizeToFit()
-        imageView.size = .init((Metric.height * 0.75).flat)
+        imageView.size = .init(Metric.avatar)
         return imageView
     }()
     
@@ -59,8 +56,8 @@ class UserBasicCell: BaseCollectionCell, ReactorKit.View {
         self.contentView.qmui_borderInsets = .init(top: 0, left: 0, bottom: 0, right: 10)
         self.contentView.theme.qmui_borderColor = themeService.attribute { $0.borderColor }
         self.contentView.addSubview(self.avatarImageView)
-        self.contentView.addSubview(self.fullnameLabel)
-        self.contentView.addSubview(self.repoDescLabel)
+        self.contentView.addSubview(self.userNameLabel)
+        self.contentView.addSubview(self.descLabel)
         self.contentView.addSubview(self.repoNameLabel)
     }
 
@@ -75,31 +72,34 @@ class UserBasicCell: BaseCollectionCell, ReactorKit.View {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.avatarImageView.left = 10
-        self.avatarImageView.top = self.avatarImageView.topWhenCenter
-        self.fullnameLabel.width = self.contentView.width - 10 - self.avatarImageView.right - 10
-        self.fullnameLabel.left = self.avatarImageView.right + 10
-        self.fullnameLabel.top = self.avatarImageView.top - 4
-        self.repoNameLabel.width = self.fullnameLabel.width
-        self.repoNameLabel.left = self.fullnameLabel.left
-        self.repoNameLabel.top = self.fullnameLabel.bottom + 1
-        self.repoDescLabel.width = self.fullnameLabel.width
-        self.repoDescLabel.left = self.fullnameLabel.left
-        self.repoDescLabel.top = self.repoNameLabel.bottom + 1
+        self.avatarImageView.top = 5
+        self.userNameLabel.sizeToFit()
+        self.userNameLabel.width = self.contentView.width - 10 - self.avatarImageView.right - 10
+        self.userNameLabel.left = self.avatarImageView.right + 10
+        self.userNameLabel.top = self.avatarImageView.top - 2
+        self.repoNameLabel.sizeToFit()
+        self.repoNameLabel.width = self.userNameLabel.width
+        self.repoNameLabel.left = self.userNameLabel.left
+        self.repoNameLabel.bottom = self.avatarImageView.bottom
+        self.descLabel.width = self.contentView.width - 20
+        self.descLabel.height = self.contentView.height - self.avatarImageView.bottom - 15
+        self.descLabel.left = self.avatarImageView.left
+        self.descLabel.top = self.avatarImageView.bottom + 5
     }
 
     func bind(reactor: UserBasicItem) {
         super.bind(item: reactor)
-        reactor.state.map { $0.fullname }
+        reactor.state.map { $0.userName }
             .distinctUntilChanged()
-            .bind(to: self.fullnameLabel.rx.attributedText)
+            .bind(to: self.userNameLabel.rx.attributedText)
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.repoName }
             .distinctUntilChanged()
             .bind(to: self.repoNameLabel.rx.attributedText)
             .disposed(by: self.disposeBag)
-        reactor.state.map { $0.repoDesc }
+        reactor.state.map { $0.desc }
             .distinctUntilChanged()
-            .bind(to: self.repoDescLabel.rx.text)
+            .bind(to: self.descLabel.rx.text)
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.avatar }
             .distinctUntilChanged { HiIOS.compareImage($0, $1) }
