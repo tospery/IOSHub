@@ -1,5 +1,5 @@
 //
-//  RepoSummaryCell.swift
+//  RepoBasicCell.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/11/29.
@@ -13,7 +13,7 @@ import URLNavigator
 import Rswift
 import HiIOS
 
-class RepoSummaryCell: BaseCollectionCell, ReactorKit.View {
+class RepoBasicCell: BaseCollectionCell, ReactorKit.View {
     
     struct Metric {
         static let maxLines = 5
@@ -64,7 +64,7 @@ class RepoSummaryCell: BaseCollectionCell, ReactorKit.View {
         self.descLabel.top = self.infoView.bottom
     }
 
-    func bind(reactor: RepoSummaryItem) {
+    func bind(reactor: RepoBasicItem) {
         super.bind(item: reactor)
         reactor.state.map { $0.repo }
             .distinctUntilChanged()
@@ -80,7 +80,7 @@ class RepoSummaryCell: BaseCollectionCell, ReactorKit.View {
     }
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
-        guard let item = item as? RepoSummaryItem else { return .zero }
+        guard let item = item as? RepoBasicItem else { return .zero }
         var height = RepoInfoView.Metric.height
         height += UILabel.size(
             attributedString: item.currentState.desc,

@@ -318,12 +318,12 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
                 }
                 if let repo = $0 as? Repo {
                     switch repo.cellType {
-                    case .summary: return .repoSummary(.init($0))
-                    case .details: return .repoDetails(.init($0))
+                    case .summary: return .repoBasic(.init($0))
+                    case .details: return .repoDetail(.init($0))
                     }
                 }
                 if $0 is User {
-                    return .user(.init($0))
+                    return .userBasic(.init($0))
                 }
                 if $0 is Readme {
                     return .readmeContent(.init($0))

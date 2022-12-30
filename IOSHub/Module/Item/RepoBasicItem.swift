@@ -1,8 +1,8 @@
 //
-//  RepoDetailsItem.swift
+//  RepoBasicItem.swift
 //  IOSHub
 //
-//  Created by 杨建祥 on 2022/12/28.
+//  Created by 杨建祥 on 2022/11/29.
 //
 
 import Foundation
@@ -13,16 +13,13 @@ import URLNavigator
 import Rswift
 import HiIOS
 
-class RepoDetailsItem: BaseCollectionItem, ReactorKit.Reactor {
+class RepoBasicItem: BaseCollectionItem, ReactorKit.Reactor {
 
     typealias Action = NoAction
     typealias Mutation = NoMutation
 
     struct State {
         var repo: Repo?
-        var avatar: ImageSource?
-        var updateAgo: String?
-        var name: NSAttributedString?
         var desc: NSAttributedString?
     }
 
@@ -33,9 +30,6 @@ class RepoDetailsItem: BaseCollectionItem, ReactorKit.Reactor {
         guard let repo = model as? Repo else { return }
         self.initialState = State(
             repo: repo,
-            avatar: repo.owner.avatar?.url,
-            updateAgo: repo.updateAgo,
-            name: repo.attrFullname,
             desc: repo.attrDesc
         )
     }

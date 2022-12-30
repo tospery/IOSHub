@@ -1,5 +1,5 @@
 //
-//  UserCell.swift
+//  UserBasicCell.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/11/30.
@@ -13,7 +13,7 @@ import URLNavigator
 import Rswift
 import HiIOS
 
-class UserCell: BaseCollectionCell, ReactorKit.View {
+class UserBasicCell: BaseCollectionCell, ReactorKit.View {
     
     struct Metric {
         static let height = 65.f
@@ -87,7 +87,7 @@ class UserCell: BaseCollectionCell, ReactorKit.View {
         self.repoDescLabel.top = self.repoNameLabel.bottom + 1
     }
 
-    func bind(reactor: UserItem) {
+    func bind(reactor: UserBasicItem) {
         super.bind(item: reactor)
         reactor.state.map { $0.fullname }
             .distinctUntilChanged()

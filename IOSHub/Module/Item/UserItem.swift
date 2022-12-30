@@ -1,5 +1,5 @@
 //
-//  UserItem.swift
+//  UserBasicItem.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/11/30.
@@ -13,7 +13,7 @@ import URLNavigator
 import Rswift
 import HiIOS
 
-class UserItem: BaseCollectionItem, ReactorKit.Reactor {
+class UserBasicItem: BaseCollectionItem, ReactorKit.Reactor {
 
     typealias Action = NoAction
     typealias Mutation = NoMutation

@@ -1,5 +1,5 @@
 //
-//  RepoDetailsCell.swift
+//  RepoDetailCell.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/12/28.
@@ -14,7 +14,7 @@ import Rswift
 import TTTAttributedLabel
 import HiIOS
 
-class RepoDetailsCell: BaseCollectionCell, ReactorKit.View {
+class RepoDetailCell: BaseCollectionCell, ReactorKit.View {
     
     struct Metric {
         static let maxLines = 5
@@ -100,7 +100,7 @@ class RepoDetailsCell: BaseCollectionCell, ReactorKit.View {
         self.descLabel.extendToBottom = self.updateLabel.top
     }
 
-    func bind(reactor: RepoDetailsItem) {
+    func bind(reactor: RepoDetailItem) {
         super.bind(item: reactor)
         reactor.state.map { $0.repo }
             .distinctUntilChanged()
@@ -129,7 +129,7 @@ class RepoDetailsCell: BaseCollectionCell, ReactorKit.View {
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
         // .init(width: width, height: 190)
-        guard let item = item as? RepoDetailsItem else { return .zero }
+        guard let item = item as? RepoDetailItem else { return .zero }
         var height = RepoStatView.Metric.height
         height += UILabel.size(
             attributedString: item.currentState.desc,
@@ -146,14 +146,14 @@ class RepoDetailsCell: BaseCollectionCell, ReactorKit.View {
 
 }
 
-extension RepoDetailsCell: TTTAttributedLabelDelegate {
+extension RepoDetailCell: TTTAttributedLabelDelegate {
     func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith result: NSTextCheckingResult!) {
         // self.termBlock?(result.range.location)
         log("点击位置->\(result.range.location)")
     }
 }
 
-extension Reactive where Base: RepoDetailsCell {
+extension Reactive where Base: RepoDetailCell {
 
     var name: Binder<NSAttributedString?> {
         return Binder(self.base) { cell, name in
