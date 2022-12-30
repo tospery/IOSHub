@@ -50,6 +50,7 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        // self.contentView.backgroundColor = .orange
         self.borderLayer?.borders = .bottom
         self.borderLayer?.borderColors = [BorderLayer.Border.bottom: UIColor.border]
         self.borderLayer?.borderWidths = [BorderLayer.Border.bottom: pixelOne]
@@ -153,6 +154,7 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
                 .disposed(by: self.disposeBag)
             return
         }
+        self.contentView.theme.backgroundColor = themeService.attribute { $0.backgroundColor }
         if let parent = reactor.parent as? NormalViewReactor {
             let isPersonal = parent.host == .personal
             if let simple = reactor.model as? Simple,

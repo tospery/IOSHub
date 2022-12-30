@@ -69,7 +69,7 @@ class RepoViewReactor: NormalViewReactor {
     
     override func reload(_ data: Any?) -> Observable<NormalViewReactor.Mutation> {
         guard let readme = data as? Readme else { return .empty() }
-        log("开始重新加载readme = \(readme.height)")
+        log("开始重新加载readme = \(readme.heights)")
         return .concat([
             .just(.setReadme(readme)),
             self.loadData(self.pageStart)

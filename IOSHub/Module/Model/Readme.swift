@@ -33,7 +33,7 @@ struct Readme: Subjective, Eventable {
     var size: Int?
     var type: String?
     var url: String?
-    var height = 0.f
+    var heights = [CGFloat].init()
     
     var sha: String { self.id }
     
@@ -63,7 +63,7 @@ struct Readme: Subjective, Eventable {
         size            <- map["size"]
         type            <- map["type"]
         url             <- map["url"]
-        height          <- map["height"]
+        heights         <- map["heights"]
     }
     
 }

@@ -29,7 +29,7 @@ class ReadmeContentItem: BaseCollectionItem, ReactorKit.Reactor {
         super.init(model)
         guard let readme = model as? Readme else { return }
         self.initialState = State(
-            height: readme.height,
+            height: readme.heights.last ?? 0,
             html: readme.html
         )
     }

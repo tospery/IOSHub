@@ -21,7 +21,7 @@ class ReadmeContentCell: BaseCollectionCell, ReactorKit.View {
         static let height = 500.f
     }
     
-    var contentHeight = 0.f
+    // var contentHeight = 0.f
     
     lazy var webView: WKWebView = {
         let configuration = WKWebViewConfiguration.init()
@@ -30,6 +30,8 @@ class ReadmeContentCell: BaseCollectionCell, ReactorKit.View {
             frame: .init(x: 0, y: 0, width: deviceWidth, height: Metric.height),
             configuration: configuration
         )
+        webView.theme.backgroundColor = themeService.attribute { $0.lightColor }
+        webView.scrollView.isScrollEnabled = false
         webView.sizeToFit()
         return webView
     }()
@@ -38,6 +40,7 @@ class ReadmeContentCell: BaseCollectionCell, ReactorKit.View {
         super.init(frame: frame)
         self.contentView.addSubview(self.webView)
         self.contentView.theme.backgroundColor = themeService.attribute { $0.lightColor }
+        
         self.webView.scrollView.addObserver(
             self,
             forKeyPath: "contentSize",
@@ -84,24 +87,22 @@ class ReadmeContentCell: BaseCollectionCell, ReactorKit.View {
         change: [NSKeyValueChangeKey: Any]?,
         context: UnsafeMutableRawPointer?
     ) {
+        guard var readme = self.model as? Readme else { return }
         if keyPath == "contentSize" {
             let height = self.webView.scrollView.contentSize.height.flat
-            if self.contentHeight != height {
-                self.contentHeight = height
-                log("查看高度: \(height)")
-//                if var readme = self.model as? Readme, let parent = self.reactor?.parent as? NormalViewReactor {
-//                    readme.height = self.contentHeight
-//                    parent.action.onNext(.reload(readme))
-//                }
+            if !readme.heights.contains(height) {
+                var heights = readme.heights
+                heights.append(height)
+                readme.heights = heights
+                (self.reactor?.parent as? NormalViewReactor)?.action.onNext(.reload(readme))
             }
         }
     }
     // swiftlint:enable block_based_kvo
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
-//        guard let readme = (item as? ReadmeContentItem)?.model as? Readme else { return .zero }
-//        return .init(width: width, height: readme.height + 1 + Metric.margin * 2)
-        .init(width: width, height: 1000)
+        guard let readme = (item as? ReadmeContentItem)?.model as? Readme else { return .zero }
+        return .init(width: width, height: readme.heights.last ?? 0.f + 1 + Metric.margin * 2)
     }
 
 }
