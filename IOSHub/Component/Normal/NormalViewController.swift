@@ -23,9 +23,11 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
     struct Reusable {
         static let simpleCell = ReusableCell<SimpleCell>()
         static let appInfoCell = ReusableCell<AppInfoCell>()
+        static let milestoneCell = ReusableCell<MilestoneCell>()
+        static let userBasicCell = ReusableCell<UserBasicCell>()
+        static let userDetailCell = ReusableCell<UserDetailCell>()
         static let repoBasicCell = ReusableCell<RepoBasicCell>()
         static let repoDetailCell = ReusableCell<RepoDetailCell>()
-        static let userBasicCell = ReusableCell<UserBasicCell>()
         static let searchOptionsCell = ReusableCell<SearchOptionsCell>()
         static let searchKeywordsCell = ReusableCell<SearchKeywordsCell>()
         static let readmeContentCell = ReusableCell<ReadmeContentCell>()
@@ -49,6 +51,21 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                     item.parent = self.reactor
                     cell.reactor = item
                     return cell
+                case let .milestone(item):
+                    let cell = collectionView.dequeue(Reusable.milestoneCell, for: indexPath)
+                    item.parent = self.reactor
+                    cell.reactor = item
+                    return cell
+                case let .userBasic(item):
+                    let cell = collectionView.dequeue(Reusable.userBasicCell, for: indexPath)
+                    item.parent = self.reactor
+                    cell.reactor = item
+                    return cell
+                case let .userDetail(item):
+                    let cell = collectionView.dequeue(Reusable.userDetailCell, for: indexPath)
+                    item.parent = self.reactor
+                    cell.reactor = item
+                    return cell
                 case let .repoBasic(item):
                     let cell = collectionView.dequeue(Reusable.repoBasicCell, for: indexPath)
                     item.parent = self.reactor
@@ -56,11 +73,6 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                     return cell
                 case let .repoDetail(item):
                     let cell = collectionView.dequeue(Reusable.repoDetailCell, for: indexPath)
-                    item.parent = self.reactor
-                    cell.reactor = item
-                    return cell
-                case let .userBasic(item):
-                    let cell = collectionView.dequeue(Reusable.userBasicCell, for: indexPath)
                     item.parent = self.reactor
                     cell.reactor = item
                     return cell
@@ -116,9 +128,11 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         super.viewDidLoad()
         self.collectionView.register(Reusable.simpleCell)
         self.collectionView.register(Reusable.appInfoCell)
+        self.collectionView.register(Reusable.milestoneCell)
+        self.collectionView.register(Reusable.userBasicCell)
+        self.collectionView.register(Reusable.userDetailCell)
         self.collectionView.register(Reusable.repoBasicCell)
         self.collectionView.register(Reusable.repoDetailCell)
-        self.collectionView.register(Reusable.userBasicCell)
         self.collectionView.register(Reusable.searchOptionsCell)
         self.collectionView.register(Reusable.searchKeywordsCell)
         self.collectionView.register(Reusable.readmeContentCell)
@@ -375,9 +389,11 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
         switch self.dataSource[indexPath] {
         case let .simple(item): return Reusable.simpleCell.class.size(width: width, item: item)
         case let .appInfo(item): return Reusable.appInfoCell.class.size(width: width, item: item)
+        case let .milestone(item): return Reusable.milestoneCell.class.size(width: width, item: item)
+        case let .userBasic(item): return Reusable.userBasicCell.class.size(width: width, item: item)
+        case let .userDetail(item): return Reusable.userDetailCell.class.size(width: width, item: item)
         case let .repoBasic(item): return Reusable.repoBasicCell.class.size(width: width, item: item)
         case let .repoDetail(item): return Reusable.repoDetailCell.class.size(width: width, item: item)
-        case let .userBasic(item): return Reusable.userBasicCell.class.size(width: width, item: item)
         case let .searchOptions(item): return Reusable.searchOptionsCell.class.size(width: width, item: item)
         case let .searchKeywords(item): return Reusable.searchKeywordsCell.class.size(width: width, item: item)
         case let .readmeContent(item): return Reusable.readmeContentCell.class.size(width: width, item: item)

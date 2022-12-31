@@ -26,5 +26,9 @@ class UserViewController: NormalViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func handleUser(user: User?, changed: Bool) {
+        log("独立的User -> \(changed)")
+    }
 
 }

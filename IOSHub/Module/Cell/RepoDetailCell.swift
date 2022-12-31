@@ -53,8 +53,8 @@ class RepoDetailCell: BaseCollectionCell, ReactorKit.View {
         return imageView
     }()
     
-    lazy var statView: RepoStatView = {
-        let view = RepoStatView.init()
+    lazy var statView: StatView = {
+        let view = StatView.init()
         view.sizeToFit()
         return view
     }()
@@ -130,7 +130,7 @@ class RepoDetailCell: BaseCollectionCell, ReactorKit.View {
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
         // .init(width: width, height: 190)
         guard let item = item as? RepoDetailItem else { return .zero }
-        var height = RepoStatView.Metric.height
+        var height = StatView.Metric.height
         height += UILabel.size(
             attributedString: item.currentState.desc,
             withConstraints: .init(

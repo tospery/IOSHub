@@ -306,24 +306,29 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         return newState
     }
     
+    // swiftlint:disable cyclomatic_complexity
     func genSections(originals: [SectionData]) -> [Section] {
         (originals.count == 0 ? [] : originals.map {
             .sectionItems(header: $0.header, items: $0.models.map {
                 if let value = ($0 as? BaseModel)?.data as? SectionItemValue {
                     switch value {
                     case .appInfo: return .appInfo(.init($0))
+                    case .milestone: return .milestone(.init($0))
                     case .searchOptions: return .searchOptions(.init($0))
                     case .searchKeywords: return .searchKeywords(.init($0))
                     }
                 }
-                if let repo = $0 as? Repo {
-                    switch repo.cellType {
-                    case .summary: return .repoBasic(.init($0))
-                    case .details: return .repoDetail(.init($0))
+                if let user = $0 as? User {
+                    switch user.cellType {
+                    case .basic: return .userBasic(.init($0))
+                    case .detail: return .userDetail(.init($0))
                     }
                 }
-                if $0 is User {
-                    return .userBasic(.init($0))
+                if let repo = $0 as? Repo {
+                    switch repo.cellType {
+                    case .basic: return .repoBasic(.init($0))
+                    case .detail: return .repoDetail(.init($0))
+                    }
                 }
                 if $0 is Readme {
                     return .readmeContent(.init($0))
@@ -343,6 +348,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
             })
         })
     }
+    // swiftlint:enable cyclomatic_complexity
     
     // MARK: - dependency/data
     func loadDependency() -> Observable<Mutation> {

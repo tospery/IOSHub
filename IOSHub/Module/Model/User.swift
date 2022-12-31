@@ -18,6 +18,11 @@ import BonMot
 
 struct User: Subjective, Eventable {
     
+    enum CellType: Int, Codable {
+        case basic
+        case detail
+    }
+    
     enum Event {
     }
     
@@ -68,6 +73,8 @@ struct User: Subjective, Eventable {
     var username: String?       // username|login
     var nickname: String?       // name
     var avatar: String?         // avatar|avatar_url
+    // 扩展字段
+    var cellType = CellType.basic
 
     var isValid: Bool {
         id != 0 && username?.isNotEmpty ?? false
@@ -122,6 +129,7 @@ struct User: Subjective, Eventable {
         updatedAt               <- map["updated_at"]
         username                <- map["login|username", nested: false, delimiter: "|"]
         avatar                  <- map["avatar_url|avatar", nested: false, delimiter: "|"]
+        cellType                <- map["cellType"]
     }
     // swiftlint:enable function_body_length
     

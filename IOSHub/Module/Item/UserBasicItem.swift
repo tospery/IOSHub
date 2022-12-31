@@ -33,13 +33,7 @@ class UserBasicItem: BaseCollectionItem, ReactorKit.Reactor {
         guard let user = model as? User else { return }
         self.initialState = State(
             avatar: user.avatar?.url,
-            userName: .composed(of: [
-                (user.nickname ?? R.string.localizable.unknown())
-                    .styled(with: .color(.primary)),
-                Special.space,
-                "(\(user.username ?? R.string.localizable.unknown()))"
-                    .styled(with: .color(.title))
-            ]).styled(with: .font(.normal(16))),
+            userName: user.fullnameAttributedText,
             repoName: .composed(of: [
                 R.image.ic_repo_small()!
                     .styled(with: .baselineOffset(-4)),

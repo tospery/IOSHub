@@ -47,7 +47,7 @@ class RepoViewReactor: NormalViewReactor {
             guard let `self` = self else { fatalError() }
             var models = [ModelType].init()
             if var repo = self.currentState.repo {
-                repo.cellType = .details
+                repo.cellType = .detail
                 models.append(repo)
                 let cellIds: [CellId] = [.space, .language, .issues, .pullrequests, .space, .branches, .readme]
                 let simples = cellIds.map { id -> Simple in

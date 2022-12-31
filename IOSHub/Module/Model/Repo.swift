@@ -19,8 +19,8 @@ import BonMot
 struct Repo: Subjective, Eventable {
     
     enum CellType: Int, Codable {
-        case summary
-        case details
+        case basic
+        case detail
     }
     
     enum Event {
@@ -105,7 +105,7 @@ struct Repo: Subjective, Eventable {
     var organization: Organization?
     // 扩展属性
     // var branchs = [Branch].init()
-    var cellType = CellType.summary
+    var cellType = CellType.basic
     // 合并属性
     var ranking: Int?
     var forks = 0

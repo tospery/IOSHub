@@ -10,6 +10,7 @@ import BonMot
 
 extension User {
     
+    // 110 * 670
     var milestone: String { "https://ghchart.rshah.org/1CA035/\(String(describing: username))" }
     
     var joinedOn: String? {
@@ -17,6 +18,16 @@ extension User {
         guard let date = Date.init(iso8601: string) else { return nil }
         let value = date.string(withFormat: "yyyy-MM-dd")
         return R.string.localizable.joinedOn(value)
+    }
+    
+    var fullnameAttributedText: NSAttributedString {
+        .composed(of: [
+            (self.nickname ?? R.string.localizable.unknown())
+                .styled(with: .color(.primary)),
+            Special.space,
+            "(\(self.username ?? R.string.localizable.unknown()))"
+                .styled(with: .color(.title))
+        ]).styled(with: .font(.bold(16)))
     }
     
 //    var attrFullname: NSAttributedString {

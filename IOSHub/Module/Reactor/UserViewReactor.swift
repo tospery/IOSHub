@@ -22,30 +22,24 @@ class UserViewReactor: NormalViewReactor {
         )
     }
     
-//    override func loadDependency() -> Observable<Mutation> {
-//        .create { [weak self] observer -> Disposable in
-//            guard let `self` = self else { fatalError() }
-//            guard let username = self.username, let reponame = self.reponame else {
-//                observer.onError(HiError.unknown)
-//                return Disposables.create { }
-//            }
-//            return Observable.zip([
-//                self.provider.repo(username: username, reponame: reponame)
-//                    .asObservable()
-//                    .map { Dataset.init(repo: $0) },
-//                self.provider.readme(username: username, reponame: reponame, ref: nil)
-//                    .asObservable()
-//                    .map { Dataset.init(readme: $0) }
-//            ])
-//                .map { Mutation.setDataset(.init(repo: $0[0].repo, readme: $0[1].readme)) }
-//                .subscribe(observer)
-//        }
-//    }
-//
-//    override func loadData(_ page: Int) -> Observable<[SectionData]> {
-//        .create { [weak self] observer -> Disposable in
-//            guard let `self` = self else { fatalError() }
-//            var models = [ModelType].init()
+    override func loadDependency() -> Observable<Mutation> {
+        .create { [weak self] observer -> Disposable in
+            guard let `self` = self else { fatalError() }
+            if self.username == nil {
+                observer.onError(HiError.unknown)
+                return Disposables.create { }
+            }
+            return self.provider.user(username: self.username)
+                .asObservable()
+                .map(Mutation.setUser)
+                .subscribe(observer)
+        }
+    }
+    
+    override func loadData(_ page: Int) -> Observable<[SectionData]> {
+        .create { [weak self] observer -> Disposable in
+            guard let `self` = self else { fatalError() }
+            var models = [ModelType].init()
 //            if var repo = self.currentState.repo {
 //                repo.cellType = .details
 //                models.append(repo)
@@ -61,11 +55,27 @@ class UserViewReactor: NormalViewReactor {
 //            if let readme = self.currentState.readme {
 //                models.append(readme)
 //            }
-//            observer.onNext([(header: nil, models: models)])
-//            observer.onCompleted()
-//            return Disposables.create { }
-//        }
-//    }
+            if var user = self.currentState.user {
+                user.cellType = .detail
+                models.append(user)
+            }
+            observer.onNext([(header: nil, models: models)])
+            observer.onCompleted()
+            return Disposables.create { }
+        }
+    }
+    
+    override func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
+        .merge(
+            mutation,
+            Subjection.for(Configuration.self)
+                .distinctUntilChanged()
+                .filterNil()
+                .asObservable()
+                .map(Mutation.setConfiguration)
+        )
+    }
+    
 //
 //    override func reload(_ data: Any?) -> Observable<NormalViewReactor.Mutation> {
 //        guard let readme = data as? Readme else { return .empty() }
