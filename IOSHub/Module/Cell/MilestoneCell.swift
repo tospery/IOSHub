@@ -11,33 +11,18 @@ import RxCocoa
 import ReactorKit
 import URLNavigator
 import Rswift
+import SwiftSVG
 import HiIOS
 
 class MilestoneCell: BaseCollectionCell, ReactorKit.View {
     
-//    lazy var titleLabel: UILabel = {
-//        let label = UILabel.init(frame: .zero)
-//        label.font = .normal(15)
-//        label.text = "v\(UIApplication.shared.version!)(\(UIApplication.shared.buildNumber!))"
-//        label.theme.textColor = themeService.attribute { $0.bodyColor }
-//        label.sizeToFit()
-//        return label
-//    }()
-//
-//    lazy var imageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.image = R.image.appLogo()
-//        imageView.sizeToFit()
-//        imageView.size = .init(deviceWidth * 0.24)
-//        return imageView
-//    }()
+    struct Metric {
+        static let size = CGSize.init(width: 700.f, height: 120.f)
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        self.contentView.addSubview(self.titleLabel)
-//        self.contentView.addSubview(self.imageView)
-//        self.contentView.theme.backgroundColor = themeService.attribute { $0.lightColor }
-        self.contentView.backgroundColor = .orange
+        self.contentView.theme.backgroundColor = themeService.attribute { $0.lightColor }
     }
 
     required init?(coder: NSCoder) {
@@ -50,21 +35,50 @@ class MilestoneCell: BaseCollectionCell, ReactorKit.View {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-//        self.imageView.left = self.imageView.leftWhenCenter
-//        self.imageView.top = (self.imageView.topWhenCenter * 0.9).flat
-//        self.titleLabel.left = self.titleLabel.leftWhenCenter
-//        self.titleLabel.top = self.imageView.bottom + 5
+        let svgView = self.contentView.viewWithTag(100) as? UIScrollView
+        svgView?.width = self.contentView.width + 40
+        svgView?.height = self.contentView.height
+        svgView?.left = -15
+        svgView?.top = 0
     }
 
     func bind(reactor: MilestoneItem) {
         super.bind(item: reactor)
+        reactor.state.map { $0.url }
+            .distinctUntilChanged()
+            .bind(to: self.rx.url)
+            .disposed(by: self.disposeBag)
         reactor.state.map { _ in }
             .bind(to: self.rx.setNeedsLayout)
             .disposed(by: self.disposeBag)
     }
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
-        .init(width: width, height: 190)
+        .init(width: width, height: Metric.size.height)
+    }
+
+}
+
+extension Reactive where Base: MilestoneCell {
+
+    var url: Binder<String?> {
+        return Binder(self.base) { cell, url in
+            guard let url = url?.url else { return }
+            if let old = cell.contentView.viewWithTag(100) {
+                old.removeFromSuperview()
+            }
+            let new = UIScrollView.init(SVGURL: url)
+            new.tag = 100
+            new.contentSize = MilestoneCell.Metric.size
+            new.showsHorizontalScrollIndicator = false
+            new.showsVerticalScrollIndicator = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                new.scrollToRight(animated: true)
+            }
+            cell.contentView.addSubview(new)
+            cell.setNeedsLayout()
+            cell.layoutIfNeeded()
+        }
     }
 
 }

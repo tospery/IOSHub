@@ -58,6 +58,9 @@ class UserViewReactor: NormalViewReactor {
             if var user = self.currentState.user {
                 user.cellType = .detail
                 models.append(user)
+                // models.append(Simple.init(height: 10))
+                models.append(BaseModel.init(SectionItemValue.milestone))
+                // models.append(Simple.init(height: 10))
             }
             observer.onNext([(header: nil, models: models)])
             observer.onCompleted()

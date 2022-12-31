@@ -15,16 +15,25 @@ import HiIOS
 
 class MilestoneItem: BaseCollectionItem, ReactorKit.Reactor {
 
-    typealias Action = NoAction
-    typealias Mutation = NoMutation
+    enum Action {
+        case url(String?)
+    }
+    
+    enum Mutation {
+        case setUrl(String?)
+    }
 
     struct State {
+        var url: String?
     }
 
     var initialState = State()
 
     required public init(_ model: ModelType) {
         super.init(model)
+        self.initialState = State(
+            url: "https://ghchart.rshah.org/1CA035/tospery"
+        )
     }
     
 }
