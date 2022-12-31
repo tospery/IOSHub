@@ -40,6 +40,7 @@ enum SectionItem: IdentifiableType, Equatable {
         return string // String.init(string.sorted())
     }
 
+    // swiftlint:disable cyclomatic_complexity
     static func == (lhs: SectionItem, rhs: SectionItem) -> Bool {
         let result = (lhs.identity == rhs.identity)
         if result == false {
@@ -58,5 +59,6 @@ enum SectionItem: IdentifiableType, Equatable {
         }
         return result
     }
+    // swiftlint:enable cyclomatic_complexity
     
 }

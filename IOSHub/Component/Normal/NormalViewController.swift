@@ -70,6 +70,9 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                     let cell = collectionView.dequeue(Reusable.repoBasicCell, for: indexPath)
                     item.parent = self.reactor
                     cell.reactor = item
+                    cell.rx.tapUser
+                        .subscribeNext(weak: self, type(of: self).tapUser)
+                        .disposed(by: cell.disposeBag)
                     return cell
                 case let .repoDetail(item):
                     let cell = collectionView.dequeue(Reusable.repoDetailCell, for: indexPath)
@@ -358,6 +361,10 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         default:
             log("不需要处理的Item: \(sectionItem)")
         }
+    }
+    
+    func tapUser(username: String) {
+        self.navigator.forward(Router.shared.urlString(host: .user, path: username))
     }
     
     func tapKeyword(keyword: String) {

@@ -1,22 +1,22 @@
 [
     {
         "id":20,
-        "icon":"ic_company",
+        "icon":"ic_user_company",
         "divided":false
     },
     {
         "id":21,
-        "icon":"ic_location",
+        "icon":"ic_user_location",
         "divided":false
     },
     {
         "id":22,
-        "icon":"ic_email",
+        "icon":"ic_user_email",
         "divided":false
     },
     {
         "id":23,
-        "icon":"ic_blog",
+        "icon":"ic_user_blog",
         "divided":false
     },
     {

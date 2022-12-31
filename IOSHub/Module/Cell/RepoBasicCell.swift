@@ -11,6 +11,7 @@ import RxCocoa
 import ReactorKit
 import URLNavigator
 import Rswift
+import TTTAttributedLabel
 import HiIOS
 
 class RepoBasicCell: BaseCollectionCell, ReactorKit.View {
@@ -22,9 +23,12 @@ class RepoBasicCell: BaseCollectionCell, ReactorKit.View {
         static let maxLines = 5
     }
     
-    lazy var fullnameLabel: UILabel = {
-        let label = UILabel.init()
-        label.sizeToFit()
+    let usernameSubject = PublishSubject<String>()
+    
+    lazy var fullnameLabel: TTTAttributedLabel = {
+        let label = TTTAttributedLabel.init(frame: .zero)
+        label.delegate = self
+        label.numberOfLines = 1
         return label
     }()
     
@@ -101,7 +105,7 @@ class RepoBasicCell: BaseCollectionCell, ReactorKit.View {
         super.bind(item: reactor)
         reactor.state.map { $0.fullname }
             .distinctUntilChanged()
-            .bind(to: self.fullnameLabel.rx.attributedText)
+            .bind(to: self.rx.fullname)
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.language }
             .distinctUntilChanged()
@@ -137,6 +141,50 @@ class RepoBasicCell: BaseCollectionCell, ReactorKit.View {
         height += Metric.margin
         height += Metric.avatar
         return .init(width: width, height: height)
+    }
+
+}
+
+extension RepoBasicCell: TTTAttributedLabelDelegate {
+    func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith result: NSTextCheckingResult!) {
+        guard result.range.location == 0 else { return }
+        guard let username = (self.model as? Repo)?.owner.username else { return }
+        self.usernameSubject.onNext(username)
+    }
+}
+
+extension Reactive where Base: RepoBasicCell {
+
+    var tapUser: ControlEvent<String> {
+        let source = self.base.usernameSubject
+        return ControlEvent(events: source)
+    }
+    
+    var fullname: Binder<NSAttributedString?> {
+        return Binder(self.base) { cell, fullname in
+            cell.fullnameLabel.setText(fullname)
+            if let string = fullname?.string {
+                let array = string.components(separatedBy: " / ")
+                if array.count == 2 {
+                    let length = array.first?.count ?? 0
+                    cell.fullnameLabel.addLink(.init(
+                        attributes: [
+                            NSAttributedString.Key.foregroundColor: UIColor.primary,
+                            NSAttributedString.Key.font: UIFont.bold(16)
+                        ],
+                        activeAttributes: [
+                            NSAttributedString.Key.foregroundColor: UIColor.red
+                        ],
+                        inactiveAttributes: [
+                            NSAttributedString.Key.foregroundColor: UIColor.gray
+                        ],
+                        textCheckingResult: .spellCheckingResult(range: .init(location: 0, length: length))
+                    ))
+                }
+            }
+            cell.setNeedsLayout()
+            cell.layoutIfNeeded()
+        }
     }
 
 }

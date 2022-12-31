@@ -156,14 +156,14 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
         }
         self.contentView.theme.backgroundColor = themeService.attribute { $0.backgroundColor }
         if let parent = reactor.parent as? NormalViewReactor {
-            let isPersonal = parent.host == .personal
+            let onTitle = (parent.host == .personal || parent.host == .user)
             if let simple = reactor.model as? Simple,
                let cellId = CellId.init(rawValue: simple.id),
                cellId.rawValue >= CellId.company.rawValue,
                cellId.rawValue <= CellId.bio.rawValue {
                 parent.state.map { $0.user?.text(cellId: cellId) }
                     .distinctUntilChanged()
-                    .map { isPersonal ? Reactor.Action.title($0) : Reactor.Action.detail($0) }
+                    .map { onTitle ? Reactor.Action.title($0) : Reactor.Action.detail($0) }
                     .bind(to: reactor.action)
                     .disposed(by: self.disposeBag)
             }

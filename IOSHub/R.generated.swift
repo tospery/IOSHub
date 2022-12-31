@@ -234,16 +234,8 @@ struct R: Rswift.Validatable {
     static let appSlogan = Rswift.ImageResource(bundle: R.hostingBundle, name: "AppSlogan")
     /// Image `ic_about`.
     static let ic_about = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_about")
-    /// Image `ic_blog`.
-    static let ic_blog = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_blog")
-    /// Image `ic_company`.
-    static let ic_company = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_company")
-    /// Image `ic_email`.
-    static let ic_email = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_email")
     /// Image `ic_feedback`.
     static let ic_feedback = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_feedback")
-    /// Image `ic_location`.
-    static let ic_location = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_location")
     /// Image `ic_repo_branches`.
     static let ic_repo_branches = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_repo_branches")
     /// Image `ic_repo_issues`.
@@ -272,8 +264,16 @@ struct R: Rswift.Validatable {
     static let ic_setting = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_setting")
     /// Image `ic_star`.
     static let ic_star = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_star")
+    /// Image `ic_user_blog`.
+    static let ic_user_blog = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_user_blog")
+    /// Image `ic_user_company`.
+    static let ic_user_company = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_user_company")
     /// Image `ic_user_default`.
     static let ic_user_default = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_user_default")
+    /// Image `ic_user_email`.
+    static let ic_user_email = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_user_email")
+    /// Image `ic_user_location`.
+    static let ic_user_location = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_user_location")
     /// Image `navbar_search`.
     static let navbar_search = Rswift.ImageResource(bundle: R.hostingBundle, name: "navbar_search")
     /// Image `navbar_theme_dark`.
@@ -328,37 +328,9 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ic_blog", bundle: ..., traitCollection: ...)`
-    static func ic_blog(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.ic_blog, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ic_company", bundle: ..., traitCollection: ...)`
-    static func ic_company(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.ic_company, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ic_email", bundle: ..., traitCollection: ...)`
-    static func ic_email(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.ic_email, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "ic_feedback", bundle: ..., traitCollection: ...)`
     static func ic_feedback(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_feedback, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ic_location", bundle: ..., traitCollection: ...)`
-    static func ic_location(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.ic_location, compatibleWith: traitCollection)
     }
     #endif
 
@@ -461,9 +433,37 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_user_blog", bundle: ..., traitCollection: ...)`
+    static func ic_user_blog(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_user_blog, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_user_company", bundle: ..., traitCollection: ...)`
+    static func ic_user_company(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_user_company, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "ic_user_default", bundle: ..., traitCollection: ...)`
     static func ic_user_default(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_user_default, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_user_email", bundle: ..., traitCollection: ...)`
+    static func ic_user_email(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_user_email, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_user_location", bundle: ..., traitCollection: ...)`
+    static func ic_user_location(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_user_location, compatibleWith: traitCollection)
     }
     #endif
 

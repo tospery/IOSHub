@@ -9,8 +9,9 @@ import Foundation
 import BonMot
 
 extension User {
+
+    var isOrganization: Bool { self.type == "Organization" }
     
-    // 110 * 670
     var milestone: String { "https://ghchart.rshah.org/1CA035/\(String(describing: username))" }
     
     var joinedOn: String? {

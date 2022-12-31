@@ -17,9 +17,9 @@ class UserViewReactor: NormalViewReactor {
     
     required init(_ provider: HiIOS.ProviderType, _ parameters: [String: Any]?) {
         super.init(provider, parameters)
-        self.initialState = State(
-            title: self.title ?? R.string.localizable.user()
-        )
+//        self.initialState = State(
+//            title: self.title ?? R.string.localizable.user()
+//        )
     }
     
     override func loadDependency() -> Observable<Mutation> {
@@ -40,32 +40,37 @@ class UserViewReactor: NormalViewReactor {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
             var models = [ModelType].init()
-//            if var repo = self.currentState.repo {
-//                repo.cellType = .details
-//                models.append(repo)
-//                let cellIds: [CellId] = [.space, .language, .issues, .pullrequests, .space, .branches, .readme]
-//                let simples = cellIds.map { id -> Simple in
-//                    if id == .space {
-//                        return .init(height: 10)
-//                    }
-//                    return .init(id: id.rawValue, icon: id.icon, title: id.title)
-//                }
-//                models.append(contentsOf: simples)
-//            }
-//            if let readme = self.currentState.readme {
-//                models.append(readme)
-//            }
             if var user = self.currentState.user {
                 user.cellType = .detail
                 models.append(user)
-                // models.append(Simple.init(height: 10))
-                models.append(BaseModel.init(SectionItemValue.milestone))
-                // models.append(Simple.init(height: 10))
+                if user.isOrganization {
+                    models.append(Simple.init(height: 10))
+                } else {
+                    models.append(BaseModel.init(SectionItemValue.milestone))
+                }
+                models.append(
+                    contentsOf: [
+                        CellId.company, CellId.location, CellId.email, CellId.blog
+                    ].map { id -> Simple in
+                        return .init(id: id.rawValue, icon: id.icon, title: id.title)
+                    }
+                )
             }
             observer.onNext([(header: nil, models: models)])
             observer.onCompleted()
             return Disposables.create { }
         }
+    }
+    
+    override func reduce(state: State, mutation: Mutation) -> State {
+        var newState = super.reduce(state: state, mutation: mutation)
+        switch mutation {
+        case let .setUser(user):
+            newState.title = user?.type
+        default:
+            break
+        }
+        return newState
     }
     
     override func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {

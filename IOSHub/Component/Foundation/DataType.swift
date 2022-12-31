@@ -107,6 +107,12 @@ enum CellId: Int {
     
     var icon: String? {
         switch self {
+        // user
+        case .company: return R.image.ic_user_company.name
+        case .location: return R.image.ic_user_location.name
+        case .email: return R.image.ic_user_email.name
+        case .blog: return R.image.ic_user_blog.name
+        // repo
         case .language: return R.image.ic_repo_language.name
         case .issues: return R.image.ic_repo_issues.name
         case .pullrequests: return R.image.ic_repo_pullrequests.name
