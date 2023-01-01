@@ -10,6 +10,14 @@ import Moya
 import SwifterSwift_Hi
 import HiIOS
 
+//follow -> put
+//https://api.github.com/user/following/karpathy
+//unfollow -> delete
+//https://api.github.com/user/following/karpathy
+
+//case followUser(username: String)
+//case unfollowUser(username: String)
+
 enum GithubBaseAPI {
     case login(token: String)
     case user(username: String)
@@ -19,6 +27,8 @@ enum GithubBaseAPI {
     case starredRepos(username: String, page: Int)
     case searchRepos(keyword: String, sort: Sort, order: Order, page: Int)
     case searchUsers(keyword: String, sort: Sort, order: Order, page: Int)
+    case doFollow(username: String)
+    case unFollow(username: String)
 }
 
 extension GithubBaseAPI: TargetType {
@@ -37,11 +47,18 @@ extension GithubBaseAPI: TargetType {
         case let .starredRepos(username, _): return "/users/\(username)/starred"
         case .searchRepos: return "/search/repositories"
         case .searchUsers: return "/search/users"
+        case .doFollow(let username),
+                .unFollow(let username):
+            return "/user/following/\(username)"
         }
     }
 
     var method: Moya.Method {
-        .get
+        switch self {
+        case .doFollow: return .put
+        case .unFollow: return .delete
+        default: return .get
+        }
     }
 
     var headers: [String: String]? {
