@@ -35,7 +35,6 @@
 		8C9A45C52887F6F40041937A /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A457F2887F6F30041937A /* Error.swift */; };
 		8C9A45C62887F6F40041937A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A45802887F6F30041937A /* Theme.swift */; };
 		8C9A45C72887F6F40041937A /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A45812887F6F30041937A /* Function.swift */; };
-		8C9A45C82887F6F40041937A /* PayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A45832887F6F30041937A /* PayManager.swift */; };
 		8C9A45C92887F6F40041937A /* OCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A45852887F6F30041937A /* OCHelper.m */; };
 		8C9A45CA2887F6F40041937A /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A45882887F6F30041937A /* QMUIConfigurationTemplate.m */; };
 		8C9A45CB2887F6F40041937A /* Router+Web.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A458A2887F6F30041937A /* Router+Web.swift */; };
@@ -109,6 +108,7 @@
 		9176A54D2960205A00ADF85D /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9176A54C2960205A00ADF85D /* StatView.swift */; };
 		9176A54F296028D600ADF85D /* MilestoneItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9176A54E296028D600ADF85D /* MilestoneItem.swift */; };
 		9176A551296028DE00ADF85D /* MilestoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9176A550296028DE00ADF85D /* MilestoneCell.swift */; };
+		9176A5532961219F00ADF85D /* ShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9176A5522961219F00ADF85D /* ShareManager.swift */; };
 		91A49934295C7A1A0090EC30 /* RepoDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A49933295C7A1A0090EC30 /* RepoDetailItem.swift */; };
 		91A49936295C7A250090EC30 /* RepoDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A49935295C7A250090EC30 /* RepoDetailCell.swift */; };
 		91A49939295C81BD0090EC30 /* Readme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A49938295C81BD0090EC30 /* Readme.swift */; };
@@ -178,7 +178,6 @@
 		8C9A457F2887F6F30041937A /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		8C9A45802887F6F30041937A /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		8C9A45812887F6F30041937A /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
-		8C9A45832887F6F30041937A /* PayManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayManager.swift; sourceTree = "<group>"; };
 		8C9A45852887F6F30041937A /* OCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCHelper.m; sourceTree = "<group>"; };
 		8C9A45862887F6F30041937A /* QMUIConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplate.h; sourceTree = "<group>"; };
 		8C9A45872887F6F30041937A /* OCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCHelper.h; sourceTree = "<group>"; };
@@ -257,6 +256,7 @@
 		9176A54C2960205A00ADF85D /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
 		9176A54E296028D600ADF85D /* MilestoneItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneItem.swift; sourceTree = "<group>"; };
 		9176A550296028DE00ADF85D /* MilestoneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCell.swift; sourceTree = "<group>"; };
+		9176A5522961219F00ADF85D /* ShareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareManager.swift; sourceTree = "<group>"; };
 		91A49933295C7A1A0090EC30 /* RepoDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoDetailItem.swift; sourceTree = "<group>"; };
 		91A49935295C7A250090EC30 /* RepoDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoDetailCell.swift; sourceTree = "<group>"; };
 		91A49938295C81BD0090EC30 /* Readme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Readme.swift; sourceTree = "<group>"; };
@@ -453,7 +453,7 @@
 		8C9A45822887F6F30041937A /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				8C9A45832887F6F30041937A /* PayManager.swift */,
+				9176A5522961219F00ADF85D /* ShareManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -901,6 +901,7 @@
 				91B9DCD02935F9FB00CD2E1B /* License.swift in Sources */,
 				8C9A45C92887F6F40041937A /* OCHelper.m in Sources */,
 				91B9DCD82935FFD900CD2E1B /* StarsViewController.swift in Sources */,
+				9176A5532961219F00ADF85D /* ShareManager.swift in Sources */,
 				8C9A45E32887F6F40041937A /* LoginViewReactor.swift in Sources */,
 				8C9A45DD2887F6F40041937A /* User.swift in Sources */,
 				8C5A3FCC2887A0E20009A00F /* AppDelegate.swift in Sources */,
@@ -910,7 +911,6 @@
 				9154BF99294CE1FE003BC1F3 /* SearchKeywordsCell.swift in Sources */,
 				9176A551296028DE00ADF85D /* MilestoneCell.swift in Sources */,
 				91A49936295C7A250090EC30 /* RepoDetailCell.swift in Sources */,
-				8C9A45C82887F6F40041937A /* PayManager.swift in Sources */,
 				8C9A45E62887F6F40041937A /* TabBarReactor.swift in Sources */,
 				910B42F5293A6277000719BA /* ReposViewReactor.swift in Sources */,
 				8C9A45C12887F6F40041937A /* Networking.swift in Sources */,

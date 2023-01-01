@@ -224,7 +224,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 36 images.
+  /// This `R.image` struct is generated, and contains static references to 37 images.
   struct image {
     /// Image `AppLogo`.
     static let appLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AppLogo")
@@ -236,6 +236,8 @@ struct R: Rswift.Validatable {
     static let ic_about = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_about")
     /// Image `ic_feedback`.
     static let ic_feedback = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_feedback")
+    /// Image `ic_organization`.
+    static let ic_organization = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_organization")
     /// Image `ic_repo_branches`.
     static let ic_repo_branches = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_repo_branches")
     /// Image `ic_repo_issues`.
@@ -331,6 +333,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "ic_feedback", bundle: ..., traitCollection: ...)`
     static func ic_feedback(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_feedback, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_organization", bundle: ..., traitCollection: ...)`
+    static func ic_organization(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_organization, compatibleWith: traitCollection)
     }
     #endif
 
@@ -556,7 +565,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 83 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 84 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -564,6 +573,8 @@ struct R: Rswift.Validatable {
       static let branches = Rswift.StringResource(key: "Branches", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Develop By Swift
       static let loginSlogan = Rswift.StringResource(key: "Login.Slogan", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Follow
+      static let follow = Rswift.StringResource(key: "Follow", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Followers
       static let followers = Rswift.StringResource(key: "Followers", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Following
@@ -762,6 +773,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Login.Slogan", bundle: bundle, comment: "")
+      }
+
+      /// Value: Follow
+      static func follow(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Follow", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Follow"
+        }
+
+        return NSLocalizedString("Follow", bundle: bundle, comment: "")
       }
 
       /// Value: Followers

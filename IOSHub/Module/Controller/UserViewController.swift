@@ -27,8 +27,32 @@ class UserViewController: NormalViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+        
     override func handleUser(user: User?, changed: Bool) {
         log("独立的User -> \(changed)")
+        // self.handleUser(user: user, changed: true)
+        guard !changed else { return }
+        self.navigationBar.removeAllRightButtons()
+        if user?.isOrganization ?? false {
+            self.navigationBar.addButtonToRight(image: R.image.ic_organization()).rx.tap
+                .subscribeNext(weak: self, type(of: self).tapOrganization)
+                .disposed(by: self.disposeBag)
+        } else {
+            self.navigationBar.addButtonToRight(title: R.string.localizable.follow()).rx.tap
+                .subscribeNext(weak: self, type(of: self).tapFollow)
+                .disposed(by: self.disposeBag)
+        }
     }
 
+    func tapFollow(_: Void? = nil) {
+        log("tapFollow")
+    }
+    
+    func tapOrganization(_: Void? = nil) {
+        log("tapOrganization")
+    }
+    
 }
