@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import BonMot
 
 class ShareManager: NSObject {
 
@@ -15,13 +16,10 @@ class ShareManager: NSObject {
         super.init()
     }
     
-    func native(title: String, url: URL) {
+    func native(title: String, image: UIImage, url: URL) {
         guard let top = UIViewController.topMost else { return }
         let vc = UIActivityViewController(
-            activityItems: [
-                title,
-                url
-            ],
+            activityItems: [title, image, url],
             applicationActivities: nil
         )
         top.present(vc, animated: true) {

@@ -224,7 +224,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 37 images.
+  /// This `R.image` struct is generated, and contains static references to 38 images.
   struct image {
     /// Image `AppLogo`.
     static let appLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AppLogo")
@@ -236,6 +236,8 @@ struct R: Rswift.Validatable {
     static let ic_about = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_about")
     /// Image `ic_feedback`.
     static let ic_feedback = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_feedback")
+    /// Image `ic_native_share`.
+    static let ic_native_share = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_native_share")
     /// Image `ic_organization`.
     static let ic_organization = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_organization")
     /// Image `ic_repo_branches`.
@@ -333,6 +335,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "ic_feedback", bundle: ..., traitCollection: ...)`
     static func ic_feedback(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_feedback, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_native_share", bundle: ..., traitCollection: ...)`
+    static func ic_native_share(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_native_share, compatibleWith: traitCollection)
     }
     #endif
 
