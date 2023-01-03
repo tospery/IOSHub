@@ -84,19 +84,6 @@ class UserViewReactor: NormalViewReactor {
         }
     }
     
-//    override func reduce(state: State, mutation: Mutation) -> State {
-//        var newState = super.reduce(state: state, mutation: mutation)
-//        switch mutation {
-//        case let .setDataset(dataset):
-//            newState.isFollowed = dataset?.isFollowed
-//            newState.user = dataset?.user
-//            newState.title = dataset?.user?.type
-//        default:
-//            break
-//        }
-//        return newState
-//    }
-    
     override func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
         .merge(
             mutation,
@@ -107,16 +94,5 @@ class UserViewReactor: NormalViewReactor {
                 .map(Mutation.setConfiguration)
         )
     }
-    
-//
-//    override func reload(_ data: Any?) -> Observable<NormalViewReactor.Mutation> {
-//        guard let readme = data as? Readme else { return .empty() }
-//        log("开始重新加载readme = \(readme.heights)")
-//        return .concat([
-//            .just(.setReadme(readme)),
-//            self.loadData(self.pageStart)
-//                .map(Mutation.initial)
-//        ])
-//    }
 
 }

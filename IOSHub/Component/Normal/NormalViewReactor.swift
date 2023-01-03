@@ -132,14 +132,12 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         case let .setActivating(isActivating):
             newState.isActivating = isActivating
         case let .setFollowed(isFollowed):
-            log("检测执行顺序 reduce setFollowed： \(isFollowed) ")
             newState.isFollowed = isFollowed
         case let .setTitle(title):
             newState.title = title
         case let .setError(error):
             newState.error = error
         case let .setUser(user):
-            log("检测执行顺序 reduce setUser ")
             newState.user = user
         case let .setRepo(repo):
             newState.repo = repo

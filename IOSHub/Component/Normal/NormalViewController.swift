@@ -17,7 +17,7 @@ import ObjectMapper_Hi
 import RxDataSources
 import RxGesture
 
-// swiftlint:disable type_body_length
+// swiftlint:disable type_body_length file_length
 class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
     
     struct Reusable {
@@ -444,4 +444,4 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
     }
 
 }
-// swiftlint:enable type_body_length
+// swiftlint:enable type_body_length file_length
