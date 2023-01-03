@@ -95,4 +95,20 @@ extension ProviderType {
         ).map { $0.items }
     }
     
+    func doFollow(username: String) -> Single<Void> {
+        networking.requestRaw(
+            MultiTarget.init(
+                GithubBaseAPI.doFollow(username: username)
+            )
+        ).mapTo(())
+    }
+
+    func unFollow(username: String) -> Single<Void> {
+        networking.requestRaw(
+            MultiTarget.init(
+                GithubBaseAPI.unFollow(username: username)
+            )
+        ).mapTo(())
+    }
+    
 }

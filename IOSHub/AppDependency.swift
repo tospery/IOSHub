@@ -49,6 +49,9 @@ final class AppDependency: HiIOS.AppDependency {
 //        config.keywords = ["abc", "123"]
 //        Subjection.update(Configuration.self, config, true)
 //        var aaa = Configuration.current!
+        
+        // AccessToken.current?.accessToken
+        log("accessToken = \(AccessToken.current?.accessToken ?? "")")
         log("用户参数: \(userParameters)", module: .common)
 //        self.provider.starredRepos(username: "tospery", page: 1)
 //            .asObservable()

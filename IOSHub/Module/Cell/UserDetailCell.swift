@@ -16,11 +16,20 @@ import HiIOS
 class UserDetailCell: BaseCollectionCell, ReactorKit.View {
     
     struct Metric {
-        static let height = 150.f
+        static let height = 130.f
+        static let avatar = 40.f
     }
 
     lazy var nameLabel: UILabel = {
         let label = UILabel.init()
+        label.sizeToFit()
+        return label
+    }()
+    
+    lazy var locationLabel: UILabel = {
+        let label = UILabel.init()
+        label.font = .normal(13)
+        label.theme.textColor = themeService.attribute { $0.foregroundColor }
         label.sizeToFit()
         return label
     }()
@@ -35,8 +44,8 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
     
     lazy var introLabel: UILabel = {
         let label = UILabel.init()
-        label.numberOfLines = 2
-        label.font = .normal(13)
+        label.numberOfLines = 0
+        label.font = .normal(14)
         label.theme.textColor = themeService.attribute { $0.titleColor }
         label.sizeToFit()
         return label
@@ -44,9 +53,9 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
     
     lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layerCornerRadius = 8
+        imageView.layerCornerRadius = 4
         imageView.sizeToFit()
-        imageView.size = .init(((Metric.height - StatView.Metric.height) * 0.7).flat)
+        imageView.size = .init(Metric.avatar)
         return imageView
     }()
     
@@ -66,10 +75,11 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
         super.init(frame: frame)
         self.contentView.addSubview(self.statView)
         self.contentView.addSubview(self.infoView)
+        self.infoView.addSubview(self.avatarImageView)
         self.infoView.addSubview(self.nameLabel)
+        self.infoView.addSubview(self.locationLabel)
         self.infoView.addSubview(self.joinLabel)
         self.infoView.addSubview(self.introLabel)
-        self.infoView.addSubview(self.avatarImageView)
     }
 
     required init?(coder: NSCoder) {
@@ -88,24 +98,32 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
         self.infoView.height = self.statView.top
         self.infoView.left = 0
         self.infoView.top = 0
-        self.avatarImageView.left = 10
-        self.avatarImageView.top = self.avatarImageView.topWhenCenter
+        self.avatarImageView.left = 15
+        self.avatarImageView.top = 10
         self.nameLabel.sizeToFit()
-        self.nameLabel.width = self.contentView.width - self.avatarImageView.right - 20
+        self.nameLabel.width = self.contentView.width - self.avatarImageView.right - 25
         self.nameLabel.left = self.avatarImageView.right + 10
         self.nameLabel.top = self.avatarImageView.top
+        self.locationLabel.sizeToFit()
+        self.locationLabel.width = self.nameLabel.width
+        self.locationLabel.left = self.nameLabel.left
+        self.locationLabel.bottom = self.avatarImageView.bottom
         self.joinLabel.sizeToFit()
-        self.joinLabel.left = self.nameLabel.left
-        self.joinLabel.bottom = self.avatarImageView.bottom
+        self.joinLabel.right = self.nameLabel.right
+        self.joinLabel.bottom = self.infoView.height - 4
         self.introLabel.sizeToFit()
-        self.introLabel.width = self.nameLabel.width
-        self.introLabel.left = self.nameLabel.left
-        self.introLabel.top = self.nameLabel.bottom
+        self.introLabel.width = self.contentView.width - 30
+        self.introLabel.left = self.avatarImageView.left
+        self.introLabel.top = self.avatarImageView.bottom + 8
         self.introLabel.extendToBottom = self.joinLabel.top
     }
 
     func bind(reactor: UserDetailItem) {
         super.bind(item: reactor)
+        reactor.state.map { $0.location }
+            .distinctUntilChanged()
+            .bind(to: self.locationLabel.rx.text)
+            .disposed(by: self.disposeBag)
         reactor.state.map { $0.join }
             .distinctUntilChanged()
             .bind(to: self.joinLabel.rx.text)
@@ -132,7 +150,21 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
     }
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
-        .init(width: width, height: Metric.height)
+        guard let item = item as? UserDetailItem else { return .zero }
+        var height = UILabel.size(
+            attributedString: item.currentState.intro?
+                .styled(with: .font(.normal(14))),
+            withConstraints: .init(
+                width: width - 30,
+                height: .greatestFiniteMagnitude
+            ),
+            limitedToNumberOfLines: 0
+        ).height
+        height += 10
+        height += UserDetailCell.Metric.avatar
+        height += StatView.Metric.height
+        height += 30
+        return .init(width: width, height: height)
     }
 
 }

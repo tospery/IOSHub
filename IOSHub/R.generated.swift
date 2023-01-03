@@ -574,7 +574,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 84 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 85 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -624,6 +624,8 @@ struct R: Rswift.Validatable {
       static let since = Rswift.StringResource(key: "Since", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Stars
       static let stars = Rswift.StringResource(key: "Stars", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Unfollow
+      static let unfollow = Rswift.StringResource(key: "Unfollow", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Update %@
       static let latestUpdate = Rswift.StringResource(key: "Latest Update", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: User
@@ -1057,6 +1059,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Stars", bundle: bundle, comment: "")
+      }
+
+      /// Value: Unfollow
+      static func unfollow(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Unfollow", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Unfollow"
+        }
+
+        return NSLocalizedString("Unfollow", bundle: bundle, comment: "")
       }
 
       /// Value: Update %@

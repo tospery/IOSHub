@@ -37,6 +37,7 @@
 "Branches" = "Branches";
 "readme" = "readme";
 "Follow" = "Follow";
+"Unfollow" = "Unfollow";
 /* 词语 */
 "Pull Requests" = "Pull Requests";
 "Exit Login" = "退出登录";

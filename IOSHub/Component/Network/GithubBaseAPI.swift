@@ -10,14 +10,6 @@ import Moya
 import SwifterSwift_Hi
 import HiIOS
 
-//follow -> put
-//https://api.github.com/user/following/karpathy
-//unfollow -> delete
-//https://api.github.com/user/following/karpathy
-
-//case followUser(username: String)
-//case unfollowUser(username: String)
-
 enum GithubBaseAPI {
     case login(token: String)
     case user(username: String)

@@ -20,6 +20,7 @@ class UserDetailItem: BaseCollectionItem, ReactorKit.Reactor {
     typealias Mutation = NoMutation
 
     struct State {
+        var location: String?
         var join: String?
         var intro: String?
         var name: NSAttributedString?
@@ -33,6 +34,7 @@ class UserDetailItem: BaseCollectionItem, ReactorKit.Reactor {
         super.init(model)
         guard let user = model as? User else { return }
         self.initialState = State(
+            location: user.location ?? R.string.localizable.noneLocation(),
             join: user.joinedOn,
             intro: user.bio,
             name: user.fullnameAttributedText,

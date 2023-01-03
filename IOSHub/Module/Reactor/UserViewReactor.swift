@@ -59,6 +59,11 @@ class UserViewReactor: NormalViewReactor {
         }
     }
     
+    override func follow() -> Observable<NormalViewReactor.Mutation> {
+        log("aaabbb follow follow")
+        return .empty()
+    }
+    
     override func reduce(state: State, mutation: Mutation) -> State {
         var newState = super.reduce(state: state, mutation: mutation)
         switch mutation {

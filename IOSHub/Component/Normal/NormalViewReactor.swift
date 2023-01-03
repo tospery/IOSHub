@@ -24,6 +24,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         // case erase
         case activate(Any?)
         case target(String)
+        case follow
     }
 
     enum Mutation {
@@ -31,6 +32,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         case setRefreshing(Bool)
         case setLoadingMore(Bool)
         case setActivating(Bool)
+        case setFollowed(Bool)
         case setTitle(String?)
         // case setKeywords([String])
         case setError(Error?)
@@ -49,6 +51,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         var isRefreshing = false
         var isLoadingMore = false
         var isActivating = false
+        var isFollowed = false
         var noMoreData = false
         var error: Error?
         var title: String?
@@ -102,8 +105,8 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
             return self.loadMore()
         case let .reload(data):
             return self.reload(data)
-//        case .erase:
-//            return self.erase()
+        case .follow:
+            return self.follow()
         case let .activate(data):
             return self.activate(data)
         case let .target(target):
@@ -126,6 +129,8 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
             newState.isLoadingMore = isLoadingMore
         case let .setActivating(isActivating):
             newState.isActivating = isActivating
+        case let .setFollowed(isFollowed):
+            newState.isFollowed = isFollowed
         case let .setTitle(title):
             newState.title = title
         case let .setError(error):
@@ -274,6 +279,10 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
     }
     
     func silent(_ data: Any?) -> Observable<Mutation> {
+        .empty()
+    }
+    
+    func follow() -> Observable<Mutation> {
         .empty()
     }
     
