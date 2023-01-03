@@ -95,10 +95,10 @@ extension ProviderType {
         ).map { $0.items }
     }
     
-    func doFollow(username: String) -> Single<Void> {
+    func follow(username: String) -> Single<Void> {
         networking.requestRaw(
             MultiTarget.init(
-                GithubBaseAPI.doFollow(username: username)
+                GithubBaseAPI.follow(username: username)
             )
         ).mapTo(())
     }
@@ -111,4 +111,15 @@ extension ProviderType {
         ).mapTo(())
     }
     
+    func checkFollow(username: String) -> Single<Bool> {
+        networking.requestRaw(
+            MultiTarget.init(
+                GithubBaseAPI.checkFollow(username: username)
+            )
+        )
+        .filterSuccessfulStatusCodes()
+        .mapTo(true)
+        .catchAndReturn(false)
+    }
+
 }

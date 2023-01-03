@@ -17,20 +17,24 @@ class UserViewReactor: NormalViewReactor {
     
     required init(_ provider: HiIOS.ProviderType, _ parameters: [String: Any]?) {
         super.init(provider, parameters)
+        self.initialState = State(
+            user: nil
+        )
     }
     
     override func loadDependency() -> Observable<Mutation> {
-        .create { [weak self] observer -> Disposable in
-            guard let `self` = self else { fatalError() }
-            if self.username == nil {
-                observer.onError(HiError.unknown)
-                return Disposables.create { }
-            }
-            return self.provider.user(username: self.username)
-                .asObservable()
-                .map(Mutation.setUser)
-                .subscribe(observer)
+        if self.username == nil {
+            return .error(HiError.unknown)
         }
+        // 注：merge执行完completed，才进入下一步的loadData，而不是每个next都执行一次loadData
+        return .merge([
+            self.provider.user(username: self.username)
+                .asObservable()
+                .map(Mutation.setUser),
+            self.provider.checkFollow(username: self.username)
+                .asObservable()
+                .map(Mutation.setFollowed)
+        ])
     }
     
     override func loadData(_ page: Int) -> Observable<[SectionData]> {
@@ -59,21 +63,39 @@ class UserViewReactor: NormalViewReactor {
         }
     }
     
-    override func follow() -> Observable<NormalViewReactor.Mutation> {
-        log("aaabbb follow follow")
-        return .empty()
+    override func business(_ data: Any?) -> Observable<Mutation> {
+        .create { [weak self] observer -> Disposable in
+            guard let `self` = self else { fatalError() }
+            if self.username == nil || self.currentState.isFollowed == nil {
+                observer.onError(HiError.unknown)
+                return Disposables.create { }
+            }
+            if self.currentState.isFollowed! {
+                return self.provider.unFollow(username: self.username)
+                    .asObservable()
+                    .mapTo(Mutation.setFollowed(false))
+                    .subscribe(observer)
+            } else {
+                return self.provider.follow(username: self.username)
+                    .asObservable()
+                    .mapTo(Mutation.setFollowed(true))
+                    .subscribe(observer)
+            }
+        }
     }
     
-    override func reduce(state: State, mutation: Mutation) -> State {
-        var newState = super.reduce(state: state, mutation: mutation)
-        switch mutation {
-        case let .setUser(user):
-            newState.title = user?.type
-        default:
-            break
-        }
-        return newState
-    }
+//    override func reduce(state: State, mutation: Mutation) -> State {
+//        var newState = super.reduce(state: state, mutation: mutation)
+//        switch mutation {
+//        case let .setDataset(dataset):
+//            newState.isFollowed = dataset?.isFollowed
+//            newState.user = dataset?.user
+//            newState.title = dataset?.user?.type
+//        default:
+//            break
+//        }
+//        return newState
+//    }
     
     override func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
         .merge(

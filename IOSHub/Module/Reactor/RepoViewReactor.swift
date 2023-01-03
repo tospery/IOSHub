@@ -67,7 +67,7 @@ class RepoViewReactor: NormalViewReactor {
         }
     }
     
-    override func reload(_ data: Any?) -> Observable<NormalViewReactor.Mutation> {
+    override func reload(_ data: Any?) -> Observable<Mutation> {
         guard let readme = data as? Readme else { return .empty() }
         log("开始重新加载readme = \(readme.heights)")
         return .concat([
@@ -75,6 +75,18 @@ class RepoViewReactor: NormalViewReactor {
             self.loadData(self.pageStart)
                 .map(Mutation.initial)
         ])
+    }
+    
+    override func reduce(state: State, mutation: Mutation) -> State {
+        var newState = super.reduce(state: state, mutation: mutation)
+        switch mutation {
+        case let .setDataset(dataset):
+            newState.repo = dataset?.repo
+            newState.readme = dataset?.readme
+        default:
+            break
+        }
+        return newState
     }
 
 }

@@ -73,28 +73,14 @@ class UserViewController: NormalViewController {
         super.fromState(reactor: reactor)
         reactor.state.map { $0.isFollowed }
             .distinctUntilChanged()
-            .bind(to: self.followButton.rx.isSelected)
+            .bind(to: self.rx.follow)
             .disposed(by: self.disposeBag)
     }
         
     override func handleUser(user: User?, changed: Bool) {
         guard !changed else { return }
         self.shareButton.isHidden = false
-        self.navigationBar.removeAllRightButtons()
-        if user?.isOrganization ?? false {
-            self.navigationBar.addButtonToRight(image: R.image.ic_organization()).rx.tap
-                .subscribeNext(weak: self, type(of: self).tapOrganization)
-                .disposed(by: self.disposeBag)
-        } else {
-            self.followButton.isHidden = false
-//            self.navigationBar.addButtonToRight(button: self.followButton).rx.tap
-//                .subscribeNext(weak: self, type(of: self).tapFollow)
-//                .disposed(by: self.disposeBag)
-            self.navigationBar.addButtonToRight(button: self.followButton).rx.tap
-                .map { Reactor.Action.follow }
-                .bind(to: self.reactor!.action)
-                .disposed(by: self.disposeBag)
-        }
+        self.setupNavBar(user, self.reactor?.currentState.isFollowed)
     }
     
     func tapFollow(_: Void? = nil) {
@@ -122,12 +108,35 @@ class UserViewController: NormalViewController {
         }
     }
     
+    func setupNavBar(_ user: User?, _ isFollowed: Bool?) {
+        if isFollowed == nil || user == nil {
+            return
+        }
+        self.navigationBar.removeAllRightButtons()
+        if user?.isOrganization ?? false {
+            self.followButton.isHidden = true
+            self.navigationBar.addButtonToRight(image: R.image.ic_organization()).rx.tap
+                .subscribeNext(weak: self, type(of: self).tapOrganization)
+                .disposed(by: self.disposeBag)
+        } else {
+            self.followButton.isHidden = false
+            self.followButton.isSelected = isFollowed!
+            self.navigationBar.addButtonToRight(button: self.followButton).rx.tap
+                .map { Reactor.Action.activate(nil) }
+                .bind(to: self.reactor!.action)
+                .disposed(by: self.disposeBag)
+        }
+    }
+    
 }
 
-//extension Reactive where Base: UserViewController {
-//
-//    var follow: Binder<Bool> {
-//        self.base.followButton.rx.isSelected
-//    }
-//
-//}
+extension Reactive where Base: UserViewController {
+
+    var follow: Binder<Bool?> {
+        return Binder(self.base) { viewController, isFollowed in
+            guard viewController.isViewLoaded else { return }
+            viewController.setupNavBar(viewController.reactor?.currentState.user, isFollowed)
+        }
+    }
+
+}

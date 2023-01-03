@@ -19,8 +19,9 @@ enum GithubBaseAPI {
     case starredRepos(username: String, page: Int)
     case searchRepos(keyword: String, sort: Sort, order: Order, page: Int)
     case searchUsers(keyword: String, sort: Sort, order: Order, page: Int)
-    case doFollow(username: String)
+    case follow(username: String)
     case unFollow(username: String)
+    case checkFollow(username: String)
 }
 
 extension GithubBaseAPI: TargetType {
@@ -39,15 +40,16 @@ extension GithubBaseAPI: TargetType {
         case let .starredRepos(username, _): return "/users/\(username)/starred"
         case .searchRepos: return "/search/repositories"
         case .searchUsers: return "/search/users"
-        case .doFollow(let username),
-                .unFollow(let username):
+        case .follow(let username),
+                .unFollow(let username),
+                .checkFollow(let username):
             return "/user/following/\(username)"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .doFollow: return .put
+        case .follow: return .put
         case .unFollow: return .delete
         default: return .get
         }

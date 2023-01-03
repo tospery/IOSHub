@@ -73,7 +73,10 @@ extension User {
         case .blog: result = self.blog
         default: result = nil
         }
-        return result ?? R.string.localizable.noDescription()
+        if result?.isEmpty ?? true {
+            return R.string.localizable.noDescription()
+        }
+        return result
     }
     
     func attr(_ text: String, _ count: Int) -> NSAttributedString {

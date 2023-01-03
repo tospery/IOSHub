@@ -17,7 +17,6 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
     
     struct Metric {
         static let height = 130.f
-        static let avatar = 40.f
     }
 
     lazy var nameLabel: UILabel = {
@@ -55,7 +54,7 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
         let imageView = UIImageView()
         imageView.layerCornerRadius = 4
         imageView.sizeToFit()
-        imageView.size = .init(Metric.avatar)
+        imageView.size = IOSHub.Metric.detailAvatarSize
         return imageView
     }()
     
@@ -161,7 +160,7 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
             limitedToNumberOfLines: 0
         ).height
         height += 10
-        height += UserDetailCell.Metric.avatar
+        height += IOSHub.Metric.detailAvatarSize.height
         height += StatView.Metric.height
         height += 30
         return .init(width: width, height: height)

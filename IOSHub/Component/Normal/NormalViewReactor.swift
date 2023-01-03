@@ -24,7 +24,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         // case erase
         case activate(Any?)
         case target(String)
-        case follow
+        // case follow
     }
 
     enum Mutation {
@@ -32,7 +32,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         case setRefreshing(Bool)
         case setLoadingMore(Bool)
         case setActivating(Bool)
-        case setFollowed(Bool)
+        case setFollowed(Bool?)
         case setTitle(String?)
         // case setKeywords([String])
         case setError(Error?)
@@ -51,7 +51,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         var isRefreshing = false
         var isLoadingMore = false
         var isActivating = false
-        var isFollowed = false
+        var isFollowed: Bool?
         var noMoreData = false
         var error: Error?
         var title: String?
@@ -68,6 +68,8 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
     }
 
     struct Dataset {
+        var isFollowed: Bool?
+        var user: User?
         var repo: Repo?
         var readme: Readme?
         
@@ -105,8 +107,8 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
             return self.loadMore()
         case let .reload(data):
             return self.reload(data)
-        case .follow:
-            return self.follow()
+//        case .follow:
+//            return self.follow()
         case let .activate(data):
             return self.activate(data)
         case let .target(target):
@@ -130,12 +132,14 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         case let .setActivating(isActivating):
             newState.isActivating = isActivating
         case let .setFollowed(isFollowed):
+            log("检测执行顺序 reduce setFollowed： \(isFollowed) ")
             newState.isFollowed = isFollowed
         case let .setTitle(title):
             newState.title = title
         case let .setError(error):
             newState.error = error
         case let .setUser(user):
+            log("检测执行顺序 reduce setUser ")
             newState.user = user
         case let .setRepo(repo):
             newState.repo = repo
@@ -143,10 +147,6 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
             newState.readme = readme
         case let .setDataset(dataset):
             newState.dataset = dataset
-            newState.repo = dataset?.repo
-            newState.readme = dataset?.readme
-//        case let .setKeywords(keywords):
-//            newState.keywords = keywords
         case let .setConfiguration(configuration):
             newState.configuration = configuration
         case let .setTarget(target):
@@ -282,9 +282,9 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         .empty()
     }
     
-    func follow() -> Observable<Mutation> {
-        .empty()
-    }
+//    func follow() -> Observable<Mutation> {
+//        .empty()
+//    }
     
     func reduceSections(_ state: State, additional: Bool) -> State {
         var newState = state
