@@ -1,5 +1,5 @@
 //
-//  RepoBasicItem.swift
+//  RepoTrendingItem.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/11/29.
@@ -13,7 +13,7 @@ import URLNavigator
 import Rswift
 import HiIOS
 
-class RepoBasicItem: BaseCollectionItem, ReactorKit.Reactor {
+class RepoTrendingItem: BaseCollectionItem, ReactorKit.Reactor {
 
     typealias Action = NoAction
     typealias Mutation = NoMutation

@@ -333,7 +333,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
                 }
                 if let repo = $0 as? Repo {
                     switch repo.cellType {
-                    case .trending: return .repoBasic(.init($0))
+                    case .trending: return .repoTrending(.init($0))
                     case .detail: return .repoDetail(.init($0))
                     }
                 }

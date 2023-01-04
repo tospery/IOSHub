@@ -1,5 +1,5 @@
 //
-//  RepoBasicCell.swift
+//  RepoTrendingCell.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/11/29.
@@ -14,7 +14,7 @@ import Rswift
 import TTTAttributedLabel
 import HiIOS
 
-class RepoBasicCell: BaseCollectionCell, ReactorKit.View {
+class RepoTrendingCell: BaseCollectionCell, ReactorKit.View {
     
     struct Metric {
         static let padding = 10.f
@@ -101,7 +101,7 @@ class RepoBasicCell: BaseCollectionCell, ReactorKit.View {
         self.descLabel.top = self.avatarImageView.bottom + 5
     }
 
-    func bind(reactor: RepoBasicItem) {
+    func bind(reactor: RepoTrendingItem) {
         super.bind(item: reactor)
         reactor.state.map { $0.fullname }
             .distinctUntilChanged()
@@ -129,7 +129,7 @@ class RepoBasicCell: BaseCollectionCell, ReactorKit.View {
     }
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
-        guard let item = item as? RepoBasicItem else { return .zero }
+        guard let item = item as? RepoTrendingItem else { return .zero }
         var height = UILabel.size(
             attributedString: item.currentState.desc,
             withConstraints: .init(
@@ -145,7 +145,7 @@ class RepoBasicCell: BaseCollectionCell, ReactorKit.View {
 
 }
 
-extension RepoBasicCell: TTTAttributedLabelDelegate {
+extension RepoTrendingCell: TTTAttributedLabelDelegate {
     func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith result: NSTextCheckingResult!) {
         guard result.range.location == 0 else { return }
         guard let username = (self.model as? Repo)?.owner.username else { return }
@@ -153,7 +153,7 @@ extension RepoBasicCell: TTTAttributedLabelDelegate {
     }
 }
 
-extension Reactive where Base: RepoBasicCell {
+extension Reactive where Base: RepoTrendingCell {
 
     var tapUser: ControlEvent<String> {
         let source = self.base.usernameSubject

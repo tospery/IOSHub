@@ -17,7 +17,7 @@ enum SectionItem: IdentifiableType, Equatable {
     case milestone(MilestoneItem)
     case userTrending(UserTrendingItem)
     case userDetail(UserDetailItem)
-    case repoBasic(RepoBasicItem)
+    case repoTrending(RepoTrendingItem)
     case repoDetail(RepoDetailItem)
     case searchOptions(SearchOptionsItem)
     case searchKeywords(SearchKeywordsItem)
@@ -31,7 +31,7 @@ enum SectionItem: IdentifiableType, Equatable {
         case let .milestone(item): string = item.description
         case let .userTrending(item): string = item.description
         case let .userDetail(item): string = item.description
-        case let .repoBasic(item): string = item.description
+        case let .repoTrending(item): string = item.description
         case let .repoDetail(item): string = item.description
         case let .searchOptions(item): string = item.description
         case let .searchKeywords(item): string = item.description
@@ -50,7 +50,7 @@ enum SectionItem: IdentifiableType, Equatable {
             case .milestone: log("item变化 -> milestone")
             case .userTrending: log("item变化 -> userTrending")
             case .userDetail: log("item变化 -> userDetail")
-            case .repoBasic: log("item变化 -> repoBasic")
+            case .repoTrending: log("item变化 -> repoTrending")
             case .repoDetail: log("item变化 -> repoDetail")
             case .searchOptions: log("item变化 -> searchOptions")
             case .searchKeywords: log("item变化 -> searchKeywords")

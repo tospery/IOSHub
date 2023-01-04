@@ -26,7 +26,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         static let milestoneCell = ReusableCell<MilestoneCell>()
         static let userTrendingCell = ReusableCell<UserTrendingCell>()
         static let userDetailCell = ReusableCell<UserDetailCell>()
-        static let repoBasicCell = ReusableCell<RepoBasicCell>()
+        static let repoTrendingCell = ReusableCell<RepoTrendingCell>()
         static let repoDetailCell = ReusableCell<RepoDetailCell>()
         static let searchOptionsCell = ReusableCell<SearchOptionsCell>()
         static let searchKeywordsCell = ReusableCell<SearchKeywordsCell>()
@@ -66,8 +66,8 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                     item.parent = self.reactor
                     cell.reactor = item
                     return cell
-                case let .repoBasic(item):
-                    let cell = collectionView.dequeue(Reusable.repoBasicCell, for: indexPath)
+                case let .repoTrending(item):
+                    let cell = collectionView.dequeue(Reusable.repoTrendingCell, for: indexPath)
                     item.parent = self.reactor
                     cell.reactor = item
                     cell.rx.tapUser
@@ -134,7 +134,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         self.collectionView.register(Reusable.milestoneCell)
         self.collectionView.register(Reusable.userTrendingCell)
         self.collectionView.register(Reusable.userDetailCell)
-        self.collectionView.register(Reusable.repoBasicCell)
+        self.collectionView.register(Reusable.repoTrendingCell)
         self.collectionView.register(Reusable.repoDetailCell)
         self.collectionView.register(Reusable.searchOptionsCell)
         self.collectionView.register(Reusable.searchKeywordsCell)
@@ -353,7 +353,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         case let .userTrending(item):
             guard let username = (item.model as? User)?.username else { return }
             self.navigator.forward(Router.shared.urlString(host: .user, path: username))
-        case let .repoBasic(item):
+        case let .repoTrending(item):
             guard let repo = item.model as? Repo else { return }
             guard let username = repo.owner.username, username.isNotEmpty else { return }
             guard let reponame = repo.name, reponame.isNotEmpty else { return }
@@ -399,7 +399,7 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
         case let .milestone(item): return Reusable.milestoneCell.class.size(width: width, item: item)
         case let .userTrending(item): return Reusable.userTrendingCell.class.size(width: width, item: item)
         case let .userDetail(item): return Reusable.userDetailCell.class.size(width: width, item: item)
-        case let .repoBasic(item): return Reusable.repoBasicCell.class.size(width: width, item: item)
+        case let .repoTrending(item): return Reusable.repoTrendingCell.class.size(width: width, item: item)
         case let .repoDetail(item): return Reusable.repoDetailCell.class.size(width: width, item: item)
         case let .searchOptions(item): return Reusable.searchOptionsCell.class.size(width: width, item: item)
         case let .searchKeywords(item): return Reusable.searchKeywordsCell.class.size(width: width, item: item)

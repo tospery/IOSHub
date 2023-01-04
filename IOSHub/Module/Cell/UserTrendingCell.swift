@@ -16,7 +16,7 @@ import HiIOS
 class UserTrendingCell: BaseCollectionCell, ReactorKit.View {
     
     struct Metric {
-        static let height = 110.f
+        static let height = 100.f
     }
 
     lazy var nameLabel: UILabel = {
@@ -34,7 +34,7 @@ class UserTrendingCell: BaseCollectionCell, ReactorKit.View {
     lazy var descLabel: UILabel = {
         let label = UILabel.init()
         label.font = .normal(15)
-        label.numberOfLines = 3
+        label.numberOfLines = 2
         label.theme.textColor = themeService.attribute { $0.titleColor }
         label.sizeToFit()
         return label
@@ -75,7 +75,7 @@ class UserTrendingCell: BaseCollectionCell, ReactorKit.View {
         self.nameLabel.sizeToFit()
         self.nameLabel.width = self.contentView.width - 10 - self.avatarImageView.right - 10
         self.nameLabel.left = self.avatarImageView.right + 10
-        self.nameLabel.top = self.avatarImageView.top - 2
+        self.nameLabel.top = self.avatarImageView.top + 1
         self.locationLabel.sizeToFit()
         self.locationLabel.width = self.nameLabel.width
         self.locationLabel.left = self.nameLabel.left
