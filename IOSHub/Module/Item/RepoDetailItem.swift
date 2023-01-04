@@ -19,11 +19,12 @@ class RepoDetailItem: BaseCollectionItem, ReactorKit.Reactor {
     typealias Mutation = NoMutation
 
     struct State {
-        var repo: Repo?
         var avatar: ImageSource?
-        var updateAgo: String?
         var name: NSAttributedString?
-        var desc: NSAttributedString?
+        var lang: NSAttributedString?
+        var update: String?
+        var desc: String?
+        var repo: Repo?
     }
 
     var initialState = State()
@@ -32,11 +33,12 @@ class RepoDetailItem: BaseCollectionItem, ReactorKit.Reactor {
         super.init(model)
         guard let repo = model as? Repo else { return }
         self.initialState = State(
-            repo: repo,
             avatar: repo.owner.avatar?.url,
-            updateAgo: repo.updateAgo,
-            name: repo.fullnameAttributedText,
-            desc: repo.descAttributedText
+            name: repo.fullnameAttributedText.styled(with: .font(.bold(18))),
+            lang: repo.languageAttributedText,
+            update: repo.updateAgo,
+            desc: repo.desc ?? R.string.localizable.noneDesc(),
+            repo: repo
         )
     }
     

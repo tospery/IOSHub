@@ -11,6 +11,7 @@ import RxCocoa
 import ReactorKit
 import URLNavigator
 import Rswift
+import BonMot
 import HiIOS
 
 class RepoTrendingItem: BaseCollectionItem, ReactorKit.Reactor {
@@ -20,10 +21,11 @@ class RepoTrendingItem: BaseCollectionItem, ReactorKit.Reactor {
 
     struct State {
         var avatar: ImageSource?
-        var fullname: NSAttributedString?
-        var language: NSAttributedString?
-        var starsnum: NSAttributedString?
-        var desc: NSAttributedString?
+        var name: NSAttributedString?
+        var lang: NSAttributedString?
+        var stars: NSAttributedString?
+        // var starsnum: NSAttributedString?
+        var desc: String?
     }
 
     var initialState = State()
@@ -33,10 +35,10 @@ class RepoTrendingItem: BaseCollectionItem, ReactorKit.Reactor {
         guard let repo = model as? Repo else { return }
         self.initialState = State(
             avatar: repo.owner.avatar?.url,
-            fullname: repo.fullnameAttributedText,
-            language: repo.languageAttributedText,
-            starsnum: repo.starsnumAttributedText,
-            desc: repo.descAttributedText
+            name: repo.fullnameAttributedText,
+            lang: repo.languageAttributedText,
+            stars: repo.starsAttributedText,
+            desc: repo.desc ?? R.string.localizable.noneDesc()
         )
     }
     

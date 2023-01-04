@@ -84,7 +84,7 @@
 //        return Binder(self.base) { view, repo in
 //            view.nameLabel.attributedText = repo?.fullnameAttributedText
 //            view.languageLabel.attributedText = repo?.languageAttributedText
-//            view.starsLabel.attributedText = repo?.starsnumAttributedText
+//            view.starsLabel.attributedText = repo?.starsAttributedText
 //            view.setNeedsLayout()
 //            view.layoutIfNeeded()
 //        }

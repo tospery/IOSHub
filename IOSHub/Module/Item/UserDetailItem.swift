@@ -21,7 +21,7 @@ class UserDetailItem: BaseCollectionItem, ReactorKit.Reactor {
 
     struct State {
         var join: String?
-        var intro: String?
+        var desc: String?
         var name: NSAttributedString?
         var location: NSAttributedString?
         var avatar: ImageSource?
@@ -35,7 +35,7 @@ class UserDetailItem: BaseCollectionItem, ReactorKit.Reactor {
         guard let user = model as? User else { return }
         self.initialState = State(
             join: user.joinedOn,
-            intro: user.bio,
+            desc: user.bio,
             name: user.fullnameAttributedText.styled(with: .font(.bold(18))),
             location: user.locationAttributedText,
             avatar: user.avatar?.url,

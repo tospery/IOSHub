@@ -40,7 +40,7 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
         return label
     }()
     
-    lazy var introLabel: UILabel = {
+    lazy var descLabel: UILabel = {
         let label = UILabel.init()
         label.numberOfLines = 0
         label.font = .normal(14)
@@ -77,7 +77,7 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
         self.infoView.addSubview(self.nameLabel)
         self.infoView.addSubview(self.locationLabel)
         self.infoView.addSubview(self.joinLabel)
-        self.infoView.addSubview(self.introLabel)
+        self.infoView.addSubview(self.descLabel)
     }
 
     required init?(coder: NSCoder) {
@@ -109,11 +109,11 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
         self.locationLabel.width = self.nameLabel.width
         self.locationLabel.left = self.nameLabel.left
         self.locationLabel.bottom = self.joinLabel.top - 2
-        self.introLabel.sizeToFit()
-        self.introLabel.width = self.contentView.width - Metric.margin.horizontal
-        self.introLabel.left = self.avatarImageView.left
-        self.introLabel.top = self.avatarImageView.bottom + Metric.padding.vertical
-        self.introLabel.extendToBottom = self.statView.top
+        self.descLabel.sizeToFit()
+        self.descLabel.width = self.contentView.width - Metric.margin.horizontal
+        self.descLabel.left = self.avatarImageView.left
+        self.descLabel.top = self.avatarImageView.bottom + Metric.padding.vertical
+        self.descLabel.extendToBottom = self.statView.top
     }
 
     func bind(reactor: UserDetailItem) {
@@ -126,9 +126,9 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
             .distinctUntilChanged()
             .bind(to: self.joinLabel.rx.text)
             .disposed(by: self.disposeBag)
-        reactor.state.map { $0.intro }
+        reactor.state.map { $0.desc }
             .distinctUntilChanged()
-            .bind(to: self.introLabel.rx.text)
+            .bind(to: self.descLabel.rx.text)
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.name }
             .distinctUntilChanged()
@@ -150,7 +150,7 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
         guard let item = item as? UserDetailItem else { return .zero }
         var height = UILabel.size(
-            attributedString: item.currentState.intro?
+            attributedString: item.currentState.desc?
                 .styled(with: .font(.normal(14))),
             withConstraints: .init(
                 width: width - UserDetailCell.Metric.margin.horizontal,

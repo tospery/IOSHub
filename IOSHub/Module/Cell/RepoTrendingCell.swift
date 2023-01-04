@@ -17,28 +17,25 @@ import HiIOS
 class RepoTrendingCell: BaseCollectionCell, ReactorKit.View {
     
     struct Metric {
-        static let padding = 10.f
-        static let margin = 10.f
-        static let avatar = 36.f
-        static let maxLines = 5
+        static let height = 100.f
     }
     
     let usernameSubject = PublishSubject<String>()
     
-    lazy var fullnameLabel: TTTAttributedLabel = {
+    lazy var nameLabel: TTTAttributedLabel = {
         let label = TTTAttributedLabel.init(frame: .zero)
         label.delegate = self
         label.numberOfLines = 1
         return label
     }()
     
-    lazy var languageLabel: UILabel = {
+    lazy var langLabel: UILabel = {
         let label = UILabel()
         label.sizeToFit()
         return label
     }()
     
-    lazy var starsnumLabel: UILabel = {
+    lazy var starsLabel: UILabel = {
         let label = UILabel.init()
         label.sizeToFit()
         return label
@@ -46,7 +43,9 @@ class RepoTrendingCell: BaseCollectionCell, ReactorKit.View {
     
     lazy var descLabel: UILabel = {
         let label = UILabel.init()
-        label.numberOfLines = Metric.maxLines
+        label.font = .normal(15)
+        label.numberOfLines = 2
+        label.theme.textColor = themeService.attribute { $0.titleColor }
         label.sizeToFit()
         return label
     }()
@@ -55,7 +54,7 @@ class RepoTrendingCell: BaseCollectionCell, ReactorKit.View {
         let imageView = UIImageView.init()
         imageView.sizeToFit()
         imageView.layerCornerRadius = 4
-        imageView.size = .init(Metric.avatar)
+        imageView.size = IOSHub.Metric.listAvatarSize
         return imageView
     }()
     
@@ -65,11 +64,11 @@ class RepoTrendingCell: BaseCollectionCell, ReactorKit.View {
         self.contentView.qmui_borderPosition = .bottom
         self.contentView.qmui_borderInsets = .init(top: 0, left: 0, bottom: 0, right: 10)
         self.contentView.theme.qmui_borderColor = themeService.attribute { $0.borderColor }
-        self.contentView.addSubview(self.fullnameLabel)
-        self.contentView.addSubview(self.languageLabel)
-        self.contentView.addSubview(self.starsnumLabel)
-        self.contentView.addSubview(self.descLabel)
         self.contentView.addSubview(self.avatarImageView)
+        self.contentView.addSubview(self.nameLabel)
+        self.contentView.addSubview(self.langLabel)
+        self.contentView.addSubview(self.starsLabel)
+        self.contentView.addSubview(self.descLabel)
     }
 
     required init?(coder: NSCoder) {
@@ -84,40 +83,40 @@ class RepoTrendingCell: BaseCollectionCell, ReactorKit.View {
         super.layoutSubviews()
         self.avatarImageView.left = 10
         self.avatarImageView.top = 5
-        self.fullnameLabel.sizeToFit()
-        self.fullnameLabel.width = self.contentView.width - self.avatarImageView.right - 20
-        self.fullnameLabel.left = self.avatarImageView.right + 10
-        self.fullnameLabel.top = self.avatarImageView.top - 2
-        self.languageLabel.sizeToFit()
-        self.languageLabel.left = self.fullnameLabel.left
-        self.languageLabel.bottom = self.avatarImageView.bottom
-        self.starsnumLabel.sizeToFit()
-        self.starsnumLabel.right = self.contentView.width - 10
-        self.starsnumLabel.centerY = self.languageLabel.centerY
-        self.descLabel.sizeToFit()
+        self.nameLabel.sizeToFit()
+        self.nameLabel.width = self.contentView.width - self.avatarImageView.right - 20
+        self.nameLabel.left = self.avatarImageView.right + 10
+        self.nameLabel.top = self.avatarImageView.top + 1
+        self.langLabel.sizeToFit()
+        self.langLabel.width = self.nameLabel.width
+        self.langLabel.left = self.nameLabel.left
+        self.langLabel.bottom = self.avatarImageView.bottom
+        self.starsLabel.sizeToFit()
+        self.starsLabel.left = self.contentView.width - 65
+        self.starsLabel.centerY = self.langLabel.centerY
         self.descLabel.width = self.contentView.width - 20
         self.descLabel.height = self.contentView.height - self.avatarImageView.bottom - 15
-        self.descLabel.left = 10
+        self.descLabel.left = self.avatarImageView.left
         self.descLabel.top = self.avatarImageView.bottom + 5
     }
 
     func bind(reactor: RepoTrendingItem) {
         super.bind(item: reactor)
-        reactor.state.map { $0.fullname }
+        reactor.state.map { $0.name }
             .distinctUntilChanged()
-            .bind(to: self.rx.fullname)
+            .bind(to: self.rx.name)
             .disposed(by: self.disposeBag)
-        reactor.state.map { $0.language }
+        reactor.state.map { $0.lang }
             .distinctUntilChanged()
-            .bind(to: self.languageLabel.rx.attributedText)
+            .bind(to: self.langLabel.rx.attributedText)
             .disposed(by: self.disposeBag)
-        reactor.state.map { $0.starsnum }
+        reactor.state.map { $0.stars }
             .distinctUntilChanged()
-            .bind(to: self.starsnumLabel.rx.attributedText)
+            .bind(to: self.starsLabel.rx.attributedText)
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.desc }
             .distinctUntilChanged()
-            .bind(to: self.descLabel.rx.attributedText)
+            .bind(to: self.descLabel.rx.text)
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.avatar }
             .distinctUntilChanged { HiIOS.compareImage($0, $1) }
@@ -129,18 +128,7 @@ class RepoTrendingCell: BaseCollectionCell, ReactorKit.View {
     }
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
-        guard let item = item as? RepoTrendingItem else { return .zero }
-        var height = UILabel.size(
-            attributedString: item.currentState.desc,
-            withConstraints: .init(
-                width: width - Metric.margin * 2,
-                height: .greatestFiniteMagnitude
-            ),
-            limitedToNumberOfLines: UInt(Metric.maxLines)
-        ).height + 5.f
-        height += Metric.margin
-        height += Metric.avatar
-        return .init(width: width, height: height)
+        .init(width: width, height: Metric.height)
     }
 
 }
@@ -160,14 +148,14 @@ extension Reactive where Base: RepoTrendingCell {
         return ControlEvent(events: source)
     }
     
-    var fullname: Binder<NSAttributedString?> {
-        return Binder(self.base) { cell, fullname in
-            cell.fullnameLabel.setText(fullname)
-            if let string = fullname?.string {
+    var name: Binder<NSAttributedString?> {
+        return Binder(self.base) { cell, name in
+            cell.nameLabel.setText(name)
+            if let string = name?.string {
                 let array = string.components(separatedBy: " / ")
                 if array.count == 2 {
                     let length = array.first?.count ?? 0
-                    cell.fullnameLabel.addLink(.init(
+                    cell.nameLabel.addLink(.init(
                         attributes: [
                             NSAttributedString.Key.foregroundColor: UIColor.primary,
                             NSAttributedString.Key.font: UIFont.bold(16)

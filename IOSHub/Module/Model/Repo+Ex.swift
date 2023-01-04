@@ -23,28 +23,43 @@ extension Repo {
             .styled(with: .color(.primary), .font(.bold(16)))
     }
     
+    var langstarsAttributedText: NSAttributedString {
+        .composed(of: [
+            "●".styled(with: .color(self.languageColor?.color ?? .random)),
+            Special.space,
+            (self.language ?? R.string.localizable.unknown()).styled(with: .color(.foreground)),
+            Special.space,
+            Special.space,
+            R.image.ic_star()!.template.styled(with: .baselineOffset(-2), .color(.foreground)),
+            Special.space,
+            self.stars.formatted.styled(with: .color(.foreground))
+        ]).styled(with: .font(.normal(13)))
+    }
+    
     var languageAttributedText: NSAttributedString {
         .composed(of: [
             "●".styled(with: .color(self.languageColor?.color ?? .random)),
             Special.space,
-            (self.language ?? R.string.localizable.unknown()).styled(with: .color(.title))
-        ]).styled(with: .font(.normal(12)))
+            (self.language ?? R.string.localizable.unknown()).styled(with: .color(.foreground))
+        ]).styled(with: .font(.normal(13)))
     }
     
-    var starsnumAttributedText: NSAttributedString {
+    var starsAttributedText: NSAttributedString {
         .composed(of: [
-            R.image.ic_star()!.template.styled(with: .baselineOffset(-2), .color(.title)),
+            R.image.ic_star()!.template
+                .styled(with: .baselineOffset(-2), .font(.normal(10))),
             Special.space,
-            self.stars.formatted.styled(with: .color(.title))
-        ]).styled(with: .font(.normal(11)))
+            self.stars.formatted
+                .styled(with: .font(.normal(11)))
+        ]).styled(with: .color(.title))
     }
     
-    var descAttributedText: NSAttributedString? {
-        (self.desc ?? R.string.localizable.noneDesc()).styled(
-            with: .font(.normal(15)), .color(.title),
-            .lineHeightMultiple(1.1),
-            .lineBreakMode(.byTruncatingTail)
-        )
-    }
+//    var descAttributedText: NSAttributedString? {
+//        (self.desc ?? R.string.localizable.noneDesc()).styled(
+//            with: .font(.normal(15)), .color(.title),
+//            .lineHeightMultiple(1.1),
+//            .lineBreakMode(.byTruncatingTail)
+//        )
+//    }
     
 }

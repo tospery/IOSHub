@@ -18,9 +18,8 @@ class RepoDetailCell: BaseCollectionCell, ReactorKit.View {
     
     struct Metric {
         static let maxLines = 5
-        static let padding = 10.f
-        static let margin = 15.f
-        static let avatar = 28.f
+        static let margin = UIEdgeInsets.init(horizontal: 30, vertical: 20)
+        static let padding = UIOffset.init(horizontal: 10, vertical: 5)
     }
     
     lazy var nameLabel: TTTAttributedLabel = {
@@ -30,9 +29,15 @@ class RepoDetailCell: BaseCollectionCell, ReactorKit.View {
         return label
     }()
     
+    lazy var langLabel: UILabel = {
+        let label = UILabel.init()
+        label.sizeToFit()
+        return label
+    }()
+    
     lazy var updateLabel: UILabel = {
         let label = UILabel.init()
-        label.font = .normal(11)
+        label.font = .normal(12)
         label.theme.textColor = themeService.attribute { $0.foregroundColor }
         label.sizeToFit()
         return label
@@ -41,15 +46,17 @@ class RepoDetailCell: BaseCollectionCell, ReactorKit.View {
     lazy var descLabel: UILabel = {
         let label = UILabel.init()
         label.numberOfLines = Metric.maxLines
+        label.font = .normal(14)
+        label.theme.textColor = themeService.attribute { $0.titleColor }
         label.sizeToFit()
         return label
     }()
     
     lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layerCornerRadius = 4
+        imageView.layerCornerRadius = 6
         imageView.sizeToFit()
-        imageView.size = .init(Metric.avatar)
+        imageView.size = IOSHub.Metric.detailAvatarSize
         return imageView
     }()
     
@@ -61,11 +68,12 @@ class RepoDetailCell: BaseCollectionCell, ReactorKit.View {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.contentView.addSubview(self.statView)
         self.contentView.addSubview(self.avatarImageView)
         self.contentView.addSubview(self.nameLabel)
-        self.contentView.addSubview(self.descLabel)
         self.contentView.addSubview(self.updateLabel)
-        self.contentView.addSubview(self.statView)
+        self.contentView.addSubview(self.langLabel)
+        self.contentView.addSubview(self.descLabel)
     }
 
     required init?(coder: NSCoder) {
@@ -78,26 +86,26 @@ class RepoDetailCell: BaseCollectionCell, ReactorKit.View {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-//        self.infoView.setNeedsLayout()
-//        self.infoView.layoutIfNeeded()
-//        self.infoView.left = 0
-//        self.infoView.top = 0
         self.statView.left = 0
         self.statView.bottom = self.contentView.height
-        self.avatarImageView.left = Metric.margin
-        self.avatarImageView.top = 5
+        self.avatarImageView.left = Metric.margin.left
+        self.avatarImageView.top = Metric.margin.top
         self.nameLabel.sizeToFit()
-        self.nameLabel.left = self.avatarImageView.right + 10
-        self.nameLabel.width = self.contentView.width - self.nameLabel.left - Metric.margin
-        self.nameLabel.centerY = self.avatarImageView.centerY
+        self.nameLabel.width = self.contentView.width - self.avatarImageView.right - Metric.padding.horizontal
+        self.nameLabel.left = self.avatarImageView.right + Metric.padding.horizontal
+        self.nameLabel.top = self.avatarImageView.top
         self.updateLabel.sizeToFit()
-        self.updateLabel.right = self.contentView.width - Metric.margin
-        self.updateLabel.bottom = self.statView.top - 5
+        self.updateLabel.left = self.nameLabel.left
+        self.updateLabel.bottom = self.avatarImageView.bottom
+        self.langLabel.sizeToFit()
+        self.langLabel.width = self.nameLabel.width
+        self.langLabel.left = self.nameLabel.left
+        self.langLabel.bottom = self.updateLabel.top - 2
         self.descLabel.sizeToFit()
-        self.descLabel.width = self.contentView.width - Metric.margin * 2
-        self.descLabel.left = Metric.margin
-        self.descLabel.top = self.avatarImageView.bottom + 5
-        self.descLabel.extendToBottom = self.updateLabel.top
+        self.descLabel.width = self.contentView.width - Metric.margin.horizontal
+        self.descLabel.left = self.avatarImageView.left
+        self.descLabel.top = self.avatarImageView.bottom + Metric.padding.vertical
+        self.descLabel.extendToBottom = self.statView.top
     }
 
     func bind(reactor: RepoDetailItem) {
@@ -110,13 +118,17 @@ class RepoDetailCell: BaseCollectionCell, ReactorKit.View {
             .distinctUntilChanged()
             .bind(to: self.rx.name)
             .disposed(by: self.disposeBag)
-        reactor.state.map { $0.updateAgo }
+        reactor.state.map { $0.lang }
+            .distinctUntilChanged()
+            .bind(to: self.langLabel.rx.attributedText)
+            .disposed(by: self.disposeBag)
+        reactor.state.map { $0.update }
             .distinctUntilChanged()
             .bind(to: self.updateLabel.rx.text)
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.desc }
             .distinctUntilChanged()
-            .bind(to: self.descLabel.rx.attributedText)
+            .bind(to: self.descLabel.rx.text)
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.avatar }
             .distinctUntilChanged { HiIOS.compareImage($0, $1) }
@@ -128,19 +140,18 @@ class RepoDetailCell: BaseCollectionCell, ReactorKit.View {
     }
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
-        // .init(width: width, height: 190)
         guard let item = item as? RepoDetailItem else { return .zero }
         var height = StatView.Metric.height
         height += UILabel.size(
-            attributedString: item.currentState.desc,
+            attributedString: item.currentState.desc?.styled(with: .font(.normal(14))),
             withConstraints: .init(
-                width: width - Metric.margin * 2,
+                width: width - Metric.margin.horizontal,
                 height: .greatestFiniteMagnitude
             ),
             limitedToNumberOfLines: UInt(Metric.maxLines)
         ).height
-        height += (Metric.margin * 2)
-        height += Metric.avatar
+        height += (Metric.margin.vertical * 2)
+        height += IOSHub.Metric.detailAvatarSize.height
         return .init(width: width, height: height)
     }
 
