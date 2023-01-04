@@ -16,7 +16,8 @@ import HiIOS
 class UserDetailCell: BaseCollectionCell, ReactorKit.View {
     
     struct Metric {
-        static let height = 130.f
+        static let margin = UIEdgeInsets.init(horizontal: 30, vertical: 20)
+        static let padding = UIOffset.init(horizontal: 10, vertical: 5)
     }
 
     lazy var nameLabel: UILabel = {
@@ -27,15 +28,13 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
     
     lazy var locationLabel: UILabel = {
         let label = UILabel.init()
-        label.font = .normal(13)
-        label.theme.textColor = themeService.attribute { $0.foregroundColor }
         label.sizeToFit()
         return label
     }()
     
     lazy var joinLabel: UILabel = {
         let label = UILabel.init()
-        label.font = .normal(11)
+        label.font = .normal(12)
         label.theme.textColor = themeService.attribute { $0.foregroundColor }
         label.sizeToFit()
         return label
@@ -52,7 +51,7 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
     
     lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layerCornerRadius = 4
+        imageView.layerCornerRadius = 6
         imageView.sizeToFit()
         imageView.size = IOSHub.Metric.detailAvatarSize
         return imageView
@@ -97,31 +96,31 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
         self.infoView.height = self.statView.top
         self.infoView.left = 0
         self.infoView.top = 0
-        self.avatarImageView.left = 15
-        self.avatarImageView.top = 10
+        self.avatarImageView.left = Metric.margin.left
+        self.avatarImageView.top = Metric.margin.top
         self.nameLabel.sizeToFit()
-        self.nameLabel.width = self.contentView.width - self.avatarImageView.right - 25
-        self.nameLabel.left = self.avatarImageView.right + 10
+        self.nameLabel.width = self.contentView.width - self.avatarImageView.right - Metric.padding.horizontal
+        self.nameLabel.left = self.avatarImageView.right + Metric.padding.horizontal
         self.nameLabel.top = self.avatarImageView.top
+        self.joinLabel.sizeToFit()
+        self.joinLabel.left = self.nameLabel.left
+        self.joinLabel.bottom = self.avatarImageView.bottom
         self.locationLabel.sizeToFit()
         self.locationLabel.width = self.nameLabel.width
         self.locationLabel.left = self.nameLabel.left
-        self.locationLabel.bottom = self.avatarImageView.bottom
-        self.joinLabel.sizeToFit()
-        self.joinLabel.right = self.nameLabel.right
-        self.joinLabel.bottom = self.infoView.height - 4
+        self.locationLabel.bottom = self.joinLabel.top - 2
         self.introLabel.sizeToFit()
-        self.introLabel.width = self.contentView.width - 30
+        self.introLabel.width = self.contentView.width - Metric.margin.horizontal
         self.introLabel.left = self.avatarImageView.left
-        self.introLabel.top = self.avatarImageView.bottom + 8
-        self.introLabel.extendToBottom = self.joinLabel.top
+        self.introLabel.top = self.avatarImageView.bottom + Metric.padding.vertical
+        self.introLabel.extendToBottom = self.statView.top
     }
 
     func bind(reactor: UserDetailItem) {
         super.bind(item: reactor)
         reactor.state.map { $0.location }
             .distinctUntilChanged()
-            .bind(to: self.locationLabel.rx.text)
+            .bind(to: self.locationLabel.rx.attributedText)
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.join }
             .distinctUntilChanged()
@@ -154,15 +153,15 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
             attributedString: item.currentState.intro?
                 .styled(with: .font(.normal(14))),
             withConstraints: .init(
-                width: width - 30,
+                width: width - UserDetailCell.Metric.margin.horizontal,
                 height: .greatestFiniteMagnitude
             ),
             limitedToNumberOfLines: 0
         ).height
-        height += 10
+        height += UserDetailCell.Metric.margin.vertical
         height += IOSHub.Metric.detailAvatarSize.height
         height += StatView.Metric.height
-        height += 30
+        height += UserDetailCell.Metric.padding.vertical * 3
         return .init(width: width, height: height)
     }
 

@@ -24,7 +24,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         static let simpleCell = ReusableCell<SimpleCell>()
         static let appInfoCell = ReusableCell<AppInfoCell>()
         static let milestoneCell = ReusableCell<MilestoneCell>()
-        static let userBasicCell = ReusableCell<UserBasicCell>()
+        static let userTrendingCell = ReusableCell<UserTrendingCell>()
         static let userDetailCell = ReusableCell<UserDetailCell>()
         static let repoBasicCell = ReusableCell<RepoBasicCell>()
         static let repoDetailCell = ReusableCell<RepoDetailCell>()
@@ -56,8 +56,8 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                     item.parent = self.reactor
                     cell.reactor = item
                     return cell
-                case let .userBasic(item):
-                    let cell = collectionView.dequeue(Reusable.userBasicCell, for: indexPath)
+                case let .userTrending(item):
+                    let cell = collectionView.dequeue(Reusable.userTrendingCell, for: indexPath)
                     item.parent = self.reactor
                     cell.reactor = item
                     return cell
@@ -132,7 +132,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         self.collectionView.register(Reusable.simpleCell)
         self.collectionView.register(Reusable.appInfoCell)
         self.collectionView.register(Reusable.milestoneCell)
-        self.collectionView.register(Reusable.userBasicCell)
+        self.collectionView.register(Reusable.userTrendingCell)
         self.collectionView.register(Reusable.userDetailCell)
         self.collectionView.register(Reusable.repoBasicCell)
         self.collectionView.register(Reusable.repoDetailCell)
@@ -350,7 +350,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
 //                return
 //            }
 //            self.handleSimple(simple: simple)
-        case let .userBasic(item):
+        case let .userTrending(item):
             guard let username = (item.model as? User)?.username else { return }
             self.navigator.forward(Router.shared.urlString(host: .user, path: username))
         case let .repoBasic(item):
@@ -397,7 +397,7 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
         case let .simple(item): return Reusable.simpleCell.class.size(width: width, item: item)
         case let .appInfo(item): return Reusable.appInfoCell.class.size(width: width, item: item)
         case let .milestone(item): return Reusable.milestoneCell.class.size(width: width, item: item)
-        case let .userBasic(item): return Reusable.userBasicCell.class.size(width: width, item: item)
+        case let .userTrending(item): return Reusable.userTrendingCell.class.size(width: width, item: item)
         case let .userDetail(item): return Reusable.userDetailCell.class.size(width: width, item: item)
         case let .repoBasic(item): return Reusable.repoBasicCell.class.size(width: width, item: item)
         case let .repoDetail(item): return Reusable.repoDetailCell.class.size(width: width, item: item)

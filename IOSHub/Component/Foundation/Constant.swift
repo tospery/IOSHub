@@ -28,8 +28,8 @@ var userParameters: [String: Any] {
 
 struct Metric {
 
-    static let basicAvatarSize = CGSize.init(40.f)
-    static let detailAvatarSize = CGSize.init(40.f)
+    static let listAvatarSize = CGSize.init(40.f)
+    static let detailAvatarSize = CGSize.init(60.f)
     
     struct Repo {
         static let maxLines             = 5

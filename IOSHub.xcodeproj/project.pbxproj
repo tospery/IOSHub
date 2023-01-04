@@ -94,8 +94,6 @@
 		9154BF99294CE1FE003BC1F3 /* SearchKeywordsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9154BF98294CE1FE003BC1F3 /* SearchKeywordsCell.swift */; };
 		915F100A2937532C009413D6 /* Repos#trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 915F10092937532C009413D6 /* Repos#trending.json */; };
 		915F100C29375343009413D6 /* Users#trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 915F100B29375343009413D6 /* Users#trending.json */; };
-		915F100E293756B2009413D6 /* UserBasicItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915F100D293756B2009413D6 /* UserBasicItem.swift */; };
-		915F1010293756B9009413D6 /* UserBasicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915F100F293756B9009413D6 /* UserBasicCell.swift */; };
 		915F10122937ABEE009413D6 /* EventViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915F10112937ABEE009413D6 /* EventViewReactor.swift */; };
 		915F10142937ABFE009413D6 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915F10132937ABFE009413D6 /* EventViewController.swift */; };
 		9176A53F295E4F9900ADF85D /* Ink in Frameworks */ = {isa = PBXBuildFile; productRef = 9176A53E295E4F9900ADF85D /* Ink */; };
@@ -137,6 +135,8 @@
 		91C267EA28EB310300DD5677 /* SectionItemValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267E928EB310300DD5677 /* SectionItemValue.swift */; };
 		91C267EC28EB326C00DD5677 /* Simple+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C267EB28EB326C00DD5677 /* Simple+Ex.swift */; };
 		91C267EE28EB33A800DD5677 /* Configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 91C267ED28EB33A800DD5677 /* Configuration.json */; };
+		91D60E0C2965FF2200A489D6 /* UserTrendingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D60E0B2965FF2200A489D6 /* UserTrendingItem.swift */; };
+		91D60E0E2965FF3E00A489D6 /* UserTrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D60E0D2965FF3E00A489D6 /* UserTrendingCell.swift */; };
 		91E672402957108E00F8E227 /* RepoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E6723F2957108E00F8E227 /* RepoViewReactor.swift */; };
 		91E672422957109C00F8E227 /* RepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E672412957109C00F8E227 /* RepoViewController.swift */; };
 		91FF7C7C293BA2B10045971B /* SearchHistoryViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF7C7B293BA2B10045971B /* SearchHistoryViewReactor.swift */; };
@@ -243,8 +243,6 @@
 		9154BF98294CE1FE003BC1F3 /* SearchKeywordsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordsCell.swift; sourceTree = "<group>"; };
 		915F10092937532C009413D6 /* Repos#trending.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Repos#trending.json"; sourceTree = "<group>"; };
 		915F100B29375343009413D6 /* Users#trending.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Users#trending.json"; sourceTree = "<group>"; };
-		915F100D293756B2009413D6 /* UserBasicItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBasicItem.swift; sourceTree = "<group>"; };
-		915F100F293756B9009413D6 /* UserBasicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBasicCell.swift; sourceTree = "<group>"; };
 		915F10112937ABEE009413D6 /* EventViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewReactor.swift; sourceTree = "<group>"; };
 		915F10132937ABFE009413D6 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		9176A540295E517E00ADF85D /* ReadmeContentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadmeContentItem.swift; sourceTree = "<group>"; };
@@ -286,6 +284,8 @@
 		91C267E928EB310300DD5677 /* SectionItemValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionItemValue.swift; sourceTree = "<group>"; };
 		91C267EB28EB326C00DD5677 /* Simple+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Simple+Ex.swift"; sourceTree = "<group>"; };
 		91C267ED28EB33A800DD5677 /* Configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Configuration.json; sourceTree = "<group>"; };
+		91D60E0B2965FF2200A489D6 /* UserTrendingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTrendingItem.swift; sourceTree = "<group>"; };
+		91D60E0D2965FF3E00A489D6 /* UserTrendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTrendingCell.swift; sourceTree = "<group>"; };
 		91E6723F2957108E00F8E227 /* RepoViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoViewReactor.swift; sourceTree = "<group>"; };
 		91E672412957109C00F8E227 /* RepoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoViewController.swift; sourceTree = "<group>"; };
 		91FF7C7B293BA2B10045971B /* SearchHistoryViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewReactor.swift; sourceTree = "<group>"; };
@@ -536,13 +536,13 @@
 				8C9A459E2887F6F30041937A /* SimpleCell.swift */,
 				9110A0A6293291AB00B09DB1 /* AppInfoCell.swift */,
 				91B9DCDB2936004300CD2E1B /* RepoBasicCell.swift */,
-				915F100F293756B9009413D6 /* UserBasicCell.swift */,
 				9154B9B429472D210091EB91 /* SearchOptionsCell.swift */,
 				9154BF98294CE1FE003BC1F3 /* SearchKeywordsCell.swift */,
 				91A49935295C7A250090EC30 /* RepoDetailCell.swift */,
 				9176A542295E518700ADF85D /* ReadmeContentCell.swift */,
 				9176A54A29601E1F00ADF85D /* UserDetailCell.swift */,
 				9176A550296028DE00ADF85D /* MilestoneCell.swift */,
+				91D60E0D2965FF3E00A489D6 /* UserTrendingCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -553,13 +553,13 @@
 				8C9A45A02887F6F30041937A /* SimpleItem.swift */,
 				9110A0A42932919F00B09DB1 /* AppInfoItem.swift */,
 				91B9DCD92936003300CD2E1B /* RepoBasicItem.swift */,
-				915F100D293756B2009413D6 /* UserBasicItem.swift */,
 				9154B9B229472D150091EB91 /* SearchOptionsItem.swift */,
 				9154BF96294CE1EF003BC1F3 /* SearchKeywordsItem.swift */,
 				91A49933295C7A1A0090EC30 /* RepoDetailItem.swift */,
 				9176A540295E517E00ADF85D /* ReadmeContentItem.swift */,
 				9176A54829601E1200ADF85D /* UserDetailItem.swift */,
 				9176A54E296028D600ADF85D /* MilestoneItem.swift */,
+				91D60E0B2965FF2200A489D6 /* UserTrendingItem.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -861,10 +861,8 @@
 				91B9DCE129368CF300CD2E1B /* TrendingAPI.swift in Sources */,
 				910B42EF293A2A7F000719BA /* TrendingViewController+Ex.swift in Sources */,
 				914091942932D2CB009CA633 /* ProfileViewReactor.swift in Sources */,
-				915F1010293756B9009413D6 /* UserBasicCell.swift in Sources */,
 				9154B9B1294728A20091EB91 /* SearchKeyword.swift in Sources */,
 				9176A547295F0BD300ADF85D /* UserViewController.swift in Sources */,
-				915F100E293756B2009413D6 /* UserBasicItem.swift in Sources */,
 				9110A0AD29329C5700B09DB1 /* AccessToken.swift in Sources */,
 				9110A0A7293291AB00B09DB1 /* AppInfoCell.swift in Sources */,
 				91B9DCE329368D0F00CD2E1B /* Language.swift in Sources */,
@@ -915,6 +913,7 @@
 				910B42F5293A6277000719BA /* ReposViewReactor.swift in Sources */,
 				8C9A45C12887F6F40041937A /* Networking.swift in Sources */,
 				8C9A45D82887F6F40041937A /* TabBarController.swift in Sources */,
+				91D60E0E2965FF3E00A489D6 /* UserTrendingCell.swift in Sources */,
 				8C9A45D32887F6F40041937A /* TrendingViewController.swift in Sources */,
 				8C9A45B12887F6F30041937A /* BaseResponse+Ex.swift in Sources */,
 				9110A0B129329CC800B09DB1 /* ProviderType+GithubBaseAPI.swift in Sources */,
@@ -946,6 +945,7 @@
 				8C9A45CC2887F6F40041937A /* Router+Page.swift in Sources */,
 				8C9A45BE2887F6F40041937A /* WebViewController.swift in Sources */,
 				8C9A45BC2887F6F30041937A /* Runtime+Ex.swift in Sources */,
+				91D60E0C2965FF2200A489D6 /* UserTrendingItem.swift in Sources */,
 				8C9A45622887E6070041937A /* R.generated.swift in Sources */,
 				8C9A45BD2887F6F30041937A /* ScrollViewController+Ex.swift in Sources */,
 				9110A0BE2932C4C500B09DB1 /* Router+Dialog+Popup.swift in Sources */,

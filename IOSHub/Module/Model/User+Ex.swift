@@ -21,6 +21,26 @@ extension User {
         return R.string.localizable.joinedOn(value)
     }
     
+    var locationAttributedText: NSAttributedString {
+        .composed(of: [
+            R.image.ic_location()!.template
+                .styled(with: .baselineOffset(-2), .font(.normal(10))),
+            Special.space,
+            (self.location ?? R.string.localizable.noneLocation())
+                .styled(with: .font(.normal(13)))
+        ]).styled(with: .color(.foreground))
+    }
+    
+    var repoAttributedText: NSAttributedString {
+        .composed(of: [
+            R.image.ic_repo_small()!
+                .styled(with: .baselineOffset(-4)),
+            Special.space,
+            (self.repo?.name ?? R.string.localizable.noneRepo())
+                .attributedString()
+        ]).styled(with: .color(.title), .font(.normal(14)))
+    }
+    
     var fullnameAttributedText: NSAttributedString {
         .composed(of: [
             (self.nickname ?? R.string.localizable.unknown())

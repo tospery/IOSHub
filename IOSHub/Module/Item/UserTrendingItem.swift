@@ -1,8 +1,8 @@
 //
-//  UserBasicItem.swift
+//  UserTrendingItem.swift
 //  IOSHub
 //
-//  Created by 杨建祥 on 2022/11/30.
+//  Created by 杨建祥 on 2023/1/5.
 //
 
 import Foundation
@@ -14,15 +14,15 @@ import Rswift
 import BonMot
 import HiIOS
 
-class UserBasicItem: BaseCollectionItem, ReactorKit.Reactor {
+class UserTrendingItem: BaseCollectionItem, ReactorKit.Reactor {
 
     typealias Action = NoAction
     typealias Mutation = NoMutation
 
     struct State {
         var avatar: ImageSource?
-        var userName: NSAttributedString?
-        var repoName: NSAttributedString?
+        var name: NSAttributedString?
+        var repo: NSAttributedString?
         var desc: String?
     }
 
@@ -33,14 +33,8 @@ class UserBasicItem: BaseCollectionItem, ReactorKit.Reactor {
         guard let user = model as? User else { return }
         self.initialState = State(
             avatar: user.avatar?.url,
-            userName: user.fullnameAttributedText,
-            repoName: .composed(of: [
-                R.image.ic_repo_small()!
-                    .styled(with: .baselineOffset(-4)),
-                Special.space,
-                (user.repo?.name ?? R.string.localizable.noneRepo())
-                    .attributedString()
-            ]).styled(with: .color(.title), .font(.normal(14))),
+            name: user.fullnameAttributedText,
+            repo: user.repoAttributedText,
             desc: user.repo?.desc ?? R.string.localizable.noneDesc()
         )
     }

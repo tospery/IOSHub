@@ -52,6 +52,8 @@ final class AppDependency: HiIOS.AppDependency {
         
         // AccessToken.current?.accessToken
         log("accessToken = \(AccessToken.current?.accessToken ?? "")")
+        let offset = UIEdgeInsets.init(horizontal: 30, vertical: 10)
+        log("offset = \(offset.horizontal), \(offset.vertical), \(offset.top), \(offset.left), \(offset.right)")
         log("用户参数: \(userParameters)", module: .common)
 //        self.provider.starredRepos(username: "tospery", page: 1)
 //            .asObservable()

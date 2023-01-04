@@ -19,7 +19,7 @@ import BonMot
 struct User: Subjective, Eventable {
     
     enum CellType: Int, Codable {
-        case basic
+        case trending
         case detail
     }
     
@@ -74,7 +74,7 @@ struct User: Subjective, Eventable {
     var nickname: String?       // name
     var avatar: String?         // avatar|avatar_url
     // 扩展字段
-    var cellType = CellType.basic
+    var cellType = CellType.trending
 
     var isValid: Bool {
         id != 0 && username?.isNotEmpty ?? false

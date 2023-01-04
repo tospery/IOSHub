@@ -15,7 +15,7 @@ enum SectionItem: IdentifiableType, Equatable {
     case simple(SimpleItem)
     case appInfo(AppInfoItem)
     case milestone(MilestoneItem)
-    case userBasic(UserBasicItem)
+    case userTrending(UserTrendingItem)
     case userDetail(UserDetailItem)
     case repoBasic(RepoBasicItem)
     case repoDetail(RepoDetailItem)
@@ -29,7 +29,7 @@ enum SectionItem: IdentifiableType, Equatable {
         case let .simple(item): string = item.description
         case let .appInfo(item): string = item.description
         case let .milestone(item): string = item.description
-        case let .userBasic(item): string = item.description
+        case let .userTrending(item): string = item.description
         case let .userDetail(item): string = item.description
         case let .repoBasic(item): string = item.description
         case let .repoDetail(item): string = item.description
@@ -48,7 +48,7 @@ enum SectionItem: IdentifiableType, Equatable {
             case .simple: log("item变化 -> simple")
             case .appInfo: log("item变化 -> appInfo")
             case .milestone: log("item变化 -> milestone")
-            case .userBasic: log("item变化 -> userBasic")
+            case .userTrending: log("item变化 -> userTrending")
             case .userDetail: log("item变化 -> userDetail")
             case .repoBasic: log("item变化 -> repoBasic")
             case .repoDetail: log("item变化 -> repoDetail")

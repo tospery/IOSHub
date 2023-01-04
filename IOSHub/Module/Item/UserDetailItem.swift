@@ -20,10 +20,10 @@ class UserDetailItem: BaseCollectionItem, ReactorKit.Reactor {
     typealias Mutation = NoMutation
 
     struct State {
-        var location: String?
         var join: String?
         var intro: String?
         var name: NSAttributedString?
+        var location: NSAttributedString?
         var avatar: ImageSource?
         var user: User?
     }
@@ -34,10 +34,10 @@ class UserDetailItem: BaseCollectionItem, ReactorKit.Reactor {
         super.init(model)
         guard let user = model as? User else { return }
         self.initialState = State(
-            location: user.location ?? R.string.localizable.noneLocation(),
             join: user.joinedOn,
             intro: user.bio,
-            name: user.fullnameAttributedText,
+            name: user.fullnameAttributedText.styled(with: .font(.bold(18))),
+            location: user.locationAttributedText,
             avatar: user.avatar?.url,
             user: user
         )
