@@ -34,15 +34,23 @@ class RepoListViewController: NormalViewController {
         self.scrollView.frame = self.view.bounds
     }
     
+    override func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        var size = super.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath)
+        if size.width > deviceWidth {
+            size.width = deviceWidth
+        }
+        return size
+    }
+    
     override func handleTotal(total: [HiSection]) {
         guard let listType = (self.reactor as? RepoListViewReactor)?.listType, listType == .trending else { return }
-        guard let models = total.first?.models, models.isNotEmpty else { return }
-        if let repos = models as? [Repo] {
-            Repo.storeArray(repos, page: listType.stringValue)
-        } else if let users = models as? [User] {
-            User.storeArray(users, page: listType.stringValue)
-        }
-        log("HiSection handleTotal(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? ""))")
+        guard let repos = total.first?.models as? [Repo], repos.isNotEmpty else { return }
+        Repo.storeArray(repos, page: listType.stringValue)
+        log("趋势缓存：(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? "")), \(listType.stringValue)")
     }
 
 }

@@ -227,11 +227,6 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
             .distinctUntilChanged({ $0?.asHiError == $1?.asHiError })
             .bind(to: self.rx.error)
             .disposed(by: self.disposeBag)
-//        reactor.state.map { $0.user }
-//            .distinctUntilChanged()
-//            .skip(1)
-//            .subscribeNext(weak: self, type(of: self).handleUser)
-//            .disposed(by: self.disposeBag)
         reactor.state.map { $0.total }
             .distinctUntilChanged { HiIOS.compareAny($0, $1) }
             .skip(1)
@@ -245,12 +240,10 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                 self.handleUser(user: user, changed: false)
             })
             .distinctUntilChanged { $0?.isValid }
-            // .skip(1)
             .subscribe(onNext: { [weak self] user in
                 guard let `self` = self else { return }
                 self.handleUser(user: user, changed: true)
             })
-            // .subscribeNext(weak: self, type(of: self).handleUser)
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.configuration }
             .distinctUntilChanged()
@@ -281,25 +274,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
     }
     
     // MARK: - handle
-//    func handleUser(user: User?) {
-//        if user == User.current {
-//            return
-//        }
-//        log("handleUser -> (\(self.reactor?.host ?? ""), \(self.reactor?.path ?? ""))")
-//        MainScheduler.asyncInstance.schedule(()) { [weak self] _ -> Disposable in
-//            guard let `self` = self else { return Disposables.create {} }
-//            log("handleUser(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? "")) -> 更新用户，准备保存")
-//            User.update(user, reactive: true)
-//            if User.current?.id ?? 0 != user?.id ?? 0 {
-//                log("handleUser(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? "")) -> 切换用户，重新加载")
-//                self.reactor?.action.onNext(.reload)
-//            }
-//            return Disposables.create {}
-//        }.disposed(by: self.disposeBag)
-//    }
-    
     func handleTotal(total: [HiSection]) {
-        // log("HiSection handleTotal(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? ""))")
     }
     
     func handleUser(user: User?, changed: Bool) {

@@ -33,5 +33,24 @@ class UserListViewController: NormalViewController {
         super.viewDidLayoutSubviews()
         self.scrollView.frame = self.view.bounds
     }
+    
+    override func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        var size = super.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath)
+        if size.width > deviceWidth {
+            size.width = deviceWidth
+        }
+        return size
+    }
+    
+    override func handleTotal(total: [HiSection]) {
+        guard let listType = (self.reactor as? UserListViewReactor)?.listType, listType == .trending else { return }
+        guard let users = total.first?.models as? [User], users.isNotEmpty else { return }
+        User.storeArray(users, page: listType.stringValue)
+        log("趋势缓存：(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? "")), \(listType.stringValue)")
+    }
 
 }
