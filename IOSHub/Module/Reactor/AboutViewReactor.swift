@@ -22,12 +22,13 @@ class AboutViewReactor: NormalViewReactor {
         )
     }
     
-    override func loadData(_ page: Int) -> Observable<[SectionData]> {
+    override func loadData(_ page: Int) -> Observable<[HiSection]> {
         guard let simples = Simple.cachedArray(page: self.host) else { return .empty() }
         var models = [ModelType].init()
         models.append(BaseModel.init(SectionItemValue.appInfo))
         models.append(contentsOf: simples)
-        return .just([(header: nil, models: models)])
+        // return .just([(header: nil, models: models)])
+        return .just([.init(header: nil, models: models)])
     }
 
 }

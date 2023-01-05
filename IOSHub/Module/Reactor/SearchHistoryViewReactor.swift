@@ -19,12 +19,12 @@ class SearchHistoryViewReactor: NormalViewReactor {
         super.init(provider, parameters)
     }
     
-    override func loadData(_ page: Int) -> Observable<[SectionData]> {
+    override func loadData(_ page: Int) -> Observable<[HiSection]> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
-            var data = [SectionData].init()
+            var data = [HiSection].init()
             data.append(
-                (
+                .init(
                     header: BaseModel.init([
                         R.image.ic_search_options()!,
                         R.string.localizable.searchOptions(),
@@ -35,7 +35,7 @@ class SearchHistoryViewReactor: NormalViewReactor {
             )
             if self.currentState.configuration.keywords.count != 0 {
                 data.append(
-                    (
+                    .init(
                         header: BaseModel.init([
                             R.image.ic_search_history()!,
                             R.string.localizable.searchHistory(),

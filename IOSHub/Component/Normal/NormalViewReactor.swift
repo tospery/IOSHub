@@ -42,8 +42,8 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         case setDataset(Dataset?)
         case setConfiguration(Configuration)
         case setTarget(String?)
-        case initial([SectionData])
-        case append([SectionData])
+        case initial([HiSection])
+        case append([HiSection])
     }
 
     struct State {
@@ -62,8 +62,8 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         var dataset: Dataset?
         var configuration = Configuration.current!
         var target: String?
-        var originals = [SectionData].init()
-        var additions = [SectionData].init()
+        var total = [HiSection].init()
+        var added = [HiSection].init()
         var sections = [Section].init()
     }
 
@@ -150,10 +150,10 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         case let .setTarget(target):
             newState.target = target
         case let .initial(data):
-            newState.originals = data
+            newState.total = data
             return self.reduceSections(newState, additional: false)
-        case let .append(additions):
-            newState.additions = additions
+        case let .append(added):
+            newState.added = added
             return self.reduceSections(newState, additional: true)
         }
         return newState
@@ -288,34 +288,34 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         var newState = state
         var noMore = false
         if additional {
-            if newState.originals.isEmpty {
-                newState.originals = newState.additions
-                noMore = (newState.additions.first?.models ?? []).count < self.pageSize
+            if newState.total.isEmpty {
+                newState.total = newState.added
+                noMore = (newState.added.first?.models ?? []).count < self.pageSize
             } else {
-                if newState.originals.first!.header == nil {
+                if newState.total.first!.header == nil {
                     var models = [ModelType].init()
-                    models.append(contentsOf: newState.originals.first!.models)
-                    models.append(contentsOf: newState.additions.first?.models ?? [])
-                    newState.originals = models.count == 0 ? [] : [(header: nil, models: models)]
-                    noMore = (newState.additions.first?.models ?? []).count < self.pageSize
+                    models.append(contentsOf: newState.total.first!.models)
+                    models.append(contentsOf: newState.added.first?.models ?? [])
+                    newState.total = models.count == 0 ? [] : [.init(header: nil, models: models)]
+                    noMore = (newState.added.first?.models ?? []).count < self.pageSize
                 } else {
-                    var data = [SectionData].init()
-                    data.append(contentsOf: newState.originals)
-                    data.append(contentsOf: newState.additions)
-                    newState.originals = data
+                    var data = [HiSection].init()
+                    data.append(contentsOf: newState.total)
+                    data.append(contentsOf: newState.added)
+                    newState.total = data
                 }
             }
         } else {
-            noMore = newState.originals.first?.models.count ?? 0 < self.pageSize
+            noMore = newState.total.first?.models.count ?? 0 < self.pageSize
         }
         newState.noMoreData = noMore
-        newState.sections = self.genSections(originals: newState.originals)
+        newState.sections = self.genSections(total: newState.total)
         return newState
     }
     
     // swiftlint:disable cyclomatic_complexity
-    func genSections(originals: [SectionData]) -> [Section] {
-        (originals.count == 0 ? [] : originals.map {
+    func genSections(total: [HiSection]) -> [Section] {
+        (total.count == 0 ? [] : total.map {
             .sectionItems(header: $0.header, items: $0.models.map {
                 if let value = ($0 as? BaseModel)?.data as? SectionItemValue {
                     switch value {
@@ -362,7 +362,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         .empty()
     }
     
-    func loadData(_ page: Int) -> Observable<[SectionData]> {
+    func loadData(_ page: Int) -> Observable<[HiSection]> {
         .empty()
     }
     

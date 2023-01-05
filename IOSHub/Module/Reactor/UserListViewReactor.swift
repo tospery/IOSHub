@@ -21,10 +21,11 @@ class UserListViewReactor: NormalViewReactor {
         listType = parameters?.enum(for: Parameter.type, type: ListType.self) ?? .trending
         super.init(provider, parameters)
         let users = User.cachedArray(page: self.listType.stringValue) ?? []
-        let originals: [SectionData] = users.isNotEmpty ? [(header: nil, models: users)] : []
-        let sections = self.genSections(originals: originals)
+        // let total: [HiSection] = users.isNotEmpty ? [(header: nil, models: users)] : []
+        let total: [HiSection] = users.isNotEmpty ? [.init(header: nil, models: users)] : []
+        let sections = self.genSections(total: total)
         self.initialState = State(
-            originals: originals,
+            total: total,
             sections: sections
         )
     }
@@ -48,7 +49,7 @@ class UserListViewReactor: NormalViewReactor {
         })
     }
 
-//    override func loadData(_ page: Int) -> Observable<[SectionData]> {
+//    override func loadData(_ page: Int) -> Observable<[HiSection]> {
 //        .create { [weak self] observer -> Disposable in
 //            guard let `self` = self else { fatalError() }
 ////            if let users = User.cachedArray(page: self.listType.stringValue) {

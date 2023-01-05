@@ -22,7 +22,7 @@ class StarsViewReactor: NormalViewReactor {
         )
     }
     
-    override func loadData(_ page: Int) -> Observable<[SectionData]> {
+    override func loadData(_ page: Int) -> Observable<[HiSection]> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
             guard let username = self.currentState.user?.username, username.isNotEmpty else {
@@ -31,7 +31,7 @@ class StarsViewReactor: NormalViewReactor {
             }
             return self.provider.trendingUsers()
                  .asObservable()
-                 .map { [(header: nil, models: $0)] }
+                 .map { [.init(header: nil, models: $0)] }
                  .subscribe(observer)
 //           return self.provider.starredRepos(username: username, page: page)
 //                .asObservable()

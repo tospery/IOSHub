@@ -22,12 +22,12 @@ class ProfileViewReactor: NormalViewReactor {
         )
     }
     
-    override func loadData(_ page: Int) -> Observable<[SectionData]> {
+    override func loadData(_ page: Int) -> Observable<[HiSection]> {
         guard let simples = Simple.cachedArray(page: self.host) else { return .empty() }
         var models = [ModelType].init()
         models.append(Simple.init(height: 15))
         models.append(contentsOf: simples)
-        return .just([(header: nil, models: models)])
+        return .just([.init(header: nil, models: models)])
     }
 
 }

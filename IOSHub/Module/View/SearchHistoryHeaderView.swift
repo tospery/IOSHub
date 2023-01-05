@@ -58,10 +58,10 @@ class SearchHistoryHeaderView: CollectionHeaderView {
         if let parent = reactor as? NormalViewReactor {
             parent.state
                 .map { state -> [Any] in
-                    if state.originals.count <= section {
+                    if state.total.count <= section {
                         return []
                     }
-                    return (state.originals[section].header as? BaseModel)?.data as? [Any] ?? []
+                    return (state.total[section].header as? BaseModel)?.data as? [Any] ?? []
                 }
                 .distinctUntilChanged { HiIOS.compareAny($0, $1) }
                 .bind(to: self.rx.info)

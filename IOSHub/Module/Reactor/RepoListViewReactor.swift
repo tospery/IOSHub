@@ -21,10 +21,11 @@ class RepoListViewReactor: NormalViewReactor {
         listType = parameters?.enum(for: Parameter.type, type: ListType.self) ?? .trending
         super.init(provider, parameters)
         let repos = Repo.cachedArray(page: self.listType.stringValue) ?? []
-        let originals: [SectionData] = repos.isNotEmpty ? [(header: nil, models: repos)] : []
-        let sections = self.genSections(originals: originals)
+        // let total: [HiSection] = repos.isNotEmpty ? [(header: nil, models: repos)] : []
+        let total: [HiSection] = repos.isNotEmpty ? [.init(header: nil, models: repos)] : []
+        let sections = self.genSections(total: total)
         self.initialState = State(
-            originals: originals,
+            total: total,
             sections: sections
         )
     }
@@ -48,7 +49,7 @@ class RepoListViewReactor: NormalViewReactor {
         })
     }
 
-//    override func loadData(_ page: Int) -> Observable<[SectionData]> {
+//    override func loadData(_ page: Int) -> Observable<[HiSection]> {
 //        .create { [weak self] observer -> Disposable in
 //            guard let `self` = self else { fatalError() }
 ////            if let repos = Repo.cachedArray(page: self.listType.stringValue) {

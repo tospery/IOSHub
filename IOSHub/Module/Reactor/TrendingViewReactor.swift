@@ -29,8 +29,8 @@ class TrendingViewReactor: ScrollViewReactor, ReactorKit.Reactor {
         case setUser(User?)
         case setConfiguration(Configuration)
         case setPages([Page])
-        case initial([SectionData])
-        case append([SectionData])
+        case initial([HiSection])
+        case append([HiSection])
     }
 
     struct State {
@@ -43,8 +43,8 @@ class TrendingViewReactor: ScrollViewReactor, ReactorKit.Reactor {
         var user: User?
         var configuration = Configuration.current!
         var pages = [Page].init()
-        var originals = [SectionData].init()
-        var additions = [SectionData].init()
+        var total = [HiSection].init()
+        var added = [HiSection].init()
         var sections = [Section].init()
     }
 
@@ -99,10 +99,10 @@ class TrendingViewReactor: ScrollViewReactor, ReactorKit.Reactor {
         case let .setPages(pages):
             newState.pages = pages
         case let .initial(data):
-            newState.originals = data
+            newState.total = data
             return self.reduceSections(newState, additional: false)
-        case let .append(additions):
-            newState.additions = additions
+        case let .append(added):
+            newState.added = added
             return self.reduceSections(newState, additional: true)
         }
         return newState
@@ -136,19 +136,19 @@ class TrendingViewReactor: ScrollViewReactor, ReactorKit.Reactor {
 //        var noMore = false
 //        if additional {
 //            var models = [ModelType].init()
-//            if let old = newState.originals.first, old.header == nil {
+//            if let old = newState.total.first, old.header == nil {
 //                models.append(contentsOf: old.models)
 //            }
-//            if let new = newState.additions.first, new.header == nil {
+//            if let new = newState.added.first, new.header == nil {
 //                models.append(contentsOf: new.models)
 //                noMore = new.models.count < self.pageSize
 //            }
-//            newState.originals = models.count == 0 ? [] : [(header: nil, models: models)]
+//            newState.total = models.count == 0 ? [] : [(header: nil, models: models)]
 //        } else {
-//            noMore = newState.originals.first?.models.count ?? 0 < self.pageSize
+//            noMore = newState.total.first?.models.count ?? 0 < self.pageSize
 //        }
 //        newState.noMoreData = noMore
-//        newState.sections = (newState.originals.count == 0 ? [] : newState.originals.map {
+//        newState.sections = (newState.total.count == 0 ? [] : newState.total.map {
 //            .sectionItems(header: $0.header?.description ?? "", items: $0.models.map {
 //                if let value = ($0 as? BaseModel)?.data as? SectionItemValue {
 //                    switch value {

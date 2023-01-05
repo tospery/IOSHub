@@ -22,7 +22,7 @@ class PersonalViewReactor: NormalViewReactor {
         )
     }
     
-    override func loadData(_ page: Int) -> Observable<[SectionData]> {
+    override func loadData(_ page: Int) -> Observable<[HiSection]> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
             var models = [ModelType].init()
@@ -63,7 +63,7 @@ class PersonalViewReactor: NormalViewReactor {
                     }
                 )
             }
-            observer.onNext([(header: nil, models: models)])
+            observer.onNext([.init(header: nil, models: models)])
             observer.onCompleted()
             return Disposables.create { }
         }
