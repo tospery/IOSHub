@@ -50,6 +50,7 @@
 "Search Options" = "搜索选项";
 "Clear History" = "清除历史";
 "Latest Update" = "Update %@";
+"Run Environment" = "运行环境：%@";
 /* 句子 - None */
 "None.Repo" = "No hot repository";
 "None.Desc" = "No description provided";
@@ -57,6 +58,8 @@
 "None.Location" = "No location provided";
 "None.Email" = "No email provided";
 "None.Blog" = "No blog provided";
+/* 句子 - Feedback */
+"Feedback.Note" = "说明：反馈将以issue的形式提交到GitHub仓库";
 /* 句子 - Search */
 "Search.Hint" = "搜索您想要的内容";
 /* 句子 - Login */

@@ -37,6 +37,7 @@
         "id":12,
         "icon":"ic_feedback",
         "title":"反馈",
-        "divided":false
+        "divided":false,
+        "target":"https://m.github.com/feedback"
     }
 ]

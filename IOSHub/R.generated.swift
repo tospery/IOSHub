@@ -216,7 +216,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 40 images.
+  /// This `R.image` struct is generated, and contains static references to 42 images.
   struct image {
     /// Image `AppLogo`.
     static let appLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AppLogo")
@@ -228,6 +228,10 @@ struct R: Rswift.Validatable {
     static let ic_about = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_about")
     /// Image `ic_feedback`.
     static let ic_feedback = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_feedback")
+    /// Image `ic_issue_closed`.
+    static let ic_issue_closed = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_issue_closed")
+    /// Image `ic_issue_open`.
+    static let ic_issue_open = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_issue_open")
     /// Image `ic_location`.
     static let ic_location = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_location")
     /// Image `ic_native_share`.
@@ -331,6 +335,20 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "ic_feedback", bundle: ..., traitCollection: ...)`
     static func ic_feedback(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.ic_feedback, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_issue_closed", bundle: ..., traitCollection: ...)`
+    static func ic_issue_closed(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_issue_closed, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_issue_open", bundle: ..., traitCollection: ...)`
+    static func ic_issue_open(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_issue_open, compatibleWith: traitCollection)
     }
     #endif
 
@@ -602,7 +620,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 85 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 87 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -758,8 +776,12 @@ struct R: Rswift.Validatable {
       static let errorNetworkTitle = Rswift.StringResource(key: "Error.Network.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 设置
       static let setting = Rswift.StringResource(key: "Setting", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 说明：反馈将以issue的形式提交到GitHub仓库
+      static let feedbackNote = Rswift.StringResource(key: "Feedback.Note", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 趋势
       static let trending = Rswift.StringResource(key: "Trending", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 运行环境：%@
+      static let runEnvironment = Rswift.StringResource(key: "Run Environment", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 退出
       static let exit = Rswift.StringResource(key: "Exit", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 退出登录
@@ -1780,6 +1802,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Setting", bundle: bundle, comment: "")
       }
 
+      /// Value: 说明：反馈将以issue的形式提交到GitHub仓库
+      static func feedbackNote(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Feedback.Note", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Feedback.Note"
+        }
+
+        return NSLocalizedString("Feedback.Note", bundle: bundle, comment: "")
+      }
+
       /// Value: 趋势
       static func trending(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
@@ -1791,6 +1826,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Trending", bundle: bundle, comment: "")
+      }
+
+      /// Value: 运行环境：%@
+      static func runEnvironment(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("Run Environment", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Run Environment"
+        }
+
+        let format = NSLocalizedString("Run Environment", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
       }
 
       /// Value: 退出

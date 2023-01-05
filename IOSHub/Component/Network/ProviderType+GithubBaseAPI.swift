@@ -122,4 +122,16 @@ extension ProviderType {
         .catchAndReturn(false)
     }
 
+    /// 提交问题
+    /// - API: https://docs.github.com/en/rest/reference/issues#create-an-issue
+    /// - Demo: https://api.github.com/repos/tospery/IOSHub/issues
+    func feedback(title: String, body: String) -> Single<Issue> {
+        networking.requestObject(
+            MultiTarget.init(
+                GithubBaseAPI.feedback(title: title, body: body)
+            ),
+            type: Issue.self
+        )
+    }
+    
 }

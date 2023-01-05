@@ -12,6 +12,8 @@ enum SectionItemValue {
     case milestone
     case searchOptions
     case searchKeywords
+    case feedbackNote
+    case feedbackInput
 }
 
 extension SectionItemValue: CustomStringConvertible {
@@ -21,6 +23,8 @@ extension SectionItemValue: CustomStringConvertible {
         case .milestone: return "milestone"
         case .searchOptions: return "searchOptions"
         case .searchKeywords: return "searchKeywords"
+        case .feedbackNote: return "feedbackNote"
+        case .feedbackInput: return "feedbackInput"
         }
     }
 }

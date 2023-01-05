@@ -31,6 +31,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         static let searchOptionsCell = ReusableCell<SearchOptionsCell>()
         static let searchKeywordsCell = ReusableCell<SearchKeywordsCell>()
         static let readmeContentCell = ReusableCell<ReadmeContentCell>()
+        static let feedbackNoteCell = ReusableCell<FeedbackNoteCell>()
         static let headerView = ReusableView<CollectionHeaderView>()
         static let footerView = ReusableView<CollectionFooterView>()
         static let historyHeaderView = ReusableView<SearchHistoryHeaderView>()
@@ -97,6 +98,11 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                     item.parent = self.reactor
                     cell.reactor = item
                     return cell
+                case let .feedbackNote(item):
+                    let cell = collectionView.dequeue(Reusable.feedbackNoteCell, for: indexPath)
+                    item.parent = self.reactor
+                    cell.reactor = item
+                    return cell
                 }
             },
             configureSupplementaryView: { [weak self] _, collectionView, kind, indexPath in
@@ -139,6 +145,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         self.collectionView.register(Reusable.searchOptionsCell)
         self.collectionView.register(Reusable.searchKeywordsCell)
         self.collectionView.register(Reusable.readmeContentCell)
+        self.collectionView.register(Reusable.feedbackNoteCell)
         self.collectionView.register(Reusable.headerView, kind: .header)
         self.collectionView.register(Reusable.footerView, kind: .footer)
         self.collectionView.register(Reusable.historyHeaderView, kind: .header)
@@ -146,36 +153,13 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         self.collectionView.rx.itemSelected(dataSource: self.dataSource)
             .subscribeNext(weak: self, type(of: self).tapItem)
             .disposed(by: self.rx.disposeBag)
-//        if self.reactor?.host == .article && self.reactor?.path == .list {
-//            if self.pagingViewController != nil {
-//                self.collectionView.frame = .init(
-//                    x: 0,
-//                    y: 0,
-//                    width: deviceWidth,
-//                    height: deviceHeight - navigationContentTopConstant - 50 - tabBarHeight
-//                )
-//            }
-//        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//        if self.reactor?.host == .article && self.reactor?.path == .list {
-//            if self.pagingViewController != nil && self.collectionView.height == deviceHeight {
-//                self.collectionView.frame = .init(
-//                    x: 0,
-//                    y: 0,
-//                    width: deviceWidth,
-//                    height: deviceHeight - navigationContentTopConstant - 50 - tabBarHeight
-//                )
-//            }
-//        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-//        if self.reactor?.host == .personal {
-//            return statusBarService.value.reversed
-//        }
         return super.preferredStatusBarStyle
     }
 
@@ -299,13 +283,6 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
             }.disposed(by: self.disposeBag)
         }
     }
-//    func handleUser(user: User?) {
-//        log("handleUser -> 更新用户(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? ""))")
-//        MainScheduler.asyncInstance.schedule(()) { _ -> Disposable in
-//            User.update(user, reactive: true)
-//            return Disposables.create {}
-//        }.disposed(by: self.disposeBag)
-//    }
     
     func handleConfiguration(configuration: Configuration) {
         log("handleConfiguration -> 更新配置(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? ""))")
@@ -328,12 +305,6 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         case let .simple(item):
             guard let target = (item.model as? Simple)?.target, target.isNotEmpty else { return }
             self.navigator.forward(target)
-//            guard let simple = item.model as? Simple else { return }
-//            if let target = simple.target, target.isNotEmpty {
-//                self.navigator.forward(target)
-//                return
-//            }
-//            self.handleSimple(simple: simple)
         case let .userTrending(item):
             guard let username = (item.model as? User)?.username else { return }
             self.navigator.forward(Router.shared.urlString(host: .user, path: username))
@@ -371,6 +342,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
 
 extension NormalViewController: UICollectionViewDelegateFlowLayout {
 
+    // swiftlint:disable cyclomatic_complexity
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -388,8 +360,10 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
         case let .searchOptions(item): return Reusable.searchOptionsCell.class.size(width: width, item: item)
         case let .searchKeywords(item): return Reusable.searchKeywordsCell.class.size(width: width, item: item)
         case let .readmeContent(item): return Reusable.readmeContentCell.class.size(width: width, item: item)
+        case let .feedbackNote(item): return Reusable.feedbackNoteCell.class.size(width: width, item: item)
         }
     }
+    // swiftlint:enable cyclomatic_complexity
     
     func collectionView(
         _ collectionView: UICollectionView,
@@ -420,10 +394,6 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         referenceSizeForFooterInSection section: Int
     ) -> CGSize {
-//        if collectionView.bounds.size.height == deviceHeight - collectionView.frame.origin.y {
-//            return .init(width: collectionView.width, height: safeArea.bottom)
-//        }
-//        return .zero
         .zero
     }
 

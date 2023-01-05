@@ -12,6 +12,7 @@ import HiIOS
 
 enum GithubBaseAPI {
     case login(token: String)
+    case feedback(title: String, body: String)
     case user(username: String)
     case repo(username: String, reponame: String)
     case readme(username: String, reponame: String, ref: String?)
@@ -33,6 +34,7 @@ extension GithubBaseAPI: TargetType {
     var path: String {
         switch self {
         case .login: return "/user"
+        case .feedback: return "/repos/\(Author.username)/\(Author.reponame)/issues"
         case let .user(username): return "/users/\(username)"
         case let .repo(username, reponame): return "/repos/\(username)/\(reponame)"
         case let .readme(username, reponame, _): return "/repos/\(username)/\(reponame)/readme"
@@ -49,6 +51,7 @@ extension GithubBaseAPI: TargetType {
 
     var method: Moya.Method {
         switch self {
+        case .feedback: return .post
         case .follow: return .put
         case .unFollow: return .delete
         default: return .get
@@ -69,8 +72,12 @@ extension GithubBaseAPI: TargetType {
 
     var task: Task {
         var parameters = envParameters
-        let encoding: ParameterEncoding = URLEncoding.default
+        var encoding: ParameterEncoding = URLEncoding.default
         switch self {
+        case let .feedback(title, body):
+            parameters[Parameter.title] = title
+            parameters[Parameter.body] = body
+            encoding = JSONEncoding.default
         case .userRepos(_, let page),
              .starredRepos(_, let page):
             parameters += [

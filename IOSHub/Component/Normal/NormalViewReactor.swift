@@ -323,6 +323,8 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
                     case .milestone: return .milestone(.init($0))
                     case .searchOptions: return .searchOptions(.init($0))
                     case .searchKeywords: return .searchKeywords(.init($0))
+                    case .feedbackNote: return .feedbackNote(.init($0))
+                    case .feedbackInput: return .feedbackNote(.init($0))
                     }
                 }
                 if let user = $0 as? User {

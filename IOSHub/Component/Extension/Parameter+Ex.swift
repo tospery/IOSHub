@@ -28,4 +28,5 @@ extension Parameter {
     static var searchKey: String { "q" }
     static var reponame: String { "reponame" }
     static var ref: String { "ref" }
+    static var body: String { "body" }
 }

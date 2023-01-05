@@ -19,9 +19,8 @@ extension Router.Host {
     static var event: Router.Host { "event" }
     static var stars: Router.Host { "stars" }
     static var about: Router.Host { "about" }
-//    static var repos: Router.Host { "repos" }
-//    static var users: Router.Host { "users" }
     static var repo: Router.Host { "repo" }
+    static var feedback: Router.Host { "feedback" }
 }
 
 extension Router.Path {

@@ -25,19 +25,3 @@ var userParameters: [String: Any] {
         Parameter.username: User.current?.username ?? ""
     ]
 }
-
-struct Metric {
-
-    static let listAvatarSize = CGSize.init(40.f)
-    static let detailAvatarSize = CGSize.init(60.f)
-    
-    struct Repo {
-        static let maxLines             = 5
-    }
-    
-    struct Personal {
-        static let parallaxTopHeight    = 244.0
-        static let parallaxAllHeight    = 290.0
-    }
-    
-}
