@@ -232,6 +232,11 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
 //            .skip(1)
 //            .subscribeNext(weak: self, type(of: self).handleUser)
 //            .disposed(by: self.disposeBag)
+        reactor.state.map { $0.total }
+            .distinctUntilChanged { HiIOS.compareAny($0, $1) }
+            .skip(1)
+            .subscribeNext(weak: self, type(of: self).handleTotal)
+            .disposed(by: self.disposeBag)
         reactor.state.map { $0.user }
             .distinctUntilChanged()
             .skip(1)
@@ -292,6 +297,10 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
 //            return Disposables.create {}
 //        }.disposed(by: self.disposeBag)
 //    }
+    
+    func handleTotal(total: [HiSection]) {
+        // log("HiSection handleTotal(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? ""))")
+    }
     
     func handleUser(user: User?, changed: Bool) {
         log("handleUser -> 更新用户(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? "")) | changed = \(changed)")

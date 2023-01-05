@@ -33,5 +33,16 @@ class RepoListViewController: NormalViewController {
         super.viewDidLayoutSubviews()
         self.scrollView.frame = self.view.bounds
     }
+    
+    override func handleTotal(total: [HiSection]) {
+        guard let listType = (self.reactor as? RepoListViewReactor)?.listType, listType == .trending else { return }
+        guard let models = total.first?.models, models.isNotEmpty else { return }
+        if let repos = models as? [Repo] {
+            Repo.storeArray(repos, page: listType.stringValue)
+        } else if let users = models as? [User] {
+            User.storeArray(users, page: listType.stringValue)
+        }
+        log("HiSection handleTotal(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? ""))")
+    }
 
 }
