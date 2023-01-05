@@ -18,10 +18,10 @@ import BonMot
 
 struct Repo: Subjective, Eventable {
     
-    enum CellType: Int, Codable {
-        case trending
-        case detail
-    }
+//    enum CellType: Int, Codable {
+//        case trending
+//        case detail
+//    }
     
     enum Event {
     }
@@ -103,9 +103,6 @@ struct Repo: Subjective, Eventable {
     var watchersCount = 0
     var license: License?
     var organization: Organization?
-    // 扩展属性
-    // var branchs = [Branch].init()
-    var cellType = CellType.trending
     // 合并属性
     var ranking: Int?
     var forks = 0
@@ -113,6 +110,9 @@ struct Repo: Subjective, Eventable {
     var owner = User.init()
     var name: String?
     var fullname: String?
+    // 扩展属性
+    // var branchs = [Branch].init()
+    var listType = ListType.none
 
     init() { }
 
@@ -200,7 +200,7 @@ struct Repo: Subjective, Eventable {
         watchers            <- map["watchers"]
         watchersCount       <- map["watchers_count"]
 //        // 扩展属性
-//        branchs             <- map["branchs"]
+        listType                <- map["listType"]
         // 合并属性
         owner               <- map["owner"]
         if !owner.isValid {
@@ -215,11 +215,5 @@ struct Repo: Subjective, Eventable {
         stars                <- map["stars|stargazers_count", nested: false, delimiter: "|"]
     }
     // swiftlint:enable function_body_length
-    
-//    mutating func setup(cellType: CellType) {
-//        var repo = self
-//        repo.cellType = cellType
-//        self = repo
-//    }
     
 }

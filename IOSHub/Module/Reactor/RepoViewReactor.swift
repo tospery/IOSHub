@@ -46,8 +46,7 @@ class RepoViewReactor: NormalViewReactor {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
             var models = [ModelType].init()
-            if var repo = self.currentState.repo {
-                repo.cellType = .detail
+            if let repo = self.currentState.repo {
                 models.append(repo)
                 let cellIds: [CellId] = [.space, .language, .issues, .pullrequests, .space, .branches, .readme]
                 let simples = cellIds.map { id -> Simple in

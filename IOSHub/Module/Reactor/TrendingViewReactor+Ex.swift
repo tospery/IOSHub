@@ -31,7 +31,8 @@ extension TrendingViewReactor: PagingViewControllerDataSource {
         case 1:
             return AppDependency.shared.navigator.viewController(
                 for: Router.shared.urlString(
-                    host: .repos,
+                    host: .repo,
+                    path: .list,
                     parameters: [
                         Parameter.hidesNavigationBar: true.string
                     ]
@@ -40,7 +41,8 @@ extension TrendingViewReactor: PagingViewControllerDataSource {
         default:
             return AppDependency.shared.navigator.viewController(
                 for: Router.shared.urlString(
-                    host: .users,
+                    host: .user,
+                    path: .list,
                     parameters: [
                         Parameter.hidesNavigationBar: true.string
                     ]

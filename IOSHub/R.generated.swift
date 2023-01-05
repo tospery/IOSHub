@@ -154,24 +154,20 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 8 files.
+  /// This `R.file` struct is generated, and contains static references to 6 files.
   struct file {
     /// Resource file `Configuration.json`.
     static let configurationJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Configuration", pathExtension: "json")
-    /// Resource file `Languages.json`.
-    static let languagesJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Languages", pathExtension: "json")
-    /// Resource file `Pages.json`.
-    static let pagesJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Pages", pathExtension: "json")
-    /// Resource file `Repos#trending.json`.
-    static let reposTrendingJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Repos#trending", pathExtension: "json")
-    /// Resource file `Simples#about.json`.
-    static let simplesAboutJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Simples#about", pathExtension: "json")
-    /// Resource file `Simples#personal.json`.
-    static let simplesPersonalJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Simples#personal", pathExtension: "json")
-    /// Resource file `Simples#profile.json`.
-    static let simplesProfileJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Simples#profile", pathExtension: "json")
-    /// Resource file `Users#trending.json`.
-    static let usersTrendingJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Users#trending", pathExtension: "json")
+    /// Resource file `LanguageList.json`.
+    static let languageListJson = Rswift.FileResource(bundle: R.hostingBundle, name: "LanguageList", pathExtension: "json")
+    /// Resource file `PageList.json`.
+    static let pageListJson = Rswift.FileResource(bundle: R.hostingBundle, name: "PageList", pathExtension: "json")
+    /// Resource file `SimpleList#about.json`.
+    static let simpleListAboutJson = Rswift.FileResource(bundle: R.hostingBundle, name: "SimpleList#about", pathExtension: "json")
+    /// Resource file `SimpleList#personal.json`.
+    static let simpleListPersonalJson = Rswift.FileResource(bundle: R.hostingBundle, name: "SimpleList#personal", pathExtension: "json")
+    /// Resource file `SimpleList#profile.json`.
+    static let simpleListProfileJson = Rswift.FileResource(bundle: R.hostingBundle, name: "SimpleList#profile", pathExtension: "json")
 
     /// `bundle.url(forResource: "Configuration", withExtension: "json")`
     static func configurationJson(_: Void = ()) -> Foundation.URL? {
@@ -179,52 +175,40 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
 
-    /// `bundle.url(forResource: "Languages", withExtension: "json")`
-    static func languagesJson(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.languagesJson
+    /// `bundle.url(forResource: "LanguageList", withExtension: "json")`
+    static func languageListJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.languageListJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 
-    /// `bundle.url(forResource: "Pages", withExtension: "json")`
-    static func pagesJson(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.pagesJson
+    /// `bundle.url(forResource: "PageList", withExtension: "json")`
+    static func pageListJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.pageListJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 
-    /// `bundle.url(forResource: "Repos#trending", withExtension: "json")`
-    static func reposTrendingJson(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.reposTrendingJson
+    /// `bundle.url(forResource: "SimpleList#about", withExtension: "json")`
+    static func simpleListAboutJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.simpleListAboutJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 
-    /// `bundle.url(forResource: "Simples#about", withExtension: "json")`
-    static func simplesAboutJson(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.simplesAboutJson
+    /// `bundle.url(forResource: "SimpleList#personal", withExtension: "json")`
+    static func simpleListPersonalJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.simpleListPersonalJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 
-    /// `bundle.url(forResource: "Simples#personal", withExtension: "json")`
-    static func simplesPersonalJson(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.simplesPersonalJson
-      return fileResource.bundle.url(forResource: fileResource)
-    }
-
-    /// `bundle.url(forResource: "Simples#profile", withExtension: "json")`
-    static func simplesProfileJson(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.simplesProfileJson
-      return fileResource.bundle.url(forResource: fileResource)
-    }
-
-    /// `bundle.url(forResource: "Users#trending", withExtension: "json")`
-    static func usersTrendingJson(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.usersTrendingJson
+    /// `bundle.url(forResource: "SimpleList#profile", withExtension: "json")`
+    static func simpleListProfileJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.simpleListProfileJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 39 images.
+  /// This `R.image` struct is generated, and contains static references to 40 images.
   struct image {
     /// Image `AppLogo`.
     static let appLogo = Rswift.ImageResource(bundle: R.hostingBundle, name: "AppLogo")
@@ -274,8 +258,10 @@ struct R: Rswift.Validatable {
     static let ic_user_blog = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_user_blog")
     /// Image `ic_user_company`.
     static let ic_user_company = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_user_company")
-    /// Image `ic_user_default`.
-    static let ic_user_default = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_user_default")
+    /// Image `ic_user_default1`.
+    static let ic_user_default1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_user_default1")
+    /// Image `ic_user_default2`.
+    static let ic_user_default2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_user_default2")
     /// Image `ic_user_email`.
     static let ic_user_email = Rswift.ImageResource(bundle: R.hostingBundle, name: "ic_user_email")
     /// Image `ic_user_location`.
@@ -474,9 +460,16 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "ic_user_default", bundle: ..., traitCollection: ...)`
-    static func ic_user_default(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.ic_user_default, compatibleWith: traitCollection)
+    /// `UIImage(named: "ic_user_default1", bundle: ..., traitCollection: ...)`
+    static func ic_user_default1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_user_default1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "ic_user_default2", bundle: ..., traitCollection: ...)`
+    static func ic_user_default2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.ic_user_default2, compatibleWith: traitCollection)
     }
     #endif
 
@@ -577,6 +570,24 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.tabbar_stars_selected, compatibleWith: traitCollection)
     }
     #endif
+
+    fileprivate init() {}
+  }
+
+  /// This `R.info` struct is generated, and contains static references to 1 properties.
+  struct info {
+    struct uiApplicationSceneManifest {
+      static let _key = "UIApplicationSceneManifest"
+      static let uiApplicationSupportsMultipleScenes = false
+
+      struct uiSceneConfigurations {
+        static let _key = "UISceneConfigurations"
+
+        fileprivate init() {}
+      }
+
+      fileprivate init() {}
+    }
 
     fileprivate init() {}
   }

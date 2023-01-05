@@ -25,11 +25,17 @@ class RepoListViewReactor: NormalViewReactor {
     override func loadData(_ page: Int) -> Observable<[SectionData]> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
-            if let repos = Repo.cachedArray(page: self.listType.stringValue) {
-                observer.onNext([(header: nil, models: repos)])
-            }
+//            if let repos = Repo.cachedArray(page: self.listType.stringValue) {
+//                observer.onNext([(header: nil, models: repos)])
+//            }
             return self.provider.trendingRepos()
                  .asObservable()
+                 .map { $0.map { repo -> Repo in
+                     var repo = repo
+                     repo.listType = .trending
+                     return repo
+                    }
+                 }
                  .map { [(header: nil, models: $0)] }
                  .subscribe(observer)
         }

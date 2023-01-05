@@ -136,7 +136,7 @@ class UserDetailCell: BaseCollectionCell, ReactorKit.View {
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.avatar }
             .distinctUntilChanged { HiIOS.compareImage($0, $1) }
-            .bind(to: self.avatarImageView.rx.imageResource(placeholder: R.image.ic_user_default()))
+            .bind(to: self.avatarImageView.rx.imageResource(placeholder: R.image.ic_user_default2()))
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.user }
             .distinctUntilChanged()

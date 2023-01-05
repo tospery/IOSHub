@@ -45,24 +45,8 @@ class TrendingViewController: ScrollViewController, ReactorKit.View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationBar.removeAllLeftButtons()
-//        self.navigationBar.addButtonToLeft(image: R.image.navbar_scan()?.template)
-//            .rx.tap.subscribe(onNext: { [weak self] _ in
-//                guard let `self` = self else { return }
-//                self.scan()
-//            }).disposed(by: self.disposeBag)
-//        self.navigationBar.titleView = self.searchView
-        
-//        self.paging.dataSource = self.reactor
-//        self.addChild(self.paging)
-//        self.view.addSubview(self.paging.view)
-//        self.paging.didMove(toParent: self)
-//        self.paging.view.frame = self.contentFrame
-//        self.navigationBar.theme.itemColor = themeService.attribute { $0.primaryColor }
-        
         self.addChild(self.paging)
         self.view.addSubview(self.paging.view)
-        // let tabBarHeight = self.tabBarController?.tabBar.height ?? 0
         self.paging.view.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.top.equalToSuperview().offset(self.contentTop)
@@ -82,12 +66,6 @@ class TrendingViewController: ScrollViewController, ReactorKit.View {
         self.navigationBar.addButtonToRight(image: R.image.navbar_search()).rx.tap
             .subscribeNext(weak: self, type(of: self).tapSearch)
             .disposed(by: self.disposeBag)
-//
-//        themeService.rx
-//            .bind({ $0.brightColor }, to: self.paging.view.rx.backgroundColor)
-//            .bind({ $0.primaryColor }, to: [self.paging.rx.indicatorColor, self.paging.rx.selectedTextColor])
-//            .bind({ $0.titleColor }, to: self.paging.rx.textColor)
-//            .disposed(by: self.rx.disposeBag)
     }
     
     func bind(reactor: TrendingViewReactor) {
@@ -101,10 +79,6 @@ class TrendingViewController: ScrollViewController, ReactorKit.View {
             .distinctUntilChanged()
             .bind(to: self.rx.loading)
             .disposed(by: self.disposeBag)
-//        reactor.state.map { $0.categories }
-//            .distinctUntilChanged()
-//            .bind(to: self.rx.categories)
-//            .disposed(by: self.disposeBag)
     }
 
     func tapSearch(_: Void? = nil) {

@@ -120,7 +120,7 @@ class RepoTrendingCell: BaseCollectionCell, ReactorKit.View {
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.avatar }
             .distinctUntilChanged { HiIOS.compareImage($0, $1) }
-            .bind(to: self.avatarImageView.rx.imageResource(placeholder: R.image.ic_user_default()))
+            .bind(to: self.avatarImageView.rx.imageResource(placeholder: R.image.ic_user_default1()))
             .disposed(by: self.disposeBag)
         reactor.state.map { _ in }
             .bind(to: self.rx.setNeedsLayout)

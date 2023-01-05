@@ -55,7 +55,7 @@ class PersonalParallaxView: UIImageView {
     
     lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = R.image.ic_user_default()
+        imageView.image = R.image.ic_user_default2()
         imageView.sizeToFit()
         return imageView
     }()
@@ -225,7 +225,7 @@ class PersonalParallaxView: UIImageView {
             .disposed(by: self.rx.disposeBag)
         reactor.state.map { $0.user?.avatar?.imageSource }
             .distinctUntilChanged { HiIOS.compareImage($0, $1) }
-            .bind(to: self.iconImageView.rx.imageResource(placeholder: R.image.ic_user_default()))
+            .bind(to: self.iconImageView.rx.imageResource(placeholder: R.image.ic_user_default2()))
             .disposed(by: self.rx.disposeBag)
         reactor.state.map {
             $0.user?.username ?? R.string.localizable.clickToLogin()

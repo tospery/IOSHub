@@ -107,4 +107,10 @@ extension User {
         ]).styled(with: .lineSpacing(4), .alignment(.center))
     }
     
+    mutating func setup(listType: ListType) {
+        var repo = self
+        repo.listType = listType
+        self = repo
+    }
+    
 }

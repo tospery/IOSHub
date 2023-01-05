@@ -15,11 +15,13 @@ enum TabBarKey {
     case personal
 }
 
-enum ListType: Int {
-    case trending = 0
+enum ListType: Int, Codable {
+    case none = 0
+    case trending
     
     var stringValue: String {
         switch self {
+        case .none: return "none"
         case .trending: return "trending"
         }
     }

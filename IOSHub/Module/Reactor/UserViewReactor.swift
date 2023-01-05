@@ -41,8 +41,7 @@ class UserViewReactor: NormalViewReactor {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
             var models = [ModelType].init()
-            if var user = self.currentState.user {
-                user.cellType = .detail
+            if let user = self.currentState.user {
                 models.append(user)
                 if user.isOrganization {
                     models.append(Simple.init(height: 10))

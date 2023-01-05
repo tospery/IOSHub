@@ -326,15 +326,15 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
                     }
                 }
                 if let user = $0 as? User {
-                    switch user.cellType {
+                    switch user.listType {
+                    case .none: return .userDetail(.init($0))
                     case .trending: return .userTrending(.init($0))
-                    case .detail: return .userDetail(.init($0))
                     }
                 }
                 if let repo = $0 as? Repo {
-                    switch repo.cellType {
+                    switch repo.listType {
+                    case .none: return .repoDetail(.init($0))
                     case .trending: return .repoTrending(.init($0))
-                    case .detail: return .repoDetail(.init($0))
                     }
                 }
                 if $0 is Readme {

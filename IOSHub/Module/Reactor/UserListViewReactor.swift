@@ -25,11 +25,17 @@ class UserListViewReactor: NormalViewReactor {
     override func loadData(_ page: Int) -> Observable<[SectionData]> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
-            if let users = User.cachedArray(page: self.listType.stringValue) {
-                observer.onNext([(header: nil, models: users)])
-            }
+//            if let users = User.cachedArray(page: self.listType.stringValue) {
+//                observer.onNext([(header: nil, models: users)])
+//            }
             return self.provider.trendingUsers()
                  .asObservable()
+                 .map { $0.map { user -> User in
+                     var user = user
+                     user.listType = .trending
+                     return user
+                    }
+                 }
                  .map { [(header: nil, models: $0)] }
                  .subscribe(observer)
         }

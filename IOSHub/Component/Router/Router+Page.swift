@@ -35,10 +35,10 @@ extension Router {
         navigator.register(self.urlPattern(host: .profile)) { url, values, context in
             ProfileViewController(navigator, ProfileViewReactor(provider, self.parameters(url, values, context)))
         }
-        navigator.register(self.urlPattern(host: .repos)) { url, values, context in
+        navigator.register(self.urlPattern(host: .repo, path: .list)) { url, values, context in
             RepoListViewController(navigator, RepoListViewReactor(provider, self.parameters(url, values, context)))
         }
-        navigator.register(self.urlPattern(host: .users)) { url, values, context in
+        navigator.register(self.urlPattern(host: .user, path: .list)) { url, values, context in
             UserListViewController(navigator, UserListViewReactor(provider, self.parameters(url, values, context)))
         }
         navigator.register(self.urlPattern(host: .search, path: .history)) { url, values, context in
