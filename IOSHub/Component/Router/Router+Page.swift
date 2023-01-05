@@ -36,10 +36,10 @@ extension Router {
             ProfileViewController(navigator, ProfileViewReactor(provider, self.parameters(url, values, context)))
         }
         navigator.register(self.urlPattern(host: .repos)) { url, values, context in
-            ReposViewController(navigator, ReposViewReactor(provider, self.parameters(url, values, context)))
+            RepoListViewController(navigator, RepoListViewReactor(provider, self.parameters(url, values, context)))
         }
         navigator.register(self.urlPattern(host: .users)) { url, values, context in
-            UsersViewController(navigator, UsersViewReactor(provider, self.parameters(url, values, context)))
+            UserListViewController(navigator, UserListViewReactor(provider, self.parameters(url, values, context)))
         }
         navigator.register(self.urlPattern(host: .search, path: .history)) { url, values, context in
             SearchHistoryViewController(

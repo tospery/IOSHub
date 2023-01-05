@@ -1,5 +1,5 @@
 //
-//  ReposViewReactor.swift
+//  RepoListViewReactor.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/12/3.
@@ -13,7 +13,7 @@ import URLNavigator
 import Rswift
 import HiIOS
 
-class ReposViewReactor: NormalViewReactor {
+class RepoListViewReactor: NormalViewReactor {
     
     let listType: ListType
     

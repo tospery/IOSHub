@@ -1,5 +1,5 @@
 //
-//  UsersViewReactor.swift
+//  UserListViewReactor.swift
 //  IOSHub
 //
 //  Created by 杨建祥 on 2022/12/3.
@@ -13,7 +13,7 @@ import URLNavigator
 import Rswift
 import HiIOS
 
-class UsersViewReactor: NormalViewReactor {
+class UserListViewReactor: NormalViewReactor {
     
     let listType: ListType
     

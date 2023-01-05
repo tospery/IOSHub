@@ -58,10 +58,10 @@
 		910B42EF293A2A7F000719BA /* TrendingViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910B42EE293A2A7F000719BA /* TrendingViewController+Ex.swift */; };
 		910B42F1293A2C51000719BA /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910B42F0293A2C51000719BA /* Page.swift */; };
 		910B42F3293A2C85000719BA /* Pages.json in Resources */ = {isa = PBXBuildFile; fileRef = 910B42F2293A2C85000719BA /* Pages.json */; };
-		910B42F5293A6277000719BA /* ReposViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910B42F4293A6277000719BA /* ReposViewReactor.swift */; };
-		910B42F7293A6283000719BA /* ReposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910B42F6293A6283000719BA /* ReposViewController.swift */; };
-		910B42F9293A628E000719BA /* UsersViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910B42F8293A628E000719BA /* UsersViewReactor.swift */; };
-		910B42FB293A629E000719BA /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910B42FA293A629E000719BA /* UsersViewController.swift */; };
+		910B42F5293A6277000719BA /* RepoListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910B42F4293A6277000719BA /* RepoListViewReactor.swift */; };
+		910B42F7293A6283000719BA /* RepoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910B42F6293A6283000719BA /* RepoListViewController.swift */; };
+		910B42F9293A628E000719BA /* UserListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910B42F8293A628E000719BA /* UserListViewReactor.swift */; };
+		910B42FB293A629E000719BA /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910B42FA293A629E000719BA /* UserListViewController.swift */; };
 		910B42FD293A67EA000719BA /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910B42FC293A67EA000719BA /* UIViewController+Ex.swift */; };
 		9110A09A29326A3200B09DB1 /* Simples#personal.json in Resources */ = {isa = PBXBuildFile; fileRef = 9110A09929326A3200B09DB1 /* Simples#personal.json */; };
 		9110A09C29326A4900B09DB1 /* Simples#about.json in Resources */ = {isa = PBXBuildFile; fileRef = 9110A09B29326A4900B09DB1 /* Simples#about.json */; };
@@ -205,10 +205,10 @@
 		910B42EE293A2A7F000719BA /* TrendingViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrendingViewController+Ex.swift"; sourceTree = "<group>"; };
 		910B42F0293A2C51000719BA /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		910B42F2293A2C85000719BA /* Pages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Pages.json; sourceTree = "<group>"; };
-		910B42F4293A6277000719BA /* ReposViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposViewReactor.swift; sourceTree = "<group>"; };
-		910B42F6293A6283000719BA /* ReposViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposViewController.swift; sourceTree = "<group>"; };
-		910B42F8293A628E000719BA /* UsersViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewReactor.swift; sourceTree = "<group>"; };
-		910B42FA293A629E000719BA /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
+		910B42F4293A6277000719BA /* RepoListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListViewReactor.swift; sourceTree = "<group>"; };
+		910B42F6293A6283000719BA /* RepoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoListViewController.swift; sourceTree = "<group>"; };
+		910B42F8293A628E000719BA /* UserListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewReactor.swift; sourceTree = "<group>"; };
+		910B42FA293A629E000719BA /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		910B42FC293A67EA000719BA /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
 		9110A09929326A3200B09DB1 /* Simples#personal.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Simples#personal.json"; sourceTree = "<group>"; };
 		9110A09B29326A4900B09DB1 /* Simples#about.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Simples#about.json"; sourceTree = "<group>"; };
@@ -520,8 +520,8 @@
 				91B9DCD72935FFD900CD2E1B /* StarsViewController.swift */,
 				915F10132937ABFE009413D6 /* EventViewController.swift */,
 				910B42EE293A2A7F000719BA /* TrendingViewController+Ex.swift */,
-				910B42F6293A6283000719BA /* ReposViewController.swift */,
-				910B42FA293A629E000719BA /* UsersViewController.swift */,
+				910B42F6293A6283000719BA /* RepoListViewController.swift */,
+				910B42FA293A629E000719BA /* UserListViewController.swift */,
 				91FF7C7D293BA2C20045971B /* SearchHistoryViewController.swift */,
 				91209402294ED33A002C593F /* SearchViewController.swift */,
 				91E672412957109C00F8E227 /* RepoViewController.swift */,
@@ -600,8 +600,8 @@
 				91B9DCD52935FFCF00CD2E1B /* StarsViewReactor.swift */,
 				915F10112937ABEE009413D6 /* EventViewReactor.swift */,
 				910B42EC293A2A5E000719BA /* TrendingViewReactor+Ex.swift */,
-				910B42F4293A6277000719BA /* ReposViewReactor.swift */,
-				910B42F8293A628E000719BA /* UsersViewReactor.swift */,
+				910B42F4293A6277000719BA /* RepoListViewReactor.swift */,
+				910B42F8293A628E000719BA /* UserListViewReactor.swift */,
 				91FF7C7B293BA2B10045971B /* SearchHistoryViewReactor.swift */,
 				91209400294ED328002C593F /* SearchViewReactor.swift */,
 				91E6723F2957108E00F8E227 /* RepoViewReactor.swift */,
@@ -837,7 +837,7 @@
 				91B9DCC62935F8C200CD2E1B /* Repo.swift in Sources */,
 				8C9A45E02887F6F40041937A /* Configuration.swift in Sources */,
 				91B9DCCE2935F98900CD2E1B /* BaseRepo.swift in Sources */,
-				910B42F7293A6283000719BA /* ReposViewController.swift in Sources */,
+				910B42F7293A6283000719BA /* RepoListViewController.swift in Sources */,
 				915F10122937ABEE009413D6 /* EventViewReactor.swift in Sources */,
 				9110A0BC2932C44D00B09DB1 /* Router+Dialog+Sheet.swift in Sources */,
 				9176A54B29601E1F00ADF85D /* UserDetailCell.swift in Sources */,
@@ -910,7 +910,7 @@
 				9176A551296028DE00ADF85D /* MilestoneCell.swift in Sources */,
 				91A49936295C7A250090EC30 /* RepoDetailCell.swift in Sources */,
 				8C9A45E62887F6F40041937A /* TabBarReactor.swift in Sources */,
-				910B42F5293A6277000719BA /* ReposViewReactor.swift in Sources */,
+				910B42F5293A6277000719BA /* RepoListViewReactor.swift in Sources */,
 				8C9A45C12887F6F40041937A /* Networking.swift in Sources */,
 				8C9A45D82887F6F40041937A /* TabBarController.swift in Sources */,
 				91D60E0E2965FF3E00A489D6 /* UserTrendingCell.swift in Sources */,
@@ -927,9 +927,9 @@
 				91C267EA28EB310300DD5677 /* SectionItemValue.swift in Sources */,
 				8C9A45C52887F6F40041937A /* Error.swift in Sources */,
 				8C9A45DB2887F6F40041937A /* SimpleItem.swift in Sources */,
-				910B42F9293A628E000719BA /* UsersViewReactor.swift in Sources */,
+				910B42F9293A628E000719BA /* UserListViewReactor.swift in Sources */,
 				91B9DCDA2936003300CD2E1B /* RepoTrendingItem.swift in Sources */,
-				910B42FB293A629E000719BA /* UsersViewController.swift in Sources */,
+				910B42FB293A629E000719BA /* UserListViewController.swift in Sources */,
 				91A49934295C7A1A0090EC30 /* RepoDetailItem.swift in Sources */,
 				8C9A45B72887F6F30041937A /* Router+Ex.swift in Sources */,
 				91B9DCCA2935F8D200CD2E1B /* User+Ex.swift in Sources */,
