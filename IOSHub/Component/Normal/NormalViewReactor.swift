@@ -185,7 +185,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
 
     // MARK: - actions
     func load() -> Observable<Mutation> {
-        return Observable.concat([
+        .concat([
             .just(.initial([])),
             .just(.setError(nil)),
             .just(.setLoading(true)),
@@ -204,7 +204,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
     }
     
     func refresh() -> Observable<Mutation> {
-        return Observable.concat([
+        .concat([
             .just(.setError(nil)),
             .just(.setRefreshing(true)),
             self.loadData(self.pageStart)
@@ -223,7 +223,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
     }
     
     func loadMore() -> Observable<Mutation> {
-        return Observable.concat([
+        .concat([
             .just(.setError(nil)),
             .just(.setLoadingMore(true)),
             self.loadData(self.pageIndex + 1)

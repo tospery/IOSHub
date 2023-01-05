@@ -135,6 +135,7 @@
 		91C267EE28EB33A800DD5677 /* Configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 91C267ED28EB33A800DD5677 /* Configuration.json */; };
 		91D60E0C2965FF2200A489D6 /* UserTrendingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D60E0B2965FF2200A489D6 /* UserTrendingItem.swift */; };
 		91D60E0E2965FF3E00A489D6 /* UserTrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D60E0D2965FF3E00A489D6 /* UserTrendingCell.swift */; };
+		91D60E0F2966882900A489D6 /* RepoList#trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 915F10092937532C009413D6 /* RepoList#trending.json */; };
 		91E672402957108E00F8E227 /* RepoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E6723F2957108E00F8E227 /* RepoViewReactor.swift */; };
 		91E672422957109C00F8E227 /* RepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E672412957109C00F8E227 /* RepoViewController.swift */; };
 		91FF7C7C293BA2B10045971B /* SearchHistoryViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF7C7B293BA2B10045971B /* SearchHistoryViewReactor.swift */; };
@@ -735,6 +736,7 @@
 				8C5A3FD82887A0E30009A00F /* LaunchScreen.storyboard in Resources */,
 				9110A09C29326A4900B09DB1 /* SimpleList#about.json in Resources */,
 				9110A09A29326A3200B09DB1 /* SimpleList#personal.json in Resources */,
+				91D60E0F2966882900A489D6 /* RepoList#trending.json in Resources */,
 				910B42F3293A2C85000719BA /* PageList.json in Resources */,
 				8C9A455D2887E3870041937A /* Localizable.strings in Resources */,
 				91B9DCE929368E9600CD2E1B /* LanguageList.json in Resources */,
