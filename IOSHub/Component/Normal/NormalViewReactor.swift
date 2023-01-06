@@ -324,7 +324,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
                     case .searchOptions: return .searchOptions(.init($0))
                     case .searchKeywords: return .searchKeywords(.init($0))
                     case .feedbackNote: return .feedbackNote(.init($0))
-                    case .feedbackInput: return .feedbackNote(.init($0))
+                    case .feedbackInput: return .feedbackInput(.init($0))
                     }
                 }
                 if let user = $0 as? User {
@@ -342,17 +342,6 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
                 if $0 is Readme {
                     return .readmeContent(.init($0))
                 }
-//                if $0 is Piece {
-//                    return .piece(.init($0))
-//                }
-//                if let user = $0 as? User {
-//                    switch user.cellType {
-//                    case .userInfo:
-//                        return .userInfo(.init($0))
-//                    default:
-//                        break
-//                    }
-//                }
                 return .simple(.init($0))
             })
         })

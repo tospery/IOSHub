@@ -38,6 +38,7 @@
 "readme" = "readme";
 "Follow" = "Follow";
 "Unfollow" = "Unfollow";
+"Submit" = "提交";
 /* 词语 */
 "Pull Requests" = "Pull Requests";
 "Exit Login" = "退出登录";
@@ -50,7 +51,6 @@
 "Search Options" = "搜索选项";
 "Clear History" = "清除历史";
 "Latest Update" = "Update %@";
-"Run Environment" = "运行环境：%@";
 /* 句子 - None */
 "None.Repo" = "No hot repository";
 "None.Desc" = "No description provided";
@@ -59,7 +59,9 @@
 "None.Email" = "No email provided";
 "None.Blog" = "No blog provided";
 /* 句子 - Feedback */
+"Feedback.Placeholder" = "问题内容";
 "Feedback.Note" = "说明：反馈将以issue的形式提交到GitHub仓库";
+"Feedback.Environment" = "运行环境：%@ - iOS%@ - v%@(%@)";
 /* 句子 - Search */
 "Search.Hint" = "搜索您想要的内容";
 /* 句子 - Login */

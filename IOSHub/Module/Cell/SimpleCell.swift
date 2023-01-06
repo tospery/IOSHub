@@ -86,9 +86,7 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
     override func layoutSubviews() {
         super.layoutSubviews()
         if (self.model as? Simple)?.isButton ?? false {
-            self.titleLabel.sizeToFit()
-            self.titleLabel.left = self.titleLabel.leftWhenCenter
-            self.titleLabel.top = self.titleLabel.topWhenCenter
+            self.layoutButton()
             return
         }
         if self.iconImageView.isHidden {
@@ -134,24 +132,11 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
         super.bind(item: reactor)
         guard let simple = reactor.model as? Simple else { return }
         if simple.isSpace {
-            self.contentView.backgroundColor = reactor.color ?? .clear
-            self.borderLayer?.borderWidths = [:]
-            self.indicatorImageView.isHidden = true
+            self.bindSpace(reactor: reactor)
             return
         }
         if simple.isButton {
-            self.contentView.backgroundColor = reactor.color ?? .clear
-            self.borderLayer?.borderWidths = [:]
-            self.indicatorImageView.isHidden = true
-            self.titleLabel.font = .normal(17)
-            self.titleLabel.textColor = reactor.tintColor ?? .primary
-            reactor.state.map { $0.title }
-                .distinctUntilChanged()
-                .bind(to: self.titleLabel.rx.text)
-                .disposed(by: self.disposeBag)
-            reactor.state.map { _ in }
-                .bind(to: self.rx.setNeedsLayout)
-                .disposed(by: self.disposeBag)
+            self.bindButton(reactor: reactor)
             return
         }
         self.contentView.theme.backgroundColor = themeService.attribute { $0.backgroundColor }
@@ -219,6 +204,35 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
             .disposed(by: self.disposeBag)
     }
     // swiftlint:enable function_body_length
+    
+    func bindSpace(reactor: SimpleItem) {
+        self.contentView.backgroundColor = reactor.color ?? .clear
+        self.borderLayer?.borderWidths = [:]
+        self.indicatorImageView.isHidden = true
+    }
+    
+    func bindButton(reactor: SimpleItem) {
+        self.contentView.backgroundColor = reactor.color ?? .clear
+        self.borderLayer?.borderWidths = [:]
+        self.indicatorImageView.isHidden = true
+        self.titleLabel.font = .normal(17)
+        self.titleLabel.textColor = reactor.tintColor ?? .primary
+        reactor.state.map { $0.title }
+            .distinctUntilChanged()
+            .bind(to: self.titleLabel.rx.text)
+            .disposed(by: self.disposeBag)
+        reactor.state.map { _ in }
+            .bind(to: self.rx.setNeedsLayout)
+            .disposed(by: self.disposeBag)
+    }
+    
+    func layoutButton() {
+        self.titleLabel.textAlignment = .left
+        self.titleLabel.sizeToFit()
+        self.titleLabel.layerCornerRadius = 0
+        self.titleLabel.left = self.titleLabel.leftWhenCenter
+        self.titleLabel.top = self.titleLabel.topWhenCenter
+    }
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
         guard let simple = item.model as? Simple else { return .zero }

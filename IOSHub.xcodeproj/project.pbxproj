@@ -118,6 +118,8 @@
 		91B313F8296747AD00579D00 /* FeedbackNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B313F7296747AD00579D00 /* FeedbackNoteCell.swift */; };
 		91B313FA29674D2100579D00 /* FeedbackInputItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B313F929674D2100579D00 /* FeedbackInputItem.swift */; };
 		91B313FC29674D2800579D00 /* FeedbackInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B313FB29674D2800579D00 /* FeedbackInputCell.swift */; };
+		91B314002967D85200579D00 /* SubmitItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B313FF2967D85200579D00 /* SubmitItem.swift */; };
+		91B314022967D85A00579D00 /* SubmitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B314012967D85A00579D00 /* SubmitCell.swift */; };
 		91B9DCC62935F8C200CD2E1B /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCC52935F8C200CD2E1B /* Repo.swift */; };
 		91B9DCC82935F8CA00CD2E1B /* Repo+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCC72935F8CA00CD2E1B /* Repo+Ex.swift */; };
 		91B9DCCA2935F8D200CD2E1B /* User+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B9DCC92935F8D200CD2E1B /* User+Ex.swift */; };
@@ -275,6 +277,8 @@
 		91B313F7296747AD00579D00 /* FeedbackNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackNoteCell.swift; sourceTree = "<group>"; };
 		91B313F929674D2100579D00 /* FeedbackInputItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackInputItem.swift; sourceTree = "<group>"; };
 		91B313FB29674D2800579D00 /* FeedbackInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackInputCell.swift; sourceTree = "<group>"; };
+		91B313FF2967D85200579D00 /* SubmitItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitItem.swift; sourceTree = "<group>"; };
+		91B314012967D85A00579D00 /* SubmitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitCell.swift; sourceTree = "<group>"; };
 		91B9DCC42935F81B00CD2E1B /* repo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = repo.json; sourceTree = "<group>"; };
 		91B9DCC52935F8C200CD2E1B /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 		91B9DCC72935F8CA00CD2E1B /* Repo+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repo+Ex.swift"; sourceTree = "<group>"; };
@@ -561,6 +565,7 @@
 				91D60E0D2965FF3E00A489D6 /* UserTrendingCell.swift */,
 				91B313F7296747AD00579D00 /* FeedbackNoteCell.swift */,
 				91B313FB29674D2800579D00 /* FeedbackInputCell.swift */,
+				91B314012967D85A00579D00 /* SubmitCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -580,6 +585,7 @@
 				91D60E0B2965FF2200A489D6 /* UserTrendingItem.swift */,
 				91B313F5296747A200579D00 /* FeedbackNoteItem.swift */,
 				91B313F929674D2100579D00 /* FeedbackInputItem.swift */,
+				91B313FF2967D85200579D00 /* SubmitItem.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -882,6 +888,7 @@
 				8C9A45B62887F6F30041937A /* Logger+Ex.swift in Sources */,
 				9110A0A1293290FF00B09DB1 /* AboutViewReactor.swift in Sources */,
 				91B9DCE129368CF300CD2E1B /* TrendingAPI.swift in Sources */,
+				91B314002967D85200579D00 /* SubmitItem.swift in Sources */,
 				910B42EF293A2A7F000719BA /* TrendingViewController+Ex.swift in Sources */,
 				914091942932D2CB009CA633 /* ProfileViewReactor.swift in Sources */,
 				9154B9B1294728A20091EB91 /* SearchKeyword.swift in Sources */,
@@ -969,6 +976,7 @@
 				8C9A45CE2887F6F40041937A /* Router+Dialog.swift in Sources */,
 				8C9A45B52887F6F30041937A /* Parameter+Ex.swift in Sources */,
 				91A4993B295C81E10090EC30 /* Link.swift in Sources */,
+				91B314022967D85A00579D00 /* SubmitCell.swift in Sources */,
 				8C9A45E42887F6F40041937A /* PersonalViewReactor.swift in Sources */,
 				8C9A45CA2887F6F40041937A /* QMUIConfigurationTemplate.m in Sources */,
 				9154B9B529472D210091EB91 /* SearchOptionsCell.swift in Sources */,
