@@ -1,0 +1,25 @@
+[
+    {
+        "id":0,
+        "height":15
+    },
+    {
+        "id":50,
+        "title":"清理缓存",
+        "divided":false
+    },
+    {
+        "id":0,
+        "height":15
+    },
+    {
+        "id":51,
+        "title":"颜色主题"
+    },
+    {
+        "id":52,
+        "title":"语言环境",
+        "divided":false
+    }
+]
+

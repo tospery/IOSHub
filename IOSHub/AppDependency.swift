@@ -60,6 +60,11 @@ final class AppDependency: HiIOS.AppDependency {
 //            ])
 //        )
         
+//        var aaa = [String?].init()
+//        aaa.append(nil)
+//        aaa.append("aaa")
+//        log("看看数据")
+        
         log("用户参数: \(userParameters)", module: .common)
 //        self.provider.starredRepos(username: "tospery", page: 1)
 //            .asObservable()

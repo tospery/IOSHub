@@ -154,7 +154,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 7 files.
+  /// This `R.file` struct is generated, and contains static references to 8 files.
   struct file {
     /// Resource file `Configuration.json`.
     static let configurationJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Configuration", pathExtension: "json")
@@ -170,6 +170,8 @@ struct R: Rswift.Validatable {
     static let simpleListPersonalJson = Rswift.FileResource(bundle: R.hostingBundle, name: "SimpleList#personal", pathExtension: "json")
     /// Resource file `SimpleList#profile.json`.
     static let simpleListProfileJson = Rswift.FileResource(bundle: R.hostingBundle, name: "SimpleList#profile", pathExtension: "json")
+    /// Resource file `SimpleList#setting.json`.
+    static let simpleListSettingJson = Rswift.FileResource(bundle: R.hostingBundle, name: "SimpleList#setting", pathExtension: "json")
 
     /// `bundle.url(forResource: "Configuration", withExtension: "json")`
     static func configurationJson(_: Void = ()) -> Foundation.URL? {
@@ -210,6 +212,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "SimpleList#profile", withExtension: "json")`
     static func simpleListProfileJson(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.simpleListProfileJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "SimpleList#setting", withExtension: "json")`
+    static func simpleListSettingJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.simpleListSettingJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 
@@ -620,7 +628,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 89 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 93 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -718,6 +726,8 @@ struct R: Rswift.Validatable {
       static let mine = Rswift.StringResource(key: "Mine", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 提交
       static let submit = Rswift.StringResource(key: "Submit", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 提交成功
+      static let toastSubmitMessage = Rswift.StringResource(key: "Toast.Submit.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 搜索历史
       static let searchHistory = Rswift.StringResource(key: "Search History", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 搜索您想要的内容
@@ -744,6 +754,8 @@ struct R: Rswift.Validatable {
       static let errorSystemUnknownMessage = Rswift.StringResource(key: "Error.System.Unknown.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 未知错误
       static let errorSystemUnknownTitle = Rswift.StringResource(key: "Error.System.Unknown.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 清理缓存
+      static let clearCache = Rswift.StringResource(key: "Clear Cache", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 清除历史
       static let clearHistory = Rswift.StringResource(key: "Clear History", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 点击登录
@@ -778,6 +790,8 @@ struct R: Rswift.Validatable {
       static let errorNetworkTitle = Rswift.StringResource(key: "Error.Network.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 设置
       static let setting = Rswift.StringResource(key: "Setting", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 语言环境
+      static let languageEnvironment = Rswift.StringResource(key: "Language Environment", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 说明：反馈将以issue的形式提交到GitHub仓库
       static let feedbackNote = Rswift.StringResource(key: "Feedback.Note", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 趋势
@@ -798,6 +812,8 @@ struct R: Rswift.Validatable {
       static let errorAppMessage = Rswift.StringResource(key: "Error.App.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 非法操作
       static let errorAppTitle = Rswift.StringResource(key: "Error.App.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 颜色主题
+      static let colorTheme = Rswift.StringResource(key: "Color Theme", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 首页
       static let home = Rswift.StringResource(key: "Home", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
 
@@ -1429,6 +1445,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Submit", bundle: bundle, comment: "")
       }
 
+      /// Value: 提交成功
+      static func toastSubmitMessage(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Toast.Submit.Message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Toast.Submit.Message"
+        }
+
+        return NSLocalizedString("Toast.Submit.Message", bundle: bundle, comment: "")
+      }
+
       /// Value: 搜索历史
       static func searchHistory(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
@@ -1596,6 +1625,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Error.System.Unknown.Title", bundle: bundle, comment: "")
+      }
+
+      /// Value: 清理缓存
+      static func clearCache(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Clear Cache", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Clear Cache"
+        }
+
+        return NSLocalizedString("Clear Cache", bundle: bundle, comment: "")
       }
 
       /// Value: 清除历史
@@ -1819,6 +1861,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Setting", bundle: bundle, comment: "")
       }
 
+      /// Value: 语言环境
+      static func languageEnvironment(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Language Environment", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Language Environment"
+        }
+
+        return NSLocalizedString("Language Environment", bundle: bundle, comment: "")
+      }
+
       /// Value: 说明：反馈将以issue的形式提交到GitHub仓库
       static func feedbackNote(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
@@ -1949,6 +2004,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Error.App.Title", bundle: bundle, comment: "")
+      }
+
+      /// Value: 颜色主题
+      static func colorTheme(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Color Theme", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Color Theme"
+        }
+
+        return NSLocalizedString("Color Theme", bundle: bundle, comment: "")
       }
 
       /// Value: 首页

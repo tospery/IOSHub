@@ -13,6 +13,7 @@ import HiIOS
 
 enum SectionItem: IdentifiableType, Equatable {
     case simple(SimpleItem)
+    case submit(SubmitItem)
     case appInfo(AppInfoItem)
     case milestone(MilestoneItem)
     case userTrending(UserTrendingItem)
@@ -29,6 +30,7 @@ enum SectionItem: IdentifiableType, Equatable {
         var string = ""
         switch self {
         case let .simple(item): string = item.description
+        case let .submit(item): string = item.description
         case let .appInfo(item): string = item.description
         case let .milestone(item): string = item.description
         case let .userTrending(item): string = item.description
@@ -50,6 +52,7 @@ enum SectionItem: IdentifiableType, Equatable {
         if result == false {
             switch lhs {
             case .simple: log("item变化 -> simple")
+            case .submit: log("item变化 -> submit")
             case .appInfo: log("item变化 -> appInfo")
             case .milestone: log("item变化 -> milestone")
             case .userTrending: log("item变化 -> userTrending")

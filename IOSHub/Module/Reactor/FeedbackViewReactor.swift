@@ -25,16 +25,24 @@ class FeedbackViewReactor: NormalViewReactor {
     override func loadData(_ page: Int) -> Observable<[HiSection]> {
         var models = [ModelType].init()
         models.append(BaseModel.init(SectionItemValue.feedbackInput))
-        models.append(
-            Simple.init(
-                id: CellId.button.rawValue,
-                title: R.string.localizable.submit(),
-                color: UIColor.primary.hexString,
-                tintColor: UIColor.white.hexString
-            )
-        )
+        models.append(BaseModel.init(SectionItemValue.submit))
         models.append(BaseModel.init(SectionItemValue.feedbackNote))
         return .just([.init(header: nil, models: models)])
+    }
+    
+    override func business(_ data: Any?) -> Observable<Mutation> {
+        .create { [weak self] observer -> Disposable in
+            guard let `self` = self else { fatalError() }
+            guard let texts = self.currentState.value as? [String],
+                  let title = texts.first, let body = texts.last, title.isNotEmpty, body.isNotEmpty else {
+                observer.onError(HiError.unknown)
+                return Disposables.create { }
+            }
+            return self.provider.feedback(title: body, body: title)
+                .asObservable()
+                .mapTo(Mutation.setBack(R.string.localizable.toastSubmitMessage()))
+                .subscribe(observer)
+        }
     }
 
 }

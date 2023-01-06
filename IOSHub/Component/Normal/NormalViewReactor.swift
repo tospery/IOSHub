@@ -24,6 +24,8 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         // case erase
         case activate(Any?)
         case target(String)
+        case value(Any?)
+        case back(String?)
         // case follow
     }
 
@@ -33,15 +35,17 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         case setLoadingMore(Bool)
         case setActivating(Bool)
         case setFollowed(Bool?)
-        case setTitle(String?)
-        // case setKeywords([String])
+        case setEnabled(Bool?)
         case setError(Error?)
-        case setUser(User?)
+        case setTitle(String?)
+        case setBack(String?)
+        case setTarget(String?)
+        case setValue(Any?)
         case setRepo(Repo?)
         case setReadme(Readme?)
         case setDataset(Dataset?)
+        case setUser(User?)
         case setConfiguration(Configuration)
-        case setTarget(String?)
         case initial([HiSection])
         case append([HiSection])
     }
@@ -51,17 +55,19 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         var isRefreshing = false
         var isLoadingMore = false
         var isActivating = false
+        var isEnabled: Bool?
         var isFollowed: Bool?
         var noMoreData = false
         var error: Error?
         var title: String?
-        // var keywords = [String].init()
-        var user = User.current
+        var back: String?
+        var target: String?
+        var value: Any?
         var repo: Repo?
         var readme: Readme?
         var dataset: Dataset?
+        var user = User.current
         var configuration = Configuration.current!
-        var target: String?
         var total = [HiSection].init()
         var added = [HiSection].init()
         var sections = [Section].init()
@@ -116,10 +122,14 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
                 .just(.setTarget(nil)),
                 .just(.setTarget(target))
             ])
+        case let .value(value):
+            return .just(.setValue(value))
+        case let .back(back):
+            return .just(.setBack(back))
         }
     }
     
-    // swiftlint:disable cyclomatic_complexity
+    // swiftlint:disable cyclomatic_complexity function_body_length
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         switch mutation {
@@ -131,24 +141,30 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
             newState.isLoadingMore = isLoadingMore
         case let .setActivating(isActivating):
             newState.isActivating = isActivating
+        case let .setEnabled(isEnabled):
+            newState.isEnabled = isEnabled
         case let .setFollowed(isFollowed):
             newState.isFollowed = isFollowed
-        case let .setTitle(title):
-            newState.title = title
         case let .setError(error):
             newState.error = error
-        case let .setUser(user):
-            newState.user = user
+        case let .setTitle(title):
+            newState.title = title
+        case let .setBack(back):
+            newState.back = back
+        case let .setTarget(target):
+            newState.target = target
+        case let .setValue(value):
+            newState.value = value
         case let .setRepo(repo):
             newState.repo = repo
         case let .setReadme(readme):
             newState.readme = readme
         case let .setDataset(dataset):
             newState.dataset = dataset
+        case let .setUser(user):
+            newState.user = user
         case let .setConfiguration(configuration):
             newState.configuration = configuration
-        case let .setTarget(target):
-            newState.target = target
         case let .initial(data):
             newState.total = data
             return self.reduceSections(newState, additional: false)
@@ -158,7 +174,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         }
         return newState
     }
-    // swiftlint:enable cyclomatic_complexity
+    // swiftlint:enable cyclomatic_complexity function_body_length
     
     func transform(action: Observable<Action>) -> Observable<Action> {
         action
@@ -319,6 +335,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
             .sectionItems(header: $0.header, items: $0.models.map {
                 if let value = ($0 as? BaseModel)?.data as? SectionItemValue {
                     switch value {
+                    case .submit: return .submit(.init($0))
                     case .appInfo: return .appInfo(.init($0))
                     case .milestone: return .milestone(.init($0))
                     case .searchOptions: return .searchOptions(.init($0))
@@ -360,21 +377,6 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
     func loadExtra() -> Observable<Mutation> {
         .empty()
     }
-    
-//    // MARK: - other
-//    func eraseAlert() -> Observable<Mutation> {
-//        let alert = AppDependency.shared.navigator.rxAlert(
-//            "",
-//            R.string.localizable.alertLogoutMessage(),
-//            [
-//                IHAlertAction.cancel,
-//                IHAlertAction.default
-//            ]
-//        ).flatMap { action -> Observable<Mutation> in
-//            <#code#>
-//        }
-//        return .empty()
-//    }
     
 }
 

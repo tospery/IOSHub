@@ -22,6 +22,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
     
     struct Reusable {
         static let simpleCell = ReusableCell<SimpleCell>()
+        static let submitCell = ReusableCell<SubmitCell>()
         static let appInfoCell = ReusableCell<AppInfoCell>()
         static let milestoneCell = ReusableCell<MilestoneCell>()
         static let userTrendingCell = ReusableCell<UserTrendingCell>()
@@ -47,6 +48,15 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                     let cell = collectionView.dequeue(Reusable.simpleCell, for: indexPath)
                     item.parent = self.reactor
                     cell.reactor = item
+                    return cell
+                case let .submit(item):
+                    let cell = collectionView.dequeue(Reusable.submitCell, for: indexPath)
+                    item.parent = self.reactor
+                    cell.reactor = item
+                    cell.rx.submit
+                        .map { Reactor.Action.activate(nil) }
+                        .bind(to: self.reactor!.action)
+                        .disposed(by: cell.disposeBag)
                     return cell
                 case let .appInfo(item):
                     let cell = collectionView.dequeue(Reusable.appInfoCell, for: indexPath)
@@ -108,6 +118,15 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                     let cell = collectionView.dequeue(Reusable.feedbackInputCell, for: indexPath)
                     item.parent = self.reactor
                     cell.reactor = item
+                    Observable<String?>.combineLatest([
+                        item.state.map { $0.title },
+                        cell.rx.body.asObservable()
+                    ])
+                    .distinctUntilChanged()
+                    .map { Reactor.Action.value($0) }
+                    .observe(on: MainScheduler.asyncInstance)
+                    .bind(to: self.reactor!.action)
+                    .disposed(by: cell.disposeBag)
                     return cell
                 }
             },
@@ -142,6 +161,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.register(Reusable.simpleCell)
+        self.collectionView.register(Reusable.submitCell)
         self.collectionView.register(Reusable.appInfoCell)
         self.collectionView.register(Reusable.milestoneCell)
         self.collectionView.register(Reusable.userTrendingCell)
@@ -236,6 +256,11 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                 self.handleUser(user: user, changed: true)
             })
             .disposed(by: self.disposeBag)
+        reactor.state.map { $0.back }
+            .distinctUntilChanged()
+            .skip(1)
+            .subscribeNext(weak: self, type(of: self).handleBack)
+            .disposed(by: self.disposeBag)
         reactor.state.map { $0.configuration }
             .distinctUntilChanged()
             .skip(1)
@@ -288,6 +313,17 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                 User.update(user, reactive: true)
                 return Disposables.create {}
             }.disposed(by: self.disposeBag)
+        }
+    }
+    
+    func handleBack(message: String?) {
+        if let message = message {
+            self.navigator.toastMessage(message)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.back()
+            }
+        } else {
+            self.back()
         }
     }
     
@@ -358,6 +394,7 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
         let width = collectionView.sectionWidth(at: indexPath.section)
         switch self.dataSource[indexPath] {
         case let .simple(item): return Reusable.simpleCell.class.size(width: width, item: item)
+        case let .submit(item): return Reusable.submitCell.class.size(width: width, item: item)
         case let .appInfo(item): return Reusable.appInfoCell.class.size(width: width, item: item)
         case let .milestone(item): return Reusable.milestoneCell.class.size(width: width, item: item)
         case let .userTrending(item): return Reusable.userTrendingCell.class.size(width: width, item: item)

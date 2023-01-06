@@ -96,6 +96,7 @@ enum CellId: Int {
     case company        = 20, location, email, blog, nickname, bio
     case author         = 30, weibo, shcemes, score, share
     case language       = 40, issues, pullrequests, branches, readme
+    case cache          = 50, theme, local
     
     var title: String? {
         switch self {
@@ -103,6 +104,9 @@ enum CellId: Int {
         case .pullrequests: return R.string.localizable.pullRequests()
         case .branches: return R.string.localizable.branches()
         case .readme: return R.string.localizable.readme().uppercased()
+        case .cache: return R.string.localizable.clearCache()
+        case .theme: return R.string.localizable.colorTheme()
+        case .local: return R.string.localizable.languageEnvironment()
         default: return nil
         }
     }

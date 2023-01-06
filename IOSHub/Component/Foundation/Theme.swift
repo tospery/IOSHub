@@ -13,7 +13,7 @@ struct LightTheme: Theme {
     let foregroundColor = UIColor.black
     let lightColor = UIColor(hex: 0xF6F6F6)!
     let darkColor = UIColor.Material.grey900
-    var primaryColor = UIColor.blue
+    var primaryColor = UIColor.Material.blue700
     let secondaryColor = UIColor.green
     let titleColor = UIColor(hex: 0x333333)!
     let bodyColor = UIColor(hex: 0x666666)!

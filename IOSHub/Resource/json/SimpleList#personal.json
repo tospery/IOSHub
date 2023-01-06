@@ -25,7 +25,8 @@
     {
         "id":10,
         "icon":"ic_setting",
-        "title":"设置"
+        "title":"设置",
+        "target":"https://m.github.com/setting"
     },
     {
         "id":11,
