@@ -2,16 +2,19 @@
     {
         "id":20,
         "icon":"ic_user_company",
+        "indicated":false,
         "divided":false
     },
     {
         "id":21,
         "icon":"ic_user_location",
+        "indicated":false,
         "divided":false
     },
     {
         "id":22,
         "icon":"ic_user_email",
+        "indicated":false,
         "divided":false
     },
     {

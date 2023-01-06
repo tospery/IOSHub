@@ -21,6 +21,16 @@ extension User {
         return R.string.localizable.joinedOn(value)
     }
     
+    var infoAttributedText: NSAttributedString {
+        .composed(of: [
+            self.locationAttributedText
+                .styled(with: .color(.title)),
+            Special.nextLine,
+            (self.joinedOn ?? R.string.localizable.unknown())
+                .styled(with: .font(.normal(12)), .color(.body))
+        ])
+    }
+    
     var locationAttributedText: NSAttributedString {
         .composed(of: [
             R.image.ic_location()!.template

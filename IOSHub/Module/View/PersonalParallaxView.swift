@@ -71,6 +71,7 @@ class PersonalParallaxView: UIImageView {
 
     lazy var descLabel: UILabel = {
         let label = UILabel.init(frame: .zero)
+        label.numberOfLines = 2
         label.attributedText = R.string.localizable.appSlogan()
             .styled(with: .font(.normal(13)), .color(.body))
         label.sizeToFit()
@@ -189,10 +190,12 @@ class PersonalParallaxView: UIImageView {
         self.iconImageView.top = self.iconImageView.topWhenCenter + 4
         self.nameLabel.sizeToFit()
         self.nameLabel.left = self.iconImageView.right + 10
-        self.nameLabel.bottom = self.iconImageView.centerY
+        self.nameLabel.bottom = self.iconImageView.centerY - 6
         self.descLabel.sizeToFit()
         self.descLabel.left = self.nameLabel.left
-        self.descLabel.top = self.nameLabel.bottom + 5
+        self.descLabel.width = self.infoView.width - self.descLabel.left
+        self.descLabel.top = self.nameLabel.bottom
+        self.descLabel.extendToBottom = self.iconImageView.bottom
         self.repositoriesButton.width = self.statView.width / 3.0
         self.repositoriesButton.height = self.statView.height
         self.repositoriesButton.left = 0
@@ -234,7 +237,8 @@ class PersonalParallaxView: UIImageView {
             .bind(to: self.nameLabel.rx.text)
             .disposed(by: self.rx.disposeBag)
         reactor.state.map {
-            ($0.user?.joinedOn ?? R.string.localizable.appSlogan())
+            $0.user?.infoAttributedText ??
+            R.string.localizable.appSlogan()
                 .styled(with: .font(.normal(13)), .color(.body))
         }
             .distinctUntilChanged()
