@@ -21,12 +21,10 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         case refresh
         case loadMore
         case reload(Any?)
-        // case erase
         case activate(Any?)
         case target(String)
         case value(Any?)
         case back(String?)
-        // case follow
     }
 
     enum Mutation {
@@ -78,14 +76,6 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         var user: User?
         var repo: Repo?
         var readme: Readme?
-        
-//        init(
-//            repo: Repo? = nil,
-//            readme: Readme? = nil
-//        ) {
-//            self.repo = repo
-//            self.readme = readme
-//        }
     }
     
     let username: String!
@@ -113,8 +103,6 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
             return self.loadMore()
         case let .reload(data):
             return self.reload(data)
-//        case .follow:
-//            return self.follow()
         case let .activate(data):
             return self.activate(data)
         case let .target(target):
@@ -202,14 +190,15 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
     // MARK: - actions
     func load() -> Observable<Mutation> {
         .concat([
-            .just(.initial([])),
+            self.fetchLocal()
+                .map(Mutation.initial),
             .just(.setError(nil)),
             .just(.setLoading(true)),
-            self.loadDependency(),
-            self.loadData(self.pageStart)
+            self.requestDependency(),
+            self.requestData(self.pageStart)
                 .map(Mutation.initial),
             .just(.setLoading(false)),
-            self.loadExtra()
+            self.requestExtra()
         ]).catch({
             .concat([
                 .just(.initial([])),
@@ -223,7 +212,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         .concat([
             .just(.setError(nil)),
             .just(.setRefreshing(true)),
-            self.loadData(self.pageStart)
+            self.requestData(self.pageStart)
                 .errorOnEmpty()
                 .map(Mutation.initial),
             .just(.setRefreshing(false))
@@ -242,7 +231,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         .concat([
             .just(.setError(nil)),
             .just(.setLoadingMore(true)),
-            self.loadData(self.pageIndex + 1)
+            self.requestData(self.pageIndex + 1)
                 .errorOnEmpty()
                 .map(Mutation.append),
             .just(.setLoadingMore(false))
@@ -276,18 +265,6 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         self.load()
     }
     
-//    func erase() -> Observable<Mutation> {
-//        .concat([
-//            self.reload()
-//        ]).catch({
-//            .concat([
-//                .just(.initial([])),
-//                .just(.setError($0)),
-//                .just(.setLoading(false))
-//            ])
-//        })
-//    }
-    
     func business(_ data: Any?) -> Observable<Mutation> {
         .empty()
     }
@@ -296,10 +273,25 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         .empty()
     }
     
-//    func follow() -> Observable<Mutation> {
-//        .empty()
-//    }
+    // MARK: - fetch
+    func fetchLocal() -> Observable<[HiSection]> {
+        .just([])
+    }
     
+    // MARK: - request
+    func requestDependency() -> Observable<Mutation> {
+        .empty()
+    }
+    
+    func requestData(_ page: Int) -> Observable<[HiSection]> {
+        .empty()
+    }
+    
+    func requestExtra() -> Observable<Mutation> {
+        .empty()
+    }
+    
+    // MARK: - sections
     func reduceSections(_ state: State, additional: Bool) -> State {
         var newState = state
         var noMore = false
@@ -364,19 +356,6 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         })
     }
     // swiftlint:enable cyclomatic_complexity
-    
-    // MARK: - dependency/data
-    func loadDependency() -> Observable<Mutation> {
-        .empty()
-    }
-    
-    func loadData(_ page: Int) -> Observable<[HiSection]> {
-        .empty()
-    }
-    
-    func loadExtra() -> Observable<Mutation> {
-        .empty()
-    }
     
 }
 

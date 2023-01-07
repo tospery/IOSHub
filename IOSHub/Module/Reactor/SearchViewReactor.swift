@@ -29,7 +29,7 @@ class SearchViewReactor: NormalViewReactor {
         self.saveKeyword()
     }
     
-    override func loadData(_ page: Int) -> Observable<[HiSection]> {
+    override func requestData(_ page: Int) -> Observable<[HiSection]> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
             return self.provider.searchRepos(

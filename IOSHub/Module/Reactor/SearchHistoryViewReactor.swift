@@ -19,7 +19,7 @@ class SearchHistoryViewReactor: NormalViewReactor {
         super.init(provider, parameters)
     }
     
-    override func loadData(_ page: Int) -> Observable<[HiSection]> {
+    override func requestData(_ page: Int) -> Observable<[HiSection]> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
             var data = [HiSection].init()

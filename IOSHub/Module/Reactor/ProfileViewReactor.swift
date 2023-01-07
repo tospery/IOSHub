@@ -22,7 +22,7 @@ class ProfileViewReactor: NormalViewReactor {
         )
     }
     
-    override func loadData(_ page: Int) -> Observable<[HiSection]> {
+    override func requestData(_ page: Int) -> Observable<[HiSection]> {
         guard let simples = Simple.cachedArray(page: self.host) else { return .empty() }
         var models = [ModelType].init()
         models.append(Simple.init(height: 15))

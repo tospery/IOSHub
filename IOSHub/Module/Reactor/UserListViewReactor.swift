@@ -22,28 +22,13 @@ class UserListViewReactor: NormalViewReactor {
         super.init(provider, parameters)
     }
     
-    override func load() -> Observable<Mutation> {
+    override func fetchLocal() -> Observable<[HiSection]> {
         let models = User.cachedArray(page: self.listType.stringValue) ?? []
         let original: [HiSection] = models.isNotEmpty ? [.init(header: nil, models: models)] : []
-        return .concat([
-            .just(.initial(original)),
-            .just(.setError(nil)),
-            .just(.setLoading(true)),
-            self.loadDependency(),
-            self.loadData(self.pageStart)
-                .map(Mutation.initial),
-            .just(.setLoading(false)),
-            self.loadExtra()
-        ]).catch({
-            .concat([
-                .just(.initial([])),
-                .just(.setError($0)),
-                .just(.setLoading(false))
-            ])
-        })
+        return .just(original)
     }
 
-    override func loadData(_ page: Int) -> Observable<[HiSection]> {
+    override func requestData(_ page: Int) -> Observable<[HiSection]> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
             return self.provider.trendingUsers()

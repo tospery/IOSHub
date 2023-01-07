@@ -22,7 +22,7 @@ class FeedbackViewReactor: NormalViewReactor {
         )
     }
     
-    override func loadData(_ page: Int) -> Observable<[HiSection]> {
+    override func requestData(_ page: Int) -> Observable<[HiSection]> {
         var models = [ModelType].init()
         models.append(BaseModel.init(SectionItemValue.feedbackInput))
         models.append(BaseModel.init(SectionItemValue.submit))

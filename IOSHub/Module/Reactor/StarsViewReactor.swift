@@ -22,23 +22,23 @@ class StarsViewReactor: NormalViewReactor {
         )
     }
     
-    override func loadData(_ page: Int) -> Observable<[HiSection]> {
+    override func fetchLocal() -> Observable<[HiSection]> {
+        let models = Repo.cachedArray(page: self.host) ?? []
+        let original: [HiSection] = models.isNotEmpty ? [.init(header: nil, models: models)] : []
+        return .just(original)
+    }
+    
+    override func requestData(_ page: Int) -> Observable<[HiSection]> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
             guard let username = self.currentState.user?.username, username.isNotEmpty else {
                 observer.onError(HiError.unknown)
                 return Disposables.create { }
             }
-            return self.provider.trendingUsers()
-                 .asObservable()
-                 .map { [.init(header: nil, models: $0)] }
-                 .subscribe(observer)
-//           return self.provider.starredRepos(username: username, page: page)
-//                .asObservable()
-//                .map { [(header: nil, models: $0)] }
-//                .subscribe(observer)
-//                .disposed(by: self.disposeBag)
-//            return Disposables.create { }
+            return self.provider.starredRepos(username: username, page: page)
+                .asObservable()
+                .map { [.init(header: nil, models: $0)] }
+                .subscribe(observer)
         }
     }
 

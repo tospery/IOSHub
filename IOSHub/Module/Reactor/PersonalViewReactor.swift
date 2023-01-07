@@ -22,7 +22,7 @@ class PersonalViewReactor: NormalViewReactor {
         )
     }
     
-    override func loadData(_ page: Int) -> Observable<[HiSection]> {
+    override func requestData(_ page: Int) -> Observable<[HiSection]> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
             var models = [ModelType].init()
@@ -43,7 +43,7 @@ class PersonalViewReactor: NormalViewReactor {
         }
     }
     
-//    override func loadExtra() -> Observable<NormalViewReactor.Mutation> {
+//    override func requestExtra() -> Observable<NormalViewReactor.Mutation> {
 //        self.reload()
 //    }
     

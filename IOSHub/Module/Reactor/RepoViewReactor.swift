@@ -22,7 +22,7 @@ class RepoViewReactor: NormalViewReactor {
         )
     }
     
-    override func loadDependency() -> Observable<Mutation> {
+    override func requestDependency() -> Observable<Mutation> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
             guard let username = self.username, let reponame = self.reponame else {
@@ -42,7 +42,7 @@ class RepoViewReactor: NormalViewReactor {
         }
     }
     
-    override func loadData(_ page: Int) -> Observable<[HiSection]> {
+    override func requestData(_ page: Int) -> Observable<[HiSection]> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
             var models = [ModelType].init()
@@ -71,7 +71,7 @@ class RepoViewReactor: NormalViewReactor {
         log("开始重新加载readme = \(readme.heights)")
         return .concat([
             .just(.setReadme(readme)),
-            self.loadData(self.pageStart)
+            self.requestData(self.pageStart)
                 .map(Mutation.initial)
         ])
     }

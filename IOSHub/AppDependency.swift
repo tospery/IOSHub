@@ -42,41 +42,9 @@ final class AppDependency: HiIOS.AppDependency {
     
     // MARK: - Test
     override func test(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-//        let url = "http://localhost:5000/MovieComparer?film=1&film=2&film=3".url!
-//        let value = url.queryValue(for: "film")
         log("环境参数: \(envParameters)", module: .common)
-//        var config = Configuration.current!
-//        config.keywords = ["abc", "123"]
-//        Subjection.update(Configuration.self, config, true)
-//        var aaa = Configuration.current!
-        
-        // AccessToken.current?.accessToken
         log("accessToken = \(AccessToken.current?.accessToken ?? "")")
-//        let offset = UIEdgeInsets.init(horizontal: 30, vertical: 10)
-//        log("offset = \(offset.horizontal), \(offset.vertical), \(offset.top), \(offset.left), \(offset.right)")
-//        let abc = self.navigator.viewController(
-//            for: Router.shared.urlString(host: .repo, path: .list, parameters: [
-//                Parameter.hidesNavigationBar: true.string
-//            ])
-//        )
-        
-//        var aaa = [String?].init()
-//        aaa.append(nil)
-//        aaa.append("aaa")
-//        log("看看数据")
-        
         log("用户参数: \(userParameters)", module: .common)
-//        self.provider.starredRepos(username: "tospery", page: 1)
-//            .asObservable()
-//        self.provider.repo(username: "skyzh", reponame: "mini-lsm")
-//            .asObservable()
-//            .subscribe(onNext: { repos in
-//                let aaa = repos
-//                log("")
-//            }, onError: { error in
-//                let bbb = error
-//                log("")
-//            }).disposed(by: self.disposeBag)
     }
 
     // MARK: - Setup

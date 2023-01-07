@@ -22,11 +22,11 @@ class UserViewReactor: NormalViewReactor {
         )
     }
     
-    override func loadDependency() -> Observable<Mutation> {
+    override func requestDependency() -> Observable<Mutation> {
         if self.username == nil {
             return .error(HiError.unknown)
         }
-        // 注：merge执行完completed，才进入下一步的loadData，而不是每个next都执行一次loadData
+        // 注：merge执行完completed，才进入下一步的requestData，而不是每个next都执行一次requestData
         return .merge([
             self.provider.user(username: self.username)
                 .asObservable()
@@ -37,7 +37,7 @@ class UserViewReactor: NormalViewReactor {
         ])
     }
     
-    override func loadData(_ page: Int) -> Observable<[HiSection]> {
+    override func requestData(_ page: Int) -> Observable<[HiSection]> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
             var models = [ModelType].init()
