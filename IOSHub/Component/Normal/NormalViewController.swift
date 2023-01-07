@@ -357,8 +357,10 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
     func tapItem(sectionItem: SectionItem) {
         switch sectionItem {
         case let .simple(item):
-            guard let target = (item.model as? Simple)?.target, target.isNotEmpty else { return }
-            self.navigator.forward(target)
+            if let target = (item.model as? Simple)?.target, target.isNotEmpty {
+                self.navigator.forward(target)
+                return
+            }
         case let .userTrending(item):
             guard let username = (item.model as? User)?.username else { return }
             self.navigator.forward(Router.shared.urlString(host: .user, path: username))

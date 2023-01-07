@@ -27,59 +27,32 @@ class PersonalViewReactor: NormalViewReactor {
             guard let `self` = self else { fatalError() }
             var models = [ModelType].init()
             let logined = self.currentState.user?.isValid ?? false
-//            if logined {
-//                models.append(BaseModel.init(SectionItemValue.milestone))
-//            }
             if let simples = Simple.cachedArray(page: self.host) {
-                models.append(
-                    contentsOf: simples.filter { simple in
-                        logined ? true : simple.id < CellId.company.rawValue && simple.id != 0
+//                models.append(
+//                    contentsOf: simples.filter { simple in
+//                        logined ? true : simple.id < CellId.company.rawValue && simple.id != 0
+//                    }
+//                )
+                for simple in simples {
+                    if logined {
+                        if simple.id == CellId.blog.rawValue {
+                            var new = simple
+                            new.target = self.currentState.user?.blog
+                            models.append(new)
+                        } else {
+                            models.append(simple)
+                        }
+                    } else {
+                        if simple.id < CellId.company.rawValue && simple.id != 0 {
+                            models.append(simple)
+                        }
                     }
-                )
+                }
             }
             observer.onNext([.init(header: nil, models: models)])
             observer.onCompleted()
             return Disposables.create { }
         }
     }
-    
-//    override func requestExtra() -> Observable<NormalViewReactor.Mutation> {
-//        self.reload()
-//    }
-    
-//    override func reload() -> Observable<NormalViewReactor.Mutation> {
-//        return .concat([
-//            .just(.setError(nil)),
-//            .just(.setRefreshing(true)),
-//            .merge([
-//                self.provider.userinfo()
-//                    .asObservable()
-//                    .flatMap { user -> Observable<User?> in
-//                        return .just(user)
-//                    }
-//                    .catchAndReturn(nil)
-//                    .map(Mutation.setUser),
-//                self.provider.sharedCount()
-//                    .asObservable()
-//                    .catchAndReturn(0)
-//                    .map { [weak self] count -> Preference in
-//                        guard let `self` = self else { fatalError() }
-//                        var pref = self.currentState.preference
-//                        pref.shared = count
-//                        return pref
-//                    }
-//                    .map(Mutation.setPreference),
-//                self.provider.bannerCards()
-//                    .asObservable()
-//                    .map(Mutation.setCards)
-//            ]),
-//            .just(.setRefreshing(false))
-//        ]).catch({
-//            .concat([
-//                .just(.setError($0)),
-//                .just(.setRefreshing(false))
-//            ])
-//        })
-//    }
 
 }

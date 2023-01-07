@@ -132,47 +132,6 @@ class TrendingViewReactor: ScrollViewReactor, ReactorKit.Reactor {
     }
 
     func reduceSections(_ state: State, additional: Bool) -> State {
-//        var newState = state
-//        var noMore = false
-//        if additional {
-//            var models = [ModelType].init()
-//            if let old = newState.total.first, old.header == nil {
-//                models.append(contentsOf: old.models)
-//            }
-//            if let new = newState.added.first, new.header == nil {
-//                models.append(contentsOf: new.models)
-//                noMore = new.models.count < self.pageSize
-//            }
-//            newState.total = models.count == 0 ? [] : [(header: nil, models: models)]
-//        } else {
-//            noMore = newState.total.first?.models.count ?? 0 < self.pageSize
-//        }
-//        newState.noMoreData = noMore
-//        newState.sections = (newState.total.count == 0 ? [] : newState.total.map {
-//            .sectionItems(header: $0.header?.description ?? "", items: $0.models.map {
-//                if let value = ($0 as? BaseModel)?.data as? SectionItemValue {
-//                    switch value {
-//                    case .logout:
-//                        return .logout(.init($0))
-//                    case .ranking:
-//                        return .ranking(.init($0))
-//                    }
-//                }
-//                if let user = $0 as? User {
-//                    switch user.cellType {
-//                    case .userInfo:
-//                        return .userInfo(.init($0))
-//                    default:
-//                        break
-//                    }
-//                }
-//                if $0 is Article {
-//                    return .project(.init($0))
-//                }
-//                return .simple(.init($0))
-//            })
-//        })
-//        return newState
         return state
     }
     

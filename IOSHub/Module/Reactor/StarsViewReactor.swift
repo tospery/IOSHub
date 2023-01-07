@@ -32,7 +32,7 @@ class StarsViewReactor: NormalViewReactor {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
             guard let username = self.currentState.user?.username, username.isNotEmpty else {
-                observer.onError(HiError.unknown)
+                observer.onError(HiError.userNotLoginedIn)
                 return Disposables.create { }
             }
             return self.provider.starredRepos(username: username, page: page)

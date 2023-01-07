@@ -813,9 +813,7 @@ struct R: Rswift.Validatable {
       /// Value: 热门
       static let hot = Rswift.StringResource(key: "Hot", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 用户未登录
-      static let errorUserNotLoggedInMessage = Rswift.StringResource(key: "Error.User.NotLoggedIn.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: 用户未登录
-      static let errorUserNotLoggedInTitle = Rswift.StringResource(key: "Error.User.NotLoggedIn.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let errorUserNotLoginedInTitle = Rswift.StringResource(key: "Error.User.NotLoginedIn.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 用户登录过期
       static let errorUserLoginExpiredMessage = Rswift.StringResource(key: "Error.User.LoginExpired.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 用户登录过期
@@ -844,6 +842,8 @@ struct R: Rswift.Validatable {
       static let languageEnvironment = Rswift.StringResource(key: "Language Environment", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 说明：反馈将以issue的形式提交到GitHub仓库
       static let feedbackNote = Rswift.StringResource(key: "Feedback.Note", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: 请检查您是否有进行登录
+      static let errorUserNotLoginedInMessage = Rswift.StringResource(key: "Error.User.NotLoginedIn.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 趋势
       static let trending = Rswift.StringResource(key: "Trending", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 运行环境：%@ - iOS%@ - v%@(%@)
@@ -1823,29 +1823,16 @@ struct R: Rswift.Validatable {
       }
 
       /// Value: 用户未登录
-      static func errorUserNotLoggedInMessage(preferredLanguages: [String]? = nil) -> String {
+      static func errorUserNotLoginedInTitle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Error.User.NotLoggedIn.Message", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("Error.User.NotLoginedIn.Title", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "Error.User.NotLoggedIn.Message"
+          return "Error.User.NotLoginedIn.Title"
         }
 
-        return NSLocalizedString("Error.User.NotLoggedIn.Message", bundle: bundle, comment: "")
-      }
-
-      /// Value: 用户未登录
-      static func errorUserNotLoggedInTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Error.User.NotLoggedIn.Title", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "Error.User.NotLoggedIn.Title"
-        }
-
-        return NSLocalizedString("Error.User.NotLoggedIn.Title", bundle: bundle, comment: "")
+        return NSLocalizedString("Error.User.NotLoginedIn.Title", bundle: bundle, comment: "")
       }
 
       /// Value: 用户登录过期
@@ -2028,6 +2015,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Feedback.Note", bundle: bundle, comment: "")
+      }
+
+      /// Value: 请检查您是否有进行登录
+      static func errorUserNotLoginedInMessage(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Error.User.NotLoginedIn.Message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Error.User.NotLoginedIn.Message"
+        }
+
+        return NSLocalizedString("Error.User.NotLoginedIn.Message", bundle: bundle, comment: "")
       }
 
       /// Value: 趋势

@@ -106,7 +106,7 @@
 "Error.System.DataFormat.Message" = "数据解析异常";
 "Error.System.ListIsEmpty.Title" = "列表为空";
 "Error.System.ListIsEmpty.Message" = "列表为空";
-"Error.User.NotLoggedIn.Title" = "用户未登录";
-"Error.User.NotLoggedIn.Message" = "用户未登录";
+"Error.User.NotLoginedIn.Title" = "用户未登录";
+"Error.User.NotLoginedIn.Message" = "请检查您是否进行了登录";
 "Error.User.LoginExpired.Title" = "用户登录过期";
 "Error.User.LoginExpired.Message" = "用户登录过期";

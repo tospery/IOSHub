@@ -27,9 +27,6 @@ class PersonalViewController: NormalViewController {
         parallaxView.rx.tapUser
             .subscribeNext(weak: self, type(of: self).tapUser)
             .disposed(by: self.rx.disposeBag)
-//        parallaxView.rx.tapTheme
-//            .subscribeNext(weak: self, type(of: self).tapTheme)
-//            .disposed(by: self.rx.disposeBag)
         parallaxView.rx.tapRepositories
             .subscribeNext(weak: self, type(of: self).tapRepositories)
             .disposed(by: self.rx.disposeBag)
@@ -95,15 +92,16 @@ class PersonalViewController: NormalViewController {
     }
     
     func tapRepositories(_: Void? = nil) {
-        self.navigator.forward(Router.shared.urlString(host: .stars))
+        // self.navigator.forward(Router.shared.urlString(host: .stars))
+        log("tapRepositories")
     }
     
     func tapFollower(_: Void? = nil) {
-        log("tapShare")
+        log("tapFollower")
     }
     
     func tapFollowing(_: Void? = nil) {
-        log("tapBrowse")
+        log("tapFollowing")
     }
     
     func didEndDragging(isEnd: Bool) {
