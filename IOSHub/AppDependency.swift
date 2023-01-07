@@ -45,6 +45,15 @@ final class AppDependency: HiIOS.AppDependency {
         log("环境参数: \(envParameters)", module: .common)
         log("accessToken = \(AccessToken.current?.accessToken ?? "")")
         log("用户参数: \(userParameters)", module: .common)
+//        self.provider.userEvents(username: "tospery", page: 0)
+//            .asObservable()
+//            .subscribe(onNext: { events in
+//                let aaa = events
+//                log("")
+//            }, onError: { error in
+//                let bbb = error
+//                log("")
+//            }).disposed(by: self.disposeBag)
     }
 
     // MARK: - Setup

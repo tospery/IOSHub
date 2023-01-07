@@ -25,6 +25,7 @@ enum SectionItem: IdentifiableType, Equatable {
     case readmeContent(ReadmeContentItem)
     case feedbackNote(FeedbackNoteItem)
     case feedbackInput(FeedbackInputItem)
+    case event(EventItem)
     
     var identity: String {
         var string = ""
@@ -42,6 +43,7 @@ enum SectionItem: IdentifiableType, Equatable {
         case let .readmeContent(item): string = item.description
         case let .feedbackNote(item): string = item.description
         case let .feedbackInput(item): string = item.description
+        case let .event(item): string = item.description
         }
         return string // String.init(string.sorted())
     }
@@ -64,6 +66,7 @@ enum SectionItem: IdentifiableType, Equatable {
             case .readmeContent: log("item变化 -> readmeContent")
             case .feedbackNote: log("item变化 -> feedbackNote")
             case .feedbackInput: log("item变化 -> feedbackInput")
+            case .event: log("item变化 -> event")
             }
         }
         return result

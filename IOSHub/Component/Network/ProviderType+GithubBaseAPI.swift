@@ -134,4 +134,14 @@ extension ProviderType {
         )
     }
     
+    /// 用户事件
+    func userEvents(username: String, page: Int) -> Single<[Event]> {
+        networking.requestArray(
+            MultiTarget.init(
+                GithubBaseAPI.userEvents(username: username, page: page)
+            ),
+            type: Event.self
+        )
+    }
+    
 }

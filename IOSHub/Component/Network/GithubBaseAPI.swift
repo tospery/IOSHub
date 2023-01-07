@@ -23,6 +23,7 @@ enum GithubBaseAPI {
     case follow(username: String)
     case unFollow(username: String)
     case checkFollow(username: String)
+    case userEvents(username: String, page: Int)
 }
 
 extension GithubBaseAPI: TargetType {
@@ -46,6 +47,12 @@ extension GithubBaseAPI: TargetType {
                 .unFollow(let username),
                 .checkFollow(let username):
             return "/user/following/\(username)"
+//        case .events: return "/events"
+//        case .repositoryEvents(let owner, let repo, _): return "/repos/\(owner)/\(repo)/events"
+//        case .userReceivedEvents(let username, _): return "/users/\(username)/received_events"
+//        case .userPerformedEvents(let username, _): return "/users/\(username)/events"
+//        case .organizationEvents(let username, _): return "/orgs/\(username)/events"
+        case let .userEvents(username, _): return "/users/\(username)/received_events"
         }
     }
 
@@ -79,11 +86,10 @@ extension GithubBaseAPI: TargetType {
             parameters[Parameter.body] = body
             encoding = JSONEncoding.default
         case .userRepos(_, let page),
-             .starredRepos(_, let page):
-            parameters += [
-                Parameter.pageIndex: page,
-                Parameter.pageSize: UIApplication.shared.pageSize
-            ]
+             .starredRepos(_, let page),
+             .userEvents(_, let page):
+            parameters[Parameter.pageIndex] = page
+            parameters[Parameter.pageSize] = UIApplication.shared.pageSize
         case let .readme(_, _, ref):
             parameters[Parameter.ref] = ref
         case .searchRepos(let keyword, let sort, let order, let page),

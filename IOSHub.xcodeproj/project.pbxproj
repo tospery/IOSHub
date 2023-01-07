@@ -149,6 +149,11 @@
 		91D60E0C2965FF2200A489D6 /* UserTrendingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D60E0B2965FF2200A489D6 /* UserTrendingItem.swift */; };
 		91D60E0E2965FF3E00A489D6 /* UserTrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D60E0D2965FF3E00A489D6 /* UserTrendingCell.swift */; };
 		91D60E0F2966882900A489D6 /* RepoList#trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 915F10092937532C009413D6 /* RepoList#trending.json */; };
+		91DC7E6B2969905E0028AB72 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DC7E6A2969905E0028AB72 /* Event.swift */; };
+		91DC7E6D296991250028AB72 /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DC7E6C296991250028AB72 /* Payload.swift */; };
+		91DC7E6F296991D60028AB72 /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DC7E6E296991D60028AB72 /* Commit.swift */; };
+		91DC7E7129699D9B0028AB72 /* EventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DC7E7029699D9B0028AB72 /* EventItem.swift */; };
+		91DC7E7329699DA20028AB72 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DC7E7229699DA20028AB72 /* EventCell.swift */; };
 		91E672402957108E00F8E227 /* RepoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E6723F2957108E00F8E227 /* RepoViewReactor.swift */; };
 		91E672422957109C00F8E227 /* RepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E672412957109C00F8E227 /* RepoViewController.swift */; };
 		91FF7C7C293BA2B10045971B /* SearchHistoryViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF7C7B293BA2B10045971B /* SearchHistoryViewReactor.swift */; };
@@ -312,6 +317,13 @@
 		91C267ED28EB33A800DD5677 /* Configuration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Configuration.json; sourceTree = "<group>"; };
 		91D60E0B2965FF2200A489D6 /* UserTrendingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTrendingItem.swift; sourceTree = "<group>"; };
 		91D60E0D2965FF3E00A489D6 /* UserTrendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTrendingCell.swift; sourceTree = "<group>"; };
+		91DC7E682969129A0028AB72 /* events.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
+		91DC7E692969152E0028AB72 /* recive_events.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recive_events.json; sourceTree = "<group>"; };
+		91DC7E6A2969905E0028AB72 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		91DC7E6C296991250028AB72 /* Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payload.swift; sourceTree = "<group>"; };
+		91DC7E6E296991D60028AB72 /* Commit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
+		91DC7E7029699D9B0028AB72 /* EventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItem.swift; sourceTree = "<group>"; };
+		91DC7E7229699DA20028AB72 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		91E6723F2957108E00F8E227 /* RepoViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoViewReactor.swift; sourceTree = "<group>"; };
 		91E672412957109C00F8E227 /* RepoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoViewController.swift; sourceTree = "<group>"; };
 		91FF7C7B293BA2B10045971B /* SearchHistoryViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewReactor.swift; sourceTree = "<group>"; };
@@ -574,6 +586,7 @@
 				91B313F7296747AD00579D00 /* FeedbackNoteCell.swift */,
 				91B313FB29674D2800579D00 /* FeedbackInputCell.swift */,
 				91B314012967D85A00579D00 /* SubmitCell.swift */,
+				91DC7E7229699DA20028AB72 /* EventCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -594,6 +607,7 @@
 				91B313F5296747A200579D00 /* FeedbackNoteItem.swift */,
 				91B313F929674D2100579D00 /* FeedbackInputItem.swift */,
 				91B313FF2967D85200579D00 /* SubmitItem.swift */,
+				91DC7E7029699D9B0028AB72 /* EventItem.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -620,6 +634,9 @@
 				91A4993C295C81EF0090EC30 /* Href.swift */,
 				91B313ED296742A200579D00 /* Issue.swift */,
 				91B313EF296742BE00579D00 /* Label.swift */,
+				91DC7E6A2969905E0028AB72 /* Event.swift */,
+				91DC7E6C296991250028AB72 /* Payload.swift */,
+				91DC7E6E296991D60028AB72 /* Commit.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -672,6 +689,8 @@
 				9120940429555602002C593F /* search_repos.json */,
 				91B314032968504700579D00 /* create_issues.json */,
 				91B314062968892600579D00 /* SimpleList#setting.json */,
+				91DC7E682969129A0028AB72 /* events.json */,
+				91DC7E692969152E0028AB72 /* recive_events.json */,
 			);
 			path = json;
 			sourceTree = "<group>";
@@ -909,6 +928,7 @@
 				91B313F0296742BE00579D00 /* Label.swift in Sources */,
 				9110A0AD29329C5700B09DB1 /* AccessToken.swift in Sources */,
 				9110A0A7293291AB00B09DB1 /* AppInfoCell.swift in Sources */,
+				91DC7E7129699D9B0028AB72 /* EventItem.swift in Sources */,
 				91B9DCE329368D0F00CD2E1B /* Language.swift in Sources */,
 				9110A0A32932910A00B09DB1 /* AboutViewController.swift in Sources */,
 				8C9A45B92887F6F30041937A /* List+Ex.swift in Sources */,
@@ -922,6 +942,7 @@
 				9110A0AF29329CAB00B09DB1 /* GithubBaseAPI.swift in Sources */,
 				8C9A45BB2887F6F30041937A /* Library+Ex.swift in Sources */,
 				8C9210CF2888EF4D002ABCA9 /* DataType.swift in Sources */,
+				91DC7E6D296991250028AB72 /* Payload.swift in Sources */,
 				9154B9B729478A0C0091EB91 /* SearchTitleView.swift in Sources */,
 				8C9A45BA2887F6F30041937A /* UIApplication+Ex.swift in Sources */,
 				8C9A45E92887F7120041937A /* AppDependency.swift in Sources */,
@@ -950,6 +971,7 @@
 				8C9A45E32887F6F40041937A /* LoginViewReactor.swift in Sources */,
 				8C9A45DD2887F6F40041937A /* User.swift in Sources */,
 				8C5A3FCC2887A0E20009A00F /* AppDelegate.swift in Sources */,
+				91DC7E6B2969905E0028AB72 /* Event.swift in Sources */,
 				91B313EE296742A200579D00 /* Issue.swift in Sources */,
 				8C9A45CB2887F6F40041937A /* Router+Web.swift in Sources */,
 				8C9A45D52887F6F40041937A /* PersonalViewController.swift in Sources */,
@@ -976,12 +998,14 @@
 				8C9A45C52887F6F40041937A /* Error.swift in Sources */,
 				8C9A45DB2887F6F40041937A /* SimpleItem.swift in Sources */,
 				910B42F9293A628E000719BA /* UserListViewReactor.swift in Sources */,
+				91DC7E6F296991D60028AB72 /* Commit.swift in Sources */,
 				91B9DCDA2936003300CD2E1B /* RepoTrendingItem.swift in Sources */,
 				91B313FC29674D2800579D00 /* FeedbackInputCell.swift in Sources */,
 				910B42FB293A629E000719BA /* UserListViewController.swift in Sources */,
 				91A49934295C7A1A0090EC30 /* RepoDetailItem.swift in Sources */,
 				8C9A45B72887F6F30041937A /* Router+Ex.swift in Sources */,
 				91B9DCCA2935F8D200CD2E1B /* User+Ex.swift in Sources */,
+				91DC7E7329699DA20028AB72 /* EventCell.swift in Sources */,
 				91E672402957108E00F8E227 /* RepoViewReactor.swift in Sources */,
 				91B313F6296747A200579D00 /* FeedbackNoteItem.swift in Sources */,
 				91B313F4296744F200579D00 /* FeedbackViewController.swift in Sources */,

@@ -22,18 +22,18 @@ struct BaseUser: Subjective, Eventable {
 
     var id = 0
     var username: String?
-    var href: String?
     var avatar: String?
+    var url: String?
 
     init() { }
 
     init?(map: Map) { }
 
     mutating func mapping(map: Map) {
-        id          <- map["id"]
-        username    <- map["username"]
-        href        <- map["href"]
-        avatar      <- map["avatar"]
+        id              <- map["id"]
+        username        <- map["username|login|display_login", nested: false, delimiter: "|"]
+        avatar          <- map["avatar|avatar_url", nested: false, delimiter: "|"]
+        url             <- map["url|href", nested: false, delimiter: "|"]
     }
 
 }

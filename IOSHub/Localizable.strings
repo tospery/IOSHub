@@ -33,12 +33,15 @@
 "Repository" = "Repository";
 "User" = "User";
 "Organization" = "Organization";
+"Issue" = "Issue";
 "Issues" = "Issues";
 "Branches" = "Branches";
 "readme" = "readme";
 "Follow" = "Follow";
 "Unfollow" = "Unfollow";
+"Forked" = "Forked";
 "Submit" = "提交";
+"Title" = "标题";
 /* 词语 */
 "Pull Requests" = "Pull Requests";
 "Exit Login" = "退出登录";
@@ -67,6 +70,11 @@
 "Feedback.Environment" = "运行环境：%@ - iOS%@ - v%@(%@)";
 /* 句子 - Search */
 "Search.Hint" = "搜索您想要的内容";
+/* 句子 - Event */
+"Event.Star" = "收藏事件";
+"Event.Fork" = "创建分支事件";
+"Event.Issue.Handle" = "问题处理事件";
+"Event.Issue.Comment" = "新评论";
 /* 句子 - Login */
 "Login.Slogan" = "Develop By Swift";
 "Login.Button.Title" = "使用GitHub登录";

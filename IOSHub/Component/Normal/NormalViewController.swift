@@ -34,6 +34,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         static let readmeContentCell = ReusableCell<ReadmeContentCell>()
         static let feedbackNoteCell = ReusableCell<FeedbackNoteCell>()
         static let feedbackInputCell = ReusableCell<FeedbackInputCell>()
+        static let eventCell = ReusableCell<EventCell>()
         static let headerView = ReusableView<CollectionHeaderView>()
         static let footerView = ReusableView<CollectionFooterView>()
         static let historyHeaderView = ReusableView<SearchHistoryHeaderView>()
@@ -128,6 +129,11 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                     .bind(to: self.reactor!.action)
                     .disposed(by: cell.disposeBag)
                     return cell
+                case let .event(item):
+                    let cell = collectionView.dequeue(Reusable.eventCell, for: indexPath)
+                    item.parent = self.reactor
+                    cell.reactor = item
+                    return cell
                 }
             },
             configureSupplementaryView: { [weak self] _, collectionView, kind, indexPath in
@@ -173,6 +179,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         self.collectionView.register(Reusable.readmeContentCell)
         self.collectionView.register(Reusable.feedbackNoteCell)
         self.collectionView.register(Reusable.feedbackInputCell)
+        self.collectionView.register(Reusable.eventCell)
         self.collectionView.register(Reusable.headerView, kind: .header)
         self.collectionView.register(Reusable.footerView, kind: .footer)
         self.collectionView.register(Reusable.historyHeaderView, kind: .header)
@@ -406,6 +413,7 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
         case let .readmeContent(item): return Reusable.readmeContentCell.class.size(width: width, item: item)
         case let .feedbackNote(item): return Reusable.feedbackNoteCell.class.size(width: width, item: item)
         case let .feedbackInput(item): return Reusable.feedbackInputCell.class.size(width: width, item: item)
+        case let .event(item): return Reusable.eventCell.class.size(width: width, item: item)
         }
     }
     // swiftlint:enable cyclomatic_complexity

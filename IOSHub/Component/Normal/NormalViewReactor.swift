@@ -351,6 +351,9 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
                 if $0 is Readme {
                     return .readmeContent(.init($0))
                 }
+                if $0 is Event {
+                    return .event(.init($0))
+                }
                 return .simple(.init($0))
             })
         })

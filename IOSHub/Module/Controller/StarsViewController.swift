@@ -31,7 +31,7 @@ class StarsViewController: NormalViewController {
     
     override func handleTotal(total: [HiSection]) {
         guard let host = self.reactor?.host, host.isNotEmpty else { return }
-        guard let index = self.reactor?.pageIndex, index == 0 else { return }
+        guard let index = self.reactor?.pageIndex, index == self.reactor?.pageStart else { return }
         guard let repos = total.first?.models as? [Repo], repos.isNotEmpty else { return }
         let first = [Repo].init(repos.prefix(self.reactor?.pageSize ?? UIApplication.shared.pageSize))
         Repo.storeArray(first, page: host)

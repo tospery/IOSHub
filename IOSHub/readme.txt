@@ -4,3 +4,4 @@
 修改用户信息
 stars -> favorite
 个人中心刷新
+case .contents(let fullname, let path, _): return "/repos/\(fullname)/contents/\(path)"
