@@ -37,6 +37,12 @@ class StarsViewReactor: NormalViewReactor {
             }
             return self.provider.starredRepos(username: username, page: page)
                 .asObservable()
+                .map { $0.map { repo -> Repo in
+                    var repo = repo
+                    repo.displayMode = .list
+                    return repo
+                   }
+                }
                 .map { [.init(header: nil, models: $0)] }
                 .subscribe(observer)
         }

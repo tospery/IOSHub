@@ -21,7 +21,7 @@ class EventItem: BaseCollectionItem, ReactorKit.Reactor {
     struct State {
         var title: String?
         var time: String?
-        var content: NSAttributedString?
+        var content: [NSAttributedString]?
         var icon: ImageSource?
     }
 

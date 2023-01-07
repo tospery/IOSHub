@@ -74,38 +74,58 @@ struct Event: Subjective, Eventable {
         return date.string(withFormat: "yyyy-MM-dd HH:mm")
     }
     
-    var content: NSAttributedString? {
+    var content: [NSAttributedString]? {
         switch self.type {
         case .star:
-            return .composed(of: [
-                (self.actor?.username ?? R.string.localizable.unknown())
-                    .styled(with: .font(.bold(16)), .color(.primary)),
-                " \(self.payload?.action ?? "") "
-                    .styled(with: .font(.normal(16)), .color(.title)),
-                (self.repo?.name ?? R.string.localizable.unknown())
-                    .styled(with: .font(.bold(16)), .color(.primary))
-            ])
+            let user = (self.actor?.username ?? R.string.localizable.unknown())
+                .styled(with: .font(.bold(16)), .color(.primary))
+            return [
+                .composed(of: [
+                    user,
+                    " \(self.payload?.action ?? "") "
+                        .styled(with: .font(.normal(16)), .color(.title)),
+                    (self.repo?.name ?? R.string.localizable.unknown())
+                        .styled(with: .font(.normal(16)), .color(.title))
+                ]),
+                user
+            ]
         case .fork:
-            return .composed(of: [
-                (self.actor?.username ?? R.string.localizable.unknown())
-                    .styled(with: .font(.bold(16)), .color(.primary)),
-                " \(self.payload?.action ?? R.string.localizable.forked().lowercased()) "
-                    .styled(with: .font(.normal(16)), .color(.title)),
-                (self.repo?.name ?? R.string.localizable.unknown())
-                    .styled(with: .font(.bold(16)), .color(.primary))
-            ])
+            let user = (self.actor?.username ?? R.string.localizable.unknown())
+                .styled(with: .font(.bold(16)), .color(.primary))
+            let repo = (self.payload?.forkee?.fullname ?? "")
+                .styled(with: .font(.bold(16)), .color(.primary))
+            return [
+                .composed(of: [
+                    user,
+                    " \(self.payload?.action ?? R.string.localizable.forked().lowercased()) "
+                        .styled(with: .font(.normal(16)), .color(.title)),
+                    (self.repo?.name ?? R.string.localizable.unknown())
+                        .styled(with: .font(.normal(16)), .color(.title)),
+                    " \(R.string.localizable.to().lowercased()) "
+                        .styled(with: .font(.normal(16)), .color(.title)),
+                    repo
+                ]),
+                user,
+                repo
+            ]
         case .issueHandle, .issueComment:
-            return .composed(of: [
-                (self.actor?.username ?? R.string.localizable.unknown())
-                    .styled(with: .font(.bold(16)), .color(.primary)),
-                (" \(self.payload?.action ?? "") \(R.string.localizable.issue()) ")
-                    .styled(with: .font(.normal(16)), .color(.title)),
-                (self.repo?.name ?? R.string.localizable.unknown())
-                    .styled(with: .font(.bold(16)), .color(.primary)),
-                Special.nextLine,
-                (self.payload?.issue?.title ?? "")
-                    .styled(with: .font(.normal(13)), .color(.foreground))
-            ])
+            let user = (self.actor?.username ?? R.string.localizable.unknown())
+                .styled(with: .font(.bold(16)), .color(.primary))
+            let repo = (self.repo?.name ?? R.string.localizable.unknown())
+                .styled(with: .font(.bold(16)), .color(.primary))
+            return [
+                .composed(of: [
+                    user,
+                    (" \(self.payload?.action ?? "") \(R.string.localizable.issue()) ")
+                        .styled(with: .font(.normal(16)), .color(.title)),
+                    repo,
+                    Special.nextLine,
+                    (self.payload?.issue?.title ?? "")
+                        .styled(with: .font(.normal(13)), .color(.foreground))
+                ]),
+                user,
+                repo
+            ]
         default:
             return nil
         }

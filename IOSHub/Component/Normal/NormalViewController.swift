@@ -133,6 +133,9 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                     let cell = collectionView.dequeue(Reusable.eventCell, for: indexPath)
                     item.parent = self.reactor
                     cell.reactor = item
+                    cell.rx.hint
+                        .subscribeNext(weak: self, type(of: self).tapHint)
+                        .disposed(by: cell.disposeBag)
                     return cell
                 }
             },
@@ -350,6 +353,7 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
     }
     
     // MARK: - tap
+    // swiftlint:disable cyclomatic_complexity
     func tapItem(sectionItem: SectionItem) {
         switch sectionItem {
         case let .simple(item):
@@ -363,8 +367,29 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
             guard let username = repo.owner.username, username.isNotEmpty else { return }
             guard let reponame = repo.name, reponame.isNotEmpty else { return }
             self.navigator.forward(Router.shared.urlString(host: .repo, path: "\(username)/\(reponame)"))
+        case let .event(item):
+            guard let event = item.model as? Event else { return }
+            switch event.type {
+            case .star:
+                guard let name = event.repo?.name, name.isNotEmpty else { return }
+                self.navigator.forward(Router.shared.urlString(host: .repo, path: name))
+            case .issueHandle, .issueComment:
+                guard let url = event.payload?.issue?.htmlUrl else { return }
+                self.navigator.forward(url)
+            default:
+                break
+            }
         default:
             log("不需要处理的Item: \(sectionItem)")
+        }
+    }
+    // swiftlint:enable cyclomatic_complexity
+    
+    func tapHint(hint: String) {
+        if hint.contains("/") {
+            self.navigator.forward(Router.shared.urlString(host: .repo, path: hint))
+        } else {
+            self.navigator.forward(Router.shared.urlString(host: .user, path: hint))
         }
     }
     

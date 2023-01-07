@@ -112,7 +112,7 @@ struct Repo: Subjective, Eventable {
     var fullname: String?
     // 扩展属性
     // var branchs = [Branch].init()
-    var listType = ListType.none
+    var displayMode = DisplayMode.none
 
     init() { }
 
@@ -200,12 +200,12 @@ struct Repo: Subjective, Eventable {
         watchers            <- map["watchers"]
         watchersCount       <- map["watchers_count"]
 //        // 扩展属性
-        listType                <- map["listType"]
+        displayMode         <- map["displayMode"]
         // 合并属性
         owner               <- map["owner"]
         if !owner.isValid {
-            owner.username      <- map["author"]
-            owner.avatar        <- map["avatar"]
+            owner.username  <- map["author"]
+            owner.avatar    <- map["avatar"]
         }
         fullname            <- map["full_name"]
         if fullname?.isEmpty ?? true {

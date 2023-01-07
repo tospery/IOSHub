@@ -16,6 +16,8 @@ import HiIOS
 
 class EventCell: BaseCollectionCell, ReactorKit.View {
     
+    let hintSubject = PublishSubject<String>()
+    
     lazy var titleLabel: UILabel = {
         let label = UILabel.init(frame: .zero)
         label.font = .bold(16)
@@ -34,7 +36,7 @@ class EventCell: BaseCollectionCell, ReactorKit.View {
     
     lazy var contentLabel: TTTAttributedLabel = {
         let label = TTTAttributedLabel.init(frame: .zero)
-        // label.delegate = self
+        label.delegate = self
         label.verticalAlignment = .center
         label.numberOfLines = 4
         return label
@@ -104,7 +106,7 @@ class EventCell: BaseCollectionCell, ReactorKit.View {
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.content }
             .distinctUntilChanged()
-            .bind(to: self.contentLabel.rx.attributedText)
+            .bind(to: self.rx.content)
             .disposed(by: self.disposeBag)
         reactor.state.map { $0.icon }
             .distinctUntilChanged { HiIOS.compareImage($0, $1) }
@@ -117,6 +119,58 @@ class EventCell: BaseCollectionCell, ReactorKit.View {
     
     override class func size(width: CGFloat, item: BaseCollectionItem) -> CGSize {
         .init(width: width, height: 115)
+    }
+
+}
+
+extension EventCell: TTTAttributedLabelDelegate {
+    func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith result: NSTextCheckingResult!) {
+        guard let text = label.attributedText?.string else { return }
+        let start = result.range.location
+        let end = start + result.range.length
+        let hint = String.init(text[start..<end])
+        log("hint: \(hint)")
+        if hint.isNotEmpty {
+            self.hintSubject.onNext(hint)
+        }
+    }
+}
+
+extension Reactive where Base: EventCell {
+
+    var hint: ControlEvent<String> {
+        let source = self.base.hintSubject
+        return ControlEvent(events: source)
+    }
+    
+    var content: Binder<[NSAttributedString]?> {
+        return Binder(self.base) { cell, content in
+            if let array = content, let text = array.first {
+                cell.contentLabel.setText(text)
+                for (index, hint) in array.enumerated() {
+                    if index == 0 {
+                        continue
+                    }
+                    if let start = text.string.range(of: hint.string) {
+                        cell.contentLabel.addLink(.init(
+                            attributes: [
+                                NSAttributedString.Key.foregroundColor: UIColor.primary,
+                                NSAttributedString.Key.font: UIFont.bold(16)
+                            ],
+                            activeAttributes: [
+                                NSAttributedString.Key.foregroundColor: UIColor.red
+                            ],
+                            inactiveAttributes: [
+                                NSAttributedString.Key.foregroundColor: UIColor.gray
+                            ],
+                            textCheckingResult: .spellCheckingResult(range: text.string.nsRange(from: start))
+                        ))
+                    }
+                }
+            }
+            cell.setNeedsLayout()
+            cell.layoutIfNeeded()
+        }
     }
 
 }

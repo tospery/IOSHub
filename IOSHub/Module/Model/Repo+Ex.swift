@@ -62,9 +62,9 @@ extension Repo {
 //        )
 //    }
     
-    mutating func setup(listType: ListType) {
+    mutating func setup(displayMode: DisplayMode) {
         var repo = self
-        repo.listType = listType
+        repo.displayMode = displayMode
         self = repo
     }
     

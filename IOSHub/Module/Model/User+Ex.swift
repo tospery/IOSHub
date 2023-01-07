@@ -98,13 +98,11 @@ extension User {
         switch cellId {
         case .nickname: result = self.nickname
         case .bio: result = self.bio
-        case .company: result = self.company
-        case .location: result = self.location
-        case .blog: result = self.blog
+        case .company: result = self.company?.isEmpty ?? true ? R.string.localizable.noneCompany() : self.company
+        case .location: result = self.location?.isEmpty ?? true ? R.string.localizable.noneLocation() : self.location
+        case .email: result = self.email?.isEmpty ?? true ? R.string.localizable.noneEmail() : self.email
+        case .blog: result = self.blog?.isEmpty ?? true ? R.string.localizable.noneBlog() : self.blog
         default: result = nil
-        }
-        if result?.isEmpty ?? true {
-            return R.string.localizable.noDescription()
         }
         return result
     }
@@ -117,9 +115,9 @@ extension User {
         ]).styled(with: .lineSpacing(4), .alignment(.center))
     }
     
-    mutating func setup(listType: ListType) {
+    mutating func setup(displayMode: DisplayMode) {
         var repo = self
-        repo.listType = listType
+        repo.displayMode = displayMode
         self = repo
     }
     

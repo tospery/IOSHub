@@ -50,7 +50,6 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        // self.contentView.backgroundColor = .orange
         self.borderLayer?.borders = .bottom
         self.borderLayer?.borderColors = [BorderLayer.Border.bottom: UIColor.border]
         self.borderLayer?.borderWidths = [BorderLayer.Border.bottom: pixelOne]
@@ -206,13 +205,13 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
     // swiftlint:enable function_body_length
     
     func bindSpace(reactor: SimpleItem) {
-        self.contentView.backgroundColor = reactor.color ?? .clear
+        self.contentView.theme.backgroundColor = themeService.attribute { _ in reactor.color ?? UIColor.clear }
         self.borderLayer?.borderWidths = [:]
         self.indicatorImageView.isHidden = true
     }
     
     func bindButton(reactor: SimpleItem) {
-        self.contentView.backgroundColor = reactor.color ?? .clear
+        self.contentView.theme.backgroundColor = themeService.attribute { _ in reactor.color ?? UIColor.clear }
         self.borderLayer?.borderWidths = [:]
         self.indicatorImageView.isHidden = true
         self.titleLabel.font = .normal(17)

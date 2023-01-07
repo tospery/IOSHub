@@ -664,7 +664,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 100 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 101 localization keys.
     struct localizable {
       /// Value: Access Token
       static let accessToken = Rswift.StringResource(key: "Access Token", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -718,6 +718,8 @@ struct R: Rswift.Validatable {
       static let since = Rswift.StringResource(key: "Since", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Stars
       static let stars = Rswift.StringResource(key: "Stars", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: To
+      static let to = Rswift.StringResource(key: "To", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Unfollow
       static let unfollow = Rswift.StringResource(key: "Unfollow", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Update %@
@@ -748,7 +750,7 @@ struct R: Rswift.Validatable {
       static let errorSystemListIsEmptyMessage = Rswift.StringResource(key: "Error.System.ListIsEmpty.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 列表为空
       static let errorSystemListIsEmptyTitle = Rswift.StringResource(key: "Error.System.ListIsEmpty.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: 创建分支事件
+      /// Value: 创建分支
       static let eventFork = Rswift.StringResource(key: "Event.Fork", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 反馈
       static let feedback = Rswift.StringResource(key: "Feedback", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -778,7 +780,7 @@ struct R: Rswift.Validatable {
       static let searchOptions = Rswift.StringResource(key: "Search Options", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 收藏
       static let collect = Rswift.StringResource(key: "Collect", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: 收藏事件
+      /// Value: 收藏仓库
       static let eventStar = Rswift.StringResource(key: "Event.Star", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 数据解析异常
       static let errorSystemDataFormatMessage = Rswift.StringResource(key: "Error.System.DataFormat.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -854,7 +856,7 @@ struct R: Rswift.Validatable {
       static let errorRetry = Rswift.StringResource(key: "Error.Retry", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 问题内容
       static let feedbackPlaceholder = Rswift.StringResource(key: "Feedback.Placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: 问题处理事件
+      /// Value: 问题处理
       static let eventIssueHandle = Rswift.StringResource(key: "Event.Issue.Handle", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 隐私声明：SwiftGithub不会从您的GitHub账户收集任何信息，我甚至连服务器都没有，请您放心使用。
       static let loginPrivacyMessage = Rswift.StringResource(key: "Login.Privacy.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -1207,6 +1209,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Stars", bundle: bundle, comment: "")
       }
 
+      /// Value: To
+      static func to(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("To", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "To"
+        }
+
+        return NSLocalizedString("To", bundle: bundle, comment: "")
+      }
+
       /// Value: Unfollow
       static func unfollow(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
@@ -1404,7 +1419,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Error.System.ListIsEmpty.Title", bundle: bundle, comment: "")
       }
 
-      /// Value: 创建分支事件
+      /// Value: 创建分支
       static func eventFork(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("Event.Fork", bundle: hostingBundle, comment: "")
@@ -1599,7 +1614,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Collect", bundle: bundle, comment: "")
       }
 
-      /// Value: 收藏事件
+      /// Value: 收藏仓库
       static func eventStar(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("Event.Star", bundle: hostingBundle, comment: "")
@@ -2095,7 +2110,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Feedback.Placeholder", bundle: bundle, comment: "")
       }
 
-      /// Value: 问题处理事件
+      /// Value: 问题处理
       static func eventIssueHandle(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("Event.Issue.Handle", bundle: hostingBundle, comment: "")

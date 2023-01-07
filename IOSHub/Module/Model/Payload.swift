@@ -29,6 +29,7 @@ struct Payload: Subjective, Eventable {
     var before: String?
     var action: String?
     var issue: Issue?
+    var forkee: Repo?
     var commits: [Commit]?
     
     init() { }
@@ -45,6 +46,7 @@ struct Payload: Subjective, Eventable {
         before          <- map["before"]
         action          <- map["action"]
         issue           <- map["issue"]
+        forkee          <- map["forkee"]
         commits         <- map["commits"]
     }
     

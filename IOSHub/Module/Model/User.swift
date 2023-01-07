@@ -18,11 +18,6 @@ import BonMot
 
 struct User: Subjective, Eventable {
     
-//    enum CellType: Int, Codable {
-//        case trending
-//        case detail
-//    }
-    
     enum Event {
     }
     
@@ -74,7 +69,7 @@ struct User: Subjective, Eventable {
     var nickname: String?       // name
     var avatar: String?         // avatar|avatar_url
     // 扩展字段
-    var listType = ListType.none
+    var displayMode = DisplayMode.none
 
     var isValid: Bool {
         id != 0 && username?.isNotEmpty ?? false
@@ -129,7 +124,7 @@ struct User: Subjective, Eventable {
         updatedAt               <- map["updated_at"]
         username                <- map["login|username", nested: false, delimiter: "|"]
         avatar                  <- map["avatar_url|avatar", nested: false, delimiter: "|"]
-        listType                <- map["listType"]
+        displayMode             <- map["displayMode"]
     }
     // swiftlint:enable function_body_length
     

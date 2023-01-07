@@ -44,6 +44,13 @@ class MilestoneCell: BaseCollectionCell, ReactorKit.View {
 
     func bind(reactor: MilestoneItem) {
         super.bind(item: reactor)
+        if let parent = reactor.parent as? NormalViewReactor {
+            parent.state.map { $0.user?.milestone }
+                .distinctUntilChanged()
+                .map(Reactor.Action.url)
+                .bind(to: reactor.action)
+                .disposed(by: self.disposeBag)
+        }
         reactor.state.map { $0.url }
             .distinctUntilChanged()
             .bind(to: self.rx.url)

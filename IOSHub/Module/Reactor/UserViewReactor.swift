@@ -22,6 +22,17 @@ class UserViewReactor: NormalViewReactor {
         )
     }
     
+    override func reduce(state: State, mutation: Mutation) -> State {
+        var newState = super.reduce(state: state, mutation: mutation)
+        switch mutation {
+        case let .setUser(user):
+            newState.title = user?.type
+        default:
+            break
+        }
+        return newState
+    }
+    
     override func requestDependency() -> Observable<Mutation> {
         if self.username == nil {
             return .error(HiError.unknown)
@@ -44,9 +55,10 @@ class UserViewReactor: NormalViewReactor {
             if let user = self.currentState.user {
                 models.append(user)
                 if user.isOrganization {
-                    models.append(Simple.init(height: 10))
+                    models.append(Simple.init(height: 15))
                 } else {
-                    models.append(BaseModel.init(SectionItemValue.milestone))
+                    // models.append(BaseModel.init(SectionItemValue.milestone))
+                    models.append(Simple.init(height: 15))
                 }
                 models.append(
                     contentsOf: [

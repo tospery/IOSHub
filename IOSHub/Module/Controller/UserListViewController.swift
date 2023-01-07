@@ -47,10 +47,11 @@ class UserListViewController: NormalViewController {
     }
     
     override func handleTotal(total: [HiSection]) {
-        guard let listType = (self.reactor as? UserListViewReactor)?.listType, listType == .trending else { return }
+        guard let displayMode = (self.reactor as? UserListViewReactor)?.displayMode else { return }
+        guard displayMode == .list else { return }
         guard let users = total.first?.models as? [User], users.isNotEmpty else { return }
-        User.storeArray(users, page: listType.stringValue)
-        log("趋势缓存：(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? "")), \(listType.stringValue)")
+        User.storeArray(users, page: displayMode.stringValue)
+        log("趋势缓存：(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? "")), \(displayMode.stringValue)")
     }
 
 }

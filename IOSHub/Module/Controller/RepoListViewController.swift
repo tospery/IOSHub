@@ -47,10 +47,11 @@ class RepoListViewController: NormalViewController {
     }
     
     override func handleTotal(total: [HiSection]) {
-        guard let listType = (self.reactor as? RepoListViewReactor)?.listType, listType == .trending else { return }
+        guard let displayMode = (self.reactor as? RepoListViewReactor)?.displayMode else { return }
+        guard displayMode == .list else { return }
         guard let repos = total.first?.models as? [Repo], repos.isNotEmpty else { return }
-        Repo.storeArray(repos, page: listType.stringValue)
-        log("趋势缓存：(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? "")), \(listType.stringValue)")
+        Repo.storeArray(repos, page: displayMode.stringValue)
+        log("趋势缓存：(\(self.reactor?.host ?? ""), \(self.reactor?.path ?? "")), \(displayMode.stringValue)")
     }
 
 }

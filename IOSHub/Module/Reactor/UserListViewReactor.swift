@@ -15,15 +15,15 @@ import HiIOS
 
 class UserListViewReactor: NormalViewReactor {
     
-    let listType: ListType
+    let displayMode: DisplayMode
     
     required init(_ provider: HiIOS.ProviderType, _ parameters: [String: Any]?) {
-        listType = parameters?.enum(for: Parameter.type, type: ListType.self) ?? .trending
+        displayMode = parameters?.enum(for: Parameter.type, type: DisplayMode.self) ?? .list
         super.init(provider, parameters)
     }
     
     override func fetchLocal() -> Observable<[HiSection]> {
-        let models = User.cachedArray(page: self.listType.stringValue) ?? []
+        let models = User.cachedArray(page: self.displayMode.stringValue) ?? []
         let original: [HiSection] = models.isNotEmpty ? [.init(header: nil, models: models)] : []
         return .just(original)
     }
@@ -35,7 +35,7 @@ class UserListViewReactor: NormalViewReactor {
                  .asObservable()
                  .map { $0.map { user -> User in
                      var user = user
-                     user.listType = .trending
+                     user.displayMode = .list
                      return user
                     }
                  }
