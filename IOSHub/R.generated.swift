@@ -842,7 +842,7 @@ struct R: Rswift.Validatable {
       static let languageEnvironment = Rswift.StringResource(key: "Language Environment", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 说明：反馈将以issue的形式提交到GitHub仓库
       static let feedbackNote = Rswift.StringResource(key: "Feedback.Note", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: 请检查您是否有进行登录
+      /// Value: 请检查您是否进行了登录
       static let errorUserNotLoginedInMessage = Rswift.StringResource(key: "Error.User.NotLoginedIn.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: 趋势
       static let trending = Rswift.StringResource(key: "Trending", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -2017,7 +2017,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Feedback.Note", bundle: bundle, comment: "")
       }
 
-      /// Value: 请检查您是否有进行登录
+      /// Value: 请检查您是否进行了登录
       static func errorUserNotLoginedInMessage(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("Error.User.NotLoginedIn.Message", bundle: hostingBundle, comment: "")
