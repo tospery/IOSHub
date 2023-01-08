@@ -24,7 +24,11 @@ extension Router {
                 window.makeToast(message)
             } else if let active = url.queryParameters[Parameter.active] {
                 window.isUserInteractionEnabled = !(active.bool ?? false)
-                (active.bool ?? false) ? window.makeToastActivity(.center) : window.hideToastActivity()
+                if active.bool ?? false {
+                    window.makeToastActivity(.center)
+                } else {
+                    window.hideToastActivity()
+                }
             } else {
                 return false
             }

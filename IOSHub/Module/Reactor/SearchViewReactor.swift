@@ -15,6 +15,8 @@ import HiIOS
 
 class SearchViewReactor: NormalViewReactor {
     
+    let option: Int!
+    
     var keyword = "" {
         didSet {
             self.saveKeyword()
@@ -22,6 +24,7 @@ class SearchViewReactor: NormalViewReactor {
     }
     
     required init(_ provider: HiIOS.ProviderType, _ parameters: [String: Any]?) {
+        self.option = parameters?.int(for: Parameter.option) ?? 0
         super.init(provider, parameters)
         self.pageStart = 0
         self.pageIndex = self.pageStart
@@ -32,13 +35,36 @@ class SearchViewReactor: NormalViewReactor {
     override func requestData(_ page: Int) -> Observable<[HiSection]> {
         .create { [weak self] observer -> Disposable in
             guard let `self` = self else { fatalError() }
-            return self.provider.searchRepos(
+            if self.option == 0 {
+                return self.provider.searchRepos(
+                    keyword: self.keyword,
+                    sort: .stars,
+                    order: .desc,
+                    page: page
+                )
+                    .asObservable()
+                    .map { $0.map { repo -> Repo in
+                        var repo = repo
+                        repo.displayMode = .list
+                        return repo
+                       }
+                    }
+                    .map { [.init(header: nil, models: $0)] }
+                    .subscribe(observer)
+            }
+            return self.provider.searchUsers(
                 keyword: self.keyword,
                 sort: .stars,
                 order: .desc,
                 page: page
             )
                 .asObservable()
+                .map { $0.map { user -> User in
+                    var user = user
+                    user.displayMode = .list
+                    return user
+                   }
+                }
                 .map { [.init(header: nil, models: $0)] }
                 .subscribe(observer)
         }

@@ -16,7 +16,6 @@ import RxGesture
 import SnapKit
 import HiIOS
 
-// swiftlint:disable type_body_length
 class PersonalParallaxView: UIImageView {
     
     lazy var topImageView: UIImageView = {
@@ -123,14 +122,6 @@ class PersonalParallaxView: UIImageView {
         return button
     }()
 
-//    lazy var themeButton: UIButton = {
-//        let button = UIButton.init(type: .custom)
-//        button.setImage(R.image.navbar_theme_light(), for: .normal)
-//        button.setImage(R.image.navbar_theme_dark(), for: .selected)
-//        button.sizeToFit()
-//        return button
-//    }()
-
     lazy var activityIndicatorView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView.init(style: UIActivityIndicatorView.Style.white)
         view.sizeToFit()
@@ -165,7 +156,6 @@ class PersonalParallaxView: UIImageView {
         self.statView.addSubview(self.repositoriesButton)
         self.statView.addSubview(self.followerButton)
         self.statView.addSubview(self.followingButton)
-        // self.addSubview(self.themeButton)
         self.addSubview(self.activityIndicatorView)
     }
     
@@ -208,8 +198,6 @@ class PersonalParallaxView: UIImageView {
         self.followingButton.top = 0
         self.activityIndicatorView.left = self.activityIndicatorView.leftWhenCenter
         self.activityIndicatorView.top = self.userView.top - 35
-//        self.themeButton.right = self.userView.right
-//        self.themeButton.bottom = self.userView.top - 20
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -304,10 +292,6 @@ extension Reactive where Base: PersonalParallaxView {
         return ControlEvent(events: source)
     }
     
-//    var tapTheme: ControlEvent<Void> {
-//        self.base.themeButton.rx.tap
-//    }
-    
     var tapRepositories: ControlEvent<Void> {
         self.base.repositoriesButton.rx.tap
     }
@@ -321,4 +305,3 @@ extension Reactive where Base: PersonalParallaxView {
     }
     
 }
-// swiftlint:enable type_body_length

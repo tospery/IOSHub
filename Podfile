@@ -6,8 +6,8 @@ inhibit_all_warnings!
 
 target 'IOSHub' do
 
-  pod 'HiIOS', :path => '../HiIOS'
-  # pod 'HiIOS', '1.0.1'
+  # pod 'HiIOS', :path => '../HiIOS'
+  pod 'HiIOS', '1.1.0'
 
   # Base
   pod 'RxOptional', '5.0.2'
@@ -18,7 +18,7 @@ target 'IOSHub' do
   pod 'ReusableKit-Hi/RxSwift', '3.0.0-v4'
   pod 'DefaultsKit', '0.2.0'
   pod 'R.swift', '6.1.0'
-  pod 'SwiftLint', '0.46.2'
+  pod 'SwiftLint', '0.50.3'
   pod 'Umbrella/Core', '0.12.0'
   pod 'SnapKit', '5.6.0'
   
@@ -26,9 +26,7 @@ target 'IOSHub' do
   pod 'MXParallaxHeader', '1.1.0'
   pod 'Parchment', '3.2.0'
   pod 'TagListView', '1.4.1'
-  # pod 'lottie-ios', '3.5.0'
   pod 'SwiftSVG', '2.3.2'
-  # pod 'Macaw', '0.9.10'
   pod 'Toast-Swift', '5.0.1'
   pod 'SwiftEntryKit', '2.0.0'
   pod 'TTTAttributedLabel', '2.0.0'

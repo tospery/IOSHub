@@ -31,12 +31,6 @@ class SearchKeywordsItem: BaseCollectionItem, ReactorKit.Reactor {
 
     required public init(_ model: ModelType) {
         super.init(model)
-//        guard let base = model as? BaseModel else { return }
-//        guard let info = base.data as? (title: String, keywords: [Keyword]) else { return }
-//        self.initialState = State(
-//            id: info.title,
-//            tags: info.keywords
-//        )
     }
 
     func mutate(action: Action) -> Observable<Mutation> {

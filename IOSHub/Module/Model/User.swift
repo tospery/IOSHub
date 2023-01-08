@@ -79,7 +79,6 @@ struct User: Subjective, Eventable {
 
     init?(map: Map) { }
     
-    // swiftlint:disable function_body_length
     mutating func mapping(map: Map) {
         id                      <- map["id"]
         href                    <- map["href"]
@@ -126,7 +125,6 @@ struct User: Subjective, Eventable {
         avatar                  <- map["avatar_url|avatar", nested: false, delimiter: "|"]
         displayMode             <- map["displayMode"]
     }
-    // swiftlint:enable function_body_length
     
     static func update(_ user: User?, reactive: Bool) {
         let old = Self.current
@@ -147,14 +145,6 @@ struct User: Subjective, Eventable {
             log("用户更新: \(String(describing: new))")
         }
         Subjection.update(self, new, reactive)
-//        let userid = new?.id.string
-//        if userid != Preference.current?.id {
-//            Subjection.update(
-//                Preference.self,
-//                Preference.cachedObject(id: userid) ?? .init(id: userid ?? ""),
-//                true
-//            )
-//        }
     }
     
 }

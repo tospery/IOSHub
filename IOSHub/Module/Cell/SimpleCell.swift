@@ -125,8 +125,7 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
             self.detailLabel.right = self.indicatorImageView.left - 8
         }
     }
-     
-    // swiftlint:disable function_body_length
+    
     func bind(reactor: SimpleItem) {
         super.bind(item: reactor)
         guard let simple = reactor.model as? Simple else { return }
@@ -151,29 +150,6 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
                     .bind(to: reactor.action)
                     .disposed(by: self.disposeBag)
             }
-//            if parent.host == .personal {
-//                if let simple = reactor.model as? Simple,
-//                   let cellId = CellId.init(rawValue: simple.id),
-//                   cellId.rawValue >= CellId.company.rawValue,
-//                   cellId.rawValue <= CellId.bio.rawValue {
-//                    parent.state.map { $0.user?.text(cellId: cellId) }
-//                        .distinctUntilChanged()
-//                        .map { Reactor.Action.title($0) }
-//                        .bind(to: reactor.action)
-//                        .disposed(by: self.disposeBag)
-//                }
-//            } else {
-//                if let simple = reactor.model as? Simple,
-//                   let cellId = CellId.init(rawValue: simple.id),
-//                   cellId.rawValue >= CellId.company.rawValue,
-//                   cellId.rawValue <= CellId.bio.rawValue {
-//                    parent.state.map { $0.user?.text(cellId: cellId) }
-//                        .distinctUntilChanged()
-//                        .map { Reactor.Action.detail($0) }
-//                        .bind(to: reactor.action)
-//                        .disposed(by: self.disposeBag)
-//                }
-//            }
         }
         reactor.state.map { $0.icon }
             .distinctUntilChanged { HiIOS.compareImage($0, $1) }
@@ -202,7 +178,6 @@ class SimpleCell: BaseCollectionCell, ReactorKit.View {
             .bind(to: self.rx.setNeedsLayout)
             .disposed(by: self.disposeBag)
     }
-    // swiftlint:enable function_body_length
     
     func bindSpace(reactor: SimpleItem) {
         self.contentView.theme.backgroundColor = themeService.attribute { _ in reactor.color ?? UIColor.clear }

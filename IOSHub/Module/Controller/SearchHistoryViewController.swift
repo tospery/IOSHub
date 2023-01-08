@@ -31,8 +31,6 @@ class SearchHistoryViewController: NormalViewController {
     
     required init(_ navigator: NavigatorProtocol, _ reactor: BaseViewReactor) {
         super.init(navigator, reactor)
-//        self.shouldRefresh = reactor.parameters.bool(for: Parameter.shouldRefresh) ?? true
-//        self.shouldLoadMore = reactor.parameters.bool(for: Parameter.shouldLoadMore) ?? true
     }
 
     required init?(coder: NSCoder) {
@@ -71,21 +69,6 @@ class SearchHistoryViewController: NormalViewController {
             for: indexPath
         )
         header.bind(reactor: self.reactor!, section: indexPath.section)
-//        header.rx.operate
-//            .flatMap { [weak self] _  -> Observable<Any> in
-//                guard let `self` = self else { fatalError() }
-//                self.searchView.textField.resignFirstResponder()
-//                return self.navigator.rxAlert(
-//                    "",
-//                    R.string.localizable.alertEraseMessage(),
-//                    [
-//                        IHAlertAction.cancel,
-//                        IHAlertAction.default
-//                    ]
-//                )
-//            }
-//            .subscribeNext(weak: self, type(of: self).operate)
-//            .disposed(by: header.rx.disposeBag)
         header.rx.operate
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }

@@ -53,33 +53,13 @@ extension User {
     
     var fullnameAttributedText: NSAttributedString {
         .composed(of: [
-            (self.nickname ?? R.string.localizable.unknown())
+            (self.nickname ?? self.username ?? R.string.localizable.unknown())
                 .styled(with: .color(.primary)),
             Special.space,
             "(\(self.username ?? R.string.localizable.unknown()))"
                 .styled(with: .color(.title))
         ]).styled(with: .font(.bold(16)))
     }
-    
-//    var attrFullname: NSAttributedString {
-//        .composed(of: [
-//            (self.username ?? R.string.localizable.unknown()).attributedString(),
-//            Special.space,
-//            "(\(self.nickname ?? R.string.localizable.unknown()))".attributedString()
-//        ]).styled(with: .color(.title), .font(.normal(17)))
-//    }
-//    
-//    var attrRepoName: NSAttributedString {
-//        NSAttributedString.composed(of: [
-//            R.image.ic_repo_small()!.styled(with: .baselineOffset(-4)),
-//            Special.space,
-//            (self.repo?.name ?? R.string.localizable.noneRepo()).attributedString()
-//        ]).styled(with: .color(.primary), .font(.normal(14)))
-//    }
-//    
-//    var repoDesc: String {
-//        self.repo?.desc ?? R.string.localizable.noneDesc()
-//    }
     
     var attrRepositores: NSAttributedString {
         self.attr(R.string.localizable.repositores(), self.publicRepos)

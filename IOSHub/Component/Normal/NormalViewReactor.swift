@@ -117,7 +117,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         }
     }
     
-    // swiftlint:disable cyclomatic_complexity function_body_length
+    // swiftlint:disable cyclomatic_complexity
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
         switch mutation {
@@ -162,7 +162,7 @@ class NormalViewReactor: HiIOS.CollectionViewReactor, ReactorKit.Reactor {
         }
         return newState
     }
-    // swiftlint:enable cyclomatic_complexity function_body_length
+    // swiftlint:enable cyclomatic_complexity
     
     func transform(action: Observable<Action>) -> Observable<Action> {
         action

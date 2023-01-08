@@ -96,6 +96,12 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
                     let cell = collectionView.dequeue(Reusable.searchOptionsCell, for: indexPath)
                     item.parent = self.reactor
                     cell.reactor = item
+                    cell.rx.option
+                        .asObservable()
+                        .distinctUntilChanged()
+                        .map { Reactor.Action.value($0) }
+                        .bind(to: self.reactor!.action)
+                        .disposed(by: cell.disposeBag)
                     return cell
                 case let .searchKeywords(item):
                     let cell = collectionView.dequeue(Reusable.searchKeywordsCell, for: indexPath)
@@ -405,7 +411,8 @@ class NormalViewController: HiIOS.CollectionViewController, ReactorKit.View {
         }
         self.navigator.push(
             Router.shared.urlString(host: .search, parameters: [
-                Parameter.keyword: keyword
+                Parameter.keyword: keyword,
+                Parameter.option: (self.reactor?.currentState.value as? Int ?? 0).string
             ]),
             animated: false
         )
